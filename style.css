@@ -148,6 +148,31 @@
   section.panel{ display:none; padding-bottom:40px; }
   section.panel.active{ display:block; }
 
+  /* ---------- 印刷用サマリー(教員・進路指導室向け) ---------- */
+  .print-header{ display:none; }
+  @media print{
+    @page{ margin:1.4cm; }
+    body{ background:#fff !important; color:#000 !important; }
+    .noprint, .hero, nav.tabs, footer.appfoot{ display:none !important; }
+    .print-header{
+      display:block; margin-bottom:18px; padding-bottom:12px; border-bottom:2px solid #000;
+    }
+    .print-header .pf-title{ font-weight:700; font-size:1.15rem; margin-bottom:8px; }
+    .print-header .pf-fields{ display:flex; flex-wrap:wrap; gap:18px; font-size:.85rem; margin-bottom:6px; }
+    .print-header .pf-note{ font-size:.78rem; color:#333; }
+    .card, .matchcard, .reasonbox, .asof{
+      background:none !important; box-shadow:none !important;
+      border:1px solid #000 !important; color:#000 !important;
+    }
+    .matchcard .barbg{ border:1px solid #000 !important; }
+    .matchcard .barbg i{ background:#666 !important; }
+    .chip, .tagchips .chip{ background:none !important; border:1px solid #000 !important; color:#000 !important; }
+    .matchcard, .card{ break-inside:avoid; page-break-inside:avoid; }
+    a.gosite{ color:#000 !important; text-decoration:underline; }
+    a.gosite[href]::after{ content:" (" attr(href) ")"; font-size:.72rem; font-weight:400; }
+    .disclaimer{ color:#000 !important; }
+  }
+
   .card{
     background:var(--paper-raise); border:1px solid var(--line); border-radius:var(--radius);
     box-shadow:var(--shadow); padding:22px;

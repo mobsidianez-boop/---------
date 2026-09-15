@@ -16,13 +16,13 @@
     {uni:'香川大学(国立)', name:'教育学部', cats:['edu','specialsupport'], desc:'幼児教育から小学校・中学校・特別支援教育まで、教職大学院と連携した実践的な教員養成。', cap:'入学定員: 160人', url:'https://www.ed.kagawa-u.ac.jp/'},
     {uni:'香川大学(国立)', name:'創造工学部(7コース)', cats:['engineering','itai','design','architecture'], desc:'造形・メディアデザイン/建築・都市環境/防災/情報・AI/機械/材料まで7コース。ものづくりと情報技術を横断的に学べる。', cap:'入学定員: 330人(7コース合計)', url:'https://www.kagawa-u.ac.jp/kagawa-u_ead/'},
     {uni:'香川大学(国立)', name:'農学部', cats:['agri'], desc:'希少糖研究や附属農場・庵治マリンステーションなど、食と生命科学を実地で学ぶ。', cap:'入学定員: 150人', url:'https://www.ag.kagawa-u.ac.jp/'},
-    {uni:'四国学院大学(私立・善通寺市)', name:'現代教養学部', cats:['lang','sports','design'], desc:'19メジャー制で語学・歴史・哲学・平和学・スポーツ・舞台芸術などを自由に組み合わせて学べる。', cap:'定員: 不明(要確認)', url:'https://www.sg-u.ac.jp/academics/majors/'},
-    {uni:'四国学院大学(私立・善通寺市)', name:'社会福祉学部', cats:['specialsupport','psych','welfarechild'], desc:'福祉・心理・カウンセリング・子ども福祉・スクールソーシャルワークを学び、支援の専門家を目指す。', cap:'定員: 不明(要確認)', url:'https://www.sg-u.ac.jp/academics/majors/'},
-    {uni:'四国学院大学(私立・善通寺市)', name:'社会学部', cats:['media','tourism','econbiz'], desc:'社会学、メディア&サブカルチャー研究、観光学、国際文化マネジメントなど社会を読み解く視点を養う。', cap:'定員: 不明(要確認)', url:'https://www.sg-u.ac.jp/academics/majors/'},
-    {uni:'高松大学(私立)', name:'経営学部', cats:['econbiz','tourism','sports'], desc:'企業経営・経営情報・会計・スポーツマネジメント・グローバルビジネスの5トラック。インターンシップと資格取得を重視。', cap:'定員: 不明(要確認)', url:'https://www.takamatsu-u.ac.jp/univ-jrcol/business/'},
-    {uni:'高松大学(私立)', name:'発達科学部 子ども発達学科', cats:['edu','welfarechild','specialsupport'], desc:'児童教育・幼児教育・特別支援教育・子どもビジネスの4専攻。教員免許や保育士資格の取得が可能。', cap:'定員: 不明(要確認)', url:'https://www.takamatsu-u.ac.jp/univ-jrcol/growth/'},
-    {uni:'高松短期大学(私立)', name:'保育学科', cats:['edu','welfarechild'], desc:'子どもと共に学ぶ実践重視の保育者養成。', cap:'定員: 不明(要確認)', url:'https://www.takamatsu-u.ac.jp/univ-jrcol/nursery/'},
-    {uni:'高松短期大学(私立)', name:'ビジネスデザイン学科', cats:['econbiz','design','itai'], desc:'ビジネス実務とデザイン・情報スキルを2年間で身につける。', cap:'定員: 不明(要確認)', url:'https://www.takamatsu-u.ac.jp/univ-jrcol/business-design/'},
+    {uni:'四国学院大学(私立・善通寺市)', name:'現代教養学部', cats:['lang','sports','design'], desc:'19メジャー制で語学・歴史・哲学・平和学・スポーツ・舞台芸術などを自由に組み合わせて学べる。', cap:'定員: 80名(2027年度)', url:'https://www.sg-u.ac.jp/academics/majors/'},
+    {uni:'四国学院大学(私立・善通寺市)', name:'社会福祉学部', cats:['specialsupport','psych','welfarechild'], desc:'福祉・心理・カウンセリング・子ども福祉・スクールソーシャルワークを学び、支援の専門家を目指す。', cap:'定員: 60名(2027年度)', url:'https://www.sg-u.ac.jp/academics/majors/'},
+    {uni:'四国学院大学(私立・善通寺市)', name:'社会学部', cats:['media','tourism','econbiz'], desc:'社会学、メディア&サブカルチャー研究、観光学、国際文化マネジメントなど社会を読み解く視点を養う。', cap:'定員: 60名(2027年度)', url:'https://www.sg-u.ac.jp/academics/majors/'},
+    {uni:'高松大学(私立)', name:'経営学部', cats:['econbiz','tourism','sports'], desc:'企業経営・経営情報・会計・スポーツマネジメント・グローバルビジネスの5トラック。インターンシップと資格取得を重視。', cap:'定員: 105名(2027年度)', url:'https://www.takamatsu-u.ac.jp/univ-jrcol/business/'},
+    {uni:'高松大学(私立)', name:'発達科学部 子ども発達学科', cats:['edu','welfarechild','specialsupport'], desc:'児童教育・幼児教育・特別支援教育・子どもビジネスの4専攻。教員免許や保育士資格の取得が可能。', cap:'定員: 70名(2027年度)', url:'https://www.takamatsu-u.ac.jp/univ-jrcol/growth/'},
+    {uni:'高松短期大学(私立)', name:'保育学科', cats:['edu','welfarechild'], desc:'子どもと共に学ぶ実践重視の保育者養成。', cap:'定員: 40名(2027年度)', url:'https://www.takamatsu-u.ac.jp/univ-jrcol/nursery/'},
+    {uni:'高松短期大学(私立)', name:'ビジネスデザイン学科', cats:['econbiz','design','itai'], desc:'ビジネス実務とデザイン・情報スキルを2年間で身につける。', cap:'定員: 30名(2027年度)', url:'https://www.takamatsu-u.ac.jp/univ-jrcol/business-design/'},
     {uni:'香川県立保健医療大学(公立)', name:'看護学科', cats:['medical'], desc:'基礎看護学から地域生活支援まで学び、次代のチーム医療を担う看護師を養成。', cap:'定員: 70名(推薦35・一般前期30・一般後期5)', url:'https://www.kagawa-puhs.ac.jp/department/'},
     {uni:'香川県立保健医療大学(公立)', name:'臨床検査学科', cats:['medical','itai'], desc:'先端医療技術学や医療経済学など、検査のスペシャリストを育成。', cap:'定員: 20名(推薦10・一般前期8)', url:'https://www.kagawa-puhs.ac.jp/department/'}
   ];
@@ -268,7 +268,19 @@
     if(maxScore <= 0) maxScore = 1;
     var top5 = ranked.slice(0,5);
 
+    var printDate = new Date();
+    var printDateStr = printDate.getFullYear()+'年'+(printDate.getMonth()+1)+'月'+printDate.getDate()+'日';
+
     var html = '<div class="results">';
+    html += '<div class="print-header">' +
+      '<div class="pf-title">かがわ進路コンパス ― 大学マッチング診断結果</div>' +
+      '<div class="pf-fields">' +
+        '<span>氏名: ______________________</span>' +
+        '<span>学年・組: ______________</span>' +
+        '<span>相談日: ______________</span>' +
+      '</div>' +
+      '<div class="pf-note">印刷日: ' + printDateStr + '。この診断は関心・興味の傾向に基づく参考情報です。定員・入試情報は各大学公式サイトで必ず最新情報をご確認ください。</div>' +
+    '</div>';
     html += '<span class="eyebrow">診断結果</span><h3 style="margin-top:8px;font-family:\'Shippori Mincho\',serif;font-size:1.4rem;">あなたの興味の傾向</h3>';
     html += '<div class="tagchips">' + (topCats.length ? topCats.map(function(c){ return '<span class="chip">'+CATS[c].label+'</span>'; }).join('') : '<span class="chip">傾向がはっきり出ませんでした</span>') + '</div>';
 
@@ -288,7 +300,7 @@
     });
     html += '</div>';
     html += '<p class="disclaimer">この診断は関心・興味の傾向をもとにした参考情報であり、入試の合格可能性や難易度を示すものではありません。学部名・定員・入試制度は変更されることがあるため、必ず各大学の公式サイトで最新情報をご確認ください。</p>';
-    html += '<div class="quiznav" style="margin-top:18px;"><button class="btn ghost" onclick="restartQuiz()">もう一度診断する</button><button class="btn primary" onclick="goTab(\'career\')">香川のキャリアを見る →</button></div>';
+    html += '<div class="quiznav noprint" style="margin-top:18px; flex-wrap:wrap; gap:10px;"><button class="btn ghost" onclick="restartQuiz()">もう一度診断する</button><button class="btn ghost" onclick="jumpToSchedule()">📅 出願・奨学金のスケジュールを見る</button><button class="btn ghost" onclick="window.print()">🖨 この結果を印刷する</button><button class="btn primary" onclick="goTab(\'career\')">香川のキャリアを見る →</button></div>';
     html += '</div>';
     qa.innerHTML = html;
   }
@@ -489,6 +501,32 @@
       });
     });
 
+    /* 大学マッチング診断の結果から呼ばれる: スケジュールタブに移動し、
+       「今日以降でまだ終わっていない一番近い予定」がある月を自動的に開く。 */
+    window.jumpToSchedule = function(filterKey){
+      if(filterKey){
+        current = filterKey;
+        filterEl.querySelectorAll('button').forEach(function(b){ b.classList.toggle('active', b.dataset.f === filterKey); });
+      }
+      var all = filtered(sorted);
+      var tStr = todayStr();
+      var target = null;
+      for(var i=0;i<all.length;i++){
+        var endD = all[i].end || all[i].date;
+        if(endD >= tStr){ target = all[i]; break; }
+      }
+      if(target){
+        var dt = new Date(target.date+'T00:00:00');
+        viewYear = dt.getFullYear();
+        viewMonth = dt.getMonth();
+      } else {
+        viewYear = todayDate.getFullYear();
+        viewMonth = todayDate.getMonth();
+      }
+      render();
+      goTab('schedule');
+    };
+
     render();
   })();
 
@@ -522,6 +560,27 @@
     var userTurnCount = 0;
     var busy = false;
     var CARD_THRESHOLD = 3;
+    var CHAT_STORAGE_KEY = 'kagawa-compass-chat-v1';
+
+    function saveChatState(){
+      try{
+        localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify({ turns: turns, userTurnCount: userTurnCount }));
+      }catch(e){ /* localStorageが使えない環境では何もしない */ }
+    }
+
+    function loadChatState(){
+      try{
+        var raw = localStorage.getItem(CHAT_STORAGE_KEY);
+        if(!raw) return null;
+        var saved = JSON.parse(raw);
+        if(!saved || !Array.isArray(saved.turns) || saved.turns.length < 2) return null;
+        return saved;
+      }catch(e){ return null; }
+    }
+
+    function clearChatState(){
+      try{ localStorage.removeItem(CHAT_STORAGE_KEY); }catch(e){ /* no-op */ }
+    }
 
     var TOOLS = [
       {
@@ -556,10 +615,17 @@
     }
 
     function renderIntro(){
+      var saved = loadChatState();
+      var buttonsHtml = saved
+        ? '<button class="btn primary" id="fs-start" disabled>続きから話す ✨</button><button class="btn ghost" id="fs-restart" disabled>新しく話す</button>'
+        : '<button class="btn primary" id="fs-start" disabled>AIに相談を始める ✨</button>';
+      var noteText = saved
+        ? 'AI(Claude)に、大学・学部のこと、奨学金や支援制度のこと、香川での仕事のことを何でも聞けます。大学名や制度名はこのアプリが調べた実データの中から答えます。前回の会話がこの端末に保存されているので、続きから話せます。他の人と共有する端末では「新しく話す」でリセットしてください。'
+        : 'AI(Claude)に、大学・学部のこと、奨学金や支援制度のこと、香川での仕事のことを何でも聞けます。大学名や制度名はこのアプリが調べた実データの中から答えます。気が向いたら、「10年後の理想の自分」をチケット風のプロフィールカードにすることもできます。会話はこの端末のブラウザ内だけに保存され、次にこのページを開いたときも続きから話せます(共有の端末で使う場合は、会話画面の「会話をリセット」でいつでも消せます)。';
       root.innerHTML =
         '<div class="chatwrap">' +
-        '<div class="fallbacknote">AI(Claude)に、大学・学部のこと、奨学金や支援制度のこと、香川での仕事のことを何でも聞けます。大学名や制度名はこのアプリが調べた実データの中から答えます。気が向いたら、「10年後の理想の自分」をチケット風のプロフィールカードにすることもできます。会話の内容が保存されることはなく、いつでも他のタブに移動できます。</div>' +
-        '<div class="chat-actions" id="fs-introbar"><span class="progresshint" id="fs-status">読み込んでいます…</span><button class="btn primary" id="fs-start" disabled>AIに相談を始める ✨</button></div>' +
+        '<div class="fallbacknote">' + noteText + '</div>' +
+        '<div class="chat-actions" id="fs-introbar"><span class="progresshint" id="fs-status">読み込んでいます…</span>' + buttonsHtml + '</div>' +
         '<div id="fs-body"></div>' +
         '</div>';
     }
@@ -589,12 +655,18 @@
           '<button class="btn ghost" id="fs-card-btn" style="display:none;">✨ プロフィールカードを作る</button>' +
         '</div>' +
         '<div id="fs-error"></div>' +
-        '<div id="fs-card-area"></div>';
+        '<div id="fs-card-area"></div>' +
+        '<div style="margin-top:10px;"><button class="linklike" type="button" id="fs-reset">会話をリセットして最初から話す</button></div>';
       document.getElementById('fs-form').addEventListener('submit', function(ev){
         ev.preventDefault();
         submitUserMessage();
       });
       document.getElementById('fs-card-btn').addEventListener('click', generateCard);
+      document.getElementById('fs-reset').addEventListener('click', function(){
+        if(busy) return;
+        clearChatState();
+        start();
+      });
     }
 
     function appendBubble(role, text){
@@ -672,6 +744,7 @@
         bubble.textContent = res.text;
         turns.push({role:'assistant', content: res.text});
         setStatus('');
+        saveChatState();
       }catch(e){
         bubble.remove();
         showChatError(e);
@@ -693,6 +766,7 @@
       input.value = '';
       userTurnCount++;
       updateHint();
+      saveChatState();
       requestReply();
     }
 
@@ -783,7 +857,23 @@
       if(introBar) introBar.remove();
       initChatUI();
       turns = [leadTurn()];
+      userTurnCount = 0;
       await requestReply();
+    }
+
+    function resume(saved){
+      var introBar = document.getElementById('fs-introbar');
+      if(introBar) introBar.remove();
+      initChatUI();
+      turns = saved.turns;
+      userTurnCount = saved.userTurnCount || 0;
+      for(var i=1;i<turns.length;i++){
+        appendBubble(turns[i].role, turns[i].content);
+      }
+      updateHint();
+      setFormDisabled(false);
+      var input = document.getElementById('fs-input');
+      if(input) input.focus();
     }
 
     async function init(){
@@ -804,10 +894,21 @@
         return;
       }
       setStatus('');
+      var saved = loadChatState();
       var startBtn = document.getElementById('fs-start');
+      var restartBtn = document.getElementById('fs-restart');
       if(startBtn){
         startBtn.disabled = false;
-        startBtn.addEventListener('click', start);
+        startBtn.addEventListener('click', function(){
+          if(saved){ resume(saved); } else { start(); }
+        });
+      }
+      if(restartBtn){
+        restartBtn.disabled = false;
+        restartBtn.addEventListener('click', function(){
+          clearChatState();
+          start();
+        });
       }
     }
 
