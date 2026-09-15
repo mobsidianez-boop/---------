@@ -147,18 +147,63 @@
 
   /* ---------------- tabs ---------------- */
   var tabButtons = document.querySelectorAll('nav.tabs button');
-  window.goTab = function(id){
+  window.goTab = function(id, focusTab){
     document.querySelectorAll('section.panel').forEach(function(p){ p.classList.toggle('active', p.id === 'panel-'+id); });
-    tabButtons.forEach(function(b){ b.setAttribute('aria-selected', b.dataset.tab === id ? 'true' : 'false'); });
+    tabButtons.forEach(function(b){
+      var selected = b.dataset.tab === id;
+      b.setAttribute('aria-selected', selected ? 'true' : 'false');
+      b.tabIndex = selected ? 0 : -1;
+      if(selected && focusTab) b.focus();
+    });
     window.scrollTo({top: document.querySelector('nav.tabs').offsetTop - 8, behavior:'smooth'});
   };
-  tabButtons.forEach(function(b){ b.addEventListener('click', function(){ goTab(b.dataset.tab); }); });
+  tabButtons.forEach(function(b, i){
+    b.addEventListener('click', function(){ goTab(b.dataset.tab); });
+    b.addEventListener('keydown', function(ev){
+      var targetIndex = null;
+      if(ev.key === 'ArrowRight') targetIndex = (i + 1) % tabButtons.length;
+      else if(ev.key === 'ArrowLeft') targetIndex = (i - 1 + tabButtons.length) % tabButtons.length;
+      else if(ev.key === 'Home') targetIndex = 0;
+      else if(ev.key === 'End') targetIndex = tabButtons.length - 1;
+      if(targetIndex !== null){
+        ev.preventDefault();
+        goTab(tabButtons[targetIndex].dataset.tab, true);
+      }
+    });
+  });
 
   /* ---------------- quiz engine ---------------- */
+  var QUIZ_STORAGE_KEY = 'kagawa-compass-quiz-v1';
   var qIndex = 0;
   var scores = {}; Object.keys(CATS).forEach(function(k){ scores[k]=0; });
   var reasonPicked = null;
   var answered = [];
+
+  function saveQuizState(){
+    try{
+      localStorage.setItem(QUIZ_STORAGE_KEY, JSON.stringify({
+        qIndex: qIndex, scores: scores, reasonPicked: reasonPicked, answered: answered
+      }));
+    }catch(e){ /* localStorageが使えない環境では何もしない */ }
+  }
+
+  function loadQuizState(){
+    try{
+      var raw = localStorage.getItem(QUIZ_STORAGE_KEY);
+      if(!raw) return false;
+      var saved = JSON.parse(raw);
+      if(typeof saved.qIndex !== 'number' || !saved.scores) return false;
+      qIndex = saved.qIndex;
+      Object.keys(scores).forEach(function(k){ scores[k] = saved.scores[k] || 0; });
+      reasonPicked = saved.reasonPicked || null;
+      answered = saved.answered || [];
+      return true;
+    }catch(e){ return false; }
+  }
+
+  function clearQuizState(){
+    try{ localStorage.removeItem(QUIZ_STORAGE_KEY); }catch(e){ /* no-op */ }
+  }
 
   function renderRoute(){
     var pct = Math.round((qIndex / QUESTIONS.length) * 100);
@@ -189,6 +234,7 @@
         if(q.reason){ reasonPicked = opt.r; }
         else { (opt.c||[]).forEach(function(c){ scores[c] = (scores[c]||0) + 1; }); }
         qIndex++;
+        saveQuizState();
         renderQuestion();
       });
     });
@@ -201,6 +247,7 @@
         if(prevQ.reason){ reasonPicked = null; }
         else { (prevQ.opts[prevAns].c||[]).forEach(function(c){ scores[c] = Math.max(0,(scores[c]||0) - 1); }); }
       }
+      saveQuizState();
       renderQuestion();
     }); }
   }
@@ -249,9 +296,11 @@
   window.restartQuiz = function(){
     qIndex = 0; answered = []; reasonPicked = null;
     Object.keys(scores).forEach(function(k){ scores[k]=0; });
+    clearQuizState();
     renderQuestion();
   };
 
+  loadQuizState();
   renderQuestion();
 
   /* ---------------- career grid ---------------- */
