@@ -8,16 +8,39 @@
 </head>
 <body>
 
+
+<div class="introoverlay" id="intro-overlay" tabindex="0" aria-label="起動アニメーション再生中。タップまたはEnterキーでスキップできます。">
+  <div class="introinner">
+    <svg class="intro-compass" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+      <path d="M50,6 L58,50 L42,50 Z" fill="var(--terracotta)"/>
+      <path d="M50,94 L58,50 L42,50 Z" fill="#F3F7F5"/>
+      <path d="M94,50 L50,58 L50,42 Z" fill="#F3F7F5" opacity=".55"/>
+      <path d="M6,50 L50,58 L50,42 Z" fill="#F3F7F5" opacity=".55"/>
+      <circle cx="50" cy="50" r="5.5" fill="#F3F7F5" stroke="var(--sea-deep)" stroke-width="1.5"/>
+    </svg>
+    <span class="intro-sparkle s1" aria-hidden="true">✦</span>
+    <span class="intro-sparkle s2" aria-hidden="true">✦</span>
+    <span class="intro-sparkle s3" aria-hidden="true">✦</span>
+    <span class="intro-sparkle s4" aria-hidden="true">✦</span>
+    <div class="intro-brand">かがわ進路コンパス</div>
+    <div class="intro-skiphint">タップでスキップ</div>
+  </div>
+</div>
+
 <div class="wrap">
 
   <header class="hero">
-    <svg class="horizon" viewBox="0 0 400 100" preserveAspectRatio="none" aria-hidden="true">
-      <rect x="0" y="0" width="400" height="100" fill="none"/>
-      <path d="M0,70 Q40,55 80,68 T160,66 T240,70 T320,64 T400,70 L400,100 L0,100 Z" fill="#0B2836"/>
-      <path d="M0,82 Q60,72 120,80 T260,80 T400,78 L400,100 L0,100 Z" fill="#123247"/>
-      <circle cx="70" cy="60" r="3" fill="#F3F7F5" opacity=".5"/>
-      <circle cx="250" cy="58" r="2.4" fill="#F3F7F5" opacity=".4"/>
-      <circle cx="330" cy="62" r="1.8" fill="#F3F7F5" opacity=".4"/>
+    <!-- 香川で実際に撮影した入道雲の写真をそのまま使用(イラスト化はせず、写真を空の下部いっぱいに敷いて表示) -->
+    <div class="cloud-photo" aria-hidden="true"></div>
+    <svg class="planewrap" viewBox="0 0 400 200" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M198,86 Q225,78 252,66" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-dasharray="1 7" stroke-linecap="round" opacity=".55"/>
+      <g transform="translate(252,60) rotate(-22)">
+        <g class="paperplane">
+          <path d="M0,11 L40,0 L13,19 L17,10 Z" fill="#FFFFFF"/>
+          <path d="M0,11 L17,10 L13,19" fill="none" stroke="rgba(11,74,133,.28)" stroke-width="1"/>
+        </g>
+      </g>
     </svg>
     <div class="brandrow">
       <span class="mark">⛵</span>
@@ -40,7 +63,6 @@
     <button role="tab" id="tab-future" data-tab="future" aria-selected="true" aria-controls="panel-future" tabindex="0"><span class="tabbadge">イチオシ</span><span class="ico">🪄</span>AI進路相談</button>
     <button role="tab" id="tab-diag" data-tab="diag" aria-selected="false" aria-controls="panel-diag" tabindex="-1"><span class="ico">🧭</span>大学マッチング診断</button>
     <button role="tab" id="tab-career" data-tab="career" aria-selected="false" aria-controls="panel-career" tabindex="-1"><span class="ico">🏝️</span>香川で叶うキャリア</button>
-    <button role="tab" id="tab-voice" data-tab="voice" aria-selected="false" aria-controls="panel-voice" tabindex="-1"><span class="ico">💬</span>先輩の声</button>
     <button role="tab" id="tab-support" data-tab="support" aria-selected="false" aria-controls="panel-support" tabindex="-1"><span class="ico">🎓</span>奨学金・支援制度</button>
     <button role="tab" id="tab-schedule" data-tab="schedule" aria-selected="false" aria-controls="panel-schedule" tabindex="-1"><span class="ico">📅</span>入試・奨学金スケジュール</button>
   </nav>
@@ -68,17 +90,6 @@
     </div>
     <div id="career-grid" class="grid3"></div>
     <p class="disclaimer">掲載企業・分野は公開情報(各企業公式サイト・Wikipedia等)をもとにした一例です。県内の産業のすべてを網羅するものではありません。</p>
-  </section>
-
-  <!-- ===================== 先輩の声 ===================== -->
-  <section class="panel" id="panel-voice" role="tabpanel" aria-labelledby="tab-voice" tabindex="0">
-    <div class="section-head">
-      <span class="eyebrow">Voices (Model Cases)</span>
-      <h2>先輩の声</h2>
-      <p>分野ごとのイメージをつかみやすくするためのモデルケースです。<strong>実在の個人を取材したものではない架空の例</strong>としてお読みください。</p>
-    </div>
-    <div id="voice-grid" class="grid"></div>
-    <p class="disclaimer">※本タブの内容はすべて架空のモデルケースです。実際の学生の声や体験談は、各大学の公式サイトや香川県移住ポータル「かがわ暮らし」(<a href="https://www.kagawalife.jp/" target="_blank" rel="noopener">kagawalife.jp</a>)などでご確認ください。</p>
   </section>
 
   <!-- ===================== 支援制度 ===================== -->
@@ -132,6 +143,8 @@
   </footer>
 </div>
 
+
+<script src="intro.js"></script>
 <script src="data.js"></script>
 <script src="tabs.js"></script>
 <script src="quiz.js"></script>

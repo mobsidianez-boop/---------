@@ -1,6 +1,7 @@
 /* ====================================================================
  * chat.js ― 「AI進路相談」タブ(Claudeとのチャット・プロフィールカード)
  * ==================================================================== */
+  /* ---------------- future self: AI chat + profile card ---------------- */
   (function(){
     var root = document.getElementById('future-area');
     var LABEL_TO_KEY = {};
@@ -109,7 +110,7 @@
       var introBar = document.getElementById('fs-introbar');
       if(introBar) introBar.remove();
       var body = document.getElementById('fs-body');
-      if(body) body.innerHTML = '<p class="chaterror" style="margin-top:14px;">この表示環境では、AIチャット機能をご利用いただけません。claude.ai上でこのページを開いている場合にご利用いただけます。ほかの4つの機能(診断・キャリア・先輩の声・支援制度)は引き続きお使いいただけます。</p>';
+      if(body) body.innerHTML = '<p class="chaterror" style="margin-top:14px;">この表示環境では、AIチャット機能をご利用いただけません。claude.ai上でこのページを開いている場合にご利用いただけます。ほかの4つの機能(診断・キャリア・支援制度・スケジュール)は引き続きお使いいただけます。</p>';
     }
 
     function initChatUI(){
@@ -384,3 +385,4 @@
 
     init();
   })();
+

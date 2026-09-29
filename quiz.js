@@ -143,4 +143,5 @@
 
   loadQuizState();
   renderQuestion();
+
 })();
