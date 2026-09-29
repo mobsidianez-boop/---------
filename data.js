@@ -30,17 +30,17 @@
   ];
 
   var INDUSTRIES = [
-    {ico:'🏗️', name:'建設機械・ものづくり', desc:'クレーンなど大型建設機械で世界的に知られるメーカーが本社を置く。', co:'例: タダノ(高松市)', cats:['engineering'], url:'https://ja.wikipedia.org/wiki/タダノ'},
-    {ico:'⚡', name:'電力・インフラ', desc:'四国の暮らしを支える電力会社が本社を置く、地域の基幹インフラ産業。', co:'例: 四国電力(高松市)', cats:['engineering','econbiz'], url:'https://ja.wikipedia.org/wiki/四国電力'},
-    {ico:'🏦', name:'金融', desc:'県内企業のメインバンクシェア約45%を占める地方銀行など、地域経済を支える。', co:'例: 百十四銀行(高松市)', cats:['econbiz','law'], url:'https://ja.wikipedia.org/wiki/百十四銀行'},
-    {ico:'💻', name:'情報通信・IT', desc:'通信インフラやITサービスを提供する企業が拠点を置く。県内でエンジニア職に就く道もある。', co:'例: STNet株式会社(高松市)', cats:['itai'], url:'https://ja.wikipedia.org/wiki/STNet'},
-    {ico:'🏭', name:'重化学工業(坂出)', desc:'瀬戸内工業地域の一角、番の州臨海工業団地に石油・化学関連企業が集積。', co:'坂出市 番の州臨海工業団地一帯', cats:['engineering','agri'], url:'https://ja.wikipedia.org/wiki/番の州臨海工業団地'},
-    {ico:'🧤', name:'手袋製造(東かがわ)', desc:'国内生産シェア約90%を占める、全国的にも珍しい産地。', co:'例: 中虎(東かがわ市)', cats:['design','econbiz'], url:'https://ja.wikipedia.org/wiki/東かがわ市'},
-    {ico:'🪭', name:'うちわ(丸亀)', desc:'金刀比羅宮参拝土産に由来する丸亀市の地場産業・伝統工芸。', co:'丸亀市のうちわ生産者', cats:['design'], url:'https://ja.wikipedia.org/wiki/丸亀市'},
-    {ico:'🫙', name:'醤油・食品(小豆島)', desc:'「醤の郷」と呼ばれる近代醤油蔵の日本最大級の集積地。オリーブ栽培も盛ん。', co:'例: マルキン醤油(小豆島)', cats:['agri'], url:'https://ja.wikipedia.org/wiki/小豆島町'},
-    {ico:'🌾', name:'農業・水産業', desc:'稲作や野菜栽培に加え、ハマチ養殖発祥の地ともされる水産業がある。', co:'県内の農業・漁業事業者', cats:['agri'], url:'https://ja.wikipedia.org/wiki/香川県'},
-    {ico:'🏥', name:'医療・福祉', desc:'県内各地の病院・福祉施設に加え、医療人材確保のための修学資金貸付制度もある。', co:'県内医療機関・福祉施設', cats:['medical','specialsupport','welfarechild'], url:'https://www.pref.kagawa.lg.jp/imu/iryoujinzai/index.html'},
-    {ico:'🏛️', name:'公務員・地域行政', desc:'高松市は国の出先機関や大企業四国支社が集まる「支店経済都市」。自治体・公的機関の仕事も多い。', co:'県庁・市町村・JR四国 ほか', cats:['law','tourism'], url:'https://ja.wikipedia.org/wiki/高松市'}
+    {ico:'hard-hat', name:'建設機械・ものづくり', desc:'クレーンなど大型建設機械で世界的に知られるメーカーが本社を置く。', co:'例: タダノ(高松市)', cats:['engineering'], url:'https://ja.wikipedia.org/wiki/タダノ'},
+    {ico:'zap', name:'電力・インフラ', desc:'四国の暮らしを支える電力会社が本社を置く、地域の基幹インフラ産業。', co:'例: 四国電力(高松市)', cats:['engineering','econbiz'], url:'https://ja.wikipedia.org/wiki/四国電力'},
+    {ico:'banknote', name:'金融', desc:'県内企業のメインバンクシェア約45%を占める地方銀行など、地域経済を支える。', co:'例: 百十四銀行(高松市)', cats:['econbiz','law'], url:'https://ja.wikipedia.org/wiki/百十四銀行'},
+    {ico:'laptop', name:'情報通信・IT', desc:'通信インフラやITサービスを提供する企業が拠点を置く。県内でエンジニア職に就く道もある。', co:'例: STNet株式会社(高松市)', cats:['itai'], url:'https://ja.wikipedia.org/wiki/STNet'},
+    {ico:'factory', name:'重化学工業(坂出)', desc:'瀬戸内工業地域の一角、番の州臨海工業団地に石油・化学関連企業が集積。', co:'坂出市 番の州臨海工業団地一帯', cats:['engineering','agri'], url:'https://ja.wikipedia.org/wiki/番の州臨海工業団地'},
+    {ico:'hand', name:'手袋製造(東かがわ)', desc:'国内生産シェア約90%を占める、全国的にも珍しい産地。', co:'例: 中虎(東かがわ市)', cats:['design','econbiz'], url:'https://ja.wikipedia.org/wiki/東かがわ市'},
+    {ico:'fan', name:'うちわ(丸亀)', desc:'金刀比羅宮参拝土産に由来する丸亀市の地場産業・伝統工芸。', co:'丸亀市のうちわ生産者', cats:['design'], url:'https://ja.wikipedia.org/wiki/丸亀市'},
+    {ico:'flask-conical', name:'醤油・食品(小豆島)', desc:'「醤の郷」と呼ばれる近代醤油蔵の日本最大級の集積地。オリーブ栽培も盛ん。', co:'例: マルキン醤油(小豆島)', cats:['agri'], url:'https://ja.wikipedia.org/wiki/小豆島町'},
+    {ico:'wheat', name:'農業・水産業', desc:'稲作や野菜栽培に加え、ハマチ養殖発祥の地ともされる水産業がある。', co:'県内の農業・漁業事業者', cats:['agri'], url:'https://ja.wikipedia.org/wiki/香川県'},
+    {ico:'hospital', name:'医療・福祉', desc:'県内各地の病院・福祉施設に加え、医療人材確保のための修学資金貸付制度もある。', co:'県内医療機関・福祉施設', cats:['medical','specialsupport','welfarechild'], url:'https://www.pref.kagawa.lg.jp/imu/iryoujinzai/index.html'},
+    {ico:'landmark', name:'公務員・地域行政', desc:'高松市は国の出先機関や大企業四国支社が集まる「支店経済都市」。自治体・公的機関の仕事も多い。', co:'県庁・市町村・JR四国 ほか', cats:['law','tourism'], url:'https://ja.wikipedia.org/wiki/高松市'}
   ];
 
   var SUPPORT = [
@@ -139,3 +139,4 @@
     adventure:'一度県外に出てみたい気持ちも大切です。ただ、香川にいながらインターンや留学制度、地域プロジェクトを通じて「非日常」に触れる道もあります。診断結果を選択肢の一つとして眺めてみてください。',
     peer:'「周りがそうしているから」で決める前に、自分の興味・得意なことと照らし合わせてみましょう。診断結果が、進路を自分の言葉で考えるきっかけになれば幸いです。'
   };
+

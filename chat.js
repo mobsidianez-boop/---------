@@ -88,8 +88,8 @@
     function renderIntro(){
       var saved = loadChatState();
       var buttonsHtml = saved
-        ? '<button class="btn primary" id="fs-start" disabled>続きから話す ✨</button><button class="btn ghost" id="fs-restart" disabled>新しく話す</button>'
-        : '<button class="btn primary" id="fs-start" disabled>AIに相談を始める ✨</button>';
+        ? '<button class="btn primary" id="fs-start" disabled>続きから話す <svg class="ico-svg" aria-hidden="true"><use href="#i-sparkles"/></svg></button><button class="btn ghost" id="fs-restart" disabled>新しく話す</button>'
+        : '<button class="btn primary" id="fs-start" disabled>AIに相談を始める <svg class="ico-svg" aria-hidden="true"><use href="#i-sparkles"/></svg></button>';
       var noteText = saved
         ? 'AI(Claude)に、大学・学部のこと、奨学金や支援制度のこと、香川での仕事のことを何でも聞けます。大学名や制度名はこのアプリが調べた実データの中から答えます。前回の会話がこの端末に保存されているので、続きから話せます。他の人と共有する端末では「新しく話す」でリセットしてください。'
         : 'AI(Claude)に、大学・学部のこと、奨学金や支援制度のこと、香川での仕事のことを何でも聞けます。大学名や制度名はこのアプリが調べた実データの中から答えます。気が向いたら、「10年後の理想の自分」をチケット風のプロフィールカードにすることもできます。会話はこの端末のブラウザ内だけに保存され、次にこのページを開いたときも続きから話せます(共有の端末で使う場合は、会話画面の「会話をリセット」でいつでも消せます)。';
@@ -123,7 +123,7 @@
         '</form>' +
         '<div class="chat-actions">' +
           '<span class="progresshint" id="fs-hint">AIが最初のメッセージを考えています…</span>' +
-          '<button class="btn ghost" id="fs-card-btn" style="display:none;">✨ プロフィールカードを作る</button>' +
+          '<button class="btn ghost" id="fs-card-btn" style="display:none;"><svg class="ico-svg" aria-hidden="true"><use href="#i-sparkles"/></svg> プロフィールカードを作る</button>' +
         '</div>' +
         '<div id="fs-error"></div>' +
         '<div id="fs-card-area"></div>' +
@@ -257,7 +257,7 @@
       var area = document.getElementById('fs-card-area');
       var matches = matchedFacultiesFor(data.matched_field);
       var html = '<div class="ticket">' +
-        '<div class="tband"><b>🎫 みらい行き 搭乗券</b><span>KAGAWA COMPASS ・ 10 YEARS LATER</span></div>' +
+        '<div class="tband"><b><svg class="ico-svg" aria-hidden="true"><use href="#i-ticket"/></svg> みらい行き 搭乗券</b><span>KAGAWA COMPASS ・ 10 YEARS LATER</span></div>' +
         '<div class="catch">「' + escapeHtml(data.catchphrase || '') + '」</div>' +
         '<div class="tbody">' +
           field('PASSENGER', data.nickname) +
@@ -320,7 +320,7 @@
       }catch(e){
         showChatError(e);
       }
-      [cardBtn, regenBtn].forEach(function(b){ if(b){ b.disabled = false; b.textContent = (b===cardBtn ? '✨ プロフィールカードを作る' : 'もう一度作る'); } });
+      [cardBtn, regenBtn].forEach(function(b){ if(b){ b.disabled = false; b.innerHTML = (b===cardBtn ? '<svg class="ico-svg" aria-hidden="true"><use href="#i-sparkles"/></svg> プロフィールカードを作る' : 'もう一度作る'); } });
     }
 
     async function start(){

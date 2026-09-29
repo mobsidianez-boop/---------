@@ -59,6 +59,12 @@
   }
 
   *{box-sizing:border-box;}
+  /* ---------- Lucideアイコン共通スタイル(絵文字の代わりに使用) ---------- */
+  .ico-svg{
+    width:1em; height:1em; display:inline-block; vertical-align:-.15em;
+    fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;
+    flex-shrink:0;
+  }
   body{
     margin:0;
     background:var(--paper);
@@ -118,7 +124,7 @@
   .hero .brandrow .mark{
     width:34px;height:34px;border-radius:50%;
     background:var(--terracotta); display:grid; place-items:center;
-    font-size:1.05rem; box-shadow: var(--shadow);
+    font-size:1.05rem; box-shadow: var(--shadow); color:#fff;
   }
   .hero .brandrow .brandname{ font-weight:900; letter-spacing:.04em; font-size:.95rem; opacity:.9; color:#123655; text-shadow:0 1px 4px rgba(255,255,255,.65), 0 0 10px rgba(255,255,255,.5); }
   .hero h1{ font-size:clamp(1.8rem, 4.6vw, 2.7rem); line-height:1.35; max-width:20ch; color:#123655; text-shadow:0 1px 4px rgba(255,255,255,.7), 0 0 16px rgba(255,255,255,.55); }

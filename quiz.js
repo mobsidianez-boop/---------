@@ -36,7 +36,7 @@
 
   function renderRoute(){
     var pct = Math.round((qIndex / QUESTIONS.length) * 100);
-    return '<div class="quiz-progress"><div class="route"><div class="fill" style="width:'+pct+'%"></div><div class="boat" style="left:'+pct+'%">⛴️</div></div>' +
+    return '<div class="quiz-progress"><div class="route"><div class="fill" style="width:'+pct+'%"></div><div class="boat" style="left:'+pct+'%"><svg class="ico-svg" aria-hidden="true"><use href="#i-ship"/></svg></div></div>' +
       '<div class="label"><span>Q'+Math.min(qIndex+1, QUESTIONS.length)+' / '+QUESTIONS.length+'</span><span>本州行きフェリー ⇄ 香川</span></div></div>';
   }
 
@@ -129,7 +129,7 @@
     });
     html += '</div>';
     html += '<p class="disclaimer">この診断は関心・興味の傾向をもとにした参考情報であり、入試の合格可能性や難易度を示すものではありません。学部名・定員・入試制度は変更されることがあるため、必ず各大学の公式サイトで最新情報をご確認ください。</p>';
-    html += '<div class="quiznav noprint" style="margin-top:18px; flex-wrap:wrap; gap:10px;"><button class="btn ghost" onclick="restartQuiz()">もう一度診断する</button><button class="btn ghost" onclick="jumpToSchedule()">📅 出願・奨学金のスケジュールを見る</button><button class="btn ghost" onclick="window.print()">🖨 この結果を印刷する</button><button class="btn primary" onclick="goTab(\'career\')">香川のキャリアを見る →</button></div>';
+    html += '<div class="quiznav noprint" style="margin-top:18px; flex-wrap:wrap; gap:10px;"><button class="btn ghost" onclick="restartQuiz()">もう一度診断する</button><button class="btn ghost" onclick="jumpToSchedule()"><svg class="ico-svg" aria-hidden="true"><use href="#i-calendar"/></svg> 出願・奨学金のスケジュールを見る</button><button class="btn ghost" onclick="window.print()"><svg class="ico-svg" aria-hidden="true"><use href="#i-printer"/></svg> この結果を印刷する</button><button class="btn primary" onclick="goTab(\'career\')">香川のキャリアを見る →</button></div>';
     html += '</div>';
     qa.innerHTML = html;
   }
@@ -143,5 +143,6 @@
 
   loadQuizState();
   renderQuestion();
+
 
 })();
