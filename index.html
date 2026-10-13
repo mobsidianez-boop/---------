@@ -1002,6 +1002,7 @@
   .set-wipe-msg{ margin:12px 0 0; color:var(--olive); font-weight:800; }
   .set-wipe-msg.bad{ color:#B3261E; }
   /* ---------- 利用者の切り替え ---------- */
+  .prof-fixed{ font-size:.78rem; color:var(--muted); font-weight:700; align-self:center; }
   .prof-list{ list-style:none; margin:0 0 4px; padding:0; }
   .prof-item{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--line); }
   .prof-name{ font-weight:800; word-break:break-all; }
@@ -1487,7 +1488,7 @@
       <h3>利用者の切り替え</h3>
       <div id="prof-locked" hidden><p class="set-note" style="margin:0">アカウントでログイン中は、アカウントのデータを使うので、利用者の切り替えは使えません。</p></div>
       <div id="prof-body">
-        <p class="set-note" style="margin:0 0 12px">同じブラウザ(同じパソコンやスマホ)を、何人かで使うときに、データを分けられます。人を切り替えると、診断の結果・ロードマップ・予定表などが、その人のものに入れかわります。データはこのブラウザの中だけに保存され、サーバーには送られません。</p>
+        <p class="set-note" style="margin:0 0 12px">同じブラウザ(同じパソコンやスマホ)を、何人かで使うときに、データを分けられます。アプリを開いたときは、いつも最初から入っている利用者「TEST」から始まります(「TEST」の名前は変えられません)。人を切り替えると、診断の結果・ロードマップ・予定表などが、その人のものに入れかわります。データはこのブラウザの中だけに保存され、サーバーには送られません。</p>
         <ul class="prof-list" id="prof-list"></ul>
         <form id="prof-add-form" class="acct-row" novalidate>
           <input type="text" id="prof-add-name" class="acct-input" maxlength="12" autocomplete="off" placeholder="あたらしい人の名前(例: たろう)" aria-label="あたらしい人の名前">
@@ -2485,6 +2486,13 @@
     if(!st || !Array.isArray(st.list) || !st.list.length || !st.list.some(function(p){ return p.id === st.current; })){
       st = { current:'p0', list:[{ id:'p0', name:'わたし' }] };
     }
+    /* 初期設定の利用者(p0)は、名前が「TEST」で固定。名前を変えたり、削除したりはできない。 */
+    var BASE_ID = 'p0', BASE_NAME = 'TEST';
+    st.list.forEach(function(p){
+      if(p.id === BASE_ID) p.name = BASE_NAME;
+      else if(String(p.name).toLowerCase() === BASE_NAME.toLowerCase()) p.name = BASE_NAME + '2';
+    });
+    if(!st.list.some(function(p){ return p.id === BASE_ID; })) st.list.unshift({ id:BASE_ID, name:BASE_NAME });
     function save(){ try{ localStorage.setItem(LIST_KEY, JSON.stringify(st)); return true; }catch(e){ return false; } }
     function cur(){ return st.list.filter(function(p){ return p.id === st.current; })[0]; }
     var $ = function(id){ return document.getElementById(id); };
@@ -2505,15 +2513,17 @@
         h += '<li class="prof-item' + (on ? ' on' : '') + '" data-id="' + p.id + '">' +
           '<span class="prof-name">' + esc(p.name) + (on ? '<em>使用中</em>' : '') + '</span>' +
           '<span class="prof-btns">' +
-          (on ? '<button type="button" class="btn ghost" data-act="rename">名前を変える</button>'
-              : '<button type="button" class="btn primary" data-act="switch">この人にする</button><button type="button" class="btn ghost" data-act="del">削除…</button>') +
+          (p.id === BASE_ID
+              ? (on ? '<span class="prof-fixed">名前は変えられません</span>' : '<button type="button" class="btn primary" data-act="switch">この人にする</button><span class="prof-fixed">名前は変えられません</span>')
+              : (on ? '<button type="button" class="btn ghost" data-act="rename">名前を変える</button>'
+                    : '<button type="button" class="btn primary" data-act="switch">この人にする</button><button type="button" class="btn ghost" data-act="del">削除…</button>')) +
           '</span></li>';
       });
       elList.innerHTML = h;
     }
 
     /* データをしまう → 選んだ人のデータを取り出す → 画面を読み直す */
-    function switchTo(id){
+    function switchTo(id, quiet){
       if(locked()) return;
       var target = st.list.filter(function(p){ return p.id === id; })[0];
       if(!target || id === st.current) return;
@@ -2534,13 +2544,13 @@
         say('切り替えられませんでした(ブラウザの保存場所がいっぱいかもしれません)。', true);
         return;
       }
-      try{ sessionStorage.setItem(FLASH_KEY, target.name + ' さんに切り替えました。'); }catch(e){ /* no-op */ }
+      try{ if(!quiet) sessionStorage.setItem(FLASH_KEY, target.name + ' さんに切り替えました。'); }catch(e){ /* no-op */ }
       location.reload();
     }
     function addProfile(name){
       name = cleanName(name);
       if(!name){ say('名前を入れてください。', true); return; }
-      if(st.list.some(function(p){ return p.name === name; })){ say('同じ名前の人がいます。ちがう名前にしてください。', true); return; }
+      if(st.list.some(function(p){ return String(p.name).toLowerCase() === name.toLowerCase(); })){ say('同じ名前の人がいます。ちがう名前にしてください。(「TEST」は最初から入っている利用者の名前です)', true); return; }
       if(st.list.length >= 10){ say('利用者は10人までです。使わない人を削除してください。', true); return; }
       var id = 'p' + Date.now().toString(36);
       st.list.push({ id:id, name:name });
@@ -2554,6 +2564,7 @@
       var li = b.closest('.prof-item'), id = li && li.getAttribute('data-id'), act = b.getAttribute('data-act');
       var p = st.list.filter(function(x){ return x.id === id; })[0];
       if(!p) return;
+      if(p.id === BASE_ID && (act === 'rename' || act === 'rename-ok' || act === 'del' || act === 'del-ok')){ say('「TEST」は、名前を変えたり削除したりできません。', true); return; }
       say('');
       if(act === 'switch') switchTo(id);
       else if(act === 'rename'){
@@ -2584,6 +2595,14 @@
     save();
     render();
     window.addEventListener('storage', function(){ render(); });
+    /* アプリに入った(このタブで最初に開いた)ときは、いつも「TEST」から始める。
+       利用者を切り替えたあとの読み直しでは、切り替えた人のままにする。 */
+    try{
+      if(!sessionStorage.getItem('tyosen-prof-entered')){
+        sessionStorage.setItem('tyosen-prof-entered', '1');
+        if(!locked() && st.current !== BASE_ID) switchTo(BASE_ID, true);
+      }
+    }catch(e){ /* no-op */ }
     return {
       names:function(){ return st.list.map(function(p){ return p.name; }); },
       count:function(){ return st.list.length; },
