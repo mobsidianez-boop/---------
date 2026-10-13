@@ -4,71 +4,97 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="description" content="香川の高校生のための進路ナビ「かがわ島づたい」(プロトタイプ)">
-<title>かがわ島づたい</title>
+<meta name="description" content="香川の高校生のための進路ナビ「VAYL」(プロトタイプ)">
+<meta name="theme-color" content="#F2F8FC">
+<meta name="application-name" content="VAYL">
+<meta name="apple-mobile-web-app-title" content="VAYL">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<title>VAYL</title>
 </head>
 <body>
-<title>かがわ島づたい</title>
+<script>
+/* 昼/夜の設定を、画面が出る前に反映する(ちらつき防止) */
+(function(){ try{ var m = localStorage.getItem('vayl-theme-v1'); var r = document.documentElement; if(m==='light'||m==='dark') r.setAttribute('data-theme', m); }catch(e){} })();
+</script>
+<title>VAYL</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
 
+  /* VAYL: 昼(ライト)=瀬戸内の昼 / 夜(ダーク)=北極星の夜 */
   :root{
-    --paper:#EFF8FE;
+    --paper:#F2F8FC;
     --paper-raise:#FFFFFF;
-    --ink:#173350;
-    --ink-soft:#41647E;
-    --muted:#7C93A6;
-    --line:#D2E7F5;
-    --sea:#1C6FB5;
-    --sea-deep:#0B4A85;
-    --sea-soft:#E3F2FC;
-    --olive:#4F9D5C;
-    --olive-soft:#E0F3E1;
-    --terracotta:#FF9142;
-    --terracotta-soft:#FFE8D2;
-    --good:#3FA35A;
-    --shadow: 0 1px 2px rgba(11,74,133,.08), 0 8px 24px -12px rgba(11,74,133,.22);
+    --ink:#0B2545;
+    --ink-soft:#3D5A7A;
+    --muted:#6B8299;
+    --line:#D3E4F0;
+    --sea:#1F6FB0;
+    --sea-deep:#0B3E73;
+    --sea-soft:#E1F0FA;
+    --olive:#3A8F6B;
+    --olive-soft:#DFF1E8;
+    --terracotta:#F2B84B;
+    --terracotta-soft:#FFF1CF;
+    --accent-ink:#9A5A06;
+    --on-accent:#0B1F3E;
+    --on-sea:#FFFFFF;
+    --on-olive:#FFFFFF;
+    --good:#2E9B67;
+    --shadow: 0 1px 2px rgba(11,62,115,.08), 0 8px 24px -12px rgba(11,62,115,.24);
     --radius: 14px;
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --paper:#0E1E2E;
-      --paper-raise:#152A3D;
-      --ink:#EAF3FB;
-      --ink-soft:#B9CEDF;
-      --muted:#8CA3B5;
-      --line:#28425A;
-      --sea:#5FA8E0;
-      --sea-deep:#0A1E33;
-      --sea-soft:#1B3752;
-      --olive:#8FC98F;
-      --olive-soft:#1E3320;
-      --terracotta:#FFB273;
-      --terracotta-soft:#3A2A1D;
-      --good:#7FD08F;
-      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    --paper:#0A1830;
+    --paper-raise:#12284A;
+    --ink:#EAF2FA;
+    --ink-soft:#B8CCE0;
+    --muted:#8AA2BD;
+    --line:#27406B;
+    --sea:#5BB0E0;
+    --sea-deep:#07122A;
+    --sea-soft:#17335E;
+    --olive:#8FD3A8;
+    --olive-soft:#17382F;
+    --terracotta:#F4C95D;
+    --terracotta-soft:#3A3015;
+    --accent-ink:#F4C95D;
+    --on-accent:#0B1F3E;
+    --on-sea:#07122A;
+    --on-olive:#07211A;
+    --good:#7FD8A0;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"]{
-    --paper:#0E1E2E;
-    --paper-raise:#152A3D;
-    --ink:#EAF3FB;
-    --ink-soft:#B9CEDF;
-    --muted:#8CA3B5;
-    --line:#28425A;
-    --sea:#5FA8E0;
-    --sea-deep:#0A1E33;
-    --sea-soft:#1B3752;
-    --olive:#8FC98F;
-    --olive-soft:#1E3320;
-    --terracotta:#FFB273;
-    --terracotta-soft:#3A2A1D;
-    --good:#7FD08F;
+    --paper:#0A1830;
+    --paper-raise:#12284A;
+    --ink:#EAF2FA;
+    --ink-soft:#B8CCE0;
+    --muted:#8AA2BD;
+    --line:#27406B;
+    --sea:#5BB0E0;
+    --sea-deep:#07122A;
+    --sea-soft:#17335E;
+    --olive:#8FD3A8;
+    --olive-soft:#17382F;
+    --terracotta:#F4C95D;
+    --terracotta-soft:#3A3015;
+    --accent-ink:#F4C95D;
+    --on-accent:#0B1F3E;
+    --on-sea:#07122A;
+    --on-olive:#07211A;
+    --good:#7FD8A0;
     --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
     color-scheme: dark;
   }
+  :root[data-theme="light"]{ color-scheme: light; }
 
   *{box-sizing:border-box;}
   /* ---------- Lucideアイコン共通スタイル(絵文字の代わりに使用) ---------- */
@@ -107,7 +133,7 @@
   /* ---------- ホーム画面(オリーブの枝と北極星) ---------- */
   .wrap{ padding-top:16px; }
   .homebrand{ display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.04em; margin-bottom:12px; }
-  .homebrand .mark{ width:32px; height:32px; border-radius:50%; background:var(--terracotta); display:grid; place-items:center; color:#fff; box-shadow:var(--shadow); }
+  .homebrand .mark{ width:32px; height:32px; border-radius:50%; background:var(--terracotta); display:grid; place-items:center; color:var(--on-accent); box-shadow:var(--shadow); }
   .homebrand .mark .ico-svg{ width:18px; height:18px; }
   .homestage{
     position:relative; border-radius:22px; overflow:hidden; box-shadow:var(--shadow);
@@ -118,12 +144,14 @@
   .home-slide{ position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1s ease; }
   .home-slide.on{ opacity:1; }
   .home-tint{ position:absolute; inset:0; z-index:-2; background:linear-gradient(180deg,rgba(11,42,71,.06) 0%,rgba(11,42,71,.18) 100%); }
+  :root[data-vtheme="dark"] .home-tint{ background:linear-gradient(180deg,rgba(6,16,40,.62) 0%,rgba(6,16,40,.82) 100%); }
+  :root[data-vtheme="dark"] .home-halftone{ opacity:.45; }
   .home-halftone{ position:absolute; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
   .home-pager{ position:absolute; left:0; right:0; bottom:16px; display:flex; justify-content:center; gap:7px; }
   .home-pager i{ width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.45); transition:background .3s, transform .3s; }
   .home-pager i.on{ background:#fff; transform:scale(1.35); }
   .home-catch{ margin:0; text-align:center; color:#fff; text-shadow:0 1px 3px rgba(5,25,45,.55),0 2px 18px rgba(5,25,45,.7); font-family:"Shippori Mincho",serif; font-weight:800; font-size:1.4rem; line-height:1.6; }
-  .home-catch em{ font-style:normal; color:#FFB273; }
+  .home-catch em{ font-style:normal; color:#F6C453; }
   .home-h1{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
   .homestage{ justify-content:center; }
   .home-ring{ position:relative; width:min(340px,62vw); aspect-ratio:1; margin-top:10px; }
@@ -154,7 +182,7 @@
   .home-pt.p1{ left:26%; top:89%; }
   .home-pt.p2{ left:72%; top:73%; }
   .home-pt.p3{ left:28%; top:55%; }
-  .home-pt.p4{ left:70%; top:37%; background:var(--terracotta); color:#fff; }
+  .home-pt.p4{ left:70%; top:37%; background:var(--terracotta); color:var(--on-accent); }
   .home-pt:focus-visible{ outline:3px solid #fff; outline-offset:2px; }
   @media (max-width:640px){ .home-pt{ font-size:.7rem; padding:6px 9px; } .home-ring{ width:min(340px,74vw); } .homestage{ padding:28px 8px 46px; min-height:540px; } }
   .home-below{ margin-top:18px; }
@@ -175,7 +203,7 @@
     display:inline-flex; align-items:center; gap:8px; transition:transform .15s ease, box-shadow .15s ease;
   }
   .btn:hover{ transform:translateY(-1px); }
-  .btn.primary{ background:var(--terracotta); color:#fff; box-shadow:0 10px 22px -10px rgba(255,145,66,.6); }
+  .btn.primary{ background:var(--terracotta); color:var(--on-accent); box-shadow:0 10px 22px -10px rgba(242,184,75,.55); }
   .btn.ghost{ background:transparent; color:var(--sea); border:1.5px solid var(--line); }
   .btn.ghost:hover{ border-color:var(--sea); background:var(--sea-soft); }
 
@@ -191,7 +219,7 @@
   @keyframes introglow{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.12); } }
   .intro-catch{ margin:0; font-family:"Shippori Mincho",serif; font-weight:800; font-size:clamp(1.5rem,6vw,2.3rem); line-height:1.75; text-shadow:0 2px 18px rgba(5,25,45,.6); }
   .intro-catch span{ display:block; opacity:0; transform:translateY(10px); }
-  .intro-catch em{ font-style:normal; color:#FFB273; }
+  .intro-catch em{ font-style:normal; color:#F6C453; }
   .intro.in .intro-catch span{ animation:introline .9s ease .35s forwards; }
   .intro.in .intro-catch span + span{ animation-delay:1.2s; }
   .intro-sub{ margin:18px 0 26px; font-size:.95rem; line-height:1.8; opacity:0; }
@@ -229,10 +257,10 @@
   .sh-ico .ico-svg{ width:24px; height:24px; }
   .sh-card h3{ margin:4px 0 0; font-size:1.1rem; }
   .sh-card p{ margin:0; color:var(--ink-soft); font-size:.88rem; line-height:1.7; }
-  .sh-tag{ position:absolute; right:14px; top:14px; background:var(--terracotta); color:#fff; font-size:.68rem; font-weight:800; padding:3px 9px; border-radius:999px; }
+  .sh-tag{ position:absolute; right:14px; top:14px; background:var(--terracotta); color:var(--on-accent); font-size:.68rem; font-weight:800; padding:3px 9px; border-radius:999px; }
   .sh-status{ font-size:.8rem; font-weight:800; color:var(--sea); }
   .sh-status.keep{ color:var(--olive); }
-  .sh-go{ margin-top:auto; padding-top:8px; font-weight:800; color:var(--terracotta); font-size:.9rem; }
+  .sh-go{ margin-top:auto; padding-top:8px; font-weight:800; color:var(--accent-ink); font-size:.9rem; }
   .shindan-back{ display:inline-block; margin-bottom:4px; }
   .res-item{ background:var(--paper-raise); border:1.5px solid var(--line); border-radius:16px; margin-bottom:12px; overflow:hidden; }
   .res-item > summary{ list-style:none; cursor:pointer; padding:14px 16px; display:flex; align-items:center; gap:12px; }
@@ -300,10 +328,10 @@
   .sidenav-items button .ico .ico-svg{ width:20px; height:20px; }
   .sidenav-items button .navlabel{ opacity:0; width:0; overflow:hidden; transition:opacity .15s; }
   .sidenav.expanded .sidenav-items button .navlabel{ opacity:1; width:auto; overflow:visible; }
-  .sidenav-items button[aria-selected="true"]{ background:var(--sea); color:#fff; }
+  .sidenav-items button[aria-selected="true"]{ background:var(--sea); color:var(--on-sea); }
 
   .sidenav-items button .tabbadge{
-    position:absolute; top:6px; right:6px; background:var(--terracotta); color:#fff;
+    position:absolute; top:6px; right:6px; background:var(--terracotta); color:var(--on-accent);
     font-size:0; width:9px; height:9px; padding:0; border-radius:999px; line-height:1;
     box-shadow:0 2px 6px rgba(0,0,0,.18); transition:all .15s;
   }
@@ -364,7 +392,7 @@
   .route .boat{ position:absolute; top:50%; transform:translate(-50%,-50%); left:0%; font-size:1.05rem; transition:left .35s ease; }
   .quiz-progress .label{ display:flex; justify-content:space-between; font-size:.78rem; color:var(--muted); margin-top:8px; }
 
-  .qcard .qtag{ font-size:.75rem; color:var(--terracotta); font-weight:700; }
+  .qcard .qtag{ font-size:.75rem; color:var(--accent-ink); font-weight:700; }
   .qcard h3{ font-size:1.28rem; margin-top:6px; line-height:1.5; }
   .options{ display:grid; gap:10px; margin-top:20px; }
   .opt{
@@ -418,18 +446,18 @@
   .indcard .cats span{ background:var(--sea-soft); color:var(--sea); font-size:.7rem; font-weight:700; padding:3px 9px; border-radius:999px; }
 
 
-  .matchcard .slotbadge{ display:inline-block; font-size:.7rem; font-weight:700; color:#fff; background:var(--sea); border-radius:999px; padding:4px 11px; margin-bottom:8px; }
+  .matchcard .slotbadge{ display:inline-block; font-size:.7rem; font-weight:700; color:var(--on-sea); background:var(--sea); border-radius:999px; padding:4px 11px; margin-bottom:8px; }
   .matchcard .slotbadge.olive{ background:var(--olive); }
-  .matchcard .slotbadge.terra{ background:var(--terracotta); }
+  .matchcard .slotbadge.terra{ background:var(--terracotta); color:var(--on-accent); }
 
   /* ---------- AIに質問する入り口(結果カード) ---------- */
   .roadmapbox{ margin-top:14px; border-top:1px solid var(--line); padding-top:14px; }
   .roadmap-btn{ width:100%; justify-content:center; }
   .supitem{ display:flex; gap:14px; padding:18px 0; border-top:1px solid var(--line); }
   .supitem:first-child{ border-top:none; }
-  .supitem .badge{ flex:none; font-size:.7rem; font-weight:700; color:#fff; background:var(--sea); border-radius:999px; padding:4px 11px; height:fit-content; white-space:nowrap; }
+  .supitem .badge{ flex:none; font-size:.7rem; font-weight:700; color:var(--on-sea); background:var(--sea); border-radius:999px; padding:4px 11px; height:fit-content; white-space:nowrap; }
   .supitem .badge.olive{ background:var(--olive); }
-  .supitem .badge.terra{ background:var(--terracotta); }
+  .supitem .badge.terra{ background:var(--terracotta); color:var(--on-accent); }
   .supitem h4{ font-size:1.02rem; margin-bottom:4px; }
   .supitem p{ font-size:.9rem; color:var(--ink-soft); }
   .supitem a{ font-size:.85rem; font-weight:700; }
@@ -444,10 +472,10 @@
     font:inherit; font-size:.88rem; padding:9px 11px; border:1px solid var(--line); border-radius:9px;
     background:var(--paper-raise); color:var(--ink); width:100%;
   }
-  .compose-msg{ font-size:.8rem; font-weight:700; color:var(--terracotta); }
+  .compose-msg{ font-size:.8rem; font-weight:700; color:var(--accent-ink); }
   .composebtns{ display:flex; gap:10px; justify-content:flex-end; }
   .composebtns button{ border-radius:999px; padding:8px 16px; font-weight:700; font-size:.82rem; border:1px solid var(--line); background:var(--paper-raise); color:var(--ink-soft); cursor:pointer; }
-  .composebtns .primary{ background:var(--sea); border-color:var(--sea); color:#fff; }
+  .composebtns .primary{ background:var(--sea); border-color:var(--sea); color:var(--on-sea); }
 
   .daypick-label{ font-size:.72rem; font-weight:700; color:var(--muted); }
   .daypick-row{ display:flex; gap:6px; flex-wrap:wrap; }
@@ -459,7 +487,7 @@
   .daychip .d{ font-size:.86rem; font-weight:800; line-height:1.1; }
   .daychip .wd{ font-size:.62rem; margin-top:1px; }
   .daychip:hover{ border-color:var(--sea); }
-  .daychip.active{ background:var(--sea); border-color:var(--sea-deep); color:#fff; }
+  .daychip.active{ background:var(--sea); border-color:var(--sea-deep); color:var(--on-sea); }
   .daychip.past, .daychip:disabled{
     cursor:not-allowed; opacity:.35; background:var(--paper); border-color:var(--line);
     color:var(--muted); text-decoration:line-through;
@@ -497,14 +525,14 @@
   .month-meta .yr{ font-size:.72rem; color:var(--muted); font-weight:700; }
   .month-meta .summary{ font-size:.86rem; color:var(--ink-soft); margin-top:2px; }
   .month-meta .today-badge{
-    display:inline-block; font-size:.68rem; font-weight:800; color:#fff; background:var(--terracotta);
+    display:inline-block; font-size:.68rem; font-weight:800; color:var(--on-accent); background:var(--terracotta);
     border-radius:999px; padding:2px 9px; margin-top:4px;
   }
 
   .goalrow{ margin:3px 0 4px; }
   .goal-pill{
     display:inline-flex; max-width:100%; align-items:center; font-size:.76rem; font-weight:700;
-    color:var(--terracotta); background:var(--terracotta-soft); border:1px solid transparent;
+    color:var(--accent-ink); background:var(--terracotta-soft); border:1px solid transparent;
     border-radius:999px; padding:3px 11px; cursor:pointer; font-family:inherit;
   }
   .goal-pill:hover{ border-color:var(--terracotta); }
@@ -524,7 +552,7 @@
     font-size:.76rem; font-weight:700; padding:5px 10px; border-radius:8px; border:1px solid var(--line);
     background:var(--paper); color:var(--ink); cursor:pointer; font-family:inherit;
   }
-  .goal-edit button.goal-save{ background:var(--sea); color:#fff; border-color:var(--sea-deep); }
+  .goal-edit button.goal-save{ background:var(--sea); color:var(--on-sea); border-color:var(--sea-deep); }
 
   .weeks-wrap{ position:relative; margin:4px 0 18px 33px; padding-left:36px; }
   .weeks-wrap::before{ content:''; position:absolute; left:0; top:-6px; width:2px; height:20px; background:var(--sea); }
@@ -537,10 +565,10 @@
   }
   .week-node::before{ content:''; position:absolute; left:50%; top:-14px; width:2px; height:14px; background:var(--sea); opacity:.35; transform:translateX(-50%); }
   .week-node:hover{ transform:scale(1.07); }
-  .week-node.open{ background:var(--sea); color:#fff; }
+  .week-node.open{ background:var(--sea); color:var(--on-sea); }
   .week-node .wk{ font-size:.62rem; color:var(--muted); }
   .week-node.open .wk{ color:#dceeff; }
-  .week-node .cnt{ position:absolute; top:-6px; right:-4px; background:var(--terracotta); color:#fff; font-size:.6rem; font-weight:800; border-radius:999px; min-width:16px; height:16px; display:grid; place-items:center; padding:0 3px; }
+  .week-node .cnt{ position:absolute; top:-6px; right:-4px; background:var(--terracotta); color:var(--on-accent); font-size:.6rem; font-weight:800; border-radius:999px; min-width:16px; height:16px; display:grid; place-items:center; padding:0 3px; }
   .week-node.empty{ border-style:dashed; border-color:var(--line); color:var(--muted); background:var(--paper); }
 
   /* 週を選んでいる最中(➕を押した直後)は、週の丸をふわっと光らせて選べることを示す */
@@ -552,11 +580,11 @@
   /* 週の列の横に置く、追加用の➕ボタン(アイコンのみ) */
   .week-add-toggle{
     position:relative; z-index:1; flex:none; width:40px; height:40px; align-self:center; border-radius:50%;
-    background:var(--sea); color:#fff; border:none; display:grid; place-items:center;
+    background:var(--sea); color:var(--on-sea); border:none; display:grid; place-items:center;
     font-size:1.1rem; font-weight:900; box-shadow:var(--shadow); transition:.15s; cursor:pointer;
   }
   .week-add-toggle:hover{ background:var(--sea-deep); transform:scale(1.08); }
-  .week-add-toggle.active{ background:var(--terracotta); }
+  .week-add-toggle.active{ background:var(--terracotta); color:var(--on-accent); }
 
   .events-panel{ margin-top:14px; display:grid; gap:10px; }
   .scheditem{
@@ -574,7 +602,7 @@
   .schedtop{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:4px; }
   .colordot{ width:10px; height:10px; border-radius:50%; display:inline-block; }
   .statuspill{ font-size:.66rem; font-weight:800; padding:2px 8px; border-radius:999px; }
-  .statuspill.soon{ background:var(--terracotta); color:#fff; }
+  .statuspill.soon{ background:var(--terracotta); color:var(--on-accent); }
   .statuspill.ended{ background:var(--line); color:var(--muted); }
   .statuspill.done{ background:var(--olive-soft); color:var(--olive); }
   .schedbody h4{ font-family:"Shippori Mincho",serif; font-size:1rem; margin:2px 0 4px; }
@@ -586,9 +614,9 @@
     font-weight:700; padding:3px 10px; border-radius:999px; cursor:pointer; white-space:nowrap;
   }
   .donebtn:hover{ background:var(--olive-soft); }
-  .donebtn.active{ background:var(--olive); color:#fff; }
+  .donebtn.active{ background:var(--olive); color:var(--on-olive); }
   .delbtn{ flex:none; background:none; border:none; color:var(--muted); font-size:.74rem; text-decoration:underline; padding:2px; cursor:pointer; }
-  .delbtn:hover{ color:var(--terracotta); }
+  .delbtn:hover{ color:var(--accent-ink); }
   /* スマホ: 週の丸の右に予定カード・入力欄を置くと幅が足りず、文字が1文字ずつ縦に折れて画面からはみ出す。
      予定カードと入力欄は左の余白を打ち消して横いっぱいに広げ、ボタンは下の段に回す。 */
   @media (max-width:640px){
@@ -626,7 +654,7 @@
   }
   .bubble{ max-width:82%; padding:12px 15px; border-radius:16px; font-size:.94rem; line-height:1.75; }
   .bubble.assistant{ background:var(--sea-soft); color:var(--ink); border-bottom-left-radius:4px; align-self:flex-start; }
-  .bubble.user{ background:var(--sea); color:#fff; border-bottom-right-radius:4px; align-self:flex-end; }
+  .bubble.user{ background:var(--sea); color:var(--on-sea); border-bottom-right-radius:4px; align-self:flex-end; }
   .bubble.pending{ color:var(--muted); font-style:italic; }
   .bubble.pending{ animation:aipend 1.5s ease-in-out infinite; }
   @keyframes aipend{ 0%,100%{ opacity:.55; } 50%{ opacity:1; } }
@@ -701,7 +729,7 @@
     border-radius:999px; padding:9px 10px; font:inherit; font-size:.88rem; font-weight:700;
     display:inline-flex; align-items:center; justify-content:center; gap:6px;
   }
-  .rm-tabs button[aria-selected="true"]{ background:var(--sea); border-color:var(--sea); color:#fff; }
+  .rm-tabs button[aria-selected="true"]{ background:var(--sea); border-color:var(--sea); color:var(--on-sea); }
   .rm-tabs .rm-tab-prog{ font-size:.76rem; opacity:.85; font-variant-numeric:tabular-nums; }
   .rm-dot{ width:9px; height:9px; border-radius:50%; background:var(--terracotta); box-shadow:0 0 0 2px var(--paper-raise); animation:rmpulse 1.4s ease-in-out infinite; }
   .rm-dot[hidden]{ display:none; }
@@ -725,7 +753,7 @@
   .rm-quick:empty{ display:none; }
   .rm-quick button{ border:1.5px solid var(--sea); background:var(--paper); color:var(--sea); border-radius:999px; padding:7px 14px; font:inherit; font-size:.86rem; font-weight:700; }
   .rm-quick button:hover{ background:var(--sea-soft); }
-  .rm-viewbtn{ display:none; margin-top:10px; border:none; background:var(--sea); color:#fff; border-radius:999px; padding:8px 14px; font:inherit; font-size:.84rem; font-weight:700; }
+  .rm-viewbtn{ display:none; margin-top:10px; border:none; background:var(--sea); color:var(--on-sea); border-radius:999px; padding:8px 14px; font:inherit; font-size:.84rem; font-weight:700; }
 
   .rm-goal-label{ font-size:.74rem; color:var(--muted); letter-spacing:.04em; }
   .rm-goal{ margin:2px 0 10px; font-family:"Shippori Mincho",serif; font-size:1.25rem; line-height:1.5; }
@@ -733,13 +761,13 @@
   .rm-bar{ flex:1; height:10px; border-radius:999px; background:var(--sea-soft); overflow:hidden; }
   .rm-bar i{ display:block; height:100%; background:linear-gradient(90deg,var(--sea),var(--terracotta)); border-radius:999px; transition:width .4s ease; }
   .rm-prog span{ font-size:.82rem; font-weight:700; color:var(--ink-soft); white-space:nowrap; font-variant-numeric:tabular-nums; }
-  .rm-status{ display:inline-flex; align-items:center; gap:6px; font-size:.78rem; color:var(--terracotta); font-weight:700; margin:4px 0 0; }
+  .rm-status{ display:inline-flex; align-items:center; gap:6px; font-size:.78rem; color:var(--accent-ink); font-weight:700; margin:4px 0 0; }
   .rm-status::before{ content:""; width:8px; height:8px; border-radius:50%; background:var(--terracotta); animation:rmpulse 1s ease-in-out infinite; }
   .rm-phases{ list-style:none; margin:18px 0 0; padding:0; position:relative; }
   .rm-phase{ position:relative; padding:0 0 18px 42px; }
   .rm-phase::before{ content:""; position:absolute; left:15px; top:30px; bottom:-2px; width:2px; background:var(--line); }
   .rm-phase:last-child::before{ display:none; }
-  .rm-ph-num{ position:absolute; left:0; top:0; width:32px; height:32px; border-radius:50%; background:var(--sea); color:#fff; display:grid; place-items:center; font-weight:900; font-size:.9rem; box-shadow:var(--shadow); }
+  .rm-ph-num{ position:absolute; left:0; top:0; width:32px; height:32px; border-radius:50%; background:var(--sea); color:var(--on-sea); display:grid; place-items:center; font-weight:900; font-size:.9rem; box-shadow:var(--shadow); }
   .rm-ph-title{ font-weight:800; font-size:1rem; min-height:32px; display:flex; align-items:center; margin-bottom:6px; }
   .rm-items{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
   .rm-item label{
@@ -753,7 +781,7 @@
   @keyframes rmflash{ 0%{ background:var(--terracotta-soft); border-color:var(--terracotta); } 100%{ background:var(--paper-raise); border-color:var(--line); } }
   .rm-tag{ flex:none; font-size:.7rem; font-weight:800; padding:2px 8px; border-radius:999px; background:var(--sea-soft); color:var(--sea-deep); white-space:nowrap; }
   .rm-tag.t-olive{ background:var(--olive-soft); color:var(--olive); }
-  .rm-tag.t-terra{ background:var(--terracotta-soft); color:var(--terracotta); }
+  .rm-tag.t-terra{ background:var(--terracotta-soft); color:var(--accent-ink); }
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .rm-tag{ color:var(--ink); } }
   :root[data-theme="dark"] .rm-tag{ color:var(--ink); }
   .rm-note{ background:var(--sea-soft); border-radius:12px; padding:11px 14px; font-size:.86rem; margin:4px 0 0; }
@@ -805,7 +833,7 @@
   .rmm-block.c3{ --c:var(--rm3); --ct:var(--rmt3); } .rmm-block.c4{ --c:var(--rm4); --ct:var(--rmt4); } .rmm-block.c5{ --c:var(--rm5); --ct:var(--rmt5); }
   .rmm-badge{ grid-column:1; grid-row:1; width:46px; height:46px; border-radius:50%; background:var(--c); color:var(--ct); display:grid; place-items:center;
     font-family:"Shippori Mincho",serif; font-weight:800; font-size:1.2rem; box-shadow:0 0 0 4px var(--paper), 0 8px 16px -6px var(--c); position:relative; }
-  .rmm-block.all-done .rmm-badge::after{ content:"✓"; position:absolute; right:-6px; top:-6px; width:20px; height:20px; border-radius:50%; background:var(--olive); color:#fff; font-size:.7rem; display:grid; place-items:center; font-family:inherit; box-shadow:0 0 0 2px var(--paper); }
+  .rmm-block.all-done .rmm-badge::after{ content:"✓"; position:absolute; right:-6px; top:-6px; width:20px; height:20px; border-radius:50%; background:var(--olive); color:var(--on-olive); font-size:.7rem; display:grid; place-items:center; font-family:inherit; box-shadow:0 0 0 2px var(--paper); }
   .rmm-ptitle{ grid-column:2; grid-row:1; min-width:0; }
   .rmm-ptitle b{ display:block; font-size:1rem; font-weight:800; line-height:1.35; }
   .rmm-ptitle small{ display:inline-block; margin-top:2px; font-size:.72rem; font-weight:800; color:var(--c); font-variant-numeric:tabular-nums; }
@@ -1006,7 +1034,7 @@
   .aibusy{ display:flex; align-items:center; gap:8px; position:relative; margin:6px 0 8px; padding:8px 12px; border-radius:12px; overflow:hidden;
     background:color-mix(in srgb, var(--terracotta) 11%, var(--paper-raise)); border:1.5px solid color-mix(in srgb, var(--terracotta) 45%, var(--line));
     color:var(--ink); font-size:.82rem; font-weight:800; line-height:1.4; }
-  .aibusy-pen{ flex:none; color:var(--terracotta); transform-origin:15% 90%; animation:aipen .9s ease-in-out infinite; }
+  .aibusy-pen{ flex:none; color:var(--accent-ink); transform-origin:15% 90%; animation:aipen .9s ease-in-out infinite; }
   @keyframes aipen{ 0%,100%{ transform:rotate(-12deg) translate(0,0); } 25%{ transform:rotate(10deg) translate(3px,-2px); } 50%{ transform:rotate(-8deg) translate(6px,0); } 75%{ transform:rotate(8deg) translate(3px,-2px); } }
   .aibusy-dots{ display:inline-flex; gap:3px; margin-left:-2px; }
   .aibusy-dots i{ width:5px; height:5px; border-radius:50%; background:var(--terracotta); animation:aidot 1s ease-in-out infinite; }
@@ -1015,7 +1043,7 @@
   .aibusy-n{ margin-left:auto; font-size:.7rem; font-weight:700; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap; }
   .aibusy-bar{ position:absolute; left:0; bottom:0; height:3px; width:38%; background:linear-gradient(90deg, transparent, var(--terracotta), transparent); animation:aislide 1.4s ease-in-out infinite; }
   @keyframes aislide{ 0%{ transform:translateX(-100%); } 100%{ transform:translateX(270%); } }
-  #rm-tab-map[data-busy="1"]::after{ content:"✎"; display:inline-block; margin-left:4px; color:var(--terracotta); animation:aipen .9s ease-in-out infinite; }
+  #rm-tab-map[data-busy="1"]::after{ content:"✎"; display:inline-block; margin-left:4px; color:var(--accent-ink); animation:aipen .9s ease-in-out infinite; }
   /* 書き換え中: カードの上を光がなぞる / ゴールがふわっと光る */
   .rmm.ai-busy .rm-item{ position:relative; }
   .rmm.ai-busy .rm-item::after{ content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; z-index:1;
@@ -1105,7 +1133,7 @@
   .sm-chips{ display:flex; flex-wrap:wrap; gap:8px; }
   .sm-chips button{ border:1.5px solid var(--line); background:var(--paper-raise); color:var(--ink-soft); border-radius:999px; padding:7px 14px; font:inherit; font-size:.84rem; font-weight:700; }
   .sm-chips button .n{ opacity:.7; font-weight:600; margin-left:4px; font-variant-numeric:tabular-nums; }
-  .sm-chips button[aria-pressed="true"]{ background:var(--sea); border-color:var(--sea); color:#fff; }
+  .sm-chips button[aria-pressed="true"]{ background:var(--sea); border-color:var(--sea); color:var(--on-sea); }
   .sm-count{ font-size:.82rem; color:var(--muted); }
   .sm-list{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr)); gap:16px; align-items:start; }
   .sm-card{ background:var(--paper-raise); border:1px solid var(--line); border-radius:18px; padding:18px 18px 16px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:10px; }
@@ -1114,7 +1142,7 @@
   .sm-badges{ display:flex; flex-wrap:wrap; gap:6px; }
   .sm-badge{ font-size:.72rem; font-weight:800; padding:3px 10px; border-radius:999px; background:var(--sea-soft); color:var(--sea-deep); }
   .sm-badge.ok{ background:var(--olive-soft); color:var(--olive); }
-  .sm-badge.warn{ background:var(--terracotta-soft); color:var(--terracotta); }
+  .sm-badge.warn{ background:var(--terracotta-soft); color:var(--accent-ink); }
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .sm-badge{ color:var(--ink); } }
   :root[data-theme="dark"] .sm-badge{ color:var(--ink); }
   .sm-depts{ display:flex; flex-wrap:wrap; gap:6px; }
@@ -1160,8 +1188,23 @@
   .sm-kindschools button:hover{ background:var(--sea-soft); }
   .sm-sortbar{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
   .sm-sortbar button{ border:1.5px solid var(--line); background:var(--paper-raise); color:var(--ink-soft); border-radius:999px; padding:7px 14px; font:inherit; font-size:.82rem; font-weight:700; }
-  .sm-sortbar button[aria-pressed="true"]{ background:var(--terracotta); border-color:var(--terracotta); color:#fff; }
+  .sm-sortbar button[aria-pressed="true"]{ background:var(--terracotta); border-color:var(--terracotta); color:var(--on-accent); }
   .sm-card.flash{ animation:rmflash 2.2s ease-out; }
+
+  /* ---------- VAYL ロゴ(ホーム左上)と 昼/夜の切り替え ---------- */
+  .homebrand{ flex-wrap:wrap; }
+  :root[data-vtheme="dark"] .sidenav-toggle, :root[data-vtheme="dark"] .compose-box .ctitle, :root[data-vtheme="dark"] .week-node, :root[data-vtheme="dark"] .ai-suggest-head{ color:var(--ink); }
+  .vy-logo{ display:inline-flex; align-items:center; gap:10px; color:var(--ink); }
+  .vy-icon{ width:42px; height:42px; border-radius:12px; box-shadow:var(--shadow); flex:none; }
+  .vy-word{ height:24px; width:auto; display:block; }
+  .theme-quick{ margin-left:auto; display:inline-flex; align-items:center; gap:7px; font:inherit; font-size:.78rem; font-weight:800; letter-spacing:0; padding:6px 12px; border-radius:999px; border:1.5px solid var(--line); background:var(--paper-raise); color:var(--ink-soft); cursor:pointer; }
+  .theme-quick:hover{ border-color:var(--sea); color:var(--ink); }
+  .theme-quick .tq-ico{ width:16px; height:16px; display:inline-block; background:var(--terracotta); border-radius:50%; position:relative; overflow:hidden; }
+  :root[data-vtheme="dark"] .theme-quick .tq-ico{ background:transparent; box-shadow:inset -5px -2px 0 0 var(--terracotta); transform:rotate(-20deg); }
+  .theme-seg{ display:flex; flex-wrap:wrap; gap:8px; }
+  .theme-seg button{ flex:1 1 120px; font:inherit; font-weight:800; font-size:.9rem; padding:12px 14px; border-radius:14px; border:2px solid var(--line); background:var(--paper-raise); color:var(--ink-soft); cursor:pointer; text-align:left; }
+  .theme-seg button small{ display:block; font-weight:500; font-size:.74rem; opacity:.85; margin-top:2px; }
+  .theme-seg button[aria-checked="true"]{ border-color:var(--sea); background:var(--sea-soft); color:var(--ink); }
 </style>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -1220,7 +1263,23 @@
 
   <!-- ===================== ホーム ===================== -->
   <section class="panel active" id="panel-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0">
-    <div class="homebrand"><span class="mark"><svg class="ico-svg"><use href="#i-polaris"/></svg></span><span>かがわ島づたい</span><button type="button" class="prof-chip" id="prof-chip" hidden aria-label="利用者を切り替える"></button></div>
+    <div class="homebrand"><span class="vy-logo" role="img" aria-label="VAYL"><svg class="vy-icon" aria-hidden="true" focusable="false" width="40" height="40" viewBox="0 0 120 120"><defs>
+
+<linearGradient id="vy-tile" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#102C54"/><stop offset="0.6" stop-color="#0B1F3E"/><stop offset="1" stop-color="#0A3A66"/></linearGradient>
+<linearGradient id="vy-tileL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7FBFE"/><stop offset="1" stop-color="#DCEBF5"/></linearGradient>
+<linearGradient id="vy-leafG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C6EBB4"/><stop offset="0.55" stop-color="#7CC59A"/><stop offset="1" stop-color="#3FA0A0"/></linearGradient>
+<linearGradient id="vy-leafG2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#4FB0A6"/><stop offset="1" stop-color="#C9EDB8"/></linearGradient>
+<linearGradient id="vy-leafD" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6FAE6A"/><stop offset="1" stop-color="#1F6F6A"/></linearGradient>
+<linearGradient id="vy-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A0"/><stop offset="0.5" stop-color="#F6C453"/><stop offset="1" stop-color="#E39B2C"/></linearGradient>
+<linearGradient id="vy-wm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#BFE0F5"/></linearGradient>
+<linearGradient id="vy-wmD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#173B6E"/><stop offset="1" stop-color="#0B1F3E"/></linearGradient>
+<linearGradient id="vy-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3FA7DC" stop-opacity=".55"/><stop offset="1" stop-color="#1B6BB0" stop-opacity=".15"/></linearGradient>
+<radialGradient id="vy-glow"><stop offset="0" stop-color="#FFE9A0" stop-opacity=".95"/><stop offset="0.35" stop-color="#F6C453" stop-opacity=".45"/><stop offset="1" stop-color="#F6C453" stop-opacity="0"/></radialGradient>
+<clipPath id="vy-tclip"><rect width="120" height="120" rx="28"/></clipPath><clipPath id="vy-tclip0"><rect width="120" height="120"/></clipPath>
+
+<linearGradient id="vy-tileS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2E7FB8"/><stop offset="1" stop-color="#0B3E73"/></linearGradient>
+<linearGradient id="vy-wmN" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B4A85"/><stop offset="1" stop-color="#0B1F3E"/></linearGradient>
+</defs><rect width="120" height="120" rx="28" fill="url(#vy-tileS)"/><g clip-path="url(#vy-tclip)"><path d="M0 100 Q15 94 30 100 T60 100 T90 100 T120 100 V120 H0Z" fill="#fff" fill-opacity=".12"/><circle cx="16" cy="22" r="0.9" fill="#fff" fill-opacity=".6"/><circle cx="104" cy="18" r="1.1" fill="#fff" fill-opacity=".6"/><circle cx="106" cy="92" r="0.8" fill="#fff" fill-opacity=".6"/><circle cx="12" cy="90" r="0.7" fill="#fff" fill-opacity=".6"/></g><path d="M71.9 104.6 A49 46 0 0 0 75.1 16.3" fill="none" stroke="#9FD7B0" stroke-width="1.5" stroke-linecap="round" stroke-opacity=".9"/><path d="M75.1 103.7 Q79.1 109.5 85.9 107.9 Q81.9 102.2 75.1 103.7 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M75.1 103.7 L83.9 107.1" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M75.1 103.7 Q80.8 102.5 80.0 96.8 Q74.4 98.0 75.1 103.7 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M75.1 103.7 L79.1 98.0" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M88.1 97.7 Q93.5 102.0 99.6 98.6 Q94.2 94.3 88.1 97.7 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M88.1 97.7 L97.5 98.5" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M88.1 97.7 Q93.2 94.9 90.8 89.6 Q85.8 92.4 88.1 97.7 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M88.1 97.7 L90.3 91.1" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M98.6 88.3 Q105.1 90.9 109.9 85.9 Q103.4 83.3 98.6 88.3 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M98.6 88.3 L107.8 86.3" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M98.6 88.3 Q102.6 84.2 98.9 79.8 Q94.8 84.0 98.6 88.3 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M98.6 88.3 L98.8 81.4" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M105.7 76.5 Q112.7 77.0 115.7 70.8 Q108.8 70.2 105.7 76.5 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M105.7 76.5 L113.9 71.8" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M105.7 76.5 Q108.3 71.3 103.4 68.3 Q100.8 73.5 105.7 76.5 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M105.7 76.5 L103.9 69.8" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M108.9 63.2 Q115.6 61.6 116.6 54.7 Q109.9 56.3 108.9 63.2 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M108.9 63.2 L115.2 56.2" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M108.9 63.2 Q109.8 57.5 104.2 56.1 Q103.3 61.8 108.9 63.2 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M108.9 63.2 L105.0 57.4" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M107.7 49.7 Q113.7 46.0 112.5 39.2 Q106.5 42.8 107.7 49.7 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M107.7 49.7 L111.6 41.0" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M107.7 49.7 Q106.8 44.0 101.1 44.4 Q102.0 50.1 107.7 49.7 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M107.7 49.7 L102.3 45.3" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M102.4 37.0 Q107.0 31.7 103.7 25.6 Q99.2 30.9 102.4 37.0 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M102.4 37.0 L103.5 27.6" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M102.4 37.0 Q99.8 31.9 94.5 34.0 Q97.1 39.2 102.4 37.0 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M102.4 37.0 L95.9 34.6" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M93.4 26.4 Q96.2 20.0 91.3 15.1 Q88.5 21.4 93.4 26.4 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M93.4 26.4 L91.7 17.1" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M93.4 26.4 Q89.4 22.2 84.9 25.9 Q89.0 30.0 93.4 26.4 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M93.4 26.4 L86.5 26.0" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M81.5 18.7 Q82.3 11.8 76.2 8.4 Q75.4 15.3 81.5 18.7 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M81.5 18.7 L77.1 10.3" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M81.5 18.7 Q76.4 15.8 73.2 20.6 Q78.2 23.4 81.5 18.7 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M81.5 18.7 L74.7 20.3" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M48.1 104.6 A49 46 0 0 1 44.9 16.3" fill="none" stroke="#9FD7B0" stroke-width="1.5" stroke-linecap="round" stroke-opacity=".9"/><path d="M44.9 103.7 Q44.8 96.8 38.3 94.3 Q38.4 101.3 44.9 103.7 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M44.9 103.7 L39.4 96.0" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M44.9 103.7 Q39.5 101.6 36.9 106.8 Q42.3 108.9 44.9 103.7 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M44.9 103.7 L38.4 106.3" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M31.9 97.7 Q33.7 91.0 28.2 86.8 Q26.4 93.5 31.9 97.7 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M31.9 97.7 L28.9 88.7" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M31.9 97.7 Q27.3 94.1 23.4 98.4 Q28.0 101.9 31.9 97.7 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M31.9 97.7 L24.9 98.2" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M21.4 88.3 Q25.1 82.5 21.0 76.8 Q17.3 82.7 21.4 88.3 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M21.4 88.3 L21.1 78.9" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M21.4 88.3 Q18.1 83.6 13.1 86.5 Q16.4 91.2 21.4 88.3 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M21.4 88.3 L14.6 86.8" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M14.3 76.5 Q19.6 72.0 17.4 65.4 Q12.1 69.9 14.3 76.5 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M14.3 76.5 L16.8 67.4" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M14.3 76.5 Q12.5 71.0 6.9 72.3 Q8.6 77.8 14.3 76.5 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M14.3 76.5 L8.2 73.0" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M11.1 63.2 Q17.6 60.6 17.5 53.6 Q11.1 56.3 11.1 63.2 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M11.1 63.2 L16.4 55.4" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M11.1 63.2 Q11.1 57.4 5.4 56.9 Q5.4 62.7 11.1 63.2 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M11.1 63.2 L6.4 58.1" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M12.3 49.7 Q19.2 49.2 21.3 42.5 Q14.4 43.0 12.3 49.7 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M12.3 49.7 L19.7 43.8" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M12.3 49.7 Q14.1 44.2 8.8 41.9 Q7.0 47.4 12.3 49.7 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M12.3 49.7 L9.4 43.3" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M17.6 37.0 Q24.3 38.7 28.3 33.0 Q21.6 31.3 17.6 37.0 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M17.6 37.0 L26.4 33.7" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M17.6 37.0 Q21.0 32.3 16.6 28.6 Q13.2 33.2 17.6 37.0 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M17.6 37.0 L16.8 30.1" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M26.6 26.4 Q32.5 29.9 38.1 25.7 Q32.1 22.1 26.6 26.4 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M26.6 26.4 L36.0 25.8" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M26.6 26.4 Q31.2 22.9 28.2 18.0 Q23.5 21.5 26.6 26.4 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M26.6 26.4 L27.9 19.5" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M38.5 18.7 Q43.2 23.8 49.7 21.3 Q45.0 16.2 38.5 18.7 Z" fill="url(#vy-leafG)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M38.5 18.7 L47.7 20.8" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><path d="M38.5 18.7 Q43.9 16.7 42.4 11.1 Q37.0 13.1 38.5 18.7 Z" fill="url(#vy-leafG2)" stroke="#0A2F36" stroke-opacity=".35" stroke-width=".7"/><path d="M38.5 18.7 L41.7 12.5" stroke="#0E4A4A" stroke-opacity=".45" stroke-width="1" stroke-linecap="round" fill="none"/><g transform="translate(23.0,43.6) scale(0.3274)"><path d="M6 6 L32 94 L58 6 M54 94 L80 6 L106 94 M62 72 L98 72 M104 6 L130 52 L156 6 M130 52 L130 94 M178 6 L178 94 L220 94" fill="none" stroke="#06142B" stroke-opacity=".4" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" transform="translate(0,3)"/><path d="M6 6 L32 94 L58 6 M54 94 L80 6 L106 94 M62 72 L98 72 M104 6 L130 52 L156 6 M130 52 L130 94 M178 6 L178 94 L220 94" fill="none" stroke="url(#vy-wm)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="49" r="24" fill="url(#vy-glow)"/><path d="M80.0 31.0 L85.4 43.6 L98.0 49.0 L85.4 54.4 L80.0 67.0 L74.6 54.4 L62.0 49.0 L74.6 43.6 Z" fill="none" stroke="#0B1F3E" stroke-opacity=".55" stroke-width="5" stroke-linejoin="round"/><path d="M80.0 31.0 L85.4 43.6 L98.0 49.0 L85.4 54.4 L80.0 67.0 L74.6 54.4 L62.0 49.0 L74.6 43.6 Z" fill="url(#vy-gold)" stroke="#FFF3C4" stroke-width=".9" stroke-linejoin="round"/></g></svg><svg class="vy-word" viewBox="-6 -6 238 112" role="img" aria-label="VAYL"><path d="M6 6 L32 94 L58 6 M54 94 L80 6 L106 94 M63 68 L97 68 M104 6 L130 52 L156 6 M130 52 L130 94 M178 6 L178 94 L220 94" fill="none" stroke="currentColor" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M80 31 L85.4 43.6 L98 49 L85.4 54.4 L80 67 L74.6 54.4 L62 49 L74.6 43.6 Z" fill="#F6C453" stroke="#B97A12" stroke-width="2" stroke-linejoin="round"/></svg></span><button type="button" class="prof-chip" id="prof-chip" hidden aria-label="利用者を切り替える"></button><button type="button" class="theme-quick" id="theme-quick" aria-label="昼と夜の表示を切り替える"><span class="tq-ico" aria-hidden="true"></span><span class="tq-lab"></span></button></div>
     <div class="home-resume" id="home-resume" hidden></div>
     <div class="home-dash" id="home-dash" hidden></div>
     <div class="home-dock-wrap" id="home-dock-wrap" hidden>
@@ -1231,7 +1290,7 @@
       <div class="home-slides" id="home-slides" aria-hidden="true"></div>
       <div class="home-tint" aria-hidden="true"></div>
       <canvas class="home-halftone" id="home-halftone" aria-hidden="true"></canvas>
-      <h1 class="home-h1">かがわ島づたい</h1>
+      <h1 class="home-h1">VAYL</h1>
       <div class="home-ring">
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <defs><radialGradient id="polaris-halo"><stop offset="0" stop-color="#FFF3D2" stop-opacity=".95"/><stop offset=".35" stop-color="#FFD58A" stop-opacity=".45"/><stop offset="1" stop-color="#FFD58A" stop-opacity="0"/></radialGradient></defs>
@@ -1378,7 +1437,16 @@
     <div class="section-head">
       <span class="eyebrow">Settings</span>
       <h2>設定</h2>
-      <p>利用者の切り替え・アカウント・音量・チュートリアル・データの初期化の設定です。音量などの変更は、この端末のブラウザに保存されます。</p>
+      <p>画面の色(昼と夜)・利用者の切り替え・アカウント・音量・チュートリアル・データの初期化の設定です。音量などの変更は、この端末のブラウザに保存されます。</p>
+    </div>
+    <div class="card set-card" id="theme-card">
+      <h3>画面の色(昼と夜)</h3>
+      <p class="set-note" style="margin:0 0 12px">明るい「昼」と、暗い「夜」の見た目を選べます。「自動」にすると、お使いの端末の設定にあわせます。選んだ色は、この端末のブラウザに保存されます。</p>
+      <div class="theme-seg" role="radiogroup" aria-label="画面の色">
+        <button type="button" role="radio" data-theme-pick="auto" aria-checked="false">自動<small>端末の設定にあわせる</small></button>
+        <button type="button" role="radio" data-theme-pick="light" aria-checked="false">昼<small>瀬戸内の明るい青</small></button>
+        <button type="button" role="radio" data-theme-pick="dark" aria-checked="false">夜<small>北極星の夜空</small></button>
+      </div>
     </div>
     <div class="card set-card" id="prof-card">
       <h3>利用者の切り替え</h3>
@@ -1511,7 +1579,7 @@
   </div>
 
   <footer class="appfoot">
-    かがわ島づたい(プロトタイプ) ― 大学・産業・制度の情報は公開情報をもとに作成した参考情報です。最新情報は各公式サイトでご確認ください。
+    VAYL(プロトタイプ) ― 大学・産業・制度の情報は公開情報をもとに作成した参考情報です。最新情報は各公式サイトでご確認ください。
   </footer>
 </div>
 
@@ -1557,7 +1625,7 @@
   <div class="intro-inner">
     <svg class="intro-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5l2 8.5 8.5 2-8.5 2-2 8.5-2-8.5-8.5-2 8.5-2z"/></svg>
     <p class="intro-catch" id="intro-catch"><span>海を渡らなくても、<em>香川</em>で</span><span>見つかる道がある。</span></p>
-    <p class="intro-sub">ようこそ、かがわ島づたいへ。島から島へ渡るように、一歩ずつ進路を探しましょう。</p>
+    <p class="intro-sub">ようこそ、VAYLへ。島から島へ渡るように、一歩ずつ進路を探しましょう。</p>
     <button type="button" class="btn primary intro-go" id="intro-go">はじめる</button>
     <p class="intro-priv"><button type="button" class="linklike" data-priv-open>データの扱いについて</button></p>
   </div>
@@ -1565,7 +1633,7 @@
 <div class="adopt-modal priv-modal" id="priv-modal" hidden role="dialog" aria-modal="true" aria-labelledby="priv-title">
   <div class="adopt-box priv-box">
     <h3 id="priv-title">データの扱いについて</h3>
-    <p class="priv-lead">「かがわ島づたい」は、いま開発中のテスト版です。あなたの入力したことが、どこに保存され、どこに送られるのかを、短く説明します。</p>
+    <p class="priv-lead">「VAYL」は、いま開発中のテスト版です。あなたの入力したことが、どこに保存され、どこに送られるのかを、短く説明します。</p>
     <h4>保存される場所</h4>
     <p>診断の回答や結果、AIとのチャット、ロードマップ、予定表などは、いま使っているこの端末のブラウザの中に保存されます。運営のサーバーに集められることはありません。</p>
     <h4>AIに質問するとき</h4>
@@ -2704,7 +2772,7 @@
 
   function buildChatRules(ctx){
     var lines = [];
-    lines.push('あなたは「かがわ島づたい」というアプリの中で動く、香川県内の高校生のための進路アドバイザーAIです。あたたかく、信頼できる話し相手として接してください。');
+    lines.push('あなたは「VAYL」というアプリの中で動く、香川県内の高校生のための進路アドバイザーAIです。あたたかく、信頼できる話し相手として接してください。');
     lines.push('');
     lines.push('生徒は診断の結果、次の学校(大学・専門学校)・学部・学科・入試方式に関心を持っています。');
     lines.push(aiFactsLines(ctx));
@@ -2727,7 +2795,7 @@
 
   function buildRoadmapRules(ctx){
     var lines = [];
-    lines.push('あなたは「かがわ島づたい」というアプリの中で動く、香川県内の高校生のための進路アドバイザーAIです。あたたかく、信頼できる話し相手として接してください。');
+    lines.push('あなたは「VAYL」というアプリの中で動く、香川県内の高校生のための進路アドバイザーAIです。あたたかく、信頼できる話し相手として接してください。');
     lines.push('');
     lines.push('生徒は診断の結果、次の学校(大学・専門学校)・学部・学科・入試方式への合格を目指して、あなたと対話しながらロードマップを作ろうとしています。');
     lines.push(aiFactsLines(ctx));
@@ -3963,7 +4031,7 @@
 
     var html = '<div class="results">';
     html += '<div class="print-header">' +
-      '<div class="pf-title">かがわ島づたい ― 大学マッチング診断結果</div>' +
+      '<div class="pf-title">VAYL ― 大学マッチング診断結果</div>' +
       '<div class="pf-fields">' +
         '<span>氏名: ______________________</span>' +
         '<span>学年・組: ______________</span>' +
@@ -6349,7 +6417,7 @@
     var html = '<div class="matchcard">';
     html += '<div class="top"><div><span class="slotbadge '+badgeCls+'">'+slot.badge+'</span><div class="uni">'+item.name+'</div><h4>'+item.faculty+'</h4></div></div>';
     html += '<p class="desc" style="margin-top:4px;"><b>入試区分:</b> '+item.admission_type+'</p>';
-    if(item.label_note){ html += '<p class="desc" style="color:var(--terracotta);">※ '+item.label_note+'</p>'; }
+    if(item.label_note){ html += '<p class="desc" style="color:var(--accent-ink);">※ '+item.label_note+'</p>'; }
     html += '<p class="desc">'+reasons.join('。')+'。</p>';
     var confNotes = [];
     if(item.data_confidence && item.data_confidence.gpa_disclosed === false) confNotes.push('評定基準は公式非公表のため推定値を含みます');
@@ -7334,7 +7402,7 @@
 
     var COLORS = [
       {key:'sea', val:'#1C6FB5'},
-      {key:'terra', val:'#FF9142'},
+      {key:'terra', val:'#F2B84B'},
       {key:'olive', val:'#4F9D5C'},
       {key:'ink', val:'#41647E'}
     ];
@@ -7830,6 +7898,32 @@
     render();
   })();
 
+})();
+</script>
+
+<script>
+/* ---- 昼と夜の切り替え(ライト / ダーク / 自動) ---- */
+(function(){
+  var KEY = 'vayl-theme-v1', root = document.documentElement;
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function getMode(){ try{ var m = localStorage.getItem(KEY); return (m==='light'||m==='dark') ? m : 'auto'; }catch(e){ return 'auto'; } }
+  function effective(mode){ if(mode==='light'||mode==='dark') return mode; return (mq && mq.matches) ? 'dark' : 'light'; }
+  function paint(){
+    var mode = getMode(), eff = effective(mode);
+    if(mode==='auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', mode);
+    root.setAttribute('data-vtheme', eff);
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if(meta) meta.setAttribute('content', eff==='dark' ? '#0A1830' : '#F2F8FC');
+    var q = document.getElementById('theme-quick');
+    if(q){ q.querySelector('.tq-lab').textContent = eff==='dark' ? '夜' : '昼'; q.setAttribute('aria-label', eff==='dark' ? '昼の表示に切り替える(いまは夜)' : '夜の表示に切り替える(いまは昼)'); }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-theme-pick]'), function(b){ b.setAttribute('aria-checked', String(b.getAttribute('data-theme-pick')===mode)); });
+  }
+  function setMode(m){ try{ if(m==='auto') localStorage.removeItem(KEY); else localStorage.setItem(KEY, m); }catch(e){} paint(); }
+  var q = document.getElementById('theme-quick');
+  if(q) q.addEventListener('click', function(){ setMode(effective(getMode())==='dark' ? 'light' : 'dark'); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-theme-pick]'), function(b){ b.addEventListener('click', function(){ setMode(b.getAttribute('data-theme-pick')); }); });
+  if(mq){ var f = function(){ if(getMode()==='auto') paint(); }; if(mq.addEventListener) mq.addEventListener('change', f); else if(mq.addListener) mq.addListener(f); }
+  paint();
 })();
 </script>
 
