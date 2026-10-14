@@ -16,6 +16,18 @@
       {key:'olive', val:'#4F9D5C'},
       {key:'ink', val:'#41647E'}
     ];
+    /* 色=カテゴリーの対応。苦手科目は要注意色(オレンジ)、得意科目は安心色(緑)、
+       イベントは基調色(青)、その他は落ち着いた紺。 */
+    var CATEGORY_OPTIONS = [
+      {key:'terra', label:'苦手科目'},
+      {key:'olive', label:'得意科目'},
+      {key:'sea', label:'イベント'},
+      {key:'ink', label:'その他'}
+    ];
+    function catLabel(key){
+      var found = CATEGORY_OPTIONS.filter(function(c){ return c.key===key; })[0];
+      return found ? found.label : CATEGORY_OPTIONS[2].label;
+    }
     var STORAGE_KEY = 'kagawa-compass-my-schedule-v1';
     var GOALS_KEY = 'kagawa-compass-my-goals-v1';
 
@@ -47,6 +59,9 @@
     var MY_GOALS = loadGoals();
 
     var todayDate = new Date(); todayDate.setHours(0,0,0,0);
+    /* ページを開いたまま日付をまたいで使い続けても「今日」の判定が古くならないよう、
+       描画や保存のたびに作り直す。 */
+    function refreshToday(){ todayDate = new Date(); todayDate.setHours(0,0,0,0); }
     function pad2(n){ return n < 10 ? '0'+n : ''+n; }
     function ymd(y, mZero, d){ return y+'-'+pad2(mZero+1)+'-'+pad2(d); }
     function uid(){ return 'e'+Date.now()+Math.floor(Math.random()*1000); }
@@ -156,7 +171,43 @@
 
     var COLOR_SOFT = { sea:'var(--sea-soft)', terra:'var(--terracotta-soft)', olive:'var(--olive-soft)', ink:'rgba(65,100,126,.16)' };
 
-    function itemCardHtml(s){
+    function dayChipsHtml(slotStart, slotEnd, selectedDate, todayStr, dataAttr){
+      var dates = datesInRange(slotStart, slotEnd);
+      return dates.map(function(dstr2){
+        var dd = new Date(dstr2+'T00:00:00');
+        var isSel = (selectedDate === dstr2);
+        var isPast = dstr2 < todayStr;
+        return '<button type="button" class="daychip'+(isSel?' active':'')+(isPast?' past':'')+'"'+
+                 (isPast ? ' disabled aria-disabled="true" title="過ぎた日には追加できません"' : ' data-'+dataAttr+'="'+dstr2+'"')+'>'+
+                 '<span class="d">'+dd.getDate()+'</span><span class="wd">'+WEEKDAY_LABEL[dd.getDay()]+'</span>'+
+               '</button>';
+      }).join('');
+    }
+
+    function editFormHtml(s, slot){
+      var todayStr = ymd(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+      var dayChips = dayChipsHtml(slot.start, slot.end, editDayDate, todayStr, 'editday');
+      var catChips = CATEGORY_OPTIONS.map(function(c){
+        var isSel = (editColor === c.key);
+        var cVal = (COLORS.filter(function(cc){ return cc.key===c.key; })[0] || COLORS[0]).val;
+        return '<button type="button" class="catchip'+(isSel?' active':'')+'" data-editcat="'+c.key+'" style="--catcolor:'+cVal+'">'+c.label+'</button>';
+      }).join('');
+      return '<div class="compose-box">'+
+          '<div class="ctitle">予定を編集</div>'+
+          '<div class="daypick-label">曜日を選ぶ</div>'+
+          '<div class="daypick-row">'+dayChips+'</div>'+
+          '<div class="daypick-label">カテゴリーを選ぶ</div>'+
+          '<div class="catpick-row">'+catChips+'</div>'+
+          '<input type="text" id="edit-input-'+s.id+'" maxlength="60" value="'+escapeHtml(editDraftText)+'">'+
+          '<div class="composebtns">'+
+            '<button type="button" data-editcancel>キャンセル</button>'+
+            '<button type="button" class="primary" data-editsave="'+s.id+'">保存する</button>'+
+          '</div>'+
+        '</div>';
+    }
+
+    function itemCardHtml(s, slot){
+      if(editEventId === s.id){ return editFormHtml(s, slot); }
       var d = dday(s);
       var dt = new Date(s.date+'T00:00:00');
       var color = (COLORS.filter(function(c){ return c.key===s.color; })[0] || COLORS[0]).val;
@@ -172,13 +223,14 @@
           '<div class="wd">'+WEEKDAY_LABEL[dt.getDay()]+'曜</div>'+
         '</div>'+
         '<div class="schedbody">'+
-          '<div class="schedtop"><span class="colordot" style="background:'+color+'"></span>'+(d.label?'<span class="statuspill '+d.cls+'">'+d.label+'</span>':'')+(isDone?'<span class="statuspill done">完了</span>':'')+'</div>'+
+          '<div class="schedtop"><span class="catpill" style="background:'+softBg+';color:'+color+'">'+escapeHtml(catLabel(s.color))+'</span>'+(d.label?'<span class="statuspill '+d.cls+'">'+d.label+'</span>':'')+(isDone?'<span class="statuspill done">完了</span>':'')+'</div>'+
           '<h4>'+escapeHtml(s.title)+'</h4>'+
           '<div class="when">'+whenDisplay+'</div>'+
           (s.memo?'<p>'+escapeHtml(s.memo)+'</p>':'')+
         '</div>'+
         '<div class="itemactions">'+
           '<button type="button" class="donebtn'+(isDone?' active':'')+'" data-done="'+s.id+'">'+(isDone?'完了を取り消す':'完了')+'</button>'+
+          '<button type="button" class="editbtn" data-editopen="'+s.id+'">編集</button>'+
           '<button type="button" class="delbtn" data-del="'+s.id+'">削除</button>'+
         '</div>'+
         '</div>';
@@ -191,7 +243,8 @@
        openWeekKey    : 予定を表示中の週(例 "2026-9-1")
        selectMonthKey : ➕を押して「週を選んでください」になっている月
        composeWeekKey : やることを書き込み中の週 */
-    var openMonthKey = null, openWeekKey = null, selectMonthKey = null, composeWeekKey = null, goalEditKey = null, composeDayDate = null, composeDraftText = '';
+    var openMonthKey = null, openWeekKey = null, selectMonthKey = null, composeWeekKey = null, goalEditKey = null, composeDayDate = null, composeDraftText = '', composeColor = 'sea';
+    var editEventId = null, editDayDate = null, editColor = null, editDraftText = '';
     var WEEKDAY_LABEL = ['日','月','火','水','木','金','土'];
     function datesInRange(startStr, endStr){
       var out = [];
@@ -205,6 +258,7 @@
     }
 
     function render(){
+      refreshToday();
       var months = buildMonthList();
       var tY = todayDate.getFullYear(), tM = todayDate.getMonth();
       var html = '';
@@ -267,7 +321,7 @@
                       '<span>'+(slot.idx+1)+'</span><span class="wk">週目</span>'+
                     '</button>';
           });
-          html += '<button type="button" class="week-add-toggle'+(selecting?' active':'')+'" data-addtoggle="'+key+'" aria-label="この月に予定を追加">'+(selecting?'×':'+')+'</button>';
+          html += '<button type="button" class="week-add-toggle'+(selecting?' active':'')+'" data-addtoggle="'+key+'" aria-label="'+(selecting?'追加をキャンセル':'この月に予定を追加')+'">'+(selecting?'×':'+')+'</button>';
           html += '</div>';
 
           if(composeWeekKey && composeWeekKey.indexOf(key+'-')===0){
@@ -287,10 +341,17 @@
                        '<span class="d">'+dd.getDate()+'</span><span class="wd">'+WEEKDAY_LABEL[dd.getDay()]+'</span>'+
                      '</button>';
             }).join('');
+            var cCatChips = CATEGORY_OPTIONS.map(function(c){
+              var isSel = (composeColor === c.key);
+              var cVal = (COLORS.filter(function(cc){ return cc.key===c.key; })[0] || COLORS[0]).val;
+              return '<button type="button" class="catchip'+(isSel?' active':'')+'" data-cat="'+c.key+'" style="--catcolor:'+cVal+'">'+c.label+'</button>';
+            }).join('');
             html += '<div class="compose-box">'+
                       '<div class="ctitle">'+(mo.month+1)+'月 第'+(cIdx+1)+'週 にやることを書く</div>'+
                       '<div class="daypick-label">曜日を選ぶ</div>'+
                       '<div class="daypick-row">'+cDayChips+'</div>'+
+                      '<div class="daypick-label">カテゴリーを選ぶ</div>'+
+                      '<div class="catpick-row">'+cCatChips+'</div>'+
                       '<input type="text" id="compose-input" placeholder="例: 香川大学オープンキャンパスに行く" value="'+escapeHtml(composeDraftText)+'">'+
                       '<div class="composebtns">'+
                         '<button type="button" data-composecancel>キャンセル</button>'+
@@ -299,10 +360,12 @@
                     '</div>';
           } else if(openWeekKey && openWeekKey.indexOf(key+'-')===0){
             var oParts = openWeekKey.split('-');
-            var oEvs = groups[parseInt(oParts[2],10)] || [];
+            var oIdx = parseInt(oParts[2],10);
+            var oSlot = slots[oIdx];
+            var oEvs = groups[oIdx] || [];
             if(oEvs.length){
               html += '<div class="events-panel">';
-              oEvs.forEach(function(s){ html += itemCardHtml(s); });
+              oEvs.forEach(function(s){ html += itemCardHtml(s, oSlot); });
               html += '</div>';
             }
           }
@@ -316,7 +379,7 @@
         btn.addEventListener('click', function(){
           var k = btn.dataset.month;
           openMonthKey = (openMonthKey === k) ? null : k;
-          openWeekKey = null; selectMonthKey = null; composeWeekKey = null;
+          openWeekKey = null; selectMonthKey = null; composeWeekKey = null; editEventId = null;
           render();
         });
       });
@@ -340,6 +403,7 @@
             composeWeekKey = k;
             selectMonthKey = null;
             composeDraftText = '';
+            composeColor = 'sea';
             composeDayDate = null; /* render() 側で「今日以降で最初に選べる日」を自動選択する */
             render();
             setTimeout(function(){
@@ -348,6 +412,7 @@
             }, 30);
           } else {
             openWeekKey = (openWeekKey === k) ? null : k;
+            editEventId = null;
             render();
           }
         });
@@ -358,6 +423,7 @@
           composeWeekKey = null;
           composeDayDate = null;
           composeDraftText = '';
+          composeColor = 'sea';
           render();
         });
       });
@@ -367,6 +433,19 @@
           var el0 = document.getElementById('compose-input');
           if(el0) composeDraftText = el0.value;
           composeDayDate = btn.dataset.day;
+          render();
+          setTimeout(function(){
+            var el = document.getElementById('compose-input');
+            if(el) el.focus();
+          }, 30);
+        });
+      });
+
+      trailEl.querySelectorAll('[data-cat]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var el0 = document.getElementById('compose-input');
+          if(el0) composeDraftText = el0.value;
+          composeColor = btn.dataset.cat;
           render();
           setTimeout(function(){
             var el = document.getElementById('compose-input');
@@ -400,11 +479,80 @@
       trailEl.querySelectorAll('[data-del]').forEach(function(btn){
         btn.addEventListener('click', function(){
           var id = btn.dataset.del;
+          if(!confirm('この予定を削除しますか?元に戻せません。')) return;
           MY_EVENTS = MY_EVENTS.filter(function(e){ return e.id !== id; });
           saveEvents(MY_EVENTS);
           render();
         });
       });
+
+      trailEl.querySelectorAll('[data-editopen]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var id = btn.dataset.editopen;
+          var ev = MY_EVENTS.filter(function(e){ return e.id === id; })[0];
+          if(!ev) return;
+          editEventId = id;
+          editDayDate = ev.date;
+          editColor = ev.color;
+          editDraftText = ev.title;
+          render();
+          setTimeout(function(){
+            var el = document.getElementById('edit-input-'+id);
+            if(el){ el.focus(); el.select(); }
+          }, 30);
+        });
+      });
+
+      trailEl.querySelectorAll('[data-editcancel]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          editEventId = null;
+          editDayDate = null;
+          editColor = null;
+          editDraftText = '';
+          render();
+        });
+      });
+
+      trailEl.querySelectorAll('[data-editday]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var el0 = document.getElementById('edit-input-'+editEventId);
+          if(el0) editDraftText = el0.value;
+          editDayDate = btn.dataset.editday;
+          render();
+          setTimeout(function(){
+            var el = document.getElementById('edit-input-'+editEventId);
+            if(el) el.focus();
+          }, 30);
+        });
+      });
+
+      trailEl.querySelectorAll('[data-editcat]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var el0 = document.getElementById('edit-input-'+editEventId);
+          if(el0) editDraftText = el0.value;
+          editColor = btn.dataset.editcat;
+          render();
+          setTimeout(function(){
+            var el = document.getElementById('edit-input-'+editEventId);
+            if(el) el.focus();
+          }, 30);
+        });
+      });
+
+      trailEl.querySelectorAll('[data-editsave]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          saveEditedEvent(btn.dataset.editsave);
+        });
+      });
+      if(editEventId){
+        var editInput = document.getElementById('edit-input-'+editEventId);
+        if(editInput){
+          editInput.addEventListener('keydown', function(e){
+            if(e.key === 'Enter'){ saveEditedEvent(editEventId); }
+            if(e.key === 'Escape'){ editEventId = null; render(); }
+          });
+        }
+      }
 
       trailEl.querySelectorAll('[data-goaledit]').forEach(function(btn){
         btn.addEventListener('click', function(e){
@@ -454,6 +602,7 @@
 
     function saveComposedEvent(wkey){
       if(!wkey) return;
+      refreshToday();
       var parts = wkey.split('-');
       var y = parseInt(parts[0],10), m = parseInt(parts[1],10), idx = parseInt(parts[2],10);
       var slot = weekSlotsForMonth(y,m)[idx];
@@ -465,13 +614,39 @@
       if(!text){ alert('やることを入力してください'); return; }
       MY_EVENTS.push({
         id: uid(), title: text, date: day, end: day,
-        when: whenLabel(day, day), memo: '', color: 'sea'
+        when: whenLabel(day, day), memo: '', color: composeColor || 'sea'
       });
       saveEvents(MY_EVENTS);
       composeWeekKey = null;
       composeDayDate = null;
       composeDraftText = '';
+      composeColor = 'sea';
       openWeekKey = wkey;
+      render();
+    }
+
+    function saveEditedEvent(id){
+      if(!id) return;
+      refreshToday();
+      var ev = MY_EVENTS.filter(function(e){ return e.id === id; })[0];
+      if(!ev) return;
+      var todayStr = ymd(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+      var day = editDayDate || ev.date;
+      /* 元々過去の予定だった場合は日付を変えずに編集できるが、日付を変更するなら今日以降にする */
+      if(day !== ev.date && day < todayStr){ alert('過ぎた日には変更できません。今日以降の日を選んでください。'); return; }
+      var input = document.getElementById('edit-input-'+id);
+      var text = input ? input.value.trim() : '';
+      if(!text){ alert('やることを入力してください'); return; }
+      ev.title = text;
+      ev.date = day;
+      ev.end = day;
+      ev.when = whenLabel(day, day);
+      ev.color = editColor || ev.color;
+      saveEvents(MY_EVENTS);
+      editEventId = null;
+      editDayDate = null;
+      editColor = null;
+      editDraftText = '';
       render();
     }
 
