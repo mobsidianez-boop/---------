@@ -486,7 +486,7 @@
     cursor:pointer; font:inherit;
   }
   .catchip:hover{ border-color:var(--catcolor, var(--sea)); }
-  .catchip.active{ background:var(--catcolor, var(--sea)); border-color:var(--catcolor, var(--sea)); color:#fff; }
+  .catchip.active{ background:var(--catcolor, var(--sea)); border-color:var(--catcolor, var(--sea)); color:var(--oncat, #fff); }
   .daychip{
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     width:40px; height:44px; border-radius:10px; border:1px solid var(--line);
@@ -628,6 +628,7 @@
     flex:none; background:none; border:1px solid var(--sea); color:var(--sea-deep); font-size:.72rem;
     font-weight:700; padding:3px 10px; border-radius:999px; cursor:pointer; white-space:nowrap;
   }
+  :root[data-vtheme="dark"] .editbtn{ color:var(--ink); }
   .editbtn:hover{ background:var(--sea-soft); }
   .delbtn{ flex:none; background:none; border:none; color:var(--muted); font-size:.74rem; text-decoration:underline; padding:2px; cursor:pointer; }
   .delbtn:hover{ color:var(--accent-ink); }
@@ -796,6 +797,15 @@
   .rm-tag{ flex:none; font-size:.7rem; font-weight:800; padding:2px 8px; border-radius:999px; background:var(--sea-soft); color:var(--sea-deep); white-space:nowrap; }
   .rm-tag.t-olive{ background:var(--olive-soft); color:var(--olive); }
   .rm-tag.t-terra{ background:var(--terracotta-soft); color:var(--accent-ink); }
+  .rm-due{ display:inline-block; margin:5px 0 0 6px; font-size:.7rem; font-weight:800; padding:2px 8px; border-radius:999px; background:transparent; border:1px solid var(--line); color:var(--muted); white-space:nowrap; }
+  .rm-due.late{ border-color:var(--terracotta); color:var(--accent-ink); background:var(--terracotta-soft); }
+  .rm-dateask{ display:flex; align-items:center; gap:10px 14px; flex-wrap:wrap; margin:6px 0 10px; padding:10px 14px; border:1px dashed var(--line); border-radius:14px; background:var(--sea-soft); font-size:.84rem; color:var(--ink); }
+  .rm-dateask span{ flex:1 1 200px; min-width:0; }
+  .rm-dateask .btn{ flex:none; }
+  .rmbadge{ font-size:.66rem; font-weight:800; padding:2px 8px; border-radius:999px; border:1px solid var(--sea); color:var(--ink); background:transparent; }
+  .scheditem.rmev .when small{ color:var(--muted); font-weight:600; margin-left:4px; }
+  .compose-box .rm-datein{ width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:var(--paper); color:var(--ink); font:inherit; }
+  .compose-box .rm-edit-note{ font-size:.8rem; color:var(--muted); margin:0 0 8px; }
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .rm-tag{ color:var(--ink); } }
   :root[data-theme="dark"] .rm-tag{ color:var(--ink); }
   .rm-note{ background:var(--sea-soft); border-radius:12px; padding:11px 14px; font-size:.86rem; margin:4px 0 0; }
@@ -2945,8 +2955,10 @@
     lines.push('8. 小さな目標(項目)を達成するための、もう一段細かい手順・小目標が会話の中で出てきたら、<sub parent=\"親の項目id\" id=\"新しいid\">小目標を40字以内で</sub> で親の項目の下に追加する(アプリが親の項目の「小目標」ボタンの中にチェックリストとして表示する)。1つの親に最大6個、複数追加するなら <sub> を複数付ける。id は b1,b2… のように重複しない文字列。小目標の下にさらに小目標は作らない(2階層まで)。生徒が「どうやって進めればいい?」と聞いて、行動に分けられる答えのときは、説明を <detail>、チェックできる具体的な行動を <sub> に分けて入れる。生徒に頼まれていないのに多用せず、会話で具体的な手順が出たときに付けること。小目標の id も <done>・<undone> で使える。小目標がすべて終わった項目は、アプリが自動で完了にする。');
     lines.push('7. 生徒が新しい目標・やりたいことを言ったときは、全体を出し直さずに <add phase="p2" tag="資格" id="s9">やることを40字以内で</add> を付けて追加する(id は他と重ならない文字列)(phase は入れたい段階の id か名前。どれにも合わなければ新しい段階名を書くと新しい段階ができる。tag は 評定|小論文|面接|出願|資格|その他。複数追加するなら <add> を複数付ける)。項目の順序入れ替えや大きな作り直しのときだけ <roadmap> を使う。');
     lines.push('');
+    lines.push(dueRulesText());
+    lines.push('');
     lines.push('【JSONの形(キーの順番もこの通りに)】');
-    lines.push('{"goal":"めざすゴールを30字以内で","phases":[{"id":"p1","title":"時期やステップ名(例: 今すぐ〜1か月)","items":[{"id":"s1","text":"やることを40字以内で具体的に","tag":"評定|小論文|面接|出願|資格|その他 のどれか"}]}],"note":"確認が必要なことなど、あれば80字以内。なければ空文字"}');
+    lines.push('{"goal":"めざすゴールを30字以内で","phases":[{"id":"p1","title":"時期やステップ名(例: 今すぐ〜1か月)","items":[{"id":"s1","text":"やることを40字以内で具体的に","tag":"評定|小論文|面接|出願|資格|その他 のどれか","due":"YYYY-MM-DD"}]}],"note":"確認が必要なことなど、あれば80字以内。なければ空文字"}');
     lines.push('・最初のたたき台では phases は3〜5個、各 items は2〜4個(あとから追加で増えてよい)。時期は「高3 4〜6月」のような相対表現でよい。id は p1,p2… / s1,s2… のように重複しない文字列。');
     lines.push('');
     lines.push('【内容のルール】');
@@ -2991,14 +3003,46 @@
     ids.slice(5).forEach(function(id){ delete store.items[id]; });
     rmStoreWrite();
     renderHomeResume();
+    rmSchedRefresh();
   }
+  function rmSchedRefresh(){ try{ if(window.scheduleRefresh) window.scheduleRefresh(); }catch(e){ /* no-op */ } }
   function rmDelete(key){
     var store = rmStoreLoad();
     delete store.items[key];
     rmStoreWrite();
     renderHomeResume();
+    rmSchedRefresh();
   }
   function rmEsc(t){ return String(t).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  /* ---- 日付(予定表との連携) ---- */
+  function rmYmd(d){ function p(n){ return n < 10 ? '0' + n : '' + n; } return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()); }
+  function rmTodayStr(){ var d = new Date(), W = ['日','月','火','水','木','金','土']; return rmYmd(d) + '(' + W[d.getDay()] + ')'; }
+  /* AIが付けた日付をチェック: YYYY-MM-DD の実在する日で、今日以降・3年以内のものだけ通す */
+  function rmDueNorm(v){
+    if(typeof v !== 'string') return '';
+    var m = v.trim().match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    if(!m) return '';
+    var y = +m[1], mo = +m[2], d = +m[3], dt = new Date(y, mo - 1, d);
+    if(dt.getFullYear() !== y || dt.getMonth() !== mo - 1 || dt.getDate() !== d) return '';
+    var t0 = new Date(); t0.setHours(0, 0, 0, 0);
+    if(dt < t0 || dt - t0 > 1100 * 86400000) return '';
+    return rmYmd(dt);
+  }
+  var DUE_MARK = '【日付(予定表と連携)】';
+  function dueRulesText(){
+    return [
+      DUE_MARK + 'ロードマップの各項目には、「いつまでにやるか」の目安の日付(YYYY-MM-DD)をAIが決めて付ける。アプリはその日付を「予定表」に自動で載せる。今日は ' + rmTodayStr() + ' です。',
+      '・最初に <roadmap> を出すときは、各項目に \"due\":\"YYYY-MM-DD\" を必ず入れる。',
+      '・出願・試験など、上記の公式日程に書かれているものは、その日付(またはその少し前)を使う。それ以外は、今日から出願締切までを逆算して、項目ごとに無理のない間隔で散らす。同じ日に3つ以上集中させない。',
+      '・今日より前の日付は付けない。学年がまだ分からないときは、今日から数か月以内の目安でよい。学年や状況が分かったら、日付を付け直す。',
+      '・あとから日付を付ける・変えるときは、<due>s1=2026-11-30,s4=2027-01-15</due> のように「id=日付」をカンマ区切りで本文のあとに付ける(<roadmap> を出し直す必要はない)。<add> にも due=\"YYYY-MM-DD\" を付ける。',
+      '・アプリから届く一覧で [日付固定] と付いた項目は、生徒が自分で決めた日付なので変えないこと。',
+      '・日付は「目安」であり、公式の日程と違う可能性があることを、必要なら本文で一言ふれてよい。'
+    ].join('\n');
+  }
+  function rmHasDueRules(rm){
+    return !!(rm && rm.turns && rm.turns.some(function(t){ return t.role === 'user' && typeof t.content === 'string' && t.content.indexOf(DUE_MARK) >= 0; }));
+  }
   function rmCounts(data){
     var total = 0, done = 0;
     if(data) data.phases.forEach(function(p){ p.items.forEach(function(i){ total++; if(i.done) done++; }); });
@@ -3027,7 +3071,7 @@
         var id = (it && it.id) ? String(it.id).slice(0, 16) : '';
         while(!id || used[id]){ n++; id = 's_' + n; }
         used[id] = 1;
-        items.push({ id:id, text:String(text).slice(0, 90), tag:(it && it.tag) ? String(it.tag).slice(0, 8) : '', done:false, detail:(it && typeof it.detail === 'string') ? it.detail.slice(0, 700) : '',
+        items.push({ id:id, text:String(text).slice(0, 90), tag:(it && it.tag) ? String(it.tag).slice(0, 8) : '', due:rmDueNorm(it && it.due), done:false, detail:(it && typeof it.detail === 'string') ? it.detail.slice(0, 700) : '',
           subs:(it && Array.isArray(it.subs)) ? it.subs.slice(0, 6).map(function(x, xi){ var t = (typeof x === 'string') ? x : (x && x.text); if(!t) return null; var sid = (x && x.id) ? String(x.id).slice(0, 16) : ''; while(!sid || used[sid]){ n++; sid = 'b_' + n; } used[sid] = 1; return { id:sid, text:String(t).slice(0, 60), done:false }; }).filter(Boolean) : [] });
       });
       if(!items.length) return;
@@ -3058,7 +3102,7 @@
     try{ return rmNormalize(JSON.parse(str.slice(0, safe) + closers)); }catch(e){ return null; }
   }
   function rmSplit(raw){
-    var out = { text:'', roadmap:null, partial:null, quick:[], done:[], undone:[], details:[], adds:[], subs:[] };
+    var out = { text:'', roadmap:null, partial:null, quick:[], done:[], undone:[], details:[], adds:[], subs:[], dues:[] };
     function ids(tag){
       var m = raw.match(new RegExp('<' + tag + '>([\\s\\S]*?)<\\/' + tag + '>'));
       return m ? m[1].split(/[,、，\s]+/).map(function(x){ return x.trim(); }).filter(Boolean).slice(0, 12) : [];
@@ -3070,10 +3114,12 @@
     var sm, sre = /<sub\b([^>]*)>([\s\S]*?)<\/sub>/g;
     while((sm = sre.exec(raw))){ var sa = attrs(sm[1]); if(sa.parent && sm[2].trim()) out.subs.push({ parent:sa.parent, id:sa.id || '', text:sm[2].trim() }); }
     var am, are = /<add\b([^>]*)>([\s\S]*?)<\/add>/g;
-    while((am = are.exec(raw))){ var aa = attrs(am[1]); if(am[2].trim()) out.adds.push({ phase:aa.phase || '', tag:aa.tag || '', id:aa.id || '', text:am[2].trim() }); }
+    while((am = are.exec(raw))){ var aa = attrs(am[1]); if(am[2].trim()) out.adds.push({ phase:aa.phase || '', tag:aa.tag || '', id:aa.id || '', due:aa.due || '', text:am[2].trim() }); }
+    var um = raw.match(/<due>([\s\S]*?)<\/due>/);
+    if(um) um[1].split(/[,、，\s]+/).forEach(function(pair){ var q = pair.match(/^([^=:]+)[=:](\d{4}-\d{1,2}-\d{1,2})$/); if(q) out.dues.push({ id:q[1].trim(), due:q[2] }); });
     var qm = raw.match(/<quick>([\s\S]*?)<\/quick>/);
     if(qm) out.quick = qm[1].split(/[|｜\n]/).map(function(x){ return x.trim(); }).filter(Boolean).slice(0, 4);
-    out.text = raw.replace(/<roadmap>[\s\S]*?(?:<\/roadmap>|$)/, '').replace(/<quick>[\s\S]*?(?:<\/quick>|$)/, '').replace(/<done>[\s\S]*?(?:<\/done>|$)/, '').replace(/<undone>[\s\S]*?(?:<\/undone>|$)/, '').replace(/<detail\b[\s\S]*?(?:<\/detail>|$)/g, '').replace(/<add\b[\s\S]*?(?:<\/add>|$)/g, '').replace(/<sub\b[\s\S]*?(?:<\/sub>|$)/g, '').replace(/<[a-z\/]*$/i, '').trim();
+    out.text = raw.replace(/<roadmap>[\s\S]*?(?:<\/roadmap>|$)/, '').replace(/<quick>[\s\S]*?(?:<\/quick>|$)/, '').replace(/<done>[\s\S]*?(?:<\/done>|$)/, '').replace(/<undone>[\s\S]*?(?:<\/undone>|$)/, '').replace(/<due>[\s\S]*?(?:<\/due>|$)/, '').replace(/<detail\b[\s\S]*?(?:<\/detail>|$)/g, '').replace(/<add\b[\s\S]*?(?:<\/add>|$)/g, '').replace(/<sub\b[\s\S]*?(?:<\/sub>|$)/g, '').replace(/<[a-z\/]*$/i, '').trim();
     var rm = raw.match(/<roadmap>([\s\S]*?)<\/roadmap>/);
     if(rm){ out.roadmap = rmParse(rm[1]); }
     else{
@@ -3081,6 +3127,11 @@
       if(ri >= 0) out.partial = rmRepair(raw.slice(ri + 9));
     }
     return out;
+  }
+  /* 作り直されたロードマップに、生徒が決めた日付・AIが付けた日付を引き継ぐ */
+  function rmCarryDue(it, old){
+    if(old.dueByUser){ it.due = old.due; it.dueByUser = true; }
+    else if(!it.due && old.due){ it.due = old.due; }
   }
   /* 新しいロードマップに、これまでのチェック状態を引き継ぐ。変更・追加された項目のidをfreshで返す */
   function rmMerge(prev, next){
@@ -3092,10 +3143,10 @@
       if(op && op.detail && !p.detail) p.detail = op.detail;
       p.items.forEach(function(it){
         var same = byText[it.text];
-        if(same){ it.done = !!same.done; if(same.detail && !it.detail) it.detail = same.detail; if(same.subs && same.subs.length && !(it.subs && it.subs.length)) it.subs = same.subs; }
+        if(same){ rmCarryDue(it, same); it.done = !!same.done; if(same.detail && !it.detail) it.detail = same.detail; if(same.subs && same.subs.length && !(it.subs && it.subs.length)) it.subs = same.subs; }
         else{
           var old = byId[it.id];
-          if(old){ it.done = !!old.done; if(old.detail && !it.detail) it.detail = old.detail; if(old.subs && old.subs.length && !(it.subs && it.subs.length)) it.subs = old.subs; }
+          if(old){ rmCarryDue(it, old); it.done = !!old.done; if(old.detail && !it.detail) it.detail = old.detail; if(old.subs && old.subs.length && !(it.subs && it.subs.length)) it.subs = old.subs; }
           if(prev){ fresh[it.id] = 1; marks[it.id] = old ? 'upd' : 'new'; }
         }
       });
@@ -3180,18 +3231,36 @@
       var id = (a.id && !used[a.id]) ? a.id.slice(0, 16) : '';
       while(!id){ n++; if(!used['a' + n]) id = 'a' + n; }
       used[id] = 1;
-      var it = { id:id, text:a.text.slice(0, 90), tag:a.tag.slice(0, 8), done:false, detail:'', subs:[] };
+      var it = { id:id, text:a.text.slice(0, 90), tag:a.tag.slice(0, 8), due:rmDueNorm(a.due), done:false, detail:'', subs:[] };
       ph.items.push(it); out.push(it);
     });
     return out;
   }
+  /* <due>id=日付</due> を項目に反映(生徒が自分で決めた日付は変えない)。変わった項目を返す */
+  function rmApplyDues(data, dues){
+    var out = [];
+    if(!data) return out;
+    dues.slice(0, 30).forEach(function(d){
+      var due = rmDueNorm(d.due);
+      if(!due) return;
+      data.phases.forEach(function(p){ p.items.forEach(function(it){
+        if(it.id === d.id && !it.dueByUser && it.due !== due){ it.due = due; out.push(it); }
+      }); });
+    });
+    return out;
+  }
+  function rmUndated(data){
+    var n = 0;
+    if(data) data.phases.forEach(function(p){ p.items.forEach(function(i){ if(!i.due && !i.done) n++; }); });
+    return n;
+  }
   function rmDoneNote(data){
     if(!data) return '';
-    var L = ['', '[アプリからの情報] 現在のロードマップ(idは <done>・<detail>・<sub> で使えます。[済]=完了、[説明]=「詳しく」あり)'];
+    var L = ['', '[アプリからの情報] 今日は ' + rmTodayStr() + '。現在のロードマップ(idは <done>・<detail>・<sub>・<due> で使えます。[済]=完了、[説明]=「詳しく」あり、〜日付=いつまでにやるかの目安、[日付固定]=生徒が決めた日付で変更不可)'];
     data.phases.forEach(function(p){
       L.push(p.id + ' ' + p.title + (p.detail ? ' [説明]' : ''));
       p.items.forEach(function(i){
-        L.push('  ' + i.id + (i.done ? ' [済]' : '') + (i.detail ? ' [説明]' : '') + ' ' + i.text);
+        L.push('  ' + i.id + (i.done ? ' [済]' : '') + (i.detail ? ' [説明]' : '') + (i.due ? ' 〜' + i.due + (i.dueByUser ? '[日付固定]' : '') : '') + ' ' + i.text);
         (i.subs || []).forEach(function(x){ L.push('    ' + x.id + (x.done ? ' [済]' : '') + ' ' + x.text); });
       });
     });
@@ -3526,6 +3595,8 @@
     h += '<div class="rm-prog"><div class="rm-bar"><i style="width:' + pct + '%"></i></div><span>' + c.done + ' / ' + c.total + ' 完了</span></div>';
     if(rm.busy) h += rmBusyPill('AIがロードマップを書き換えています');
     else if(rmMarkSum) h += rmSumPill();
+    var undated = rm.busy ? 0 : rmUndated(data);
+    if(undated) h += '<div class="rm-dateask"><span>日付がまだない目標が' + undated + '個あります。AIに日付を付けてもらうと、予定表に自動で載ります。</span><button type="button" class="btn ghost" id="rm-dateask">AIに日付を付けてもらう</button></div>';
     var avail = rmMapEl.clientWidth - 52;
     var cs = window.getComputedStyle(rmMapEl);
     avail = rmMapEl.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
@@ -3562,7 +3633,7 @@
         '<div class="rmm-ptitle"><b class="rm-ph-title">' + rmEsc(p.title) + rmChip(p.id, true) + '</b><small>' + pd + ' / ' + p.items.length + '</small>' + actHtml(p.id, p.detail, true) + '</div><ul class="rm-items rmm-leaves">';
       p.items.forEach(function(it){
         var tagCls = ({'小論文':'t-olive','資格':'t-olive','面接':'t-terra'})[it.tag] || '';
-        bh += '<li class="rm-item' + (it.done ? ' done' : '') + (rmFresh[it.id] ? ' fresh' : '') + (rmAiChecked[it.id] ? ' aichk' : '') + rmMarkCls(it.id) + '" style="--k:' + (rmK++) + '"><label><input type="checkbox" data-id="' + rmEsc(it.id) + '"' + (it.done ? ' checked' : '') + '><span class="rmm-chk" aria-hidden="true"></span><span class="rmm-body"><span class="rm-txt">' + rmEsc(it.text) + '</span>' + (it.tag ? '<span class="rm-tag ' + tagCls + '">' + rmEsc(it.tag) + '</span>' : '') + '</span>' + rmChip(it.id) + '</label>' + actHtml(it.id, it.detail, false, it.subs) + '</li>';
+        bh += '<li class="rm-item' + (it.done ? ' done' : '') + (rmFresh[it.id] ? ' fresh' : '') + (rmAiChecked[it.id] ? ' aichk' : '') + rmMarkCls(it.id) + '" style="--k:' + (rmK++) + '"><label><input type="checkbox" data-id="' + rmEsc(it.id) + '"' + (it.done ? ' checked' : '') + '><span class="rmm-chk" aria-hidden="true"></span><span class="rmm-body"><span class="rm-txt">' + rmEsc(it.text) + '</span>' + (it.tag ? '<span class="rm-tag ' + tagCls + '">' + rmEsc(it.tag) + '</span>' : '') + (it.due ? '<span class="rm-due' + (!it.done && it.due < rmYmd(new Date()) ? ' late' : '') + '" title="いつまでにやるかの目安(予定表にも載っています)">📅〜' + (+it.due.slice(5, 7)) + '/' + (+it.due.slice(8, 10)) + '</span>' : '') + '</span>' + rmChip(it.id) + '</label>' + actHtml(it.id, it.detail, false, it.subs) + '</li>';
       });
       return bh + '</ul></section>';
     }
@@ -3613,6 +3684,56 @@
     data.phases.forEach(function(p){ if(!hit && p.id === id) hit = { text:p.title, node:p }; p.items.forEach(function(i){ if(!hit && i.id === id) hit = { text:i.text, node:i }; }); });
     return hit;
   }
+  /* ---- 予定表との連携: ロードマップの項目(日付つき)を、予定表が読み書きするための窓口 ---- */
+  var RM_TAGCOL = { '出願':'terra', '小論文':'olive', '資格':'olive', '面接':'sea', '評定':'ink', 'その他':'ink' };
+  function rmDataFor(key){
+    var st = aiStates[key];
+    if(st && st.roadmap && st.roadmap.data) return st.roadmap.data;
+    var it = rmStoreLoad().items[key];
+    return it && it.roadmap && it.roadmap.data ? it.roadmap.data : null;
+  }
+  function rmSyncFind(evId){
+    var m = String(evId).match(/^rm:([^:]+):([^:]+)$/);
+    if(!m) return null;
+    var key, iid;
+    try{ key = decodeURIComponent(m[1]); iid = decodeURIComponent(m[2]); }catch(e){ return null; }
+    var data = rmDataFor(key), hit = null;
+    if(data) data.phases.forEach(function(p){ p.items.forEach(function(i){ if(!hit && i.id === iid) hit = i; }); });
+    return hit ? { key:key, item:hit } : null;
+  }
+  function rmSyncSave(f){
+    if(aiStates[f.key]) rmPersist(f.key);
+    else{ rmStoreWrite(); renderHomeResume(); }
+    var st = aiStates[f.key];
+    if(st && f.key === currentAIKey){ try{ rmFresh = {}; renderRmMap(st); }catch(e){ /* no-op */ } }
+  }
+  window.RMSYNC = {
+    events: function(){
+      var out = [];
+      rmSavedList().forEach(function(sv){
+        var data = rmDataFor(sv.id) || sv.roadmap.data, ctx = sv.ctx || {};
+        var label = ((ctx.uniName || '') + ' ' + (ctx.faculty || '')).trim();
+        data.phases.forEach(function(p){ p.items.forEach(function(i){
+          if(!i.due || !/^\d{4}-\d{2}-\d{2}$/.test(i.due)) return;
+          out.push({ id:'rm:' + encodeURIComponent(sv.id) + ':' + encodeURIComponent(i.id), rm:true, title:i.text, date:i.due, end:i.due,
+            tag:i.tag || '', color:RM_TAGCOL[i.tag] || 'ink', done:!!i.done, byUser:!!i.dueByUser, memo:(label ? label + ' ・ ' : '') + p.title });
+        }); });
+      });
+      return out;
+    },
+    setDone: function(evId, v){
+      var f = rmSyncFind(evId); if(!f) return false;
+      f.item.done = !!v;
+      (f.item.subs || []).forEach(function(x){ x.done = !!v; });
+      rmSyncSave(f); return true;
+    },
+    setDue: function(evId, date){
+      var f = rmSyncFind(evId); if(!f || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return false;
+      f.item.due = date; f.item.dueByUser = true;
+      rmSyncSave(f); return true;
+    }
+  };
+
   rmMapEl.addEventListener('click', function(ev){
     var subb = ev.target.closest && ev.target.closest('[data-subs]');
     if(subb){
@@ -3637,6 +3758,15 @@
     var ta = aiRoadmapForm.querySelector('textarea');
     ta.value = '「' + f.text + '」を達成するために、何をすればいいか小目標に分けて教えてください。';
     ta.focus();
+  });
+  rmMapEl.addEventListener('click', function(ev){
+    var db = ev.target.closest && ev.target.closest('#rm-dateask');
+    if(!db) return;
+    var st = aiStates[currentAIKey];
+    if(!st || !st.roadmap.data || st.roadmap.busy) return;
+    var ids = [];
+    st.roadmap.data.phases.forEach(function(p){ p.items.forEach(function(i){ if(!i.due && !i.done) ids.push(i.id); }); });
+    submitRoadmapText('日付がまだない目標に、いつまでにやるかの目安の日付を付けてください。', '\n\n[アプリからのお願い] 日付がない項目: ' + ids.join(',') + ' 。これらすべてに <due>id=日付,…</due> で日付を付けること。本文は1〜2文で。');
   });
   rmMapEl.addEventListener('click', function(ev){
     var btn = ev.target.closest && ev.target.closest('#rm-reset');
@@ -3735,7 +3865,7 @@
         }
       });
       var p = rmSplit(res.text);
-      if(!p.text && !p.roadmap && !p.done.length && !p.undone.length && !p.details.length && !p.adds.length && !p.subs.length) throw {code:'empty_completion', debug:'形式不一致 '+String(res.text).length+'字: '+String(res.text).slice(0,300)};
+      if(!p.text && !p.roadmap && !p.done.length && !p.undone.length && !p.details.length && !p.adds.length && !p.subs.length && !p.dues.length) throw {code:'empty_completion', debug:'形式不一致 '+String(res.text).length+'字: '+String(res.text).slice(0,300)};
       var updated = false;
       if(p.roadmap){
         var m = rmMerge(hadData ? rm.data : null, p.roadmap);
@@ -3747,12 +3877,17 @@
       var addedIts = rmApplyAdds(rm.data, p.adds);
       var subAdds = rmApplySubs(rm.data, p.subs);
       var detHits = rmApplyDetails(rm.data, p.details);
+      var dueHits = rmApplyDues(rm.data, p.dues);
       addedIts.forEach(function(i){ rmFresh[i.id] = 1; });
       subAdds.forEach(function(x){ rmFresh[x.id] = 1; rmSubNew[x.parent] = 1; });
       detHits.forEach(function(d){ rmDetailNew[d.id] = 1; });
       var aiNote = '';
       if(addedIts.length) aiNote += '＋ 目標を追加しました: ' + addedIts.map(function(i){ return '「' + i.text + '」'; }).join(' ');
       if(subAdds.length) aiNote += (aiNote ? '\n' : '') + (function(){ var g = {}, ord = []; subAdds.forEach(function(x){ if(!g[x.parent]){ g[x.parent] = { t:x.parentText, l:[] }; ord.push(x.parent); } g[x.parent].l.push(x.text); }); return ord.map(function(k){ return '↳ 「' + g[k].t + '」に小目標を追加しました: ' + g[k].l.map(function(t){ return '「' + t + '」'; }).join(' '); }).join('\n'); })();
+      var newDated = 0;
+      if(!hadData && rm.data) rm.data.phases.forEach(function(ph){ ph.items.forEach(function(i){ if(i.due) newDated++; }); });
+      var dueCnt = dueHits.length + newDated + addedIts.filter(function(i){ return i.due; }).length;
+      if(dueCnt) aiNote += (aiNote ? '\n' : '') + '📅 ' + dueCnt + '件に目安の日付を付けました(予定表に自動で載ります)';
       if(detHits.length) aiNote += (aiNote ? '\n' : '') + '📎 「詳しく」にまとめました: ' + detHits.map(function(d){ return '「' + d.label + '」'; }).join(' ');
       if(chk.done.length) aiNote += (aiNote ? '\n' : '') + '✓ 完了にしました: ' + chk.done.map(function(i){ return '「' + i.text + '」'; }).join(' ');
       if(chk.undone.length) aiNote += (aiNote ? '\n' : '') + '↩ 未完了に戻しました: ' + chk.undone.map(function(i){ return '「' + i.text + '」'; }).join(' ');
@@ -3761,7 +3896,7 @@
       rmAiChecked = {};
       chk.done.forEach(function(i){ rmAiChecked[i.id] = 1; });
       chk.done.forEach(function(x){ if(x.parent) rmOpen['sub:' + x.parent] = true; });
-      if(chk.done.length || chk.undone.length || addedIts.length || detHits.length || subAdds.length || remArr.length) updated = true;
+      if(chk.done.length || chk.undone.length || addedIts.length || detHits.length || subAdds.length || remArr.length || dueHits.length) updated = true;
       rm.turns.push({role:'assistant', content: res.text});
       var shown = p.text || (updated ? (aiNote ? '' : 'ロードマップを更新しました。') : '');
       rm.display.push({role:'assistant', text: shown, note: aiNote, updated: updated});
@@ -3979,7 +4114,7 @@
     if(b) openSavedRoadmap(b.getAttribute('data-id'));
   });
 
-  async function submitRoadmapText(text){
+  async function submitRoadmapText(text, extra){
     var key = currentAIKey;
     var st = key && aiStates[key];
     if(!st || st.roadmap.busy || aiCapabilityUnavailable) return;
@@ -3993,7 +4128,8 @@
     if(isFirst){
       rm.turns = [{role:'user', content: buildRoadmapRules(st.ctx) + '\n\n生徒からの最初のメッセージ: ' + text + '\n\n(このメッセージも踏まえて、最初のロードマップのたたき台を提示してください)'}];
     }else{
-      rm.turns.push({role:'user', content: text + rmDoneNote(rm.data)});
+      /* 日付のしくみができる前に作ったロードマップには、最初の1回だけ日付のルールを添える */
+      rm.turns.push({role:'user', content: text + (rmHasDueRules(rm) ? '' : '\n\n' + dueRulesText()) + (extra || '') + rmDoneNote(rm.data)});
     }
     await runRoadmapTurn(st, {isFirst:isFirst, text:text});
   }
@@ -7166,6 +7302,7 @@
       var arr = [];
       try{ arr = JSON.parse(localStorage.getItem('kagawa-compass-my-schedule-v1') || '[]') || []; }catch(e){ arr = []; }
       if(!Array.isArray(arr)) arr = [];
+      try{ if(window.RMSYNC) arr = arr.concat(window.RMSYNC.events().filter(function(e){ return !e.done; })); }catch(e){ /* no-op */ }
       var t = new Date(); t.setHours(0, 0, 0, 0);
       var W = ['日','月','火','水','木','金','土'];
       return arr.filter(function(e){ return e && e.date; }).map(function(e){
@@ -7177,7 +7314,7 @@
           var label = (ds <= 0 && de >= 0) ? (ds === 0 && de === 0 ? 'きょう' : '進行中') : (ds === 1 ? 'あした' : 'あと' + ds + '日');
           var when = (x.sd.getMonth() + 1) + '月' + x.sd.getDate() + '日(' + W[x.sd.getDay()] + ')';
           if(x.e.end && x.e.end !== x.e.date) when += '〜' + (x.ed.getMonth() + 1) + '月' + x.ed.getDate() + '日';
-          return { title:x.e.title || '(題名なし)', label:label, soon:(ds <= 7), when:when };
+          return { title:x.e.title || '(題名なし)', label:label, soon:(ds <= 7), when:when, rm:!!x.e.rm };
         });
     }
     function homeDashRender(){
@@ -7216,7 +7353,7 @@
       var ev = upcomingEvents(3);
       h += '<section class="hd-card" aria-label="近づいている予定"><h2><span class="eyebrow-dot"></span>近づいている予定</h2>';
       if(ev.length){
-        h += '<ul class="hd-ev">' + ev.map(function(x){ return '<li><span class="dd' + (x.soon ? ' soon' : '') + '">' + rmEsc(x.label) + '</span><span class="t"><b>' + rmEsc(x.title) + '</b><small>' + rmEsc(x.when) + '</small></span></li>'; }).join('') + '</ul>';
+        h += '<ul class="hd-ev">' + ev.map(function(x){ return '<li><span class="dd' + (x.soon ? ' soon' : '') + '">' + rmEsc(x.label) + '</span><span class="t"><b>' + rmEsc(x.title) + '</b><small>' + rmEsc(x.when) + (x.rm ? ' ・ ロードマップ' : '') + '</small></span></li>'; }).join('') + '</ul>';
         h += '<div class="hd-actions"><button type="button" class="hd-link" data-go="schedule">予定表をひらく</button></div>';
       }else{
         h += '<p class="hd-empty">予定はまだありません。オープンキャンパスや出願日、テストの日などを入れておくと、ここに近い順で出ます。</p>' +
@@ -7532,12 +7669,12 @@
     if(!trailEl) return;
 
     var COLORS = [
-      {key:'sea', val:'#1C6FB5'},
-      {key:'terra', val:'#F2B84B'},
-      {key:'olive', val:'#4F9D5C'},
-      {key:'ink', val:'#41647E'}
+      {key:'sea', val:'var(--sea)'},
+      {key:'terra', val:'var(--terracotta)'},
+      {key:'olive', val:'var(--olive)'},
+      {key:'ink', val:'var(--ink-soft)'}
     ];
-    /* 色=カテゴリーの対応。苦手科目は要注意色(オレンジ)、得意科目は安心色(緑)、
+    /* 色=カテゴリーの対応。苦手科目は要注意色(ゴールド)、得意科目は安心色(緑)、
        イベントは基調色(青)、その他は落ち着いた紺。 */
     var CATEGORY_OPTIONS = [
       {key:'terra', label:'苦手科目'},
@@ -7578,6 +7715,11 @@
 
     var MY_EVENTS = loadEvents();
     var MY_GOALS = loadGoals();
+    /* ロードマップの日付つき項目も、予定表に並べる(中身はロードマップ側が持っていて、ここでは読み書きするだけ) */
+    var RM_EVS = [];
+    function loadRmEvents(){ try{ RM_EVS = (window.RMSYNC && window.RMSYNC.events()) || []; }catch(e){ RM_EVS = []; } }
+    function allEvents(){ return MY_EVENTS.concat(RM_EVS); }
+    function findEvent(id){ return allEvents().filter(function(e){ return e.id === id; })[0]; }
 
     var todayDate = new Date(); todayDate.setHours(0,0,0,0);
     /* ページを開いたまま日付をまたいで使い続けても「今日」の判定が古くならないよう、
@@ -7592,6 +7734,14 @@
     }
 
     function dday(s){
+      if(s.rm && !s.done){
+        var dd0 = new Date(s.date+'T00:00:00');
+        if(dd0 < todayDate) return {label:'期限すぎ', cls:'soon', ended:false};
+        var df = Math.round((dd0 - todayDate)/86400000);
+        if(df === 0) return {label:'きょうまで', cls:'soon', ended:false};
+        if(df <= 14) return {label:'あと'+df+'日', cls:'soon', ended:false};
+        return {label:'', cls:'', ended:false};
+      }
       var endDate = new Date((s.end||s.date)+'T00:00:00');
       var startDate = new Date(s.date+'T00:00:00');
       if(endDate < todayDate) return {label:'終了', cls:'ended', ended:true};
@@ -7621,7 +7771,7 @@
          予定がどの月に表示されるかは、その週の日曜日が属する月(= slotForDateのownerY/ownerM)で決める。 */
       var minD = todayDate;
       var maxD = new Date(todayDate.getFullYear(), todayDate.getMonth()+5, 1);
-      MY_EVENTS.forEach(function(s){
+      allEvents().forEach(function(s){
         var startSlot = slotForDate(s.date);
         var endSlot = slotForDate(s.end||s.date);
         var ownerStartD = new Date(startSlot.ownerY, startSlot.ownerM, 1);
@@ -7658,10 +7808,12 @@
     }
 
     function eventsForMonth(y, m){
-      return MY_EVENTS.filter(function(s){
+      return allEvents().filter(function(s){
         var slot = slotForDate(s.date);
         return slot.ownerY === y && slot.ownerM === m;
-      });
+      }).map(function(s, i){ return { s:s, i:i }; }).sort(function(a, b){
+        return a.s.date < b.s.date ? -1 : a.s.date > b.s.date ? 1 : a.i - b.i;
+      }).map(function(x){ return x.s; });
     }
 
     function weekSlotIndexFor(dateStr, slots){
@@ -7690,7 +7842,9 @@
       return label;
     }
 
-    var COLOR_SOFT = { sea:'var(--sea-soft)', terra:'var(--terracotta-soft)', olive:'var(--olive-soft)', ink:'rgba(65,100,126,.16)' };
+    var COLOR_SOFT = { sea:'var(--sea-soft)', terra:'var(--terracotta-soft)', olive:'var(--olive-soft)', ink:'color-mix(in srgb, var(--ink-soft) 16%, transparent)' };
+    var CAT_TEXT = { sea:'color-mix(in srgb, var(--sea) 75%, var(--ink))', terra:'var(--accent-ink)', olive:'color-mix(in srgb, var(--olive) 65%, var(--ink))', ink:'var(--ink-soft)' };
+    var CAT_ON = { sea:'var(--on-sea)', terra:'var(--on-accent)', olive:'var(--on-olive)', ink:'var(--paper)' };
 
     function dayChipsHtml(slotStart, slotEnd, selectedDate, todayStr, dataAttr){
       var dates = datesInRange(slotStart, slotEnd);
@@ -7706,12 +7860,25 @@
     }
 
     function editFormHtml(s, slot){
+      if(s.rm){
+        var tStr = ymd(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+        return '<div class="compose-box">'+
+            '<div class="ctitle">日付を変える</div>'+
+            '<p class="rm-edit-note">「'+escapeHtml(s.title)+'」はロードマップの目標です。いつまでにやるかの日付だけ変えられます。</p>'+
+            '<input type="date" class="rm-datein" id="edit-date-'+s.id+'" value="'+escapeHtml(editDayDate||s.date)+'" min="'+tStr+'">'+
+            '<div class="compose-msg" id="edit-msg" role="alert" hidden></div>'+
+            '<div class="composebtns">'+
+              '<button type="button" data-editcancel>キャンセル</button>'+
+              '<button type="button" class="primary" data-editsave="'+s.id+'">保存する</button>'+
+            '</div>'+
+          '</div>';
+      }
       var todayStr = ymd(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
       var dayChips = dayChipsHtml(slot.start, slot.end, editDayDate, todayStr, 'editday');
       var catChips = CATEGORY_OPTIONS.map(function(c){
         var isSel = (editColor === c.key);
         var cVal = (COLORS.filter(function(cc){ return cc.key===c.key; })[0] || COLORS[0]).val;
-        return '<button type="button" class="catchip'+(isSel?' active':'')+'" data-editcat="'+c.key+'" style="--catcolor:'+cVal+'">'+c.label+'</button>';
+        return '<button type="button" class="catchip'+(isSel?' active':'')+'" data-editcat="'+c.key+'" style="--catcolor:'+cVal+';--oncat:'+(CAT_ON[c.key]||'#fff')+'">'+c.label+'</button>';
       }).join('');
       return '<div class="compose-box">'+
           '<div class="ctitle">予定を編集</div>'+
@@ -7720,6 +7887,7 @@
           '<div class="daypick-label">カテゴリーを選ぶ</div>'+
           '<div class="catpick-row">'+catChips+'</div>'+
           '<input type="text" id="edit-input-'+s.id+'" maxlength="60" value="'+escapeHtml(editDraftText)+'">'+
+          '<div class="compose-msg" id="edit-msg" role="alert" hidden></div>'+
           '<div class="composebtns">'+
             '<button type="button" data-editcancel>キャンセル</button>'+
             '<button type="button" class="primary" data-editsave="'+s.id+'">保存する</button>'+
@@ -7737,22 +7905,24 @@
       var endDateStr = s.end || s.date;
       /* s.when は昔のデータだと曜日なしの文字列のことがあるので、表示は毎回その場で作り直す */
       var whenDisplay = whenLabel(s.date, endDateStr);
-      return '<div class="scheditem'+(d.ended?' ended':'')+(isDone?' done':'')+'">'+
+      var isRm = !!s.rm;
+      var pillText = isRm ? (s.tag || 'ロードマップ') : catLabel(s.color);
+      return '<div class="scheditem'+(d.ended?' ended':'')+(isDone?' done':'')+(isRm?' rmev':'')+'">'+
         '<div class="scheddate" style="background:'+softBg+'">'+
           '<div class="mo">'+(dt.getMonth()+1)+'月</div>'+
           '<div class="dy">'+dt.getDate()+'</div>'+
           '<div class="wd">'+WEEKDAY_LABEL[dt.getDay()]+'曜</div>'+
         '</div>'+
         '<div class="schedbody">'+
-          '<div class="schedtop"><span class="catpill" style="background:'+softBg+';color:'+color+'">'+escapeHtml(catLabel(s.color))+'</span>'+(d.label?'<span class="statuspill '+d.cls+'">'+d.label+'</span>':'')+(isDone?'<span class="statuspill done">完了</span>':'')+'</div>'+
+          '<div class="schedtop">'+(isRm?'<span class="rmbadge">ロードマップ</span>':'')+'<span class="catpill" style="background:'+softBg+';color:'+(CAT_TEXT[s.color]||CAT_TEXT.sea)+'">'+escapeHtml(pillText)+'</span>'+(d.label?'<span class="statuspill '+d.cls+'">'+d.label+'</span>':'')+(isDone?'<span class="statuspill done">完了</span>':'')+'</div>'+
           '<h4>'+escapeHtml(s.title)+'</h4>'+
-          '<div class="when">'+whenDisplay+'</div>'+
+          '<div class="when">'+whenDisplay+(isRm?'<small>'+(s.byUser?'(自分で決めた日)':'(AIの目安)')+'</small>':'')+'</div>'+
           (s.memo?'<p>'+escapeHtml(s.memo)+'</p>':'')+
         '</div>'+
         '<div class="itemactions">'+
           '<button type="button" class="donebtn'+(isDone?' active':'')+'" data-done="'+s.id+'">'+(isDone?'完了を取り消す':'完了')+'</button>'+
           '<button type="button" class="editbtn" data-editopen="'+s.id+'">編集</button>'+
-          '<button type="button" class="delbtn" data-del="'+s.id+'">削除</button>'+
+          (isRm?'':'<button type="button" class="delbtn" data-del="'+s.id+'">削除</button>')+
         '</div>'+
         '</div>';
     }
@@ -7780,12 +7950,13 @@
 
     function render(){
       refreshToday();
+      loadRmEvents();
       var months = buildMonthList();
       var tY = todayDate.getFullYear(), tM = todayDate.getMonth();
       var html = '';
 
-      if(MY_EVENTS.length===0 && !openMonthKey){
-        html += '<div class="schedule-empty">まだ予定がありません。下の月の丸をタップして開き、週の横の「+」から追加してみましょう。</div>';
+      if(allEvents().length===0 && !openMonthKey){
+        html += '<div class="schedule-empty">まだ予定がありません。下の月の丸をタップして開き、週の横の「+」から追加してみましょう。ロードマップを作ると、やることの日付が自動でここに並びます。</div>';
       }
 
       months.forEach(function(mo){
@@ -7865,7 +8036,7 @@
             var cCatChips = CATEGORY_OPTIONS.map(function(c){
               var isSel = (composeColor === c.key);
               var cVal = (COLORS.filter(function(cc){ return cc.key===c.key; })[0] || COLORS[0]).val;
-              return '<button type="button" class="catchip'+(isSel?' active':'')+'" data-cat="'+c.key+'" style="--catcolor:'+cVal+'">'+c.label+'</button>';
+              return '<button type="button" class="catchip'+(isSel?' active':'')+'" data-cat="'+c.key+'" style="--catcolor:'+cVal+';--oncat:'+(CAT_ON[c.key]||'#fff')+'">'+c.label+'</button>';
             }).join('');
             html += '<div class="compose-box">'+
                       '<div class="ctitle">'+(mo.month+1)+'月 第'+(cIdx+1)+'週 にやることを書く</div>'+
@@ -7992,9 +8163,12 @@
       trailEl.querySelectorAll('[data-done]').forEach(function(btn){
         btn.addEventListener('click', function(){
           var id = btn.dataset.done;
-          var ev = MY_EVENTS.filter(function(e){ return e.id === id; })[0];
-          if(ev){ ev.done = !ev.done; }
-          saveEvents(MY_EVENTS);
+          var ev = findEvent(id);
+          if(ev && ev.rm){ if(window.RMSYNC) window.RMSYNC.setDone(id, !ev.done); }
+          else{
+            if(ev){ ev.done = !ev.done; }
+            saveEvents(MY_EVENTS);
+          }
           render();
         });
       });
@@ -8002,7 +8176,12 @@
       trailEl.querySelectorAll('[data-del]').forEach(function(btn){
         btn.addEventListener('click', function(){
           var id = btn.dataset.del;
-          if(!confirm('この予定を削除しますか?元に戻せません。')) return;
+          /* confirm()は一部の環境で出ないので、もう一度押して確定する形にする */
+          if(btn.dataset.armed !== '1'){
+            btn.dataset.armed = '1'; btn.textContent = 'もう一度押すと削除';
+            setTimeout(function(){ if(btn.isConnected){ btn.dataset.armed = ''; btn.textContent = '削除'; } }, 4000);
+            return;
+          }
           MY_EVENTS = MY_EVENTS.filter(function(e){ return e.id !== id; });
           saveEvents(MY_EVENTS);
           render();
@@ -8012,7 +8191,7 @@
       trailEl.querySelectorAll('[data-editopen]').forEach(function(btn){
         btn.addEventListener('click', function(){
           var id = btn.dataset.editopen;
-          var ev = MY_EVENTS.filter(function(e){ return e.id === id; })[0];
+          var ev = findEvent(id);
           if(!ev) return;
           editEventId = id;
           editDayDate = ev.date;
@@ -8154,18 +8333,35 @@
       render();
     }
 
+    function showEditMsg(t){
+      var el = document.getElementById('edit-msg');
+      if(el){ el.textContent = t; el.hidden = false; }
+    }
+
     function saveEditedEvent(id){
       if(!id) return;
       refreshToday();
-      var ev = MY_EVENTS.filter(function(e){ return e.id === id; })[0];
+      var ev = findEvent(id);
       if(!ev) return;
       var todayStr = ymd(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+      if(ev.rm){
+        var di = document.getElementById('edit-date-'+id);
+        var nd = di ? di.value : '';
+        if(!/^\d{4}-\d{2}-\d{2}$/.test(nd)){ showEditMsg('日付を選んでください'); return; }
+        if(nd !== ev.date && nd < todayStr){ showEditMsg('過ぎた日には変更できません。今日以降の日を選んでください。'); return; }
+        if(nd !== ev.date && window.RMSYNC) window.RMSYNC.setDue(id, nd);
+        editEventId = null; editDayDate = null; editColor = null; editDraftText = '';
+        loadRmEvents();
+        if(nd !== ev.date){ var sl = slotForDate(nd); var mk = monthKey(sl.ownerY, sl.ownerM); var slots2 = weekSlotsForMonth(sl.ownerY, sl.ownerM); openMonthKey = mk; openWeekKey = mk+'-'+weekSlotIndexFor(nd, slots2); }
+        render();
+        return;
+      }
       var day = editDayDate || ev.date;
       /* 元々過去の予定だった場合は日付を変えずに編集できるが、日付を変更するなら今日以降にする */
-      if(day !== ev.date && day < todayStr){ alert('過ぎた日には変更できません。今日以降の日を選んでください。'); return; }
+      if(day !== ev.date && day < todayStr){ showEditMsg('過ぎた日には変更できません。今日以降の日を選んでください。'); return; }
       var input = document.getElementById('edit-input-'+id);
       var text = input ? input.value.trim() : '';
-      if(!text){ alert('やることを入力してください'); return; }
+      if(!text){ showEditMsg('やることを入力してください'); return; }
       ev.title = text;
       ev.date = day;
       ev.end = day;
@@ -8178,6 +8374,12 @@
       editDraftText = '';
       render();
     }
+
+    /* ロードマップが変わったときに呼ばれる(入力中のときは、あとで開いたときに最新になるので何もしない) */
+    window.scheduleRefresh = function(){
+      if(composeWeekKey || editEventId || goalEditKey) return;
+      render();
+    };
 
     /* 診断結果画面の「出願・奨学金のスケジュールを見る」ボタンから呼ばれる。
        固定カテゴリーが無くなったので、単純にスケジュールタブへ移動するだけにしている。 */
