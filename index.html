@@ -2043,6 +2043,356 @@ svg.leaflet-image-layer.leaflet-interactive path {
     .dp-row .x{ grid-row:1; grid-column:4; }
   }
 
+  /* ---------- 理想の自分 ---------- */
+  .fu-grid{ display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:16px; align-items:start; }
+  .fu-left{ display:flex; flex-direction:column; gap:14px; min-width:0; }
+  .fu-card{ position:relative; overflow:hidden; border-radius:24px; padding:26px 24px 20px; color:#fff; background:linear-gradient(155deg,#2278C0 0%,#124E8C 48%,#0B2F5E 100%); box-shadow:0 24px 50px -24px rgba(8,30,70,.7); }
+  :root[data-vtheme="dark"] .fu-card{ background:linear-gradient(155deg,#1D3C70 0%,#12264A 55%,#091731 100%); border:1px solid #2C4A7E; }
+  .fu-card::before{ content:''; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(242,184,75,.35), transparent 65%); pointer-events:none; }
+  .fu-card .star{ position:absolute; right:22px; top:18px; width:46px; height:46px; fill:#F2B84B; filter:drop-shadow(0 0 10px rgba(242,184,75,.7)); }
+  .fu-card .yr{ font-size:.78rem; font-weight:800; letter-spacing:.12em; color:#F6D58E; }
+  .fu-card .north{ font-size:1.45rem; font-weight:800; line-height:1.5; margin:8px 52px 14px 0; text-wrap:balance; overflow-wrap:anywhere; }
+  .fu-card .meta{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+  .fu-card .meta span{ font-size:.8rem; font-weight:700; padding:4px 12px; border-radius:999px; background:rgba(255,255,255,.16); }
+  .fu-card .story{ font-size:.92rem; line-height:1.9; color:rgba(255,255,255,.92); margin-bottom:14px; overflow-wrap:anywhere; }
+  .fu-card .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+  .fu-card .chips span{ font-size:.78rem; font-weight:700; padding:4px 11px; border-radius:999px; border:1px solid rgba(246,213,142,.7); color:#FBE7B5; }
+  .fu-card .chips b{ font-weight:800; letter-spacing:.05em; margin-left:4px; color:#F2B84B; }
+  .fu-card .dayrow{ display:flex; align-items:center; gap:14px; border-top:1px solid rgba(255,255,255,.2); padding-top:14px; }
+  .fu-card .dayrow svg{ flex:none; width:84px; height:84px; }
+  .fu-card .dayrow p{ font-size:.82rem; line-height:1.7; color:rgba(255,255,255,.88); }
+  .fu-card .dayrow a{ color:#F6D58E; font-weight:800; cursor:pointer; text-decoration:underline; }
+  .fu-card .brand{ margin-top:12px; font-size:.7rem; letter-spacing:.2em; color:rgba(255,255,255,.55); font-weight:800; }
+  .fu-card.empty .north{ opacity:.75; font-size:1.15rem; }
+  .fu-edit{ padding:14px 18px; }
+  .fu-edit summary{ cursor:pointer; font-weight:800; font-size:.92rem; }
+  .fu-fields{ display:flex; flex-direction:column; gap:12px; margin-top:14px; }
+  .fu-fields label{ display:flex; flex-direction:column; gap:5px; font-size:.8rem; font-weight:700; color:var(--ink-soft); }
+  .fu-fields input, .fu-fields select, .fu-fields textarea{ border:1.5px solid var(--line); border-radius:12px; background:var(--paper); color:var(--ink); font:inherit; font-size:.92rem; padding:9px 12px; }
+  .fu-axes{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:8px 16px; }
+  .fu-ax{ display:flex; align-items:center; gap:8px; font-size:.82rem; }
+  .fu-ax span{ flex:0 0 7.5em; font-weight:700; color:var(--ink-soft); }
+  .fu-ax input{ flex:1 1 auto; min-width:0; padding:0; accent-color:var(--terracotta); }
+  .fu-ax output{ flex:none; width:1.6em; text-align:right; font-variant-numeric:tabular-nums; font-weight:800; }
+  .fu-compare{ margin-top:16px; }
+  .fu-compare h3{ font-size:1rem; margin-bottom:4px; }
+  .fu-addrow{ display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 6px; }
+  .fu-addrow select{ flex:1 1 220px; min-width:0; border:1.5px solid var(--line); border-radius:12px; background:var(--paper); color:var(--ink); font:inherit; font-size:.9rem; padding:9px 12px; }
+  .fu-addrow .btn{ padding:9px 16px; font-size:.84rem; }
+  .fu-tablewrap{ overflow-x:auto; margin-top:10px; }
+  .fu-table{ width:100%; border-collapse:collapse; min-width:760px; font-size:.86rem; }
+  .fu-table th{ text-align:left; font-size:.74rem; color:var(--muted); font-weight:800; padding:6px 10px; border-bottom:1.5px solid var(--line); white-space:nowrap; }
+  .fu-table td{ padding:12px 10px; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.6; }
+  .fu-table .nm b{ display:block; overflow-wrap:anywhere; }
+  .fu-table .nm small{ color:var(--muted); font-size:.72rem; }
+  .fu-table .tag{ display:inline-block; font-size:.66rem; font-weight:800; padding:1px 8px; border-radius:999px; background:var(--terracotta-soft); color:var(--accent-ink); margin-right:4px; }
+  .fu-table .rmv{ border:0; background:transparent; color:var(--muted); font-size:1rem; padding:0 6px; }
+  .fu-fitbar{ display:flex; align-items:center; gap:8px; }
+  .fu-fitbar b{ font-size:1.2rem; font-variant-numeric:tabular-nums; min-width:2.2em; }
+  .fu-fitbar i{ flex:1 1 auto; height:8px; border-radius:999px; background:var(--line); overflow:hidden; min-width:60px; }
+  .fu-fitbar i s{ display:block; height:100%; background:var(--terracotta); border-radius:999px; }
+  .fu-why{ font-size:.78rem; color:var(--ink-soft); margin-top:4px; }
+  .fu-why em{ font-style:normal; font-weight:800; color:var(--ink); }
+  .fu-free b{ font-size:1rem; }
+  .fu-free.best b{ color:var(--olive); }
+  .fu-delta{ font-size:.74rem; color:var(--muted); display:block; }
+  .fu-cell-btn{ display:flex; flex-direction:column; gap:6px; }
+  .fu-cell-btn .btn{ padding:7px 12px; font-size:.76rem; white-space:nowrap; justify-content:center; }
+  .fu-cmpbtns{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+  .fu-linkbtn{ border:0; background:transparent; color:var(--sea); font:inherit; font-weight:800; font-size:.8rem; text-decoration:underline; padding:0; }
+  .dp-futurebar{ font-size:.86rem; line-height:1.7; }
+  .dp-futurebar b{ font-size:.96rem; }
+  @media (max-width:860px){ .fu-grid{ grid-template-columns:minmax(0,1fr); } }
+
+  /* ---------- 理想の自分: 切り替え(未来の自分 / 理想の1日) ---------- */
+  .fu-seg{ display:inline-flex; gap:4px; padding:4px; margin:0 0 16px; border-radius:999px; background:var(--sea-soft); max-width:100%; }
+  .fu-seg button{ border:0; background:transparent; color:var(--ink-soft); font:inherit; font-weight:800; font-size:.9rem; padding:9px 22px; border-radius:999px; cursor:pointer; }
+  .fu-seg button[aria-selected="true"]{ background:var(--paper-raise); color:var(--ink); box-shadow:0 4px 12px -6px rgba(10,40,80,.45); }
+  .fu-guidebtn{ margin-top:10px; padding:9px 18px; font-size:.84rem; }
+
+  /* ---------- はじめの「理想の自分づくり」ガイド ---------- */
+  .ob{ position:fixed; inset:0; z-index:85; display:flex; flex-direction:column; opacity:0; transition:opacity .35s ease; color:var(--ink);
+    background:radial-gradient(circle at 50% 0%, rgba(255,214,140,.30), transparent 42%), linear-gradient(180deg,#0B2A47,#0A3A63 58%,#12507F); }
+  .ob.in{ opacity:1; }
+  html.ob-open{ overflow:hidden; }
+  .ob-top{ flex:none; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:calc(14px + env(safe-area-inset-top, 0px)) 18px 8px; }
+  .ob-dots{ display:flex; gap:8px; }
+  .ob-dots i{ width:26px; height:5px; border-radius:99px; background:rgba(255,255,255,.28); }
+  .ob-dots i.done{ background:rgba(246,213,142,.7); }
+  .ob-dots i.on{ background:#F2B84B; }
+  .ob-skip{ border:0; background:transparent; color:rgba(255,255,255,.82); font:inherit; font-size:.84rem; font-weight:700; text-decoration:underline; cursor:pointer; padding:6px; }
+  .ob-skip[hidden]{ display:none; }
+  .ob-scroll{ flex:1 1 auto; overflow:auto; padding:8px 16px 16px; display:flex; }
+  .ob-box{ margin:auto; width:min(680px,100%); background:var(--paper-raise); border-radius:24px; padding:28px 26px 24px; box-shadow:0 30px 60px -24px rgba(3,15,35,.7); min-width:0; }
+  .ob-body h2{ font-size:1.35rem; line-height:1.5; margin:0 0 8px; text-wrap:balance; }
+  .ob-star{ width:56px; height:56px; display:block; margin:0 0 14px; fill:#F2B84B; filter:drop-shadow(0 0 10px rgba(242,184,75,.7)); }
+  .ob-lead{ color:var(--ink-soft); line-height:1.85; margin:0 0 16px; font-size:.95rem; }
+  .ob-lead.sm{ font-size:.84rem; margin:12px 0 8px; }
+  .ob-points{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .ob-points li{ position:relative; padding-left:22px; font-size:.9rem; line-height:1.7; color:var(--ink); }
+  .ob-points li::before{ content:''; position:absolute; left:4px; top:.7em; width:8px; height:8px; border-radius:50%; background:#F2B84B; }
+  .ob-q{ margin:0 0 18px; }
+  .ob-q > b, .ob-q label b{ display:block; font-size:.92rem; margin-bottom:8px; }
+  .ob-q small, .ob-q label small{ font-weight:600; color:var(--muted); margin-left:6px; font-size:.78rem; }
+  .ob-q input[type="text"]{ width:100%; box-sizing:border-box; border:1.5px solid var(--line); border-radius:12px; background:var(--paper); color:var(--ink); font:inherit; padding:11px 14px; }
+  .ob-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .ob-chip{ border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font:inherit; font-size:.88rem; font-weight:700; padding:9px 15px; border-radius:999px; cursor:pointer; text-align:left; line-height:1.4; max-width:100%; }
+  .ob-chip:hover{ border-color:var(--sea); }
+  .ob-chip.on{ border-color:var(--sea); background:var(--sea-soft); box-shadow:inset 0 0 0 1px var(--sea); }
+  .ob-chip small{ display:block; font-weight:600; color:var(--muted); font-size:.74rem; margin:2px 0 0; }
+  .ob-vals{ display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); }
+  .ob-vals .ob-chip{ border-radius:16px; padding:12px 14px; }
+  .ob-count{ margin:14px 0 0; font-size:.84rem; color:var(--ink-soft); font-weight:700; }
+  .ob-day{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; align-items:center; margin-bottom:16px; }
+  .ob-dayform{ display:flex; flex-direction:column; gap:10px; }
+  .ob-dayform label{ display:flex; align-items:center; justify-content:space-between; gap:10px; font-weight:800; font-size:.9rem; }
+  .ob-dayform select{ border:1.5px solid var(--line); border-radius:10px; background:var(--paper); color:var(--ink); font:inherit; padding:8px 10px; min-width:96px; }
+  .ob-daypv{ display:flex; align-items:center; gap:12px; background:var(--sea-soft); border-radius:18px; padding:12px 14px; min-width:0; }
+  .ob-daypv svg{ flex:none; width:92px; height:92px; }
+  .ob-daypv p{ font-size:.84rem; line-height:1.8; color:var(--ink-soft); margin:0; }
+  .ob-daypv b{ color:var(--ink); font-variant-numeric:tabular-nums; }
+  .ob-note{ font-size:.8rem; color:var(--muted); margin:0; }
+  .ob-card .fu-card{ box-shadow:none; }
+  .ob-aimsg{ margin:6px 0 0; }
+  .ob-donebtns{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+  .ob-next{ margin:14px 0 0; font-size:.84rem; line-height:1.8; color:var(--ink-soft); }
+  .ob-foot{ flex:none; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:10px; padding:10px 16px calc(16px + env(safe-area-inset-bottom, 0px)); }
+  .ob-foot .btn{ min-width:132px; justify-content:center; }
+  .ob-foot .btn:disabled{ opacity:.5; cursor:not-allowed; }
+  .ob-link{ border:0; background:transparent; color:rgba(255,255,255,.85); font:inherit; font-weight:700; font-size:.88rem; text-decoration:underline; cursor:pointer; padding:8px; }
+  @media (max-width:640px){
+    .ob-box{ padding:22px 18px 20px; border-radius:20px; }
+    .ob-day{ grid-template-columns:minmax(0,1fr); }
+    .ob-vals{ grid-template-columns:minmax(0,1fr); }
+    .ob-body h2{ font-size:1.2rem; }
+    .fu-seg button{ padding:9px 16px; }
+  }
+  @media (prefers-reduced-motion:reduce){ .ob{ transition:none; } }
+  .ob-foot .btn.ghost{ color:#fff; border-color:rgba(255,255,255,.55); background:transparent; }
+  .ob-foot .btn.ghost:hover{ background:rgba(255,255,255,.14); border-color:#fff; }
+
+  /* ---------- 大きな「未来の自分」目標カード ---------- */
+  .fu-grid{ grid-template-columns:minmax(0,1.75fr) minmax(0,1fr); gap:20px; }
+  .fu-right{ position:sticky; top:12px; min-width:0; }
+  .fu-right .chatlog{ max-height:58vh; }
+  .fu-chathint{ font-size:.8rem; color:var(--muted); margin:-4px 0 10px; line-height:1.7; }
+  .fu-card{ padding:36px 34px 26px; border-radius:28px; }
+  .fu-card .yr{ font-size:.86rem; display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; padding-right:56px; }
+  .fu-card .north{ font-size:2rem; line-height:1.45; margin:10px 56px 18px 0; }
+  .fu-card .meta span{ font-size:.88rem; padding:6px 14px; }
+  .fu-card .story{ font-size:1rem; line-height:2; margin-bottom:18px; }
+  .fu-card .chips span{ font-size:.84rem; padding:5px 13px; }
+  .fu-card.goal{ box-shadow:0 0 0 2px #F2B84B, 0 28px 56px -24px rgba(8,30,70,.75); }
+  .goalbadge{ font-size:.74rem; font-weight:800; letter-spacing:.04em; padding:3px 12px; border-radius:999px; background:#F2B84B; color:#3A2600; }
+  .fu-sec{ margin-top:26px; padding-top:20px; border-top:1px solid rgba(255,255,255,.22); }
+  .fu-sec h4{ margin:0 0 12px; font-size:.82rem; letter-spacing:.14em; font-weight:800; color:#F6D58E; }
+  .fu-sec .ph{ color:rgba(255,255,255,.7); font-size:.9rem; line-height:1.8; margin:0 0 10px; }
+  .fu-sec .how{ font-size:1.02rem; line-height:1.95; margin:0 0 14px; color:#fff; overflow-wrap:anywhere; }
+  .fu-sec .inc{ display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 16px; }
+  .fu-sec .inc span{ font-size:.84rem; font-weight:700; color:rgba(255,255,255,.8); }
+  .fu-sec .inc b{ font-size:2.4rem; font-weight:800; color:#F2B84B; font-variant-numeric:tabular-nums; line-height:1.2; }
+  .fu-sec .inc b small{ font-size:1rem; margin-left:4px; color:#FBE7B5; }
+  .fu-sec .incnote{ font-size:.82rem; line-height:1.8; color:rgba(255,255,255,.82); margin:8px 0 0; }
+  .fu-sec .bud{ list-style:none; margin:0 0 14px; padding:0; display:flex; flex-direction:column; gap:8px; }
+  .fu-sec .bud li{ display:grid; grid-template-columns:92px minmax(0,1fr) 74px; gap:10px; align-items:center; font-size:.88rem; }
+  .fu-sec .bud i{ height:10px; border-radius:99px; background:rgba(255,255,255,.16); overflow:hidden; }
+  .fu-sec .bud s{ display:block; height:100%; border-radius:99px; background:#7FC4F0; }
+  .fu-sec .bud b{ text-align:right; font-variant-numeric:tabular-nums; font-size:.86rem; }
+  .fu-sec .bsum{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; padding:14px 16px; border-radius:16px; background:rgba(255,255,255,.12); }
+  .fu-sec .bsum div{ display:flex; flex-direction:column; gap:2px; }
+  .fu-sec .bsum small{ font-size:.72rem; color:rgba(255,255,255,.78); font-weight:700; }
+  .fu-sec .bsum b{ font-size:1.35rem; font-variant-numeric:tabular-nums; }
+  .fu-sec .bsum em{ font-style:normal; font-size:1.2rem; color:rgba(255,255,255,.6); }
+  .fu-sec .bsum div:last-child b{ color:#9BE6A8; }
+  .fu-sec .bsum.neg div:last-child b{ color:#FFB4A8; }
+  .fu-sec.day{ border-top:0; padding-top:0; }
+  .fu-sec.day h4{ margin-top:0; font-size:1rem; }
+  .fu-day{ display:grid; grid-template-columns:minmax(0,360px) minmax(0,1fr); gap:22px; align-items:start; background:var(--paper-raise); color:var(--ink); border-radius:22px; padding:20px; }
+  .fu-day-chart{ min-width:0; }
+  .fu-day-chart svg{ width:100%; height:auto; display:block; overflow:visible; }
+  .fu-day-stats{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 16px; margin-top:6px; font-size:.84rem; color:var(--ink-soft); }
+  .fu-day-stats b{ color:var(--ink); font-variant-numeric:tabular-nums; }
+  .fu-tl{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .fu-tl li{ display:grid; grid-template-columns:98px 12px minmax(0,1fr); gap:10px; align-items:start; padding:7px 0; border-bottom:1px dashed var(--line); }
+  .fu-tl li:last-child{ border-bottom:0; }
+  .fu-tl time{ font-size:.8rem; font-weight:700; color:var(--ink-soft); font-variant-numeric:tabular-nums; padding-top:2px; }
+  .fu-tl i{ width:12px; height:12px; border-radius:4px; margin-top:5px; }
+  .fu-tl b{ display:block; font-size:.92rem; }
+  .fu-tl span{ display:block; font-size:.82rem; color:var(--ink-soft); line-height:1.6; overflow-wrap:anywhere; }
+  .fu-sayday{ margin-top:4px; }
+  .fu-card .fu-sayday{ color:#fff; border-color:rgba(255,255,255,.6); }
+  .fu-path{ list-style:none; margin:0; padding:0 0 0 6px; display:flex; flex-direction:column; }
+  .fu-path li{ position:relative; display:grid; grid-template-columns:86px minmax(0,1fr); gap:12px; padding:0 0 16px 22px; border-left:2px solid rgba(255,255,255,.28); }
+  .fu-path li:last-child{ border-left-color:transparent; padding-bottom:0; }
+  .fu-path li::before{ content:''; position:absolute; left:-7px; top:4px; width:12px; height:12px; border-radius:50%; background:#F2B84B; box-shadow:0 0 0 3px rgba(242,184,75,.3); }
+  .fu-path b{ font-size:.86rem; color:#F6D58E; }
+  .fu-path span{ font-size:.92rem; line-height:1.7; overflow-wrap:anywhere; }
+  .fu-needs{ display:flex; flex-wrap:wrap; gap:8px; }
+  .fu-needs span{ font-size:.86rem; font-weight:700; padding:6px 14px; border-radius:999px; background:rgba(255,255,255,.14); }
+  .fu-sec .rk{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; margin-bottom:10px; }
+  .fu-sec .rk > div{ font-size:.88rem; line-height:1.75; padding:10px 14px; border-radius:14px; background:rgba(255,255,255,.1); overflow-wrap:anywhere; }
+  .fu-sec .rk .a{ background:rgba(155,230,168,.16); }
+  .fu-sec .rk em{ display:block; font-style:normal; font-size:.7rem; font-weight:800; letter-spacing:.12em; color:#F6D58E; margin-bottom:2px; }
+  .fu-disc{ margin:22px 0 0; font-size:.76rem; line-height:1.8; color:rgba(255,255,255,.7); }
+  .fu-goalbar{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+  .fu-goalbar .fu-goalbtn{ padding:14px 28px; font-size:1.02rem; }
+  .fu-goalhint{ flex:1 1 100%; margin:0; font-size:.82rem; color:var(--muted); line-height:1.7; }
+  .fu-goalbar .cm-msg{ flex:1 1 100%; margin:0; }
+  .fu-goalon{ flex:1 1 100%; display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline; }
+  .fu-goalon b{ color:var(--accent-ink); }
+  .fu-goalon span{ font-size:.84rem; color:var(--ink-soft); }
+  .ob-card .fu-card{ padding:26px 22px 20px; }
+  .ob-card .fu-card .north{ font-size:1.5rem; }
+  @media (max-width:860px){
+    .fu-right{ position:static; }
+    .fu-right .chatlog{ max-height:46vh; }
+  }
+  @media (max-width:640px){
+    .fu-card{ padding:26px 20px 20px; border-radius:24px; }
+    .fu-card .north{ font-size:1.55rem; margin-right:44px; }
+    .fu-day{ grid-template-columns:minmax(0,1fr); padding:14px; }
+    .fu-sec .rk{ grid-template-columns:minmax(0,1fr); }
+    .fu-sec .bud li{ grid-template-columns:72px minmax(0,1fr) 62px; }
+    .fu-sec .inc b{ font-size:2rem; }
+    .fu-tl li{ grid-template-columns:84px 12px minmax(0,1fr); }
+    .fu-path li{ grid-template-columns:70px minmax(0,1fr); }
+  }
+  .fu-grid{ grid-template-columns:minmax(0,2.4fr) minmax(0,1fr); }
+  .fu-day{ grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); }
+  .fu-day-chart{ width:100%; max-width:440px; margin:0 auto; }
+  @media (max-width:860px){ .fu-grid{ grid-template-columns:minmax(0,1fr); } }
+  .fu-day{ grid-template-columns:repeat(auto-fit,minmax(380px,1fr)); }
+  .fu-day-chart{ max-width:460px; }
+  .fu-day-stats{ font-size:.92rem; }
+  .fu-day-stats b{ font-size:1rem; }
+  @media (max-width:640px){ .fu-day{ grid-template-columns:minmax(0,1fr); } }
+
+  /* ---------- 自由項目(カードに足せる項目) ---------- */
+  .fu-sec h4 .xtools{ margin-left:12px; letter-spacing:0; display:inline-flex; gap:6px; }
+  .fu-sec h4 .xtools button{ border:1px solid rgba(255,255,255,.4); background:transparent; color:rgba(255,255,255,.86); font:inherit; font-size:.7rem; font-weight:700; padding:2px 10px; border-radius:999px; cursor:pointer; }
+  .fu-sec h4 .xtools button:hover{ background:rgba(255,255,255,.16); }
+  .fu-sec h4 .xtools button.arm{ background:#C44A3A; border-color:#C44A3A; color:#fff; }
+  .fu-xl{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+  .fu-xl li{ position:relative; padding-left:20px; font-size:.95rem; line-height:1.75; overflow-wrap:anywhere; }
+  .fu-xl li::before{ content:''; position:absolute; left:3px; top:.68em; width:8px; height:8px; border-radius:50%; background:#F2B84B; }
+  .fu-xkv{ margin:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:8px; }
+  .fu-xkv > div{ padding:10px 14px; border-radius:14px; background:rgba(255,255,255,.12); min-width:0; }
+  .fu-xkv dt{ font-size:.72rem; font-weight:800; letter-spacing:.08em; color:#F6D58E; margin:0 0 2px; }
+  .fu-xkv dd{ margin:0; font-size:.92rem; line-height:1.7; overflow-wrap:anywhere; }
+  .fu-xform{ display:flex; flex-direction:column; gap:8px; }
+  .fu-xform input, .fu-xform textarea{ width:100%; box-sizing:border-box; border:1.5px solid rgba(255,255,255,.35); border-radius:12px; background:rgba(255,255,255,.96); color:#12284A; font:inherit; padding:9px 12px; }
+  .fu-xform textarea{ resize:vertical; line-height:1.7; }
+  .fu-xform small{ color:rgba(255,255,255,.78); font-size:.76rem; }
+  .fu-xform .xbtns{ display:flex; flex-wrap:wrap; gap:8px; }
+  .fu-xform .xbtns .btn{ padding:8px 18px; font-size:.84rem; }
+  .fu-xform .xbtns .btn.ghost{ color:#fff; border-color:rgba(255,255,255,.55); }
+  .fu-cover{ flex:1 1 100%; display:grid; grid-template-columns:auto minmax(80px,200px) minmax(0,1fr); gap:6px 14px; align-items:center; margin-bottom:4px; }
+  .fu-cover b{ font-size:.92rem; font-variant-numeric:tabular-nums; }
+  .fu-cover i{ height:10px; border-radius:99px; background:var(--sea-soft); overflow:hidden; }
+  .fu-cover s{ display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,#2278C0,#F2B84B); }
+  .fu-cover span{ font-size:.8rem; color:var(--ink-soft); line-height:1.6; min-width:0; }
+  .fu-addsec{ margin-top:14px; }
+  .fu-addsec h3{ margin:0 0 6px; font-size:1rem; }
+  .fu-addchips{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 12px; }
+  .fu-chipbtn{ border:1.5px dashed var(--sea); background:transparent; color:var(--sea); font:inherit; font-size:.84rem; font-weight:700; padding:7px 14px; border-radius:999px; cursor:pointer; }
+  .fu-chipbtn:hover{ background:var(--sea-soft); }
+  .fu-addform{ display:flex; flex-wrap:wrap; gap:8px; }
+  .fu-addform input{ flex:1 1 220px; min-width:0; border:1.5px solid var(--line); border-radius:12px; background:var(--paper); color:var(--ink); font:inherit; padding:9px 12px; }
+  .fu-addform select{ border:1.5px solid var(--line); border-radius:12px; background:var(--paper); color:var(--ink); font:inherit; padding:9px 10px; }
+  .fu-addform .btn{ padding:9px 18px; font-size:.86rem; }
+  @media (max-width:640px){ .fu-cover{ grid-template-columns:auto minmax(0,1fr); } .fu-cover span{ grid-column:1 / -1; } }
+
+  /* ---------- 画像・PDFで保存 ---------- */
+  .fu-export{ z-index:95; }
+  .fu-exbox{ width:min(720px,100%); display:flex; flex-direction:column; gap:10px; }
+  .fu-exprev{ overflow:auto; max-height:56vh; border-radius:14px; border:1px solid var(--line); background:var(--sea-soft); }
+  .fu-exprev img{ display:block; width:100%; height:auto; }
+  .fu-exbtns{ display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end; }
+  .fu-exbtns .btn{ text-decoration:none; justify-content:center; }
+
+  /* ---------- つづける仕掛け(今週の一歩・現在地・見直し・記録) ---------- */
+  .fu-trk{ margin-bottom:16px; padding:18px; display:grid; gap:16px; }
+  .fu-trk[hidden]{ display:none; }
+  .trk-head h3{ font-size:1.05rem; display:flex; align-items:center; gap:8px; margin:0 0 4px; }
+  .trk-head p{ font-size:.84rem; color:var(--ink-soft); line-height:1.7; margin:0; }
+  .trk-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); gap:16px; }
+  .trk-col{ min-width:0; display:flex; flex-direction:column; gap:10px; }
+  .trk-col h4, .trk-rhead h4{ font-size:.92rem; margin:0; }
+  .trk-step{ border:1.5px solid var(--sea); background:var(--sea-soft); border-radius:12px; padding:14px; display:flex; flex-direction:column; gap:8px; }
+  .trk-step.late{ border-color:var(--terracotta); background:var(--terracotta-soft); }
+  .trk-t{ font-size:1rem; font-weight:700; line-height:1.65; margin:0; color:var(--ink); }
+  .trk-why{ font-size:.8rem; color:var(--ink-soft); margin:0; }
+  .trk-btns{ display:flex; flex-wrap:wrap; gap:8px; }
+  .trk-btns .btn{ min-height:40px; }
+  .trk-praise{ border:1.5px solid var(--olive); border-radius:12px; padding:12px 14px; font-size:.9rem; line-height:1.7; background:var(--paper-raise); color:var(--ink); }
+  .trk-empty{ font-size:.84rem; color:var(--muted); line-height:1.7; margin:0; }
+  .trk-stat{ font-size:.82rem; color:var(--ink-soft); margin:0; }
+  .trk-stat b{ color:var(--accent-ink); font-variant-numeric:tabular-nums; }
+  .trk-sub{ font-size:.82rem; color:var(--ink-soft); line-height:1.7; margin:0; }
+  .trk-q{ font-weight:700; font-size:.92rem; margin:2px 0; }
+  .trk-logform{ display:flex; gap:8px; flex-wrap:wrap; }
+  .trk-logform input{ flex:1 1 180px; min-width:0; min-height:40px; padding:8px 10px; border:1px solid var(--line); border-radius:10px; background:var(--paper-raise); color:var(--ink); font:inherit; }
+  .trk-tell{ font-size:.84rem; margin:0; color:var(--ink-soft); }
+  .trk-link{ background:none; border:0; padding:0; font:inherit; font-size:.84rem; color:var(--sea); text-decoration:underline; cursor:pointer; text-underline-offset:3px; min-height:32px; }
+  .trk-log, .trk-diff, .trk-hist ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+  .trk-log li, .trk-hist li{ display:grid; grid-template-columns:auto auto minmax(0,1fr) auto; gap:8px; align-items:baseline; font-size:.84rem; line-height:1.55; }
+  .trk-hist li{ grid-template-columns:auto auto minmax(0,1fr); }
+  .trk-log time, .trk-hist time{ color:var(--muted); font-variant-numeric:tabular-nums; font-size:.78rem; }
+  .trk-log em, .trk-hist em{ font-style:normal; min-width:0; overflow-wrap:anywhere; color:var(--ink); }
+  .trk-k{ font-size:.7rem; padding:1px 7px; border-radius:99px; background:var(--sea-soft); color:var(--accent-ink); white-space:nowrap; }
+  .trk-k.step{ background:var(--terracotta-soft); }
+  .trk-x{ background:none; border:0; color:var(--muted); font-size:1rem; cursor:pointer; min-width:32px; min-height:32px; line-height:1; }
+  .trk-diff li{ font-size:.86rem; line-height:1.6; padding:6px 10px; border-left:3px solid var(--sea); background:var(--sea-soft); border-radius:0 8px 8px 0; overflow-wrap:anywhere; }
+  .trk-meter{ border-top:1px dashed var(--line); padding-top:14px; }
+  .trk-rows{ display:flex; flex-direction:column; gap:8px; }
+  .trk-row{ display:grid; grid-template-columns:minmax(84px,.9fr) minmax(0,1.1fr) auto auto; gap:6px 12px; align-items:center; font-size:.84rem; }
+  .trk-row b{ min-width:0; overflow-wrap:anywhere; }
+  .trk-ideal{ color:var(--accent-ink); font-size:.78rem; white-space:nowrap; letter-spacing:1px; }
+  .trk-nowbtns{ display:inline-flex; gap:4px; }
+  .trk-nowbtns button{ width:34px; height:34px; border-radius:50%; border:1.5px solid var(--line); background:var(--paper-raise); color:var(--ink-soft); font:inherit; font-size:.8rem; cursor:pointer; font-variant-numeric:tabular-nums; }
+  .trk-nowbtns button.on{ background:var(--sea); border-color:var(--sea); color:var(--on-sea,#fff); }
+  .trk-gap{ font-style:normal; font-size:.78rem; min-width:64px; color:var(--muted); }
+  .trk-gap.lack{ color:var(--terracotta); font-weight:700; }
+  .trk-gap.ok{ color:var(--olive); font-weight:700; }
+  .trk-gap small{ display:block; font-weight:400; color:var(--muted); }
+  .trk-weak{ margin:0; font-size:.86rem; line-height:1.7; }
+  .trk-review{ border-top:1px dashed var(--line); padding-top:14px; display:flex; flex-direction:column; gap:10px; }
+  .trk-review.due{ border:1.5px solid var(--terracotta); border-radius:12px; padding:14px; background:var(--terracotta-soft); }
+  .trk-rhead{ display:flex; flex-wrap:wrap; gap:4px 14px; align-items:baseline; }
+  .trk-rhead span{ font-size:.8rem; color:var(--ink-soft); }
+  .trk-hist summary{ cursor:pointer; font-size:.82rem; color:var(--ink-soft); min-height:32px; }
+  .trk-dot{ display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--terracotta); margin-left:6px; flex:none; align-self:center; box-shadow:0 0 0 2px var(--paper); }
+  .trk-nudge{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; margin:0 0 14px; padding:12px 14px; border:1.5px solid var(--sea); background:var(--sea-soft); border-radius:12px; }
+  .trk-nudge.late, .trk-nudge.review{ border-color:var(--terracotta); background:var(--terracotta-soft); }
+  .trk-nudge-ico{ color:var(--terracotta); font-size:1.1rem; }
+  .trk-nudge p{ flex:1 1 220px; min-width:0; margin:0; font-size:.92rem; line-height:1.6; color:var(--ink); overflow-wrap:anywhere; }
+  .trk-nudge .btn{ min-height:38px; }
+  @media (max-width:560px){
+    .trk-row{ grid-template-columns:minmax(0,1fr) auto; }
+    .trk-ideal{ grid-column:1 / -1; order:2; }
+    .trk-nowbtns{ grid-column:1 / -1; order:3; }
+    .trk-gap{ order:1; }
+  }
+  .trk-head h3{ flex-wrap:wrap; text-wrap:balance; }
+
+  /* ---------- 大きな画面: AIチャットを広く、1つの画面に収める ---------- */
+  @media (min-width:1180px){
+    .fu-grid{ grid-template-columns:minmax(0,1fr) clamp(420px,34vw,600px); gap:22px; }
+    .fu-right{ position:sticky; top:12px; align-self:start; }
+    .fu-right .dp-ai{ display:flex; flex-direction:column; height:calc(100vh - 24px); height:calc(100dvh - 24px); min-height:480px; }
+    .fu-right .dp-ai > *{ flex:none; }
+    .fu-right .chatlog{ flex:1 1 auto; min-height:0; max-height:none; overflow-y:auto; overscroll-behavior:contain; }
+    .fu-right .quickrow{ max-height:30%; overflow-y:auto; }
+  }
+  @media (max-width:1179px){
+    .fu-grid{ grid-template-columns:minmax(0,1fr); }
+    .fu-right{ position:static; }
+    .fu-right .chatlog{ max-height:62vh; }
+  }
+  @media (min-width:1280px){
+    .wrap:has(#panel-future.active){ max-width:min(1560px, 100%); transition:max-width .2s; }
+  }
+
 </style>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -2096,8 +2446,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <button role="tab" id="tab-career" data-tab="career" aria-selected="false" aria-controls="panel-career" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-palmtree"/></svg></span><span class="navlabel">香川で叶うキャリア</span></button>
       <button role="tab" id="tab-support" data-tab="support" aria-selected="false" aria-controls="panel-support" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-graduation-cap"/></svg></span><span class="navlabel">奨学金・支援制度</span></button>
       <button role="tab" id="tab-schedule" data-tab="schedule" aria-selected="false" aria-controls="panel-schedule" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-calendar"/></svg></span><span class="navlabel">予定表</span></button>
+      <button role="tab" id="tab-future" data-tab="future" aria-selected="false" aria-controls="panel-future" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-polaris"/></svg></span><span class="navlabel">理想の自分</span></button>
       <button role="tab" id="tab-commute" data-tab="commute" aria-selected="false" aria-controls="panel-commute" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-map-pin"/></svg></span><span class="navlabel">通学マップ</span></button>
-      <button role="tab" id="tab-dayplan" data-tab="dayplan" aria-selected="false" aria-controls="panel-dayplan" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-chart-pie"/></svg></span><span class="navlabel">理想の1日</span></button>
       <button role="tab" id="tab-settings" data-tab="settings" aria-selected="false" aria-controls="panel-settings" tabindex="-1" class="nav-settings"><span class="ico"><svg class="ico-svg"><use href="#i-sliders"/></svg></span><span class="navlabel">設定</span></button>
     </div>
   </nav>
@@ -2317,19 +2667,68 @@ svg.leaflet-image-layer.leaflet-interactive path {
     </div>
   </section>
 
-  <!-- ===================== 理想の1日 ===================== -->
-  <section class="panel" id="panel-dayplan" role="tabpanel" aria-labelledby="tab-dayplan" tabindex="0">
+  <!-- ===================== 理想の自分 ===================== -->
+  <section class="panel" id="panel-future" role="tabpanel" aria-labelledby="tab-future" tabindex="0">
     <div class="section-head section-head-compact">
-      <span class="eyebrow">My Ideal Day</span>
-      <h2>理想の1日</h2>
-      <p>24時間を円グラフにして、進学したあとの毎日をシミュレーションします。AIと話しながら組み立てて、通学時間が増えると自由時間がどう変わるかも見比べられます。</p>
+      <span class="eyebrow">Future Me</span>
+      <h2>理想の自分</h2>
+      <p>「これを目標にする!」と思える未来の自分を、AIと話しながら、稼ぎ方やお金、理想の1日まで超具体的にかたちにします。つくった姿をもとに、志望校を見比べたり、ロードマップを作ったりできます。</p>
+      <button type="button" class="btn ghost fu-guidebtn" id="fu-guide">3分のガイドでつくる</button>
     </div>
+    <div class="fu-seg" id="fu-seg" role="tablist" aria-label="理想の自分の中身">
+      <button type="button" role="tab" data-v="card" aria-selected="true">未来の自分</button>
+      <button type="button" role="tab" data-v="day" aria-selected="false">理想の1日</button>
+    </div>
+    <div id="fu-view-card">
+    <div class="card fu-trk" id="fu-trk" hidden></div>
+    <div class="fu-grid">
+      <div class="fu-left">
+        <div id="fu-card"></div>
+        <div class="fu-goalbar" id="fu-goalbar"></div>
+        <div class="card fu-addsec" id="fu-addsec"></div>
+        <details class="card fu-edit">
+          <summary>カードを手で直す</summary>
+          <div class="fu-fields">
+            <label>何年後の自分?<select id="fu-years"><option value="3">3年後</option><option value="5">5年後</option><option value="10">10年後</option><option value="15">15年後</option></select></label>
+            <label>なりたい自分(ひとこと)<input type="text" id="fu-north" maxlength="40" placeholder="例: 地元の病院で、人を支える看護師になる"></label>
+            <label>仕事・立場<input type="text" id="fu-job" maxlength="26" placeholder="例: 看護師"></label>
+            <label>暮らす場所<input type="text" id="fu-place" maxlength="26" placeholder="例: 高松市"></label>
+            <label>ある1日の様子<textarea id="fu-story" rows="4" maxlength="220" placeholder="例: 朝は7時に起きて、病院へ自転車で通う。夜は家族と夕食。"></textarea></label>
+            <div class="fu-axes" id="fu-axes"></div>
+          </div>
+        </details>
+      </div>
+      <div class="fu-right">
+        <div class="card dp-ai">
+          <h3><span class="cm-num">AI</span>AIと話して「未来の自分」をつくる</h3>
+          <p class="fu-chathint">稼ぎ方・毎月のお金・理想の1日・道のり・壁まで、話しながら左のカードが育ちます。</p>
+          <div class="chatlog" id="fu-chat-log" aria-live="polite"></div>
+          <div class="quickrow" id="fu-chat-quick"></div>
+          <form class="chatform" id="fu-chat-form"><textarea rows="2" placeholder="例: 地元の香川で、人の役に立つ仕事がしたい"></textarea><button class="btn primary" type="submit">送信</button></form>
+        </div>
+      </div>
+    </div>
+    <div class="card fu-compare">
+      <h3>この理想に近づく志望校を比べる</h3>
+      <p class="dp-hint">「理想との近さ」は、あなたの理想の自分との相性の目安です。合格のしやすさではありません。通学時間と自由時間は、通学マップと理想の1日から計算します。</p>
+      <div class="fu-addrow">
+        <select id="fu-add-pick" aria-label="比べる志望校を追加"></select>
+        <button type="button" class="btn ghost" id="fu-add-btn">追加</button>
+        <button type="button" class="btn ghost" id="fu-suggest">AIに志望校を提案してもらう</button>
+      </div>
+      <p class="cm-msg" id="fu-cmp-msg" role="status" hidden></p>
+      <div class="fu-tablewrap" id="fu-table"></div>
+      <div class="fu-cmpbtns"><button type="button" class="btn primary" id="fu-fit">理想との近さをAIに見てもらう</button></div>
+    </div>
+    </div>
+    <div id="fu-view-day" hidden>
     <div class="dp-grid">
       <div class="card dp-chartcard">
         <div class="dp-chartwrap" id="dp-chart"></div>
         <div class="dp-legend" id="dp-legend"></div>
       </div>
       <div class="dp-side">
+        <div class="card dp-futurebar" id="dp-futurebar"></div>
         <div class="card dp-commute" id="dp-commute"></div>
         <div class="card dp-ai">
           <h3><span class="cm-num">AI</span>AIと話して組み立てる</h3>
@@ -2343,6 +2742,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <div class="dp-edhead"><h3>1日の中身を手で直す</h3><div class="dp-edbtns"><button type="button" class="btn ghost" id="dp-sample">サンプルから始める</button><button type="button" class="btn ghost" id="dp-add">＋ 追加</button><button type="button" class="btn ghost" id="dp-clear">ぜんぶ消す</button></div></div>
       <p class="dp-hint">開始・終了の時刻を変えると、円グラフがすぐに変わります。後ろに書いた項目が、重なった時間を上書きします。</p>
       <div class="dp-rows" id="dp-rows"></div>
+    </div>
     </div>
   </section>
 
@@ -3527,6 +3927,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   var SHINDAN_SUB = { suisen:1, diag:1, senmon:1 };   /* 3つの診断は、メニューでは「診断」の下にまとめる */
   document.addEventListener('click', function(ev){ if(ev.target.closest && ev.target.closest('[data-goshindan]')) window.goTab('shindan'); });
   window.goTab = function(id, focusTab){
+    if(id === 'dayplan'){ window.__futView = 'day'; id = 'future'; }
     var navId = SHINDAN_SUB[id] ? 'shindan' : id;
     document.querySelectorAll('section.panel').forEach(function(p){ p.classList.toggle('active', p.id === 'panel-'+id); });
     tabButtons.forEach(function(b){
@@ -3544,7 +3945,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     if(id === 'results' && window.resRender) window.resRender();
     if(id === 'settings') KS.syncUI();
     if(id === 'commute' && window.cmShow) window.cmShow();
-    if(id === 'dayplan' && window.dpShow) window.dpShow();
+    if(id === 'future' && window.futShow) window.futShow();
     window.scrollTo({top:0, behavior:'smooth'});
   };
   tabButtons.forEach(function(b, i){
@@ -3807,6 +4208,13 @@ svg.leaflet-image-layer.leaflet-interactive path {
     lines.push('');
     lines.push('生徒は診断の結果、次の学校(大学・専門学校)・学部・学科・入試方式への合格を目指して、あなたと対話しながらロードマップを作ろうとしています。');
     lines.push(aiFactsLines(ctx));
+    if(ctx.goalMode === 'ideal'){
+      lines.push('');
+      lines.push('【ゴールの考え方(最重要)】この生徒は、大学・専門学校に入ること自体ではなく、その先の「理想の自分」(上の facts にある生徒のカード)をゴールにしたい。ロードマップの goal は、その理想の自分を30字以内で表した前向きな一文にする(例: 地元の病院で、人を支える看護師になる)。この志望先への合格・入学は、前半の大切な通過点として段階に入れる。後半の段階には、入学後〜卒業までに理想へ近づく行動(資格、経験、地元の人との出会い、学び方の工夫など)を入れる。理想の1日が分かっているときは、そこに近づく習慣(睡眠・勉強時間など)を1〜2項目入れてよい。生徒の言葉を活かし、押しつけない。');
+    }else if(ctx.goalMode === 'univ'){
+      lines.push('');
+      lines.push('【ゴールの考え方】この生徒のゴールは、この志望先に合格することです。ただし、上の facts にある「理想の自分」や「理想の1日」も踏まえて、項目の優先順位や言葉選び、生活リズムの提案に反映してください。');
+    }
     lines.push('');
     lines.push(aiGroundingLines());
     lines.push('');
@@ -7683,7 +8091,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   /* ---------------- 専門学校を探す ---------------- */
   /* 2026年10月に各校の公式サイト・県の公開資料で確認した内容(確認できなかった項目は null)。 */
   var SENMON = [{"id":"shikoku-iryo","name":"四国医療専門学校","city":"宇多津町","address":"香川県綾歌郡宇多津町浜五番丁62-1(〒769-0205)","founder":"私立(学校法人大麻学園)","fields":["医療・看護","リハビリ・柔整・鍼灸"],"url":"https://www.459.ac.jp/","admission_url":"https://www.459.ac.jp/admission/entrance/examination/","departments":[{"name":"看護学科","years":4,"capacity":60,"qualifications":["看護師(国家試験受験資格)","高度専門士","学士(社会福祉学)","社会福祉主事(任用資格)","BLSプロバイダー"],"summary":"4年制。多職種連携、ICT機器を使った臨床判断力の育成、東洋医学と西洋医学の融合が特色。","riasec":{"I":1.0,"S":2.0},"style":"Vocational","license":"legal","top":["S","I"],"split":false,"kind":"nurse"},{"name":"理学療法学科","years":4,"capacity":36,"qualifications":["理学療法士(国家資格)","高度専門士","レクリエーションインストラクター(任意)"],"summary":"4年制で合計25週の臨床実習。スポーツ分野の知識も学べる、県内で最も歴史ある学科とされる。","riasec":{"R":0.5,"I":0.5,"S":2.0},"style":"Vocational","license":"legal","top":["S","R"],"split":true,"kind":"pt"},{"name":"作業療法学科","years":4,"capacity":30,"qualifications":["作業療法士(国家資格)"],"summary":"4年一貫の養成課程。特色の詳細は公式の学科ページを取得できず未確認。","riasec":{"I":0.5,"A":0.5,"S":2.0},"style":"Vocational","license":"legal","top":["S","I"],"split":true,"kind":"ot"},{"name":"鍼灸マッサージ学科","years":3,"capacity":30,"qualifications":["あん摩マッサージ指圧師・はり師・きゅう師(国家試験受験資格)","機能訓練指導員","専門士"],"summary":"中四国で唯一あん摩マッサージ指圧師の資格も取れる専門学校とされる。東洋・西洋医学の両面から学ぶ。","riasec":{"R":1.0,"S":2.0},"style":"Vocational","license":"legal","top":["S","R"],"split":false,"kind":"acu"},{"name":"鍼灸学科","years":3,"capacity":30,"qualifications":["はり師・きゅう師(国家試験受験資格)","専門士"],"summary":"3年ではり師・きゅう師を目指す。東洋医学と西洋医学の両視点で学ぶ。","riasec":{"R":1.5,"S":1.5},"style":"Vocational","license":"legal","top":["R","S"],"split":true,"kind":"acu"},{"name":"柔道整復学科","years":3,"capacity":30,"qualifications":["柔道整復師(国家試験受験資格)","専門士","機能訓練指導員","公認初級パラスポーツ指導者","トレーニング指導者(JATI-ATI)"],"summary":"スポーツ医学・救急技術を学び、1年次から臨床実習を行う実践重視の3年課程。","riasec":{"R":1.5,"S":1.5},"style":"Vocational","license":"legal","top":["R","S"],"split":true,"kind":"judo"}],"admission":{"types":["総合型選抜","学校推薦型選抜","大学生・社会人エントリー特別選抜","大学生・社会人選抜","一般選抜"],"schedule_note":"2026年度実施(2027年4月入学)・全学科対象。大学生・社会人エントリー特別選抜1次:出願2026/7/1~8/27・試験9/6。総合型選抜1次:9/7~9/24・試験10/4。学校推薦型選抜2次:10/5~10/22・試験11/1、3次:11/9~12/3・試験12/12。一般選抜4次:12/21~2027/1/14・試験1/24、5次:1/25~2/11・試験2/21、6次:2/15~3/8・試験3/14。合格者が定員に達すると以降の入試は行われない場合あり。","info":"共通で書類審査・小論文(800字以内)・面接(個人)。総合型は自己推薦書審査(800字以内)、一般は国語(現代文・マークシート)の科目試験。"},"tuition":"令和8年度学則記載(年額・円)。入学試験検定料25,000円、入学金300,000円(全学科共通)。授業料/実習費:鍼灸マッサージ学科 1,510,000/50,000、鍼灸学科 1,000,000/50,000、柔道整復学科 1,000,000/50,000、理学療法学科 1,070,000/180,000、作業療法学科 1,070,000/180,000、看護学科 830,000/180,000。","checked":"2026-10","confidence":"high"},{"id":"setouchi-nursing","name":"瀬戸内ナーシング学院","city":"高松市","address":"香川県高松市香西本町17-9(〒761-8012)","founder":"私立(社会福祉法人守里会)","fields":["医療・看護"],"url":"https://www.syurikai.ac.jp/","admission_url":null,"departments":[{"name":"看護学科","years":3,"capacity":40,"qualifications":["看護師(国家試験受験資格)"],"summary":"昼間部3年。高松市内で3年で受験資格が得られる唯一の養成校とされ、社会人入試・病院奨学金・学生寮あり。","riasec":{"I":1.0,"S":2.0},"style":"Vocational","license":"legal","top":["S","I"],"split":false,"kind":"nurse"}],"admission":{"types":[],"schedule_note":null,"info":"学科紹介ページに『社会人入試』の記載はあるが、入試区分・出願日程は公式サイトの取得範囲では未確認(募集要項参照とのみ記載)。"},"tuition":"入学金200,000円(1年次前期のみ)、授業料275,000円/半期×6期、施設設備費90,000円/半期×6期、実習費(1年前期100,000円・2年前期150,000円・3年前期250,000円)。総合計2,890,000円(入学時納入665,000円)。別途、教科書代約250,000円、教材代20,000円、被服代35,000円が目安。","checked":"2026-10","confidence":"medium"},{"id":"zentsuji-kango-nho","name":"独立行政法人国立病院機構 四国こどもとおとなの医療センター附属善通寺看護学校","city":"善通寺市","address":"香川県善通寺市仙遊町二丁目1番1号(〒765-0001)","founder":"国立(独立行政法人国立病院機構)","fields":["医療・看護"],"url":"https://shikoku-mc.hosp.go.jp/kango/","admission_url":"https://shikoku-mc.hosp.go.jp/kango/information/admission.php","departments":[{"name":"看護専門課程 看護学科","years":3,"capacity":80,"qualifications":["看護師(国家試験受験資格)"],"summary":"国立病院機構の附属校で3年課程。寄宿舎があり、病院と連携した実習が中心。","riasec":{"I":1.0,"S":2.0},"style":"Vocational","license":"legal","top":["S","I"],"split":false,"kind":"nurse"}],"admission":{"types":["特別推薦入学試験","一般推薦入学試験","大学生・社会人入学試験","一般入学試験(A日程・B日程)"],"schedule_note":"令和9年度(2027年4月入学)。特別推薦・一般推薦・大学生社会人:出願2026/9/7~10/2(消印有効)・試験10/7。一般A:出願12/7~2027/1/12・試験1/19。一般B:出願2027/1/4~2/9・試験2/16。","info":"検定料25,000円(学校の学費ページ記載)。出願資格の詳細は令和9年度募集要項(PDF)を参照。"},"tuition":"入学料200,000円、授業料年額520,000円(4月・10月分納)、教育環境費年額50,000円、テキスト代約200,000円(3年間)、その他約70,000円(資料代・実習ユニフォーム)。寄宿舎居室料36,000円/年+生活費月約30,000円。","checked":"2026-10","confidence":"high"},{"id":"anabuki-medical","name":"穴吹医療大学校","city":"高松市","address":"香川県高松市錦町1-22-23(〒760-0020)","founder":"私立","fields":["医療・看護","歯科・衛生","福祉・保育","ビジネス・公務員・観光"],"url":"https://web.anabuki-college.net/department/medical/","admission_url":"https://web.anabuki-college.net/admission/application/","departments":[{"name":"看護学科","years":4,"capacity":40,"qualifications":["看護師受験資格(国家資格)","赤十字救急法救急員","BLSプロバイダー"],"summary":"4年間でじっくり学び看護師を目指す。学年・学科を超えた連携学習とiPad活用が特色。","riasec":{"I":1.0,"S":2.0},"style":"Vocational","license":"legal","top":["S","I"],"split":false,"kind":"nurse"},{"name":"歯科衛生学科","years":3,"capacity":null,"qualifications":["歯科衛生士受験資格(国家資格)","赤十字救急法救急員"],"summary":"3年制で歯科衛生士を養成。看護学科との連携学習があり、国家試験合格実績を掲げる。","riasec":{"R":1.0,"S":2.0},"style":"Vocational","license":"legal","top":["S","R"],"split":false,"kind":"dh"},{"name":"医療ビジネス学科","years":2,"capacity":null,"qualifications":["医科メディカルクラーク","調剤事務管理士","歯科医療事務管理士","ドクターズクラーク","登録販売者","日商簿記3級","Excel/Word検定"],"summary":"医療事務・医師事務を軸に一般事務や登録販売者まで学べる2年制。","riasec":{"S":1.0,"C":2.0},"style":"Practical","license":"cert","top":["C","S"],"split":false,"kind":"office"},{"name":"介護福祉学科","years":2,"capacity":null,"qualifications":["介護福祉士受験資格(国家資格)"],"summary":"2年間で約5回の施設実習を行い、介護福祉士を目指す。留学生も在籍。","riasec":{"R":0.5,"S":2.0,"C":0.5},"style":"Vocational","license":"legal","top":["S","R"],"split":true,"kind":"care"}],"admission":{"types":["総合型選抜(オープンキャンパス/入試説明会参加が条件、適性検査+集団面接)","その他の選抜(詳細は募集要項)","穴吹カレッジ特待生制度(A〜D)","高資格・検定取得者特待生制度","在校生・卒業生の親族入学優遇制度"],"schedule_note":"2027年度入学向けインターネット出願期間は2026年9月1日〜2027年3月17日(学園共通)。前年度(2026年度入試)は医療系学科で国語総合の筆記、他学科は書類選考・面接・適性検査、最終試験は3月25日。","info":"入学資格:2027年3月高校卒業見込み者、高卒者、高卒認定合格者(18歳以上)等。出願は syutsugan.net のインターネット出願。奨学金:穴吹学園経済的支援奨学生制度、日本学生支援機構、高等教育の修学支援新制度対象校、学費分割制度。"},"tuition":"入学金160,000円・年間学費950,000〜1,150,000円(いずれも学園共通の概要表記。学科別金額は公式サイト本文では未確認。教科書・教材費等は別途)","checked":"2026-10","confidence":"medium"},{"id":"kagawa-kango","name":"香川看護専門学校","city":"善通寺市","address":"香川県善通寺市生野町920-1(〒765-0053)","founder":"私立(学校法人尽誠学園)","fields":["医療・看護"],"url":"https://kagawakango.ac.jp/","admission_url":"https://kagawakango.ac.jp/examination/","departments":[{"name":"第1看護学科","years":3,"capacity":40,"qualifications":["看護師(国家試験受験資格)"],"summary":"全日制3年で看護師国家試験の受験資格を目指す。ホスピタリティを重視した学びが特色。","riasec":{"I":1.0,"S":2.0},"style":"Vocational","license":"legal","top":["S","I"],"split":false,"kind":"nurse"},{"name":"第2看護学科","years":2,"capacity":40,"qualifications":["看護師(国家試験受験資格)"],"summary":"准看護師免許(取得見込み含む)がある人が、全日制2年で看護師を目指すコース。","riasec":{"I":1.0,"S":2.0},"style":"Vocational","license":"legal","top":["S","I"],"split":false,"kind":"nurse"}],"admission":{"types":["推薦入試","一般入試","社会人入試(第1看護学科のみ)"],"schedule_note":"令和9年度(2027年度入学)。第1回(推薦・一般・社会人)出願2026/9/8~9/17・試験9/26・発表10/2(終了済)、第2回(一般・社会人)出願11/9~11/19・試験11/28、第3回(一般・社会人)出願2027/2/1~2/5・試験2/13。第2看護学科は推薦・一般のみ(第2回以降は一般のみ)。検定料は第1看護学科20,000円。","info":"第1看護学科の推薦は評定平均3.2以上かつ校長推薦。社会人は高卒以上で就業2年以上、または大学・短大・専門学校卒(見込み)。第2看護学科は准看護師免許取得済または2027年3月取得見込みが条件。"},"tuition":"入学金160,000円、授業料は前期280,000円・後期280,000円(年額560,000円、両学科同額)。施設設備費・実験実習費は『別途』とあるが金額は未掲載。年度表記なし。","checked":"2026-10","confidence":"high"},{"id":"takamatsu-ishikai-kango","name":"高松市医師会看護専門学校","city":"高松市","address":"香川県高松市松島町一丁目16番20号(〒760-0068)","founder":"私立(高松市医師会立)","fields":["医療・看護"],"url":"https://www.takamatsu-kango.com/","admission_url":"https://www.takamatsu-kango.com/admission","departments":[{"name":"准看護科(高等課程)","years":2,"capacity":70,"qualifications":["准看護師試験受験資格"],"summary":"中学校卒業以上が対象で、働きながら学べる環境の2年課程。修了後に看護科へ進める。","riasec":{"I":1.0,"S":2.0},"style":"Vocational","license":"legal","top":["S","I"],"split":false,"kind":"nurse"},{"name":"看護科(専門課程)","years":3,"capacity":40,"qualifications":["看護師国家試験受験資格"],"summary":"夜間定時制3年。准看護師免許保持者が働きながら看護師を目指す課程。","riasec":{"I":1.0,"S":2.0},"style":"Vocational","license":"legal","top":["S","I"],"split":false,"kind":"nurse"}],"admission":{"types":["推薦入学試験","一般入学試験(一次・二次・三次)","社会人入学試験(准看護科のみ)"],"schedule_note":"2027年度入学向け。推薦:出願2026/10/30~11/11・試験11/14。一般一次:出願11/24~12/9・筆記12/12、面接12/13。二次:出願2027/1/7~1/20・試験1/23。三次:出願2/8~2/18・試験2/20。看護科は社会人枠なし。","info":"看護科の試験科目は推薦=小論文・面接、一般一次=専門科目(准看護師課程の科目)・小論文・面接、一般二・三次=小論文・面接。准看護科の一般は国語・作文・面接。"},"tuition":"入学金:准看護科150,000円、看護科は推薦合格者170,000円・一般合格者200,000円。月額:准看護科=授業料25,000円+実習費3,000円+教育設備費10,000円、看護科=授業料30,000円+実習費4,000円+施設管理費10,000円(入試ページ掲載、年度表記なし)。","checked":"2026-10","confidence":"high"},{"id":"kagawa-shika","name":"香川県歯科医療専門学校","city":"高松市","address":"香川県高松市錦町二丁目8番37号(〒760-0020)","founder":"私立(公益社団法人香川県歯科医師会立)","fields":["歯科・衛生","医療・看護"],"url":"https://www.shikasen.ac.jp/","admission_url":"https://www.shikasen.ac.jp/admissin_info/","departments":[{"name":"衛生士科","years":3,"capacity":50,"qualifications":["歯科衛生士(国家試験受験資格)"],"summary":"歯科医師会立の3年課程。歯科衛生士を養成する。","riasec":{"R":1.0,"S":2.0},"style":"Vocational","license":"legal","top":["S","R"],"split":false,"kind":"dh"},{"name":"技工士科","years":2,"capacity":20,"qualifications":["歯科技工士(国家試験受験資格)"],"summary":"歯科医師会立の2年課程。歯科技工士を養成する。","riasec":{"R":2.0,"A":1.0},"style":"Vocational","license":"legal","top":["R","A"],"split":false,"kind":"dt"}],"admission":{"types":["総合型選抜入試","推薦入試(指定校推薦・公募制推薦・自己推薦)","一般入試"],"schedule_note":"2027年度入学向け。総合型選抜:一期 出願9/1~9/9・試験9/13(終了済)、二期 出願2027/1/6~1/19・試験1/24、三期 出願2/24~3/10・試験3/14。推薦:一期 出願9/10~9/28・試験10/4、二期 出願10/13~10/27・試験11/1。一般:出願2027/1/6~1/19・試験1/24。","info":"総合型選抜はオープンキャンパス等への参加が出願の必須条件。推薦は指定校(評定3.5以上・校長推薦)、公募制(評定3.0以上・校長推薦)または自己推薦。一般は高校卒業(見込み)者・卒業程度認定試験合格(見込み)者・既卒者が対象。"},"tuition":"衛生士科(3年):入学金100,000円、授業料150,000円×6期=900,000円、実習費200,000円×6期=1,200,000円、総額2,200,000円。技工士科(2年):入学金200,000円、授業料300,000円×4期=1,200,000円、実習費200,000円×4期=800,000円、総額2,200,000円。別途、教科書・実習衣・材料・保険等で約20万円台、入学後に年間50,000円の行事・教材費。年度表記なし。","checked":"2026-10","confidence":"high"},{"id":"anabuki-rehabilitation","name":"専門学校穴吹リハビリテーションカレッジ","city":"高松市","address":"香川県高松市上天神町722-1(〒761-8056)","founder":"私立","fields":["リハビリ・柔整・鍼灸"],"url":"https://web.anabuki-college.net/department/rehabilitation/","admission_url":"https://web.anabuki-college.net/admission/application/","departments":[{"name":"理学療法学科","years":null,"capacity":null,"qualifications":["理学療法士受験資格(国家資格)","認定トレーニング指導者(JATI)","スポーツサイエンティスト","初級パラスポーツ指導員","福祉住環境コーディネーター"],"summary":"4年制で理学療法士を養成。トレーニング資格と組み合わせ、スポーツ分野にも強い。","note":"修業年限は公式サイトの表記が3年・4年と分かれているため、必ず公式サイトで確認してください。","riasec":{"R":0.5,"I":0.5,"S":2.0},"style":"Vocational","license":"legal","top":["S","R"],"split":true,"kind":"pt"},{"name":"作業療法学科","years":null,"capacity":null,"qualifications":["作業療法士受験資格(国家資格)","児童発達支援士","初級パラスポーツ指導員","福祉住環境コーディネーター"],"summary":"4年制で作業療法士を養成。WFOT認定校で、生活行為向上マネジメント推進協力校。","note":"修業年限は公式サイトの表記が3年・4年と分かれているため、必ず公式サイトで確認してください。","riasec":{"I":0.5,"A":0.5,"S":2.0},"style":"Vocational","license":"legal","top":["S","I"],"split":true,"kind":"ot"}],"admission":{"types":["総合型選抜(オープンキャンパス/入試説明会参加が条件、適性検査+集団面接)","その他の選抜(詳細は募集要項)","穴吹カレッジ特待生制度(A〜D)","高資格・検定取得者特待生制度","在校生・卒業生の親族入学優遇制度"],"schedule_note":"2027年度入学向けインターネット出願期間は2026年9月1日〜2027年3月17日(学園共通)。前年度(2026年度入試)は医療系学科で国語総合の筆記、他学科は書類選考・面接・適性検査、最終試験は3月25日。","info":"入学資格:2027年3月高校卒業見込み者、高卒者、高卒認定合格者(18歳以上)等。出願は syutsugan.net のインターネット出願。奨学金:穴吹学園経済的支援奨学生制度、日本学生支援機構、高等教育の修学支援新制度対象校、学費分割制度。"},"tuition":"入学金300,000円(リハビリテーション関連)・年間学費950,000〜1,150,000円(学園共通の概要表記。学科別金額は未確認。教材費等は別途)","checked":"2026-10","confidence":"medium"},{"id":"sanuki-fukushi","name":"さぬき福祉専門学校","city":"丸亀市","address":"香川県丸亀市飯野町東分2700番地(〒763-0085)","founder":"私立(社会福祉法人厚仁会)","fields":["福祉・保育"],"url":"https://sanukischool.jukoen.jp/","admission_url":"https://sanukischool.jukoen.jp/for-those-who-wish-to-enroll/","departments":[{"name":"介護福祉学科","years":2,"capacity":40,"qualifications":["介護福祉士(国家試験受験資格)","手話奉仕員(入門編)"],"summary":"昼間2年課程。複数の高齢者施設が併設され、在学中から現場に近い環境で学べる。","riasec":{"R":0.5,"S":2.0,"C":0.5},"style":"Vocational","license":"legal","top":["S","R"],"split":true,"kind":"care"}],"admission":{"types":["AO入試(15名程度まで)","指定校推薦入試","一般入試","外国人(留学生)試験"],"schedule_note":null,"info":"出願期間・試験日は入学案内ページに記載がなく、各試験の要項PDFを参照とされていて未確認。"},"tuition":null,"checked":"2026-10","confidence":"medium"},{"id":"shikoku-iryo-fukushi","name":"四国医療福祉専門学校","city":"高松市","address":"香川県高松市上之町2丁目12番30号(〒761-8064)","founder":"私立(学校法人すみれ学園)","fields":["福祉・保育"],"url":"https://sumiregakuen.jp/shikoku-if/","admission_url":"https://sumiregakuen.jp/shikoku-if/admission/guidelines.html","departments":[{"name":"介護福祉学科","years":2,"capacity":40,"qualifications":["介護福祉士(国家資格)","レクリエーションインストラクター","福祉住環境コーディネーター"],"summary":"約200施設と連携し在学中に実習。看護師による医療的ケアの授業や介護用具づくりが特色。","riasec":{"R":0.5,"S":2.0,"C":0.5},"style":"Vocational","license":"legal","top":["S","R"],"split":true,"kind":"care"}],"admission":{"types":[],"schedule_note":null,"info":"入学募集要項ページ・学費ページは403エラーで取得できず、入試区分・日程は未確認。"},"tuition":null,"checked":"2026-10","confidence":"medium"},{"id":"shikoku-gakuin-senmon","name":"四国学院大学専門学校","city":"三豊市","address":"香川県三豊市高瀬町下勝間2516-4(〒767-0011)","founder":"私立(学校法人瀬戸内学院)","fields":["福祉・保育"],"url":"https://www.setouchi.ac.jp/","admission_url":"https://www.setouchi.ac.jp/2023%E5%B9%B4%E5%BA%A6-%E5%85%A5%E8%A9%A6%E5%AD%A6%E8%B2%BB%E6%83%85%E5%A0%B1/","departments":[{"name":"福祉学科","years":2,"capacity":null,"qualifications":["介護福祉士(受験資格)","レクリエーション介護士2級","日本赤十字社救急法救急員","専門士(称号)"],"summary":"香川県で最初に認可された介護福祉士養成施設。生活支援技術・実習・医療的ケアを学ぶ。","riasec":{"R":0.5,"S":2.0,"C":0.5},"style":"Vocational","license":"legal","top":["S","R"],"split":true,"kind":"care"}],"admission":{"types":["学校推薦型選抜(指定校)","学校推薦型選抜","一般選抜","総合型選抜(社会人)","総合型選抜(学士)","総合型選抜"],"schedule_note":null,"info":"『2027年度 入試・学費情報』ページに区分の記載はあるが、出願期間・試験日・定員の記載は取得できず未確認。入学金は奨学金対象者20万円免除、学士等入学者・キャリア入学者などは半額免除の制度あり。"},"tuition":null,"checked":"2026-10","confidence":"medium"},{"id":"anabuki-animal","name":"専門学校穴吹動物看護カレッジ","city":"高松市","address":"香川県高松市上天神町721-1(〒761-8056)","founder":"私立","fields":["動物"],"url":"https://web.anabuki-college.net/department/animal/","admission_url":"https://web.anabuki-college.net/admission/application/","departments":[{"name":"動物看護総合学科","years":3,"capacity":null,"qualifications":["愛玩動物看護師受験資格(国家資格)","愛玩動物飼養管理士","サロントリマー検定3級","しつけインストラクター検定"],"summary":"動物看護・トリミング・しつけを幅広く学び、愛玩動物看護師を目指す3年制。","riasec":{"R":1.0,"I":0.5,"S":1.5},"style":"Vocational","license":"legal","top":["S","R"],"split":true,"kind":"vet"},{"name":"動物健康管理学科 ペット美容・グルーマー専攻","years":2,"capacity":null,"qualifications":["JKC認定トリマーC級ライセンス","サービス接遇検定","愛玩動物飼養管理士"],"summary":"2年間で250回超のトリミング実習を積み、プロのトリマーを目指す。","riasec":{"R":2.0,"A":1.0},"style":"Practical","license":"cert","top":["R","A"],"split":false,"kind":"pet"},{"name":"動物健康管理学科 しつけインストラクター専攻","years":2,"capacity":null,"qualifications":["しつけインストラクター検定","JKC家庭犬訓練試験","JKC公認ハンドラーC級ライセンス","愛玩動物飼養管理士","サロントリマー検定3級"],"summary":"仔犬を預かって育てるパートナードッグ制度で、しつけ指導を学ぶ2年制。","riasec":{"R":1.5,"S":1.5},"style":"Practical","license":"cert","top":["S","R"],"split":true,"kind":"pet"}],"admission":{"types":["総合型選抜(オープンキャンパス/入試説明会参加が条件、適性検査+集団面接)","その他の選抜(詳細は募集要項)","穴吹カレッジ特待生制度(A〜D)","高資格・検定取得者特待生制度","在校生・卒業生の親族入学優遇制度"],"schedule_note":"2027年度入学向けインターネット出願期間は2026年9月1日〜2027年3月17日(学園共通)。前年度(2026年度入試)は医療系学科で国語総合の筆記、他学科は書類選考・面接・適性検査、最終試験は3月25日。","info":"入学資格:2027年3月高校卒業見込み者、高卒者、高卒認定合格者(18歳以上)等。出願は syutsugan.net のインターネット出願。奨学金:穴吹学園経済的支援奨学生制度、日本学生支援機構、高等教育の修学支援新制度対象校、学費分割制度。"},"tuition":"入学金160,000円・年間学費950,000〜1,150,000円(いずれも学園共通の概要表記。学科別金額は公式サイト本文では未確認。教科書・教材費等は別途)","checked":"2026-10","confidence":"medium"},{"id":"shikoku-business","name":"四国総合ビジネス専門学校","city":"高松市","address":"香川県高松市松並町1026-1","founder":"私立","fields":["IT・ゲーム","ビジネス・公務員・観光"],"url":"https://shikoku.ac.jp/","admission_url":"https://shikoku.ac.jp/entrance-examination-information/","departments":[{"name":"情報処理科","years":2,"capacity":null,"qualifications":["ITパスポート","基本情報技術者","応用情報技術者","情報セキュリティマネジメント","Webクリエイター能力認定試験"],"summary":"マルチメディア・SE・Web・ゲーム・情報セキュリティの5コースから選ぶIT系学科。","riasec":{"I":2.0,"C":1.0},"style":"Practical","license":"cert","top":["I","C"],"split":false,"kind":"it"},{"name":"ビジネス情報科","years":2,"capacity":null,"qualifications":["日商簿記","全経簿記","医療事務検定","医療秘書検定","秘書検定","ビジネス文書検定"],"summary":"医療事務・パソコンビジネス・公務員ビジネスの3コースで事務系の力を磨く学科。","riasec":{"E":1.0,"C":2.0},"style":"Practical","license":"cert","top":["C","E"],"split":false,"kind":"office"}],"admission":{"types":["総合型選抜(自己推薦)","指定校推薦選抜","一般推薦選抜","一般選抜"],"schedule_note":"2027年度入学向け: 総合型選抜1次 2026/7/1~8/31必着、同2次 2026/9/16~10/31必着、指定校推薦1次 2026/9/1~10/31必着、一般推薦・一般選抜 2026/9/1~2027年3月末必着。","info":"指定校推薦はGPA3.0以上が条件。2027年度募集要項(PDF)あり。"},"tuition":null,"checked":"2026-10","confidence":"high"},{"id":"anabuki-itbusiness","name":"専門学校穴吹ITビジネスカレッジ","city":"高松市","address":"香川県高松市西の丸町14-10(〒760-0021)","founder":"私立","fields":["IT・ゲーム","ビジネス・公務員・観光","調理・製菓","福祉・保育"],"url":"https://web.anabuki-college.net/","admission_url":"https://web.anabuki-college.net/admission/application/","departments":[{"name":"情報システム学科","years":3,"capacity":null,"qualifications":["基本情報技術者試験","情報セキュリティマネジメント試験","情報処理安全確保支援士試験","AWS認定クラウドプラクティショナー","CCNA","Pythonエンジニア認定試験","Javaプログラミング能力認定試験"],"summary":"3年制。システムエンジニア・AIテクノロジー・ネットワークセキュリティの3専攻でIT開発を実践的に学ぶ。","riasec":{"I":2.0,"C":1.0},"style":"Practical","license":"cert","top":["I","C"],"split":false,"kind":"it"},{"name":"ITテクノロジー学科","years":2,"capacity":null,"qualifications":["基本情報技術者試験","情報セキュリティマネジメント試験","Javaプログラミング能力認定試験"],"summary":"2年制。プログラミングを早期に習得。2年次にネットワークセキュリティ専攻かプログラマ専攻を選ぶ。","riasec":{"I":2.0,"C":1.0},"style":"Practical","license":"cert","top":["I","C"],"split":false,"kind":"it"},{"name":"未来創造ビジネス学科 DX・ITビジネス専攻","years":2,"capacity":null,"qualifications":["日商簿記検定3級","ITパスポート","3級ファイナンシャル・プランニング技能士","Excel表計算処理技能認定試験2級","Word文書処理技能認定試験2級","プレゼンテーション技能認定試験"],"summary":"デジタル技術をビジネスに活用する人材を育成。商店街と連携した実践やSNSマーケティング、生成AI活用を学ぶ。","riasec":{"E":2.0,"C":1.0},"style":"Practical","license":"cert","top":["E","C"],"split":false,"kind":"itbiz"},{"name":"未来創造ビジネス学科 不動産ビジネス専攻","years":2,"capacity":null,"qualifications":["宅地建物取引士","管理業務主任者","マンション管理士","賃貸不動産経営管理士"],"summary":"不動産関連の国家資格をめざす。あなぶきグループ連携の実践教育や、ドローン・DXも学ぶ。","riasec":{"E":2.0,"C":1.0},"style":"Vocational","license":"legal","top":["E","C"],"split":false,"kind":"estate"},{"name":"公務員ビジネス学科","years":2,"capacity":null,"qualifications":["日商簿記検定3級"],"summary":"ビジネススキルと公務員試験対策を並行して学ぶ。現役公務員との交流や体力試験対策の体育授業がある。","riasec":{"E":1.0,"C":2.0},"style":"Vocational","license":"cert","top":["C","E"],"split":false,"kind":"civil"},{"name":"公務員学科","years":1,"capacity":null,"qualifications":["日商簿記検定3級"],"summary":"1年制。公務員試験対策に特化。実務教育出版との提携教材と模擬試験、面接指導でサポート。","riasec":{"E":1.0,"C":2.0},"style":"Vocational","license":"cert","top":["C","E"],"split":false,"kind":"civil"},{"name":"パティシエ・ベーカリー学科","years":2,"capacity":null,"qualifications":["製菓衛生師受験資格(国家資格)","菓子製造技能士2級","パン製造技能士2級","ジュニアショコラティエ","ジュニアバリスタ"],"summary":"1000時間超の実習で製菓とパンを学ぶ2年制。職業実践専門課程。","note":"公式ページ上は穴吹ITビジネスカレッジの学科として掲載(旧「穴吹パティシエ福祉カレッジ」からの再編とみられる)。募集状況は公式サイトで確認してください。","riasec":{"R":2.0,"A":1.0},"style":"Vocational","license":"legal","top":["R","A"],"split":false,"kind":"pastry"},{"name":"こども保育学科","years":2,"capacity":null,"qualifications":["保育士資格","幼稚園教諭二種免許状","社会福祉主事任用資格","幼児体育指導者検定","短期大学士(近畿大学九州短期大学との連携)"],"summary":"保育士と幼稚園教諭二種を2年で目指す。校舎内の保育園で実践的に学ぶ。","note":"公式ページ上は穴吹ITビジネスカレッジの学科として掲載(旧「穴吹パティシエ福祉カレッジ」からの再編とみられる)。募集状況は公式サイトで確認してください。","riasec":{"A":1.0,"S":2.0},"style":"Vocational","license":"legal","top":["S","A"],"split":false,"kind":"childcare"}],"admission":{"types":["学校推薦型選抜(専願)","社会人推薦選抜(専願)","一般選抜","総合型選抜(FAQに記載。オープンキャンパス等への参加が条件)","穴吹カレッジ特待生制度","高資格・検定取得者特待制度","在校生・卒業生の親族入学優遇制度"],"schedule_note":"2027年度入学の出願期間は2026年9月1日〜2027年3月17日(インターネット出願)。区分名と試験回次は2026年度入試ページ(第6回2/20、第7回3/25など)の記載であり、2027年度の回次別日程は未確認。","info":"2026年度入試ページでは、医療系以外の学科は書類・面接・適性検査(学校推薦型・社会人推薦・一般とも)。2027年度の選考方法の詳細は未確認。大学・社会人向けに9月・10月入試で最大50万円免除の「スカラシップチャレンジ」の記載あり(同グループ公式ページ)。"},"tuition":"入学金160,000円(全学科共通)。年間学費: 情報システム学科 1,060,000円、ITテクノロジー学科 1,060,000円、未来創造ビジネス学科 1,060,000円、公務員ビジネス学科 950,000円、公務員学科 950,000円。教科書・教材費などは別途。初年度の合計額ではありません(2027年度の公式募集要項の記載)。","checked":"2026-10","confidence":"medium"},{"id":"anabuki-design","name":"専門学校穴吹デザインカレッジ","city":"高松市","address":"香川県高松市錦町1-3-5(〒760-0020)","founder":"私立","fields":["デザイン・建築・クリエイティブ","IT・ゲーム"],"url":"https://web.anabuki-college.net/","admission_url":"https://web.anabuki-college.net/admission/application/","departments":[{"name":"グラフィックデザイン学科","years":2,"capacity":null,"qualifications":["Photoshopクリエイター能力認定試験","Illustratorクリエイター能力認定試験","色彩検定"],"summary":"ポスターやWeb、動画編集まで幅広く学ぶ。企業・行政と連携し、年間最大40コンペに挑戦する。","riasec":{"R":0.5,"A":2.0,"E":0.5},"style":"Practical","license":"cert","top":["A","R"],"split":true,"kind":"graphic"},{"name":"マンガ・コミックイラスト学科","years":2,"capacity":null,"qualifications":["情報処理技能検定試験","似顔絵検定","漫画キャラクター検定","色彩検定"],"summary":"マンガ専攻とコミックイラスト専攻から選択。編集者による講評会や持ち込みツアーがある。","riasec":{"R":0.5,"A":2.0,"E":0.5},"style":"Practical","license":"cert","top":["A","R"],"split":true,"kind":"manga"},{"name":"トータルインテリア学科","years":2,"capacity":null,"qualifications":["二級建築士・木造建築士(受験資格)","家具製作3級技能検定","インテリア設計士","インテリアコーディネーター","色彩検定","リビングスタイリスト資格試験2級"],"summary":"住宅・ショップデザイン、建築設計、家具・ディスプレイの3専攻。実際のクライアントへ企画発表を行う。","riasec":{"R":1.0,"A":2.0},"style":"Vocational","license":"legal","top":["A","R"],"split":false,"kind":"interior"},{"name":"ゲームクリエイター学科","years":3,"capacity":null,"qualifications":["基本情報技術者試験","情報処理技術者能力認定試験","C言語プログラミング能力認定試験"],"summary":"3年制。C++、Unity・Unreal Engine、3D制作、VR/AR/XRまでゲーム制作を実践的に学ぶ。","riasec":{"I":1.5,"A":1.5},"style":"Practical","license":"cert","top":["I","A"],"split":true,"kind":"game"},{"name":"ネット動画クリエイター学科","years":2,"capacity":null,"qualifications":["Google アナリティクス個人認定資格(GAIQ)","Photoshopクリエイター能力認定試験","Illustratorクリエイター能力認定試験","色彩検定"],"summary":"動画制作と配信を総合的に学ぶ。Premiere・After Effects、撮影、ライブ配信を企業依頼で実践。","riasec":{"A":2.0,"E":1.0},"style":"Practical","license":"cert","top":["A","E"],"split":false,"kind":"movie"},{"name":"地域デザイン学科","years":2,"capacity":null,"qualifications":["色彩検定"],"summary":"2026年4月新設。地域や企業の依頼で分野横断のデザインを学び、2年次は企業・伝統工芸でインターン。","riasec":{"A":2.0,"E":1.0},"style":"Practical","license":"cert","top":["A","E"],"split":false,"kind":"regional"},{"name":"デザイン・イノベーション学科","years":3,"capacity":null,"qualifications":[],"summary":"3年制(2年+1年)。6つのデザイン分野から選び、3年次に他分野の授業も履修して複数の専門性を持つ。","riasec":{"A":2.0,"E":1.0},"style":"Practical","license":"none","top":["A","E"],"split":false,"kind":"regional"}],"admission":{"types":["学校推薦型選抜(専願)","社会人推薦選抜(専願)","一般選抜","総合型選抜(FAQに記載。オープンキャンパス等への参加が条件)","穴吹カレッジ特待生制度","高資格・検定取得者特待制度","在校生・卒業生の親族入学優遇制度"],"schedule_note":"2027年度入学の出願期間は2026年9月1日〜2027年3月17日(インターネット出願)。2027年度の回次別日程は未確認(2026年度は第6回2/20、第7回3/25などの記載)。","info":"2026年度入試ページでは、医療系以外の学科は書類・面接・適性検査。2027年度の選考方法の詳細は未確認。"},"tuition":"入学金160,000円(全学科共通)。年間学費: グラフィックデザイン学科 1,060,000円、マンガ・コミックイラスト学科 1,060,000円、トータルインテリア学科 1,060,000円、ネット動画クリエイター学科 1,060,000円、ゲームクリエイター学科 1,060,000円、地域デザイン学科 1,060,000円、デザイン・イノベーション学科 1,060,000円。教科書・教材費などは別途。初年度の合計額ではありません(2027年度の公式募集要項の記載)。","checked":"2026-10","confidence":"medium"},{"id":"kiss-chori","name":"キッス調理技術専門学校","city":"高松市","address":"香川県高松市天神前9-25","founder":"私立","fields":["調理・製菓"],"url":"http://www.kiss-school.jp/","admission_url":null,"departments":[{"name":"専門調理科(昼間部・衛生専門課程)","years":2,"capacity":null,"qualifications":["調理師","専門調理師・調理技能士"],"summary":"昼間2年で調理師免許の取得と、専門調理師・調理技能士への道をめざす専門課程。","riasec":{"R":2.0,"A":1.0},"style":"Vocational","license":"legal","top":["R","A"],"split":false,"kind":"cook"},{"name":"調理師科(衛生高等課程)","years":1,"capacity":null,"qualifications":["調理師","ふぐ調理師"],"summary":"1年で調理師免許をめざす課程。ふぐ調理師にも対応と掲載されている。","riasec":{"R":2.0,"A":1.0},"style":"Vocational","license":"legal","top":["R","A"],"split":false,"kind":"cook"},{"name":"専門調理科(夜)(衛生専門課程)","years":1.5,"capacity":null,"qualifications":["調理師","専門調理師・調理技能士"],"summary":"夜間に通う1年半の専門調理科。調理師免許をめざせる。","riasec":{"R":2.0,"A":1.0},"style":"Vocational","license":"legal","top":["R","A"],"split":false,"kind":"cook"}],"admission":{"types":["総合型選抜","一般入試","指定校推薦"],"schedule_note":null,"info":"入試区分は進学情報サイト(みんなの専門学校情報・2025年更新)の記載。公式サイトで未確認。"},"tuition":null,"checked":"2026-10","confidence":"low"},{"id":"charme-dressmaker","name":"シャルムドレスメーカー専門学校","city":"高松市","address":"香川県高松市常磐町2丁目9-7","founder":"私立","fields":["美容・理容・ファッション"],"url":null,"admission_url":null,"departments":[{"name":"服飾造形科(昼間部)","years":2,"capacity":null,"qualifications":[],"summary":"服飾造形科の昼間部。修業年限は2年。","riasec":{"R":1.0,"A":2.0},"style":"Practical","license":"none","top":["A","R"],"split":false,"kind":"fashion"},{"name":"服飾造形科(夜間部)","years":3,"capacity":null,"qualifications":[],"summary":"服飾造形科の夜間部で修業年限は3年。","riasec":{"R":1.0,"A":2.0},"style":"Practical","license":"none","top":["A","R"],"split":false,"kind":"fashion"},{"name":"デザイナー科(昼間部)","years":1,"capacity":null,"qualifications":[],"summary":"デザイナー科の昼間部。修業年限は1年。","riasec":{"R":1.0,"A":2.0},"style":"Practical","license":"none","top":["A","R"],"split":false,"kind":"fashion"},{"name":"デザイナー科(夜間部)","years":1.5,"capacity":null,"qualifications":[],"summary":"デザイナー科の夜間部で修業年限は1年半。","riasec":{"R":1.0,"A":2.0},"style":"Practical","license":"none","top":["A","R"],"split":false,"kind":"fashion"}],"admission":{"types":[],"schedule_note":null,"info":"旧連合会ページに入学期4月・10月の記載あり(現行は未確認)。"},"tuition":null,"checked":"2026-10","confidence":"low"},{"id":"yoshida-ai","name":"吉田愛服飾専門学校","city":"高松市","address":"香川県高松市番町2丁目3-11","founder":"私立","fields":["美容・理容・ファッション"],"url":"https://ai-yoshida.com/","admission_url":"https://ai-yoshida.com/request/contact_yoshida.html","departments":[{"name":"専門課程 本科(昼間部)","years":2,"capacity":null,"qualifications":["日本洋裁技術検定","ファッションビジネス能力検定","ファッション販売検定","パターンメーキング技術検定","ファッションコーディネイト色彩能力検定","技能検定(婦人・子供服製造)"],"summary":"パターン制作・服飾技術・スタイル画・色彩学を段階的に学ぶ昼間2年の課程。","riasec":{"R":1.0,"A":2.0},"style":"Practical","license":"cert","top":["A","R"],"split":false,"kind":"fashion"},{"name":"専門課程 本科(夜間部)","years":3,"capacity":null,"qualifications":["日本洋裁技術検定","ファッションビジネス能力検定","ファッション販売検定","パターンメーキング技術検定","ファッションコーディネイト色彩能力検定","技能検定(婦人・子供服製造)"],"summary":"働きながら学べる夜間3年の本科。高校卒業以上が対象。","riasec":{"R":1.0,"A":2.0},"style":"Practical","license":"cert","top":["A","R"],"split":false,"kind":"fashion"},{"name":"専攻科","years":1,"capacity":null,"qualifications":[],"summary":"専門課程本科の卒業者が進める1年制の課程。","riasec":{"R":1.0,"A":2.0},"style":"Practical","license":"none","top":["A","R"],"split":false,"kind":"fashion"}],"admission":{"types":[],"schedule_note":"願書受付は10月1日から翌年3月31日まで(公式の出願案内)。体験入学は2026年10/17、11/14、12/12、2027年1/16、3/13(各土曜13:30~15:30)。","info":"提出書類は入学願書、調査書または卒業証明書、証明写真2枚。窓口持参または郵送。入試区分名・選考方法は公式サイトに記載なし。"},"tuition":null,"checked":"2026-10","confidence":"high"},{"id":"kagawa-biyo","name":"専修学校香川県美容学校","city":"高松市","address":"香川県高松市松縄町1091番地3","founder":"私立","fields":["美容・理容・ファッション"],"url":"https://www.kenbi.or.jp/","admission_url":"https://www.kenbi.or.jp/bosyu.html","departments":[{"name":"衛生専門課程 美容学科","years":2,"capacity":null,"qualifications":["美容師国家試験受験資格"],"summary":"2年間で美容師国家試験の受験資格を得る昼間課程。カット・着付け・ネイル等の実習を多く含む。","riasec":{"A":2.0,"S":1.0},"style":"Vocational","license":"legal","top":["A","S"],"split":false,"kind":"beautician"},{"name":"美容通信学科","years":null,"capacity":null,"qualifications":["美容師国家試験受験資格"],"summary":"働きながら学ぶ通信制。サロン勤務の有無等で必要な履修時間が異なる。","riasec":{"A":2.0,"S":1.0},"style":"Vocational","license":"legal","top":["A","S"],"split":false,"kind":"beautician"}],"admission":{"types":[],"schedule_note":"募集要項ページ上は美容学科が9月から、美容通信学科が5月から受付開始(令和8年度生徒募集要項の表記)。","info":"募集要項はPDFで公開されているが、本文を読み取れず入試区分は未確認。ページは令和8年度版の表記で、令和9年度(2027年度)入学向けは確認できていない。"},"tuition":null,"checked":"2026-10","confidence":"medium"},{"id":"anabuki-beauty","name":"専門学校穴吹ビューティカレッジ","city":"高松市","address":"香川県高松市錦町1-3-5(〒760-0020)","founder":"私立","fields":["美容・理容・ファッション"],"url":"https://web.anabuki-college.net/department/beauty/","admission_url":"https://web.anabuki-college.net/admission/application/","departments":[{"name":"美容学科","years":2,"capacity":null,"qualifications":["美容師受験資格(国家資格)","ネイリスト技能検定","ジェルネイル技能検定","サービス接遇実務検定","色彩技能パーソナルカラー検定","メイクアップ検定","山野流着装 着物着付師"],"summary":"ワインディング実習など実技中心で美容師免許を目指す2年制。","riasec":{"A":2.0,"S":1.0},"style":"Vocational","license":"legal","top":["A","S"],"split":false,"kind":"beautician"},{"name":"ビューティコーディネーター学科","years":2,"capacity":null,"qualifications":["ネイリスト技能検定","ジェルネイル技能検定","化粧品検定","メイクアップ検定","色彩技能パーソナルカラー検定"],"summary":"メイクとネイルを軸に、ビューティ全般の知識と技術を2年間で学ぶ。","riasec":{"A":2.0,"S":1.0},"style":"Practical","license":"cert","top":["A","S"],"split":false,"kind":"beauty"},{"name":"トータルエステティック学科","years":2,"capacity":null,"qualifications":["エステティック関連資格(認定上級エステティシャン、アロマテラピー検定1級など)"],"summary":"フェイシャル・ボディ・スパ・アロマなどを学ぶエステティシャン養成の2年制。","riasec":{"A":1.0,"S":2.0},"style":"Practical","license":"cert","top":["S","A"],"split":false,"kind":"beauty"},{"name":"ブライダル学科","years":2,"capacity":null,"qualifications":["ブライダルコーディネート技能検定","ホスピタリティ関連資格"],"summary":"実際の結婚式づくりや沖縄での実習を通じ、ウェディングの仕事を学ぶ。","riasec":{"A":0.5,"S":1.0,"E":1.5},"style":"Practical","license":"cert","top":["E","S"],"split":true,"kind":"bridal"},{"name":"ビューティ・プロフェッショナル学科","years":3,"capacity":null,"qualifications":[],"summary":"3年間で複数のビューティ分野(コーディネーター・エステ・ブライダルから選択)を学ぶ。","riasec":{"A":2.0,"S":1.0},"style":"Practical","license":"none","top":["A","S"],"split":false,"kind":"beauty"}],"admission":{"types":["総合型選抜(オープンキャンパス/入試説明会参加が条件、適性検査+集団面接)","その他の選抜(詳細は募集要項)","穴吹カレッジ特待生制度(A〜D)","高資格・検定取得者特待生制度","在校生・卒業生の親族入学優遇制度"],"schedule_note":"2027年度入学向けインターネット出願期間は2026年9月1日〜2027年3月17日(学園共通)。前年度(2026年度入試)は医療系学科で国語総合の筆記、他学科は書類選考・面接・適性検査、最終試験は3月25日。","info":"入学資格:2027年3月高校卒業見込み者、高卒者、高卒認定合格者(18歳以上)等。出願は syutsugan.net のインターネット出願。奨学金:穴吹学園経済的支援奨学生制度、日本学生支援機構、高等教育の修学支援新制度対象校、学費分割制度。"},"tuition":"入学金160,000円・年間学費950,000〜1,150,000円(いずれも学園共通の概要表記。学科別金額は公式サイト本文では未確認。教科書・教材費等は別途)","checked":"2026-10","confidence":"medium"},{"id":"anabuki-kouka","name":"専門学校穴吹工科カレッジ","city":"高松市","address":"香川県高松市上天神町722-1(〒761-8056)","founder":"私立","fields":["自動車・工業"],"url":"https://web.anabuki-college.net/","admission_url":"https://web.anabuki-college.net/admission/application/","departments":[{"name":"自動車整備学科(2年制)","years":2,"capacity":null,"qualifications":["二級自動車整備士(総合)","中古自動車査定士","電気自動車等の整備業務に係る特別教育講習","ガス溶接技能講習","危険物取扱者試験乙種第4類"],"summary":"カリキュラムの6割以上が実習。複数メーカーの車種で故障診断など実践的な整備技術を学ぶ。","riasec":{"R":2.0,"I":0.5,"C":0.5},"style":"Vocational","license":"legal","top":["R","I"],"split":true,"kind":"auto"},{"name":"自動車整備学科(3年制)","years":3,"capacity":null,"qualifications":["二級自動車整備士(総合)","中古自動車査定士","電気自動車等の整備業務に係る特別教育講習","ガス溶接技能講習","危険物取扱者試験乙種第4類"],"summary":"3年制。カリキュラムの65%以上が実習で、業界経験者から基本から最新の整備技術まで学ぶ。","riasec":{"R":2.0,"I":0.5,"C":0.5},"style":"Vocational","license":"legal","top":["R","I"],"split":true,"kind":"auto"}],"admission":{"types":["学校推薦型選抜(専願)","社会人推薦選抜(専願)","一般選抜","総合型選抜(FAQに記載。オープンキャンパス等への参加が条件)","穴吹カレッジ特待生制度","高資格・検定取得者特待制度","在校生・卒業生の親族入学優遇制度"],"schedule_note":"2027年度入学の出願期間は2026年9月1日〜2027年3月17日(インターネット出願)。2027年度の回次別日程は未確認。","info":"2026年度入試ページに、自動車整備学科(3年制)は定員満了で入試中止との記載あり(2027年度の状況は未確認)。医療系以外の学科は書類・面接・適性検査。"},"tuition":"入学金160,000円(全学科共通)。年間学費: 自動車整備学科(2年制) 1,060,000円、自動車整備学科(3年制) 760,000円。教科書・教材費などは別途。初年度の合計額ではありません(2027年度の公式募集要項の記載)。","checked":"2026-10","confidence":"medium"},{"id":"kagawa-nodai","name":"香川県立農業大学校","city":"琴平町","address":"香川県仲多度郡琴平町榎井(番地は未確認)","founder":"公立(県立)","fields":["農業"],"url":"https://www.pref.kagawa.lg.jp/nodai/index.html","admission_url":"https://www.pref.kagawa.lg.jp/nodai/boshu/r8bosyu.html","departments":[{"name":"担い手養成科","years":2,"capacity":45,"qualifications":["大型特殊免許(農耕用限定)・けん引免許","日本農業技術検定2~3級","農業簿記検定","危険物取扱者","フォークリフト運転技能","造園技能士(林業・造園緑化専攻)","家畜人工授精師(畜産専攻)"],"summary":"野菜・花き・果樹・林業造園緑化・畜産の5専攻から選び、講義と実習を半々で学ぶ。","riasec":{"R":2.0,"I":1.0},"style":"Practical","license":"cert","top":["R","I"],"split":false,"kind":"agri"},{"name":"技術研修科","years":null,"capacity":null,"qualifications":[],"summary":"社会人向けの研修課程。就農準備・就農実践などがあり、期間は原則1年以内。","riasec":{"R":2.0,"I":0.5,"E":0.5},"style":"Practical","license":"none","top":["R","I"],"split":true,"kind":"agri"}],"admission":{"types":["推薦入学試験","一般入学試験(前期)","一般入学試験(後期)"],"schedule_note":"令和9年度(2027年度)入学: 推薦 出願2026/8/20~9/2・試験9/10、前期 出願10/21~11/4・試験11/12、後期 出願2027/2/17~3/3・試験3/11。","info":"受験資格は高等学校卒業者またはこれと同等以上の学力を有すると知事が認めた者。担い手養成科の内容。"},"tuition":"入学金5,650円、授業料年額118,800円(令和8年度実績)、第1学年教材経費210,000~250,000円(入学時納入、コースにより異なる)","checked":"2026-10","confidence":"high"}];
-  window.VAYL_DATA = { senmon: SENMON };
+  window.VAYL_DATA = { senmon: SENMON, faculties: FACULTIES };
   var SM_KINDS = {"nurse":{"label":"看護師・准看護師","desc":"病気やけがをした人のケアや、治療の補助をする仕事。看護師は国家資格、准看護師は都道府県の免許を目指す学科です。"},"pt":{"label":"理学療法士","desc":"ケガや病気で動きにくくなった人が、立つ・歩くなどの基本動作を取り戻せるよう、リハビリで支える仕事。"},"ot":{"label":"作業療法士","desc":"日常生活や仕事、趣味など「その人らしい生活」を取り戻せるよう、リハビリで支える仕事。"},"acu":{"label":"鍼灸・あん摩マッサージ","desc":"手技や、はり・きゅうで、体の不調をやわらげる施術の仕事。"},"judo":{"label":"柔道整復師","desc":"骨折・脱臼・捻挫などのケガの手当てや、スポーツ選手のサポートをする仕事。"},"dh":{"label":"歯科衛生士","desc":"歯科医院などで、むし歯・歯周病の予防や、口の健康の指導をする仕事。"},"dt":{"label":"歯科技工士","desc":"入れ歯や、歯に被せる物・詰め物を、細かな精度で作る仕事。"},"care":{"label":"介護福祉士","desc":"高齢者や障がいのある人の生活を、身体介助や相談で支える専門職。"},"office":{"label":"医療事務・ビジネス事務","desc":"病院や会社で、受付・会計・書類づくり・パソコン入力などを担う仕事。"},"vet":{"label":"愛玩動物看護師","desc":"動物病院で、獣医師を助けながら、動物のケアや飼い主への説明をする仕事。"},"pet":{"label":"トリマー・しつけ","desc":"犬などの毛のカットやしつけを通して、ペットと飼い主を支える仕事。"},"it":{"label":"IT・情報処理","desc":"プログラミング、システム開発、セキュリティなどを学び、IT技術者を目指す。"},"itbiz":{"label":"ITを活かしたビジネス","desc":"簿記やITパスポートなど、ITと経営の知識を組み合わせて働くための学び。"},"estate":{"label":"不動産ビジネス","desc":"不動産の売買や管理に関わる仕事に向けて、資格と知識を学ぶ。"},"civil":{"label":"公務員","desc":"公務員試験の対策と、事務のスキルを学ぶ。"},"pastry":{"label":"パティシエ・ベーカリー","desc":"洋菓子やパンをつくる技術と、製菓の知識を学ぶ。"},"childcare":{"label":"保育士・幼稚園教諭","desc":"子どもの成長を支える、保育の専門職を目指す。"},"graphic":{"label":"グラフィックデザイン","desc":"ポスター・広告・Webなどの、見て伝わるデザインを学ぶ。"},"manga":{"label":"マンガ・イラスト","desc":"マンガやキャラクターなど、絵で物語や世界観を表現する技術を学ぶ。"},"interior":{"label":"インテリア・建築","desc":"住まいや空間の設計・コーディネート、建築の基礎を学ぶ。"},"game":{"label":"ゲーム制作","desc":"ゲームのプログラミングや企画、制作の流れを学ぶ。"},"movie":{"label":"ネット動画・Webクリエイター","desc":"動画の企画・撮影・編集やWebでの発信など、ネットで見られるコンテンツ制作を学ぶ。"},"regional":{"label":"地域・総合デザイン","desc":"地域や企業の課題を、デザインの力で解決する考え方と技術を学ぶ。"},"cook":{"label":"調理師","desc":"料理の技術と食の知識を学び、調理師免許の取得を目指す。"},"fashion":{"label":"服飾・洋裁","desc":"洋服のデザインやパターン、縫製など、服をつくる技術を学ぶ。"},"beautician":{"label":"美容師","desc":"カットやパーマ、カラーなどの技術を学び、美容師免許の取得を目指す。"},"beauty":{"label":"ビューティ・エステ","desc":"メイクやネイル、エステなど、美しさを引き出す技術と接客を学ぶ。"},"bridal":{"label":"ブライダル","desc":"結婚式の企画・運営や接客など、人生の節目を演出する仕事を学ぶ。"},"auto":{"label":"自動車整備士","desc":"自動車の点検・整備の技術を学び、整備士の資格取得を目指す。"},"agri":{"label":"農業","desc":"栽培や経営など、農業の実践的な技術を現場で学ぶ。"}};
   (function(){
     var listEl = document.getElementById('sm-list');
@@ -8258,6 +8666,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       ensureAIState(key, saved ? saved.ctx : ctx);
       return openAIRoadmapScreen();
     }
+    window.VAYL_RM = { open: function(ctx){ return openRoadmapFor(ctx.key, ctx); } };
     async function sendMerge(st, tgt){
       var rm = st.roadmap;
       if(aiCapabilityUnavailable || rm.busy || !rm.data) return;
@@ -9345,6 +9754,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       try{
         if(!window.VAYL_AI) throw { code:'not_declared' };
         var res = await window.VAYL_AI.sample(st.turns.slice(), { modelTier:'default', cache:false, onText:function(u){
+          if(cfg.onStream){ try{ cfg.onStream(u.text); }catch(e){ /* no-op */ } }
           var p = cfg.strip(u.text); if(p){ pend.classList.remove('pending'); pend.textContent = p; logEl.scrollTop = logEl.scrollHeight; }
         } });
         var out = cfg.onReply(res.text) || {};
@@ -9372,6 +9782,46 @@ svg.leaflet-image-layer.leaflet-interactive path {
     var t = String(raw || '');
     tags.forEach(function(g){ t = t.replace(new RegExp('<' + g + '\\b[\\s\\S]*?(?:<\\/' + g + '>|$)', 'g'), ''); });
     return t.replace(/<[a-z\/]*$/i, '').trim();
+  }
+
+  /* ---------- AIの返答(タグ内のJSON)を、少し崩れていても読み取る ---------- */
+  function tagBody(raw, tag){
+    var m = String(raw == null ? '' : raw).match(new RegExp('<' + tag + '>([\\s\\S]*?)(?:<\\/' + tag + '>|(?=<(?:future|day|quick|step)>)|$)'));
+    return m ? m[1] : null;
+  }
+  function parseLoose(src, safe){
+    var s = String(src == null ? '' : src).trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```[\s\S]*$/, '').trim();
+    try{ return JSON.parse(s); }catch(e){ /* 下で直す */ }
+    var i0 = s.search(/[\[{]/); if(i0 < 0) return null;
+    s = s.slice(i0);
+    var out = '', st = [], inStr = false, esc = false, cuts = [], ch, i;
+    for(i = 0; i < s.length; i++){
+      ch = s.charAt(i);
+      if(inStr){
+        if(esc){ esc = false; out += ch; }
+        else if(ch === '\\'){ esc = true; out += ch; }
+        else if(ch === '"'){ inStr = false; out += ch; }
+        else if(ch === '\n' || ch === '\r' || ch === '\t'){ out += ' '; }
+        else out += ch;
+        continue;
+      }
+      if(ch === '"'){ inStr = true; out += ch; }
+      else if(ch === '{'){ st.push('}'); out += ch; }
+      else if(ch === '['){ st.push(']'); out += ch; }
+      else if(ch === '}' || ch === ']'){
+        if(!st.length || st[st.length - 1] !== ch) continue;
+        st.pop(); out += ch; cuts.push({ n:out.length, c:st.slice() });
+        if(!st.length) break;
+      }
+      else if(ch === ','){ cuts.push({ n:out.length, c:st.slice() }); out += ch; }
+      else out += ch;
+    }
+    function tidy(t){ return t.replace(/,(\s*[}\]])/g, '$1'); }
+    if(!safe){ try{ return JSON.parse(tidy(out + (inStr ? '"' : '') + st.slice().reverse().join(''))); }catch(e2){ /* 途中で切れた */ } }
+    for(i = cuts.length - 1; i >= 0; i--){
+      try{ return JSON.parse(tidy(out.slice(0, cuts[i].n) + cuts[i].c.slice().reverse().join(''))); }catch(e3){ /* 次の切れ目へ */ }
+    }
+    return null;
   }
   function parseQuick(raw){
     var m = String(raw || '').match(/<quick>([\s\S]*?)<\/quick>/);
@@ -9425,18 +9875,19 @@ svg.leaflet-image-layer.leaflet-interactive path {
       }finally{ clearTimeout(to); }
     }
     function inJapan(lat, lon){ return lat > 20 && lat < 46 && lon > 122 && lon < 154; }
-    async function geocode(q){
+    function inKagawa(lat, lon){ return lat > 33.95 && lat < 34.6 && lon > 133.4 && lon < 134.55; }
+    async function geocode(q, onlyKagawa){
       q = q.trim();
       var tasks = [
         fetchJson('https://msearch.gsi.go.jp/address-search/AddressSearch?q=' + encodeURIComponent(q), 8000).then(function(j){
           return (Array.isArray(j) ? j : []).map(function(f){
             var c = f && f.geometry && f.geometry.coordinates; if(!c) return null;
             return { lat:+c[1], lon:+c[0], name:(f.properties && f.properties.title) || q, sub:'住所(国土地理院)' };
-          }).filter(function(x){ return x && inJapan(x.lat, x.lon); });
+          }).filter(function(x){ return x && inJapan(x.lat, x.lon) && (!onlyKagawa || inKagawa(x.lat, x.lon)); });
         }),
-        fetchJson('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&accept-language=ja&countrycodes=jp&viewbox=133.4,34.65,134.5,33.9&q=' + encodeURIComponent(q), 9000).then(function(j){
+        fetchJson('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&accept-language=ja&countrycodes=jp&viewbox=133.4,34.6,134.55,33.95&bounded=' + (onlyKagawa ? 1 : 0) + '&q=' + encodeURIComponent(q), 9000).then(function(j){
           return (Array.isArray(j) ? j : []).map(function(f){
-            var lat = +f.lat, lon = +f.lon; if(!inJapan(lat, lon)) return null;
+            var lat = +f.lat, lon = +f.lon; if(!inJapan(lat, lon) || (onlyKagawa && !inKagawa(lat, lon))) return null;
             var parts = String(f.display_name || '').split(',').map(function(s){ return s.trim(); });
             return { lat:lat, lon:lon, name:f.name || parts[0] || q, sub:parts.slice(1, 4).join(' ') };
           }).filter(Boolean);
@@ -9446,6 +9897,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       if(!settled[0].ok && !settled[1].ok) throw new Error('search_failed');
       var looksAddr = /[0-9０-９]|丁目|番地|市|町|村|郡/.test(q);
       var merged = looksAddr ? settled[0].v.concat(settled[1].v) : settled[1].v.concat(settled[0].v);
+      merged = merged.filter(function(r){ return inKagawa(r.lat, r.lon); }).concat(merged.filter(function(r){ return !inKagawa(r.lat, r.lon); }));
       var out = [];
       merged.forEach(function(r){
         if(out.length >= 6) return;
@@ -9630,13 +10082,31 @@ svg.leaflet-image-layer.leaflet-interactive path {
     function redrawMarkersSel(){ if(!map) return; Object.keys(destMks).forEach(function(id){ destMks[id].setIcon(pinIcon('dest', '志', id !== S.sel)); }); }
 
     /* ----- 志望校リスト ----- */
-    var CAMPUS = [
-      ['香川大学 幸町キャンパス', '香川大学幸町キャンパス'], ['香川大学 林町キャンパス(創造工学部)', '香川大学林町キャンパス'],
-      ['香川大学 医学部(三木町)', '香川大学医学部'], ['香川大学 農学部(三木町)', '香川大学農学部'],
-      ['四国学院大学', '四国学院大学'], ['高松大学', '高松大学'], ['高松短期大学', '高松短期大学'], ['香川短期大学', '香川短期大学'],
-      ['香川県立保健医療大学', '香川県立保健医療大学'], ['徳島文理大学 高松駅キャンパス', '徳島文理大学 香川'],
-      ['せとうち観光専門職短期大学', 'せとうち観光専門職短期大学'], ['四国職業能力開発大学校', '四国職業能力開発大学校']
+    var CAMPUS = [ /* [表示名, 住所, 名前検索語] */
+      ['香川大学 幸町キャンパス', '香川県高松市幸町1-1', '香川大学 幸町キャンパス'],
+      ['香川大学 林町キャンパス(創造工学部)', '香川県高松市林町2217-20', '香川大学 林町キャンパス'],
+      ['香川大学 医学部(三木町)', '香川県木田郡三木町池戸1750-1', '香川大学 医学部'],
+      ['香川大学 農学部(三木町)', '香川県木田郡三木町池戸2393', '香川大学 農学部'],
+      ['四国学院大学', '香川県善通寺市文京町3-2-1', '四国学院大学'],
+      ['高松大学・高松短期大学', '香川県高松市春日町960', '高松大学'],
+      ['香川短期大学', '香川県坂出市室町3-2-1', '香川短期大学'],
+      ['香川県立保健医療大学', '香川県高松市牟礼町原281-1', '香川県立保健医療大学'],
+      ['徳島文理大学 高松駅キャンパス', '', '徳島文理大学 高松駅'],
+      ['せとうち観光専門職短期大学', '', 'せとうち観光専門職短期大学'],
+      ['四国職業能力開発大学校', '', '四国職業能力開発大学校']
     ];
+    function isPresetName(n){
+      n = String(n || '');
+      if(CAMPUS.some(function(c){ return c[0] === n; })) return true;
+      var sm = (window.VAYL_DATA && window.VAYL_DATA.senmon) || [];
+      return sm.some(function(x){ return x.name === n; });
+    }
+    async function geocodeSchool(addr, nameQ){
+      var list = [];
+      if(addr){ try{ list = await geocode(addr, true); }catch(e){ list = []; } }
+      if(!list.length) list = await geocode('香川県 ' + nameQ, true);
+      return list;
+    }
     function buildPick(){
       var sel = $('cm-dest-pick'), h = '<option value="">志望校をえらぶ…</option><optgroup label="大学・短大">';
       CAMPUS.forEach(function(c, i){ h += '<option value="u' + i + '">' + esc(c[0]) + '</option>'; });
@@ -9646,15 +10116,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
       sel.innerHTML = h;
       sel.addEventListener('change', async function(){
         var v = sel.value; if(!v) return;
-        var q, name;
-        if(v.charAt(0) === 'u'){ q = CAMPUS[+v.slice(1)][1]; name = CAMPUS[+v.slice(1)][0]; }
-        else{ var sc = sm[+v.slice(1)]; q = String(sc.address || '').replace(/\(〒[^)]*\)/, '').trim() || sc.name; name = sc.name; }
+        var addr, nameQ, name;
+        if(v.charAt(0) === 'u'){ var cc = CAMPUS[+v.slice(1)]; name = cc[0]; addr = cc[1]; nameQ = cc[2]; }
+        else{ var sc = sm[+v.slice(1)]; name = sc.name; addr = String(sc.address || '').replace(/\(〒[^)]*\)/, '').trim(); nameQ = sc.name; }
         var msgEl = $('cm-dest-msg'); msg(msgEl, '「' + name + '」の場所を探しています…');
         try{
-          var list = await geocode(q);
-          if(!list.length && v.charAt(0) === 's') list = await geocode(name);
+          var list = await geocodeSchool(addr, nameQ);
           if(!list.length){ msg(msgEl, '場所が見つかりませんでした。下の検索欄から探すか、地図にピンを置いてください。', true); sel.value = ''; return; }
-          msg(msgEl, '「' + list[0].name + '」を志望校の場所にしました。ちがう場所なら、地図の「志」ピンをドラッグして直せます。');
+          msg(msgEl, '「' + name + '」の場所を「' + list[0].name + '」(香川県内)にしました。ちがう場所なら、地図の「志」ピンをドラッグして直せます。');
           addDest({ lat:list[0].lat, lon:list[0].lon, sub:list[0].sub }, name);
         }catch(e){ msg(msgEl, '検索できませんでした。ネットワークをご確認ください。(Claudeのプレビュー画面では外部サービスにつながらないため使えません。公開ページでお試しください)', true); }
         sel.value = '';
@@ -9669,7 +10138,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         '香川の通学の事情: JR予讃線・高徳線、ことでん(琴平線・長尾線・志度線)、路線バス(地域・時間帯で本数が少ない)、自転車通学、家族の送迎、下宿・一人暮らし。',
         '・返信は日本語で3〜5文。見出し・箇条書きは使わない。質問は1回に1つまで。',
         '・時刻・運賃・本数・定期代などの具体的な数字は断定しない。「Googleマップや事業者の時刻表で確認してね」と促す。',
-        '・通学時間が長いほど、睡眠・勉強・自由時間にどう響くかも一言ふれる(例: 片道30分なら往復で1時間)。必要なら、アプリの「理想の1日」タブで時間配分を見比べられることを案内してよい。',
+        '・通学時間が長いほど、睡眠・勉強・自由時間にどう響くかも一言ふれる(例: 片道30分なら往復で1時間)。必要なら、アプリの「理想の自分」タブの中の「理想の1日」で時間配分を見比べられることを案内してよい。',
         '・高校生は原則として車を運転できない前提で話す(送迎は可)。',
         '・回答候補を出すときは最後に <quick>候補1|候補2|候補3</quick> を付ける(2〜4個、各14字以内)。不要なら付けない。'
       ].join('\n');
@@ -9700,6 +10169,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
     var inited = false;
     function init(){
       if(inited) return; inited = true;
+      var before = S.dests.length;
+      S.dests = S.dests.filter(function(d){ return !(isPresetName(d.name) && !inKagawa(d.lat, d.lon)); });
+      if(S.dests.length !== before){
+        if(!S.dests.some(function(d){ return d.id === S.sel; })) S.sel = S.dests.length ? S.dests[S.dests.length - 1].id : null;
+        persist();
+      }
       buildPick();
       wireSearch($('cm-home-form'), $('cm-home-q'), $('cm-home-res'), $('cm-home-msg'), function(r){ $('cm-home-q').value = ''; setHome({ lat:r.lat, lon:r.lon, label:r.name }); }, false);
       wireSearch($('cm-dest-form'), $('cm-dest-q'), $('cm-dest-res'), $('cm-dest-msg'), function(r){ $('cm-dest-q').value = ''; addDest(r); }, false);
@@ -9765,7 +10240,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         if(s == null || e == null) return;
         e = e % 1440 === 0 && e > 0 ? 1440 : e; if(s === 1440) s = 0;
         if(s === e) return;
-        out.push({ l:String(b.l || '').slice(0, 10) || (CATK[b.c] ? CATK[b.c].n : 'その他'), c:CATK[b.c] ? b.c : 'other', s:s, e:e });
+        var nb = { l:String(b.l || '').slice(0, 10) || (CATK[b.c] ? CATK[b.c].n : 'その他'), c:CATK[b.c] ? b.c : 'other', s:s, e:e }; var nt = String(b.n || '').replace(/\s+/g, ' ').trim().slice(0, 36); if(nt) nb.n = nt; out.push(nb);
       });
       return out.length >= 2 ? out : null;
     }
@@ -9790,19 +10265,19 @@ svg.leaflet-image-layer.leaflet-interactive path {
       return 'M' + p0[0].toFixed(2) + ' ' + p0[1].toFixed(2) + ' A' + r1 + ' ' + r1 + ' 0 ' + large + ' 1 ' + p1[0].toFixed(2) + ' ' + p1[1].toFixed(2) +
         ' L' + p2[0].toFixed(2) + ' ' + p2[1].toFixed(2) + ' A' + r0 + ' ' + r0 + ' 0 ' + large + ' 0 ' + p3[0].toFixed(2) + ' ' + p3[1].toFixed(2) + ' Z';
     }
-    function renderChart(){
-      var P = paint(S.blocks), cx = 180, cy = 180, r0 = 86, r1 = 142;
+    function chartSvg(blocks){
+      var P = paint(blocks), cx = 180, cy = 180, r0 = 86, r1 = 142;
       var h = '<svg viewBox="0 0 360 360" role="img" aria-label="1日24時間の円グラフ(上が0時、時計まわり)">';
-      if(!S.blocks.length){
+      if(!blocks.length){
         h += '<circle cx="' + cx + '" cy="' + cy + '" r="' + ((r0 + r1) / 2) + '" fill="none" stroke="var(--dp-blank)" stroke-width="' + (r1 - r0) + '"/>';
       }else{
         P.runs.forEach(function(r){
-          var cat = r.i < 0 ? 'blank' : S.blocks[r.i].c, d = arcPath(cx, cy, r0, r1, r.from, r.to);
-          h += '<path class="dp-seg" data-cat="' + cat + '" style="fill:var(--dp-' + cat + ')" d="' + d + '"><title>' + esc(r.i < 0 ? '未設定' : S.blocks[r.i].l) + ' ' + m2t(r.from) + '〜' + m2t(r.to) + '(' + fmtMin(r.to - r.from) + ')</title></path>';
+          var cat = r.i < 0 ? 'blank' : blocks[r.i].c, d = arcPath(cx, cy, r0, r1, r.from, r.to);
+          h += '<path class="dp-seg" data-cat="' + cat + '" style="fill:var(--dp-' + cat + ')" d="' + d + '"><title>' + esc(r.i < 0 ? '未設定' : blocks[r.i].l) + ' ' + m2t(r.from) + '〜' + m2t(r.to) + '(' + fmtMin(r.to - r.from) + ')</title></path>';
         });
         P.runs.forEach(function(r){
           if(r.i < 0 || r.to - r.from < 90) return;
-          var mid = (r.from + r.to) / 2, p = polar(cx, cy, (r0 + r1) / 2, mid), b = S.blocks[r.i], dk = CATK[b.c] && CATK[b.c].dark;
+          var mid = (r.from + r.to) / 2, p = polar(cx, cy, (r0 + r1) / 2, mid), b = blocks[r.i], dk = CATK[b.c] && CATK[b.c].dark;
           var lab = b.l.length > 5 && r.to - r.from < 150 ? b.l.slice(0, 5) : b.l;
           h += '<text class="dp-seglab' + (dk ? ' dark' : '') + '" x="' + p[0].toFixed(1) + '" y="' + (p[1] + 4).toFixed(1) + '" text-anchor="middle">' + esc(lab) + '</text>';
         });
@@ -9812,12 +10287,16 @@ svg.leaflet-image-layer.leaflet-interactive path {
         h += '<text class="dp-tick" x="' + p[0].toFixed(1) + '" y="' + (p[1] + 3.5).toFixed(1) + '" text-anchor="middle">' + hr + '</text>';
       });
       var free = P.tot.free || 0, sleep = P.tot.sleep || 0;
-      if(S.blocks.length){
+      if(blocks.length){
         h += '<text class="dp-center-a" x="' + cx + '" y="' + (cy - 20) + '" text-anchor="middle">自由に使える時間</text><text class="dp-center-b" x="' + cx + '" y="' + (cy + 8) + '" text-anchor="middle">' + fmtMin(free) + '</text><text class="dp-center-c" x="' + cx + '" y="' + (cy + 30) + '" text-anchor="middle">睡眠 ' + fmtMin(sleep) + '</text>';
       }else{
         h += '<text class="dp-center-a" x="' + cx + '" y="' + (cy - 6) + '" text-anchor="middle">まだ空っぽです</text><text class="dp-center-c" x="' + cx + '" y="' + (cy + 16) + '" text-anchor="middle">AIと話すか、サンプルから</text>';
       }
       h += '</svg>';
+      return h;
+    }
+    function renderChart(){
+      var P = paint(S.blocks), h = chartSvg(S.blocks);
       var wrap = $('dp-chart'); wrap.innerHTML = h;
       wrap.classList.toggle('hl', !!hlCat);
       wrap.querySelectorAll('.dp-seg').forEach(function(p){
@@ -9878,21 +10357,55 @@ svg.leaflet-image-layer.leaflet-interactive path {
       var pl = null; CM.plans().forEach(function(p){ if(p.id === S.cmpId) pl = p; });
       return pl || CM.plan();
     }
-    function loadSample(silent, n){
-      if(n == null){ var cp = chosenPlan(); n = cp ? cp.min : 0; }
+    function sampleBlocks(n){
       var school0 = 8 * 60, school1 = 15 * 60 + 40, leave = school0 - n, wake = leave - 45, b = [];
+      var clubEnd = school1 + n + 110;
       b.push({ l:'睡眠', c:'sleep', s:23 * 60, e:wake });
       b.push({ l:'身支度・朝食', c:'care', s:wake, e:leave });
       if(n) b.push({ l:'通学(行き)', c:'commute', s:leave, e:school0 });
       b.push({ l:'授業・学校', c:'school', s:school0, e:school1 });
       if(n) b.push({ l:'通学(帰り)', c:'commute', s:school1, e:school1 + n });
-      b.push({ l:'部活', c:'club', s:school1 + n, e:Math.max(school1 + n + 60, 18 * 60 + 40) });
+      b.push({ l:'部活', c:'club', s:school1 + n, e:clubEnd });
+      if(clubEnd < 18 * 60 + 40) b.push({ l:'自由時間', c:'free', s:clubEnd, e:18 * 60 + 40 });
       b.push({ l:'夕食', c:'meal', s:18 * 60 + 40, e:19 * 60 + 20 }, { l:'入浴', c:'care', s:19 * 60 + 20, e:20 * 60 },
              { l:'勉強', c:'study', s:20 * 60, e:22 * 60 }, { l:'自由時間', c:'free', s:22 * 60, e:23 * 60 });
-      S.blocks = b;
+      return b;
+    }
+    function loadSample(silent, n){
+      if(n == null){ var cp = chosenPlan(); n = cp ? cp.min : 0; }
+      S.blocks = sampleBlocks(n);
       if(!silent){ persist(); renderAll(); }
     }
-    function renderAll(){ renderChart(); renderRows(); renderCommute(); }
+    /* 通学が片道n分だったら、いまの1日の自由時間などがどうなるか(まだ何もなければ、サンプルの1日で計算) */
+    function simulate(n){
+      if(!S.blocks.length){
+        var Ps = paint(sampleBlocks(n));
+        return { free:Ps.tot.free || 0, sleep:Ps.tot.sleep || 0, commute:Ps.tot.commute || 0, sample:true };
+      }
+      var base = S.blocks.filter(function(b){ return b.c !== 'commute'; });
+      var P0 = paint(base), free0 = (P0.tot.free || 0) + (P0.tot.blank || 0);
+      return { free:Math.max(0, free0 - 2 * n), sleep:P0.tot.sleep || 0, commute:2 * n, sample:false, short:(free0 - 2 * n) < 0 };
+    }
+    function summary(){
+      if(!S.blocks.length) return '';
+      var P = paint(S.blocks), L = [];
+      CATS.forEach(function(c){ if(P.tot[c.k]) L.push(c.n + fmtMin(P.tot[c.k])); });
+      return L.join('、');
+    }
+    function miniSvg(){
+      if(!S.blocks.length) return '';
+      var P = paint(S.blocks), cx = 50, cy = 50, h = '<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="rgba(255,255,255,.92)"/>';
+      P.runs.forEach(function(r){ var cat = r.i < 0 ? 'blank' : S.blocks[r.i].c; h += '<path style="fill:var(--dp-' + cat + ')" d="' + arcPath(cx, cy, 24, 44, r.from, r.to) + '"/>'; });
+      return h + '</svg>';
+    }
+    function hasBlocks(){ return S.blocks.length > 0; }
+    function renderFutureBar(){
+      var box = $('dp-futurebar'); if(!box) return;
+      var f = window.FUTAPI && window.FUTAPI.card();
+      box.innerHTML = (f && f.north) ? '<b>未来の自分:</b> ' + esc(f.north) + '<br><span style="color:var(--ink-soft);font-size:.8rem">この理想に合う1日になっているか、AIに聞いてみましょう。</span> <button type="button" class="fu-linkbtn" id="dp-go-future">理想の自分をひらく</button>'
+        : '<b>未来の自分</b>をつくると、AIがその理想に合わせて1日を提案できます。 <button type="button" class="fu-linkbtn" id="dp-go-future">理想の自分をつくる</button>';
+    }
+    function renderAll(){ renderChart(); renderRows(); renderCommute(); renderFutureBar(); }
 
     /* ----- AI ----- */
     function rules(){
@@ -9902,7 +10415,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         '【返信の形式(厳守)】',
         '1. 返信本文は日本語で2〜4文。見出し・箇条書き・時間割の書き写しは禁止。質問は1回に1つだけ。',
         '2. 1日の内容を作る・変える時だけ、本文のあとに <day>[ {"l":"睡眠","c":"sleep","s":"23:00","e":"06:30"}, … ]</day> を付ける。付けるときは、変更後の1日の全体(24時間ぶん)を出し直すこと。',
-        '3. 各ブロックは l=名前(10字以内)、c=種類、s=開始時刻、e=終了時刻(HH:MM、24時間表記)。日をまたぐ睡眠は s=23:00, e=06:30 のように書く。ブロックは重ならず、24時間をすきまなく埋める。',
+        '3. 各ブロックは l=名前(10字以内)、n=ひとこと(任意・30字以内で、その時間に何をするか具体的に)、c=種類、s=開始時刻、e=終了時刻(HH:MM、24時間表記)。日をまたぐ睡眠は s=23:00, e=06:30 のように書く。ブロックは重ならず、24時間をすきまなく埋める。',
         '4. c は sleep(睡眠) / school(授業・学校) / commute(通学) / study(勉強) / meal(食事) / club(部活・活動) / free(趣味・自由) / care(入浴・身支度) / work(バイト) / other のどれか。',
         '5. 答えやすい候補があるときは、最後に <quick>候補1|候補2|候補3</quick> を付ける(2〜4個、各14字以内)。',
         '【内容のルール】',
@@ -9917,6 +10430,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
       var L = ['', '', '[アプリからの情報]'];
       var pl = chosenPlan();
       L.push(pl ? '通学条件: ' + pl.name + ' / ' + pl.modeLabel + ' / 片道' + pl.min + '分' : '通学条件: まだ決まっていない');
+      var fc = window.FUTAPI && window.FUTAPI.card();
+      if(fc && fc.north) L.push('生徒の理想の自分: ' + window.FUTAPI.summary() + '(この理想に近い1日になるよう助言する)');
       if(S.blocks.length){ L.push('現在の1日:'); S.blocks.forEach(function(b){ L.push('  ' + m2t(b.s) + '-' + (b.e === 1440 ? '24:00' : m2t(b.e)) + ' ' + b.l + '(' + b.c + ')'); }); }
       else L.push('現在の1日: まだ空');
       return L.join('\n');
@@ -9967,16 +10482,1404 @@ svg.leaflet-image-layer.leaflet-interactive path {
         if(ev.target.closest('#dp-apply')) applyCommute(null);
         else if(ev.target.closest('#dp-go-map') && window.goTab) window.goTab('commute');
       });
+      $('dp-futurebar').addEventListener('click', function(ev){ if(ev.target.closest('#dp-go-future') && window.futView) window.futView('card'); });
       $('dp-commute').addEventListener('change', function(ev){ if(ev.target.id === 'dp-cmp'){ S.cmpId = ev.target.value; persist(); renderCommute(); } });
     }
     function show(){ init(); renderAll(); }
     function refresh(){ if(inited) renderCommute(); }
     function reset(){ S = { blocks:[], chat:{ turns:[], display:[], quick:[] } }; if(inited){ renderAll(); chat.render(); } }
-    return { show:show, apply:applyCommute, refresh:refresh, reset:reset };
+    function applyDayTag(raw){
+      var body = tagBody(raw, 'day'); if(body == null) return null;
+      var nb = null;
+      try{ nb = normBlocks(parseLoose(body)); }catch(e){ nb = null; }
+      if(!nb) return false;
+      S.blocks = nb; persist(); if(inited) renderAll(); return true;
+    }
+    function blocksList(){
+      return S.blocks.map(function(b){ return { l:b.l, c:b.c, s:b.s, e:b.e, n:b.n || '' }; }).sort(function(a, b){ return ((a.s - 300 + 1440) % 1440) - ((b.s - 300 + 1440) % 1440); });
+    }
+    function totals(){ var t = paint(S.blocks).tot; return { free:t.free || 0, sleep:t.sleep || 0, study:t.study || 0, work:t.work || 0, commute:t.commute || 0 }; }
+    function setBlocks(arr){
+      var nb = normBlocks(arr); if(!nb) return false;
+      S.blocks = nb; persist(); if(inited) renderAll(); return true;
+    }
+    function previewFor(arr){
+      var nb = normBlocks(arr); if(!nb) return null;
+      var keep = S.blocks; S.blocks = nb;
+      var out = { svg:miniSvg(), summary:summary(), free:paint(nb).tot.free || 0, sleep:paint(nb).tot.sleep || 0, blocks:nb };
+      S.blocks = keep; return out;
+    }
+    return { show:show, apply:applyCommute, refresh:refresh, reset:reset, simulate:simulate, summary:summary, miniSvg:miniSvg, hasBlocks:hasBlocks, setBlocks:setBlocks, previewFor:previewFor, applyDayTag:applyDayTag, runs:function(){ var P = paint(S.blocks); return P.runs.map(function(r){ return { c:(r.i < 0 ? 'blank' : S.blocks[r.i].c), from:r.from, to:r.to }; }); }, chartSvg:function(){ return chartSvg(S.blocks); }, list:blocksList, totals:totals, t2m:t2m, m2t:m2t, CATS:CATS };
   })();
 
-  window.cmShow = CM.show; window.dpShow = DP.show; window.dpApplyCommute = DP.apply; window.dpRefresh = DP.refresh;
-  window.vaylFeatureReset = function(){ try{ CM.reset(); DP.reset(); }catch(e){ /* no-op */ } };
+  /* =================================================================
+     理想の自分(未来の自分カード)+ 志望校の比較 + ロードマップ連携
+     ================================================================= */
+  var FUT = (function(){
+    var FK = 'kagawa-compass-future-v1';
+    var AXES = [
+      { k:'stability', n:'安定' }, { k:'challenge', n:'挑戦' }, { k:'local', n:'地元・香川' }, { k:'income', n:'収入' },
+      { k:'freedom', n:'自由な時間' }, { k:'expert', n:'専門性' }, { k:'care', n:'人を支える' }, { k:'create', n:'ものづくり・創造' }
+    ];
+    var AXN = {}; AXES.forEach(function(a){ AXN[a.k] = a.n; });
+    var S = load(FK, {});
+    S.card = S.card && typeof S.card === 'object' ? S.card : {};
+    S.card.v = S.card.v && typeof S.card.v === 'object' ? S.card.v : {};
+    S.cands = Array.isArray(S.cands) ? S.cands : [];
+    S.chat = S.chat || { turns:[], display:[], quick:[] };
+    S.goal = S.goal && typeof S.goal === 'object' ? S.goal : null;
+    var chat = null, inited = false, busy = false;
+    function persist(){ save(FK, { card:S.card, goal:S.goal, cands:S.cands, trk:S.trk, chat:{ turns:(S.chat.turns.length > 20 ? [S.chat.turns[0]].concat(S.chat.turns.slice(-19)) : S.chat.turns), display:S.chat.display.slice(-20), quick:[] } }); }
+    function hasCard(){ return !!(S.card.north || S.card.job || S.card.story); }
+    function topValues(n){
+      return AXES.filter(function(a){ return (S.card.v[a.k] || 0) >= 4; }).sort(function(a, b){ return S.card.v[b.k] - S.card.v[a.k]; }).slice(0, n || 5);
+    }
+    var CATALOG = [
+      { id:'hobby', t:'趣味・好きなこと', type:'list', hint:'何を、どのくらいの頻度・予算で楽しむか' },
+      { id:'living', t:'暮らしの風景', type:'text', hint:'部屋・持ち物・食事・移動手段・ペットなど' },
+      { id:'people', t:'人間関係', type:'list', hint:'家族・友人・パートナー・職場の人との関わり方' },
+      { id:'health', t:'健康・体づくり', type:'kv', hint:'睡眠・運動・食事・体調管理' },
+      { id:'growth', t:'学び・成長', type:'list', hint:'続けている勉強・読む本・スキルアップ' },
+      { id:'community', t:'地域・社会とのつながり', type:'text', hint:'香川や社会との関わり・ボランティアなど' },
+      { id:'year', t:'1年のリズム', type:'kv', hint:'旅行・帰省・忙しい時期・長い休みの使い方' },
+      { id:'future', t:'将来の備え', type:'kv', hint:'貯金の目標・保険・住宅・老後' },
+      { id:'words', t:'大切にしている言葉', type:'text', hint:'座右の銘・口ぐせ・信条' }
+    ];
+    var TYPE_LABEL = { text:'文章', list:'箇条書き', kv:'ラベルと値' };
+    function catOf(id){ return CATALOG.filter(function(k){ return k.id === id; })[0] || null; }
+    function hash36(t){ var h = 5381; t = String(t); for(var i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) | 0; return Math.abs(h).toString(36); }
+    function xid(x){ var id = String((x && x.id) || '').toLowerCase().replace(/[^a-z0-9_]/g, '').slice(0, 16); if(!id && x && x.t) id = 'c' + hash36(x.t).slice(0, 8); return id; }
+    function getX(id){ return (S.card.extra || []).filter(function(e){ return e.id === id; })[0] || null; }
+    function xFilled(x){ return !!(x && ((x.text && x.text.trim()) || (x.items && x.items.length) || (x.rows && x.rows.length))); }
+    function cleanX(x, old){
+      var id = xid(x); if(!id) return null;
+      var cat = catOf(id), o = old ? JSON.parse(JSON.stringify(old)) : { id:id, t:'', type:(cat ? cat.type : 'text'), text:'', items:[], rows:[] };
+      if(x.t) o.t = clip(x.t, 18); else if(!o.t) o.t = cat ? cat.t : '項目';
+      if(['text', 'list', 'kv'].indexOf(x.type) >= 0) o.type = x.type;
+      if(x.b != null || x.text != null) o.text = clip(x.b != null ? x.b : x.text, 240);
+      if(Array.isArray(x.items)) o.items = x.items.slice(0, 10).map(function(i){ return clip(i, 48); }).filter(Boolean);
+      if(Array.isArray(x.rows)) o.rows = x.rows.slice(0, 10).map(function(r){ return (r && r.l) ? { l:clip(r.l, 12), v:clip(r.v, 48) } : null; }).filter(Boolean);
+      return o;
+    }
+    function xPlain(x){
+      var L = [];
+      if(x.text) L.push(x.text);
+      if(x.items && x.items.length) L.push(x.items.join('、'));
+      if(x.rows && x.rows.length) L.push(x.rows.map(function(r){ return r.l + ':' + r.v; }).join('、'));
+      return L.join(' ');
+    }
+    function num(x, lo, hi){
+      if(typeof x === 'string'){ var mm = x.replace(/[,，]/g, '').match(/-?\d+(?:\.\d+)?/); x = mm ? +mm[0] : NaN; }
+      x = +x; return isFinite(x) ? Math.max(lo, Math.min(hi, x)) : null;
+    }
+    function normInc(i){
+      if(i == null) return null;
+      if(Array.isArray(i)) return { lo:i[0], hi:i[1] != null ? i[1] : i[0] };
+      if(typeof i === 'string' || typeof i === 'number'){ var ns = String(i).replace(/[,，]/g, '').match(/\d+(?:\.\d+)?/g) || []; return ns.length ? { lo:ns[0], hi:ns[1] != null ? ns[1] : ns[0] } : null; }
+      if(typeof i !== 'object') return null;
+      var lo = i.lo != null ? i.lo : (i.min != null ? i.min : i.low), hi = i.hi != null ? i.hi : (i.max != null ? i.max : i.high);
+      if(lo == null && hi == null) return null;
+      return { lo:lo != null ? lo : hi, hi:hi != null ? hi : lo, note:i.note };
+    }
+    function salvageFuture(body){
+      var o = {}, found = false, t = String(body);
+      ['north', 'job', 'place', 'story', 'how', 'home', 'holiday'].forEach(function(k){
+        var m = t.match(new RegExp('"' + k + '"\\s*:\\s*"([^"\\n]*)"')); if(m && m[1]){ o[k] = m[1]; found = true; }
+      });
+      var y = t.match(/"years"\s*:\s*"?(\d+)/); if(y){ o.years = +y[1]; found = true; }
+      var lo = t.match(/"lo"\s*:\s*"?(\d+(?:\.\d+)?)/), hi = t.match(/"hi"\s*:\s*"?(\d+(?:\.\d+)?)/);
+      if(lo || hi){ o.inc = { lo:lo ? lo[1] : hi[1], hi:hi ? hi[1] : lo[1] }; found = true; }
+      return found ? o : null;
+    }
+    function r1(x){ return Math.round(x * 10) / 10; }
+    function netMonthly(){ var i = S.card.inc; return i ? r1(((i.lo + i.hi) / 2) * 0.8 / 12) : 0; }
+    function costTotal(){ return r1((S.card.costs || []).reduce(function(a, x){ return a + x.m; }, 0)); }
+    function summary(){
+      var c = S.card, L = [];
+      if(c.years) L.push(c.years + '年後');
+      if(c.north) L.push('なりたい自分「' + c.north + '」');
+      if(c.job) L.push('仕事: ' + c.job);
+      if(c.place) L.push('場所: ' + c.place);
+      var vs = AXES.filter(function(a){ return c.v[a.k]; }).map(function(a){ return a.n + c.v[a.k]; });
+      if(vs.length) L.push('価値観(1〜5): ' + vs.join('、'));
+      if(c.story) L.push('1日の様子: ' + c.story);
+      if(c.how) L.push('稼ぎ方: ' + c.how);
+      if(c.inc) L.push('年収の目安(税込・AIの目安): ' + c.inc.lo + '〜' + c.inc.hi + '万円' + (c.incNote ? '(' + c.incNote + ')' : ''));
+      if(c.costs && c.costs.length) L.push('毎月の生活費: ' + c.costs.map(function(x){ return x.l + x.m + '万円'; }).join('、') + '(計' + costTotal() + '万円)');
+      if(c.home) L.push('住まい・通勤: ' + c.home);
+      if(c.path && c.path.length) L.push('道のり: ' + c.path.map(function(x){ return x.t + ' ' + x.d; }).join(' → '));
+      if(c.need && c.need.length) L.push('必要な資格・スキル: ' + c.need.join('、'));
+      if(c.risks && c.risks.length) L.push('壁と対策: ' + c.risks.map(function(x){ return x.w + (x.a ? '→' + x.a : ''); }).join(' / '));
+      if(c.holiday) L.push('休日: ' + c.holiday);
+      (c.extra || []).forEach(function(x){ if(xFilled(x)) L.push(x.t + ': ' + xPlain(x).slice(0, 160)); });
+      return L.join(' / ');
+    }
+    function coverage(){
+      var c = S.card, L = [
+        { n:'なりたい姿', d:!!(c.north || c.job) }, { n:'稼ぎ方・年収', d:!!(c.how && c.inc) },
+        { n:'毎月のお金・住まい', d:!!((c.costs && c.costs.length) && c.home) }, { n:'理想の1日', d:DP.hasBlocks() },
+        { n:'道のり・必要な資格', d:!!((c.path && c.path.length) && (c.need && c.need.length)) }, { n:'壁と対策', d:!!(c.risks && c.risks.length) },
+        { n:'休日の過ごし方', d:!!c.holiday }
+      ];
+      CATALOG.forEach(function(k){ L.push({ n:k.t, d:xFilled(getX(k.id)), id:k.id }); });
+      return L;
+    }
+    function gaps(){
+      var c = S.card, g = [];
+      if(!c.north && !c.job) g.push('①なりたい姿(仕事・分野)');
+      if(!c.how || !c.inc) g.push('②どうやって稼ぐか・年収の目安');
+      if(!(c.costs && c.costs.length) || !c.home) g.push('③暮らしとお金(住まい・毎月の出費)');
+      if(!DP.hasBlocks()) g.push('④理想の1日(最重要)');
+      if(!(c.path && c.path.length) || !(c.need && c.need.length)) g.push('⑤道のり・必要な資格やスキル');
+      if(!(c.risks && c.risks.length)) g.push('⑥壁と対策');
+      if(!c.holiday) g.push('⑦休日の過ごし方');
+      CATALOG.forEach(function(k){ if(!xFilled(getX(k.id))) g.push('カード項目「' + k.t + '」(id:' + k.id + ' / type:' + k.type + ' / ' + k.hint + ')'); });
+      return g;
+    }
+
+    /* ---------- カード ---------- */
+    function dots(n){ var h = ''; for(var i = 1; i <= 5; i++) h += i <= n ? '●' : '○'; return h; }
+    function renderCard(){ var box = $('fu-card'); if(box) box.innerHTML = cardHtml(); }
+    function secHtml(cls, title, inner){ return '<section class="fu-sec ' + cls + '"><h4>' + title + '</h4>' + inner + '</section>'; }
+    function ph(t){ return '<p class="ph">' + t + '</p>'; }
+    function tlEnd(m){ return m === 1440 ? '24:00' : DP.m2t(m); }
+    function extraBody(x){
+      var h = '';
+      if(x.text) h += '<p class="how">' + esc(x.text) + '</p>';
+      if(x.items && x.items.length) h += '<ul class="fu-xl">' + x.items.map(function(i){ return '<li>' + esc(i) + '</li>'; }).join('') + '</ul>';
+      if(x.rows && x.rows.length) h += '<dl class="fu-xkv">' + x.rows.map(function(r){ return '<div><dt>' + esc(r.l) + '</dt><dd>' + esc(r.v) + '</dd></div>'; }).join('') + '</dl>';
+      return h;
+    }
+    function xToText(x){
+      if(x.type === 'list') return (x.items || []).join('\n');
+      if(x.type === 'kv') return (x.rows || []).map(function(r){ return r.l + '：' + r.v; }).join('\n');
+      return x.text || '';
+    }
+    function xFromText(x, t, title){
+      var o = { id:x.id, t:title, type:x.type };
+      if(x.type === 'list') o.items = String(t).split(/\n/).map(function(l){ return l.replace(/^[・\-\*●\s]+/, ''); });
+      else if(x.type === 'kv') o.rows = String(t).split(/\n/).map(function(l){ var m = l.match(/^\s*([^:：]{1,12})\s*[:：]\s*(.*)$/); return m ? { l:m[1], v:m[2] } : (l.trim() ? { l:l.trim().slice(0, 12), v:'' } : null); }).filter(Boolean);
+      else o.b = t;
+      return o;
+    }
+    function extraHtml(x, plain){
+      var filled = xFilled(x);
+      if(plain && !filled) return '';
+      var cat = catOf(x.id), tools = '';
+      if(!plain){
+        tools = '<span class="xtools"><button type="button" data-xedit="' + esc(x.id) + '">編集</button><button type="button" data-xdel="' + esc(x.id) + '"' + (armDel === x.id ? ' class="arm"' : '') + '>' + (armDel === x.id ? '本当に消す' : '削除') + '</button></span>';
+      }
+      var inner;
+      if(!plain && editing === x.id){
+        var hint = x.type === 'list' ? '1行に1つ書きます' : (x.type === 'kv' ? '「ラベル：内容」を1行ずつ書きます(例: 運動：週2回ジョグ)' : '自由に書きます');
+        inner = '<form class="fu-xform" data-xid="' + esc(x.id) + '"><input type="text" name="t" maxlength="18" value="' + esc(x.t) + '" aria-label="項目の名前"><textarea name="b" rows="5" aria-label="中身">' + esc(xToText(x)) + '</textarea><small>' + hint + '(' + TYPE_LABEL[x.type] + ')</small><div class="xbtns"><button type="submit" class="btn primary">保存</button><button type="button" class="btn ghost" data-xcancel="1">キャンセル</button></div></form>';
+      }else if(filled) inner = extraBody(x);
+      else inner = ph('まだ空っぽです。' + (cat ? cat.hint + 'を、' : '') + 'AIと一緒に考えるか、「編集」で書き込みましょう。') + (plain ? '' : '<button type="button" class="btn ghost fu-sayday" data-say="' + esc('カード項目「' + x.t + '」について、一緒に具体的にしたい') + '">AIと考える</button>');
+      return '<section class="fu-sec xsec"><h4>' + esc(x.t) + tools + '</h4>' + inner + '</section>';
+    }
+    function cardHtml(plain){
+      var c = S.card, empty = !hasCard(), h;
+      h = '<div class="fu-card' + (empty ? ' empty' : '') + (S.goal && !plain ? ' goal' : '') + '"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5l2 8.5 8.5 2-8.5 2-2 8.5-2-8.5-8.5-2 8.5-2z"/></svg>';
+      h += '<div class="yr">' + (c.years ? c.years + '年後の私' : 'FUTURE ME') + (S.goal && !plain ? '<span class="goalbadge">目標にしている姿</span>' : '') + '</div>';
+      h += '<div class="north">' + (c.north ? esc(c.north) : (empty ? 'まだ空っぽです。「3分のガイド」か、AIとの会話で、未来の自分をつくりましょう。' : '(ひとことは未設定)')) + '</div>';
+      var meta = [];
+      if(c.job) meta.push(esc(c.job)); if(c.place) meta.push(esc(c.place)); if(c.home) meta.push(esc(c.home));
+      if(meta.length) h += '<div class="meta">' + meta.map(function(m){ return '<span>' + m + '</span>'; }).join('') + '</div>';
+      if(c.story) h += '<p class="story">' + esc(c.story) + '</p>';
+      var tv = topValues(5);
+      if(tv.length) h += '<div class="chips">' + tv.map(function(a){ return '<span>' + esc(a.n) + '<b>' + dots(c.v[a.k]) + '</b></span>'; }).join('') + '</div>';
+      if(!empty){
+        /* どうやって稼ぐ */
+        if(c.how || c.inc || !plain){
+          var e = '';
+          if(c.how) e += '<p class="how">' + esc(c.how) + '</p>'; else e += ph('まだ決まっていません。AIに「どうやって稼ぐか」を相談してみましょう。');
+          if(c.inc){
+            e += '<div class="inc"><span>年収の目安(税込)</span><b>' + c.inc.lo + '〜' + c.inc.hi + '<small>万円</small></b></div>';
+            if(c.incNote) e += '<p class="incnote">' + esc(c.incNote) + '</p>';
+          }
+          h += secHtml('earn', 'どうやって稼ぐ?', e);
+        }
+        /* お金の見通し */
+        if((c.costs && c.costs.length) || c.inc){
+          var net = netMonthly(), tot = costTotal(), mx = Math.max(net, tot, 1), e2 = '';
+          if(c.costs && c.costs.length){
+            e2 += '<ul class="bud">' + c.costs.map(function(x){ return '<li><span>' + esc(x.l) + '</span><i><s style="width:' + Math.max(3, Math.round(x.m / mx * 100)) + '%"></s></i><b>' + x.m + '万円</b></li>'; }).join('') + '</ul>';
+          }
+          if(net && tot){
+            var diff = r1(net - tot);
+            e2 += '<div class="bsum' + (diff < 0 ? ' neg' : '') + '"><div><small>手取りの目安</small><b>' + net + '万円</b></div><em>−</em><div><small>生活費</small><b>' + tot + '万円</b></div><em>=</em><div><small>毎月の余り</small><b>' + (diff >= 0 ? '+' : '') + diff + '万円</b></div></div>';
+            e2 += '<p class="incnote">' + (diff < 0 ? 'このままだと毎月足りません。収入を上げるか、出費を見直す必要があります。' : '年に約' + Math.round(diff * 12) + '万円を、貯金や自由に使うお金にできる計算です。') + '手取りは年収の約8割で計算した目安です。</p>';
+          }else if(net){ e2 += '<p class="incnote">手取りの目安は月に約' + net + '万円(年収の約8割)。生活費はまだ入っていません。</p>'; }
+          else if(tot){ e2 += '<p class="incnote">毎月の生活費は合計で約' + tot + '万円。収入の目安がまだ入っていません。</p>'; }
+          h += secHtml('money', '毎月のお金は?', e2);
+        }else if(!plain){
+          h += secHtml('money', '毎月のお金は?', ph('まだ決まっていません。住まい・食費・交通費などの出費を、AIと一緒に見積もってみましょう。'));
+        }
+        /* 理想の1日(大きく) */
+        if(DP.hasBlocks()){
+          var L = DP.list(), t = DP.totals(), tl = '';
+          tl = '<ol class="fu-tl">' + L.map(function(b){
+            return '<li><time>' + DP.m2t(b.s) + '〜' + tlEnd(b.e) + '</time><i style="background:var(--dp-' + b.c + ')"></i><div><b>' + esc(b.l) + '</b>' + (b.n ? '<span>' + esc(b.n) + '</span>' : '') + '</div></li>';
+          }).join('') + '</ol>';
+          h += secHtml('day', '理想の1日', '<div class="fu-day"><div class="fu-day-chart">' + DP.chartSvg() + '<div class="fu-day-stats"><span>自由時間 <b>' + fmtMin(t.free) + '</b></span><span>睡眠 <b>' + fmtMin(t.sleep) + '</b></span>' + (t.commute ? '<span>通学 <b>' + fmtMin(t.commute) + '</b></span>' : '') + '</div></div>' + tl + '</div>');
+        }else if(!plain){
+          h += secHtml('day', '理想の1日', ph('まだ空っぽです。目標の姿が決まったら、朝起きてから夜ねるまでの1日を、時間ごとに描きます。') + '<button type="button" class="btn ghost fu-sayday" data-say="この理想に合う、理想の1日を一緒に考えたい">AIと1日を考える</button>');
+        }
+        /* 道のり */
+        if(c.path && c.path.length){
+          h += secHtml('path', 'そこまでの道のり', '<ol class="fu-path">' + c.path.map(function(x){ return '<li><b>' + esc(x.t) + '</b><span>' + esc(x.d) + '</span></li>'; }).join('') + '</ol>');
+        }else if(!plain){ h += secHtml('path', 'そこまでの道のり', ph('まだ決まっていません。高校 → 進学 → 資格 → 就職の順に、AIと道のりを描きます。')); }
+        /* 必要なもの */
+        if(c.need && c.need.length) h += secHtml('need', '必要な資格・スキル', '<div class="fu-needs">' + c.need.map(function(x){ return '<span>' + esc(x) + '</span>'; }).join('') + '</div>');
+        /* 壁と対策 */
+        if(c.risks && c.risks.length) h += secHtml('risk', '現実の壁と、その対策', c.risks.map(function(x){ return '<div class="rk"><div class="w"><em>壁</em>' + esc(x.w) + '</div><div class="a"><em>対策</em>' + esc(x.a || '(まだ決まっていません)') + '</div></div>'; }).join(''));
+        if(c.holiday) h += secHtml('hol', '休日の過ごし方', '<p class="how">' + esc(c.holiday) + '</p>');
+        (c.extra || []).forEach(function(x){ h += extraHtml(x, plain); });
+        if(c.inc || (c.costs && c.costs.length)) h += '<p class="fu-disc">※ 金額・年数は、AIがつくった目安です。実際は、公式の統計(厚生労働省「賃金構造基本統計調査」など)や、求人・学校の情報で確かめましょう。</p>';
+      }
+      h += '<div class="brand">VAYL ・ 北極星に向かって</div></div>';
+      return h;
+    }
+    function syncFields(){
+      var c = S.card;
+      $('fu-years').value = String(c.years || 10);
+      $('fu-north').value = c.north || ''; $('fu-job').value = c.job || ''; $('fu-place').value = c.place || ''; $('fu-story').value = c.story || '';
+      $('fu-axes').innerHTML = AXES.map(function(a){ var v = c.v[a.k] || 0; return '<label class="fu-ax"><span>' + a.n + '</span><input type="range" min="0" max="5" step="1" data-ax="' + a.k + '" value="' + v + '" aria-label="' + a.n + 'の大切さ"><output>' + (v || '−') + '</output></label>'; }).join('');
+    }
+
+    /* ---------- AIとの対話(未来の自分を、超具体的につくる) ---------- */
+    function rules(){
+      return [
+        'あなたは「VAYL」というアプリの中で動く、高校生が「これを目標にする!」と思えるくらい具体的な「未来の自分」を、会話しながらつくるのを手伝うAI(進路シミュレーター)です。あたたかく、でも現実からは目をそらさずに話してください。',
+        '生徒はまだ将来がぼんやりしているかもしれません。「正解」を決めるのではなく、質問と具体例で、生徒自身の言葉を引き出してください。生徒の夢は否定せず、「それを実現するなら、現実はこうなる」と、数字や条件つきで具体化します。',
+        '「未来の自分カード」は、あなたが返す <future> タグのJSONと <day> タグのJSONから、アプリが自動で描きます(カードは大きな目標カードです)。',
+        '【最重要: カードの編集】カードのすべての項目(なりたい姿・仕事・場所・1日の様子・価値観・稼ぎ方・年収・毎月の生活費・住まい・道のり・必要な資格・壁と対策・休日・自由項目・理想の1日)は、あなたが <future> と <day> で、いつでも自由に書き換えられる。「編集できない」「アプリが決めているので変えられない」「手動で直して」と言ってはいけない。生徒が「年収を600万にして」「家賃を下げて」「資格を1つ足して」「この項目はいらない」のように言ったら、すぐに <future> で反映し、「変えたよ」と答える。反映するときは必ず <future> を付ける(付けずに「変えたよ」と言うのは禁止)。配列(costs / path / need / risks)は、変えたい項目だけでなく変更後の全体を出し直す。消したい項目は、文字列なら空文字 ""、年収なら null、配列なら [] を送る。',
+        '【返信の形式(厳守)】',
+        '1. 返信本文は日本語で2〜5文。見出し・箇条書きは禁止。質問は1回に1つだけ。',
+        '2. カードの内容が分かった・変わったときだけ、本文のあとに <future>{…}</future> を付ける。分かったことだけでよい(含まれないキーは今のまま残る)。使えるキー: ' +
+          'years(3・5・10・15のどれか) / north(なりたい自分のひとこと40字以内) / job(仕事・立場26字以内) / place(暮らす場所26字以内) / story(未来のある日の様子、3文・220字以内) / v(価値観。各1〜5の整数) / ' +
+          'how(どうやって稼ぐか。具体的な仕事の中身と働き方・130字以内) / inc({"lo":最低,"hi":最高,"note":"伸び方など90字以内"} 税込み年収の目安を万円の整数で) / ' +
+          'costs(毎月の生活費。[{"l":"家賃","m":4.5}, …] lは8字以内、mは万円で小数1桁まで。最大8項目。住居・食費・通信・交通や車・保険・趣味・貯金など) / home(住まいと通勤の様子60字以内) / ' +
+          'path(そこまでの道のり。[{"t":"高3","d":"○○学部の総合型選抜に出願"}, …] tは時期10字以内、dはやること60字以内。4〜6個を時系列で) / need(必要な資格・スキル。22字以内の文字列の配列、最大6) / ' +
+          'risks(現実の壁と対策。[{"w":"壁","a":"対策"}, …] 各60字以内、最大3) / holiday(休日の過ごし方70字以内) / ' +
+          'extra(自由項目。人生のあらゆる面を足せる。例: [{"id":"hobby","t":"趣味・好きなこと","type":"list","items":["週末の釣り(月1万円)","…"]},{"id":"health","t":"健康・体づくり","type":"kv","rows":[{"l":"運動","v":"週2回ジョグ"}]},{"id":"living","t":"暮らしの風景","type":"text","b":"…"}]。idは英小文字(例: hobby)で、同じidを送るとその項目を上書きする。{"id":"hobby","del":1}で削除。typeは text(b=文章240字以内) / list(items=48字以内×最大10) / kv(rows=l12字以内・v48字以内×最大10)。最大14項目)',
+        '3. v のキーは stability(安定) / challenge(挑戦) / local(地元・香川) / income(収入) / freedom(自由な時間) / expert(専門性) / care(人を支える) / create(ものづくり・創造)。',
+        '4. 理想の1日が分かったら、<day>[{"l":"睡眠","c":"sleep","s":"23:00","e":"06:30","n":"ひとこと"}, …]</day> を付ける。変更後の1日の全体(24時間ぶん)を出し直すこと。l=名前(10字以内)、n=その時間に何をするか具体的な一言(30字以内)、c は sleep / school / commute / study / meal / club / free / care / work / other のどれか。s・e はHH:MM(24時間表記)。ブロックは重ならず、すきまなく24時間を埋める。この1日は「その仕事についた未来の自分」の1日(仕事が「work」)で、通勤も commute で入れる。',
+        '5. 答えやすい候補があるときは、最後に <quick>候補1|候補2|候補3</quick> を付ける(2〜4個、各14字以内)。',
+        '【カードの方針】カードは、1日のスケジュールから、収入・仕事・趣味・人間関係・健康・暮らしまで、人生のあらゆる面を網羅した、生徒が「これを目標にする!」と言えるくらい具体的なものにする。どの項目も、「何を・いつ・どのくらい・いくらで」まで書く。',
+        '【カード項目の一覧(extra用)】' + CATALOG.map(function(k){ return k.id + '=' + k.t + '(type:' + k.type + '。' + k.hint + ')'; }).join(' / '),
+        '【進め方(重要)】',
+        '・アプリが毎回「カードの空き状況」を送る。空いている項目を、①なりたい姿 → ②どうやって稼ぐか(働き方・年収の目安) → ③暮らしとお金(住まい・毎月の出費) → ④理想の1日 → ⑤道のり・必要な資格 → ⑥壁と対策 → ⑦休日の過ごし方 → そのあとは「カード項目」(extra)を、空いているものから、会話の流れで自然なものを選んで、の順に、1回の返信で1つの話題だけ聞く。生徒の話題が一覧にないとき(例: ペット・推し活・副業・留学・信仰・結婚や子ども)は、新しいidで足してよい(「カードに足しておくね」と一言)。すべて埋まったら「ほかに足したい面はある?」と聞く。生徒が別の話をしたら、それに答えてから戻る。',
+        '・④の理想の1日は、とくに大切な話題。仕事のイメージ(①②)が見えてきたら、必ず自然に差し込む(例: 「その仕事なら、朝は何時に起きて、どこへ向かっていそう?」「仕事のあと、夜はどう過ごしたい?」)。1〜2往復で聞き出したら、すぐ <day> で1日を出し、「こんな感じ?」と確認して、直したいところを聞く。',
+        '・最初の返信は、質問を1つだけ。生徒が答えにくそうなら、具体例を <quick> で3つ出して選んでもらう。',
+        '・2〜3回やり取りするたびに、わかったことを <future> で出す。生徒が決めていないことは、「たとえば〇〇という選択肢がある」と例を出して聞き、生徒が選んだら反映する。',
+        '【現実的に話すためのルール】',
+        '・お金の数字はすべて「目安」。年収は税込みのレンジ(万円)で、根拠が弱いときは幅を広めにする。手取りと「毎月の余り」は、アプリが年収(inc)と生活費(costs)から自動で計算して表示する(あなたは手取りの数字は出さない)。だから年収や生活費を <future> で書き換えれば、手取りも自動で変わる。出費は、香川県の暮らし(車が必要な地域が多い・家賃が都会より低めなど)を踏まえて見積もる。',
+        '・数字を出したときは、本文で一言「あくまで目安なので、厚生労働省の統計や求人票で確かめてね」のように、確かめ方にふれる。特定の企業名・求人・給与額を断定しない。',
+        '・夢をそのまま肯定せず、倍率・資格・地方の求人の少なさ・転勤・体力など、現実の壁も、対策とセットで伝える。',
+        '・「もしも」の相談(例: 東京で働いたら? 公務員と民間のちがいは?)には、カードは変えずに、数字つきで比べて答え、「カードに反映する?」と聞く。生徒が決めたら反映する。',
+        '・特定の職業や進路を押しつけない。「正解」はないことを、必要なら一言添える。個人情報は聞かない。',
+        '・アプリから届く「現在のカード」「理想の1日」「通学条件」「空き状況」を踏まえて話す。'
+      ].join('\n');
+    }
+    function note(){
+      var L = ['', '', '[アプリからの情報]'];
+      L.push('(カードのどの項目も、あなたが書き換えてよい。年収・生活費・道のり・資格・壁・休日・自由項目も含む。「編集できない」とは言わない。変えるときは、返信本文のあとに <future>{"inc":{"lo":500,"hi":800}}</future> のように、変えたいキーだけを付ける。キー: years north job place story v how inc costs home path need risks holiday extra。消すときは空文字・null・[]。理想の1日は <day>)');
+      L.push(hasCard() ? '現在のカード: ' + summary() : '現在のカード: まだ空');
+      var g = gaps(); L.push(g.length ? 'カードの空き状況(まだ空いている項目): ' + g.join(' / ') : 'カードの空き状況: すべて埋まっている(直したい点があるか聞いてよい)');
+      var bl = DP.list();
+      if(bl.length){ L.push('いまの理想の1日:'); bl.forEach(function(b){ L.push('  ' + DP.m2t(b.s) + '-' + tlEnd(b.e) + ' ' + b.l + '(' + b.c + ')' + (b.n ? ' ' + b.n : '')); }); }
+      else L.push('理想の1日: まだ作っていない');
+      if(hasTrk()){
+        if(S.trk.step) L.push('今週の一歩(本人が取り組み中): ' + S.trk.step.t);
+        var rl = recentLog(3); if(rl.length) L.push('最近やったこと(新しい順): ' + rl.map(function(x){ return fmtD(x.at) + ' ' + x.t; }).join(' / ') + '(本人の行動をほめ、カードに反映できることがあれば提案する)');
+      }
+      var cp = CM.plan(); if(cp) L.push('通学条件(進学先): ' + cp.name + ' / ' + cp.modeLabel + ' / 片道' + cp.min + '分');
+      return L.join('\n');
+    }
+    function clip(t, n){ return String(t == null ? '' : t).replace(/\s+/g, ' ').trim().slice(0, n); }
+    function applyFuture(raw, live){
+      var body = tagBody(raw, 'future'); if(body == null) return false;
+      var o = null;
+      try{ o = parseLoose(body, !!live); }catch(e){ o = null; }
+      if(!live && (!o || typeof o !== 'object' || Array.isArray(o))) o = salvageFuture(body);
+      if(!o || typeof o !== 'object' || Array.isArray(o)) return false;
+      var c = S.card;
+      if([3, 5, 10, 15].indexOf(+o.years) >= 0) c.years = +o.years;
+      if(o.north) c.north = clip(o.north, 40);
+      if(o.job) c.job = clip(o.job, 26);
+      if(o.place) c.place = clip(o.place, 26);
+      if(o.story) c.story = clip(o.story, 240);
+      if(o.v && typeof o.v === 'object') AXES.forEach(function(a){ var n = Math.round(+o.v[a.k]); if(n >= 0 && n <= 5 && o.v[a.k] != null) c.v[a.k] = n; });
+      if(o.how) c.how = clip(o.how, 140);
+      ['how', 'story', 'home', 'holiday'].forEach(function(k){ if(o[k] === '' || o[k] === null) delete c[k]; });
+      if(o.inc === null){ delete c.inc; delete c.incNote; }
+      var oi = normInc(o.inc != null ? o.inc : (o.income != null ? o.income : o.salary));
+      if(oi){
+        var lo = num(oi.lo, 0, 5000), hi = num(oi.hi, 0, 5000);
+        if(lo != null && hi != null){ if(lo > hi){ var tmp = lo; lo = hi; hi = tmp; } c.inc = { lo:Math.round(lo), hi:Math.round(hi) }; }
+        var inote = oi.note != null ? oi.note : o.incNote; if(inote) c.incNote = clip(inote, 100);
+      }
+      if(Array.isArray(o.costs)){
+        var cs = o.costs.slice(0, 9).map(function(x){ var mm = x && num(x.m, 0, 300); return (x && x.l && mm != null) ? { l:clip(x.l, 8), m:r1(mm) } : null; }).filter(Boolean);
+        if(cs.length) c.costs = cs; else if(!o.costs.length) delete c.costs;
+      }
+      if(o.home) c.home = clip(o.home, 64);
+      if(Array.isArray(o.path)){
+        var ph2 = o.path.slice(0, 7).map(function(x){ return (x && x.t && x.d) ? { t:clip(x.t, 10), d:clip(x.d, 66) } : null; }).filter(Boolean);
+        if(ph2.length) c.path = ph2; else if(!o.path.length) delete c.path;
+      }
+      if(Array.isArray(o.need)){ var nd = o.need.slice(0, 8).map(function(x){ return clip(x, 24); }).filter(Boolean); if(nd.length) c.need = nd; else if(!o.need.length) delete c.need; }
+      if(Array.isArray(o.risks)){ var rk = o.risks.slice(0, 4).map(function(x){ return (x && x.w) ? { w:clip(x.w, 66), a:clip(x.a, 66) } : null; }).filter(Boolean); if(rk.length) c.risks = rk; else if(!o.risks.length) delete c.risks; }
+      if(o.holiday) c.holiday = clip(o.holiday, 76);
+      if(Array.isArray(o.extra)){
+        c.extra = Array.isArray(c.extra) ? c.extra : [];
+        o.extra.slice(0, 14).forEach(function(x){
+          if(!x || typeof x !== 'object') return;
+          var id = xid(x); if(!id) return;
+          if(x.del){ c.extra = c.extra.filter(function(e){ return e.id !== id; }); return; }
+          var old = getX(id), n = cleanX(x, old); if(!n) return;
+          if(old) c.extra[c.extra.indexOf(old)] = n; else if(c.extra.length < 16) c.extra.push(n);
+        });
+      }
+      persist(); renderCard(); if(!live){ syncFields(); renderTable(); renderGoalBar(); renderAddSec(); renderTrk(); notifyDP(); }
+      return true;
+    }
+    var lastLive = 0, lastLiveLen = 0;
+    function onStream(t){
+      var now = Date.now(), len = String(t || '').length;
+      if(now - lastLive < 450 || len === lastLiveLen) return;
+      lastLive = now; lastLiveLen = len;
+      if(String(t).indexOf('<future>') >= 0) applyFuture(t, true);
+    }
+    function onReply(raw){
+      lastLive = 0; lastLiveLen = 0;
+      var okF = applyFuture(raw), okD = DP.applyDayTag(raw), note2 = '';
+      if(/<future>/.test(raw) && !okF) note2 += '\n(カードの内容をうまく読み取れませんでした。もう一度送ってみてください)';
+      if(/<day>/.test(raw) && okD === false) note2 += '\n(1日の内容をうまく読み取れませんでした。もう一度送ってみてください)';
+      if(okD){ renderCard(); }
+      return { text:stripTags(raw, ['future', 'day', 'quick']) + note2, quick:parseQuick(raw) };
+    }
+    async function deepen(){
+      if(busy) return { ok:false, msg:'いま別の処理をしています。' };
+      busy = true;
+      try{
+        if(!window.VAYL_AI) throw { code:'not_declared' };
+        var P = [rules(), '', '【今回の指示】これまでの会話は使わず、いまのカード(生徒が選んだ内容)をもとに、空いている項目(稼ぎ方・年収の目安・毎月の生活費・住まい・道のり・必要な資格・壁と対策・休日)をすべて埋め、理想の1日 <day> も出す。さらに、カード項目(extra)の空いているものから最大6項目を、それぞれ具体的に(何を・いつ・どのくらい・いくらで)埋める。生徒が選んだ仕事・場所・価値観と矛盾させない。<future> と <day> を両方付けること。本文は2〜3文で、どんなふうに具体化したかと、「数字は目安なので確かめてね」を伝える。質問と <quick> は不要。', note()];
+        var res = await window.VAYL_AI.sample([{ role:'user', content:P.join('\n') }], { modelTier:'default', cache:false });
+        var okF = applyFuture(res.text), okD = DP.applyDayTag(res.text);
+        var txt = stripTags(res.text, ['future', 'day', 'quick']) || '具体化しました。';
+        if(!okF && !okD){ busy = false; return { ok:false, msg:'うまく読み取れませんでした。もう一度お試しください。' }; }
+        S.chat.display = S.chat.display || []; S.chat.display.push({ role:'assistant', text:txt }); S.chat.quick = ['理想の1日を直したい', 'お金のところを見直したい', '壁と対策をくわしく'];
+        persist(); if(chat) chat.render(); renderCard();
+        busy = false; return { ok:true, msg:txt };
+      }catch(e){ busy = false; return { ok:false, msg:aiErr(e) }; }
+    }
+    function kickoff(){
+      if(!chat) return;
+      chat.send(S.chat.turns && S.chat.turns.length ? 'つづきから、もっと具体的にしていきたい' : 'いま入れた内容をもとに、もっと具体的にしていきたい(稼ぎ方・お金・理想の1日・道のりまで)');
+    }
+    function notifyDP(){ if(window.dpRefresh) window.dpRefresh(); }
+
+    /* ---------- 志望校の候補 ---------- */
+    function dataFac(){ return (window.VAYL_DATA && window.VAYL_DATA.faculties) || []; }
+    function dataSen(){ return (window.VAYL_DATA && window.VAYL_DATA.senmon) || []; }
+    function catalog(){
+      var out = [];
+      dataFac().forEach(function(f){ out.push({ id:'f|' + f.uni + '|' + f.name, uni:f.uni, name:f.name, kind:'大学', desc:f.desc || '', cap:f.cap || '', url:f.url || '' }); });
+      dataSen().forEach(function(sc){
+        var ds = (sc.departments || []).slice(0, 3).map(function(d){ return d.name; }).join('・') + ((sc.departments || []).length > 3 ? ' など' : '');
+        out.push({ id:'s|' + sc.name, uni:sc.name, name:ds, kind:'専門学校', desc:((sc.fields || []).join('・') + ' ' + ((sc.departments && sc.departments[0] && sc.departments[0].summary) || '')).slice(0, 140), cap:'', url:sc.url || '' });
+      });
+      return out;
+    }
+    function diagTargets(){
+      var out = [];
+      try{
+        var j = JSON.parse(localStorage.getItem('kagawa-shimazutai-results-v1') || 'null');
+        ((j && j.items) || []).forEach(function(r){
+          var cx = r && r.target && r.target.ctx; if(!cx || !cx.uniName) return;
+          out.push({ id:'d|' + cx.uniName + '|' + cx.faculty, uni:cx.uniName, name:cx.faculty, kind:cx.kind === '専門学校' ? '専門学校' : '大学', desc:((cx.facts || [])[0] || '').replace(/^特色: /, ''), cap:'', url:'', fromDiag:true });
+        });
+      }catch(e){ /* no-op */ }
+      return out;
+    }
+    function findInfo(c){
+      var cat = catalog().filter(function(x){ return x.uni === c.uni && x.name === c.name; })[0];
+      if(!cat){
+        var u0 = String(c.uni).replace(/\(.*?\)/g, '');
+        cat = catalog().filter(function(x){ return String(x.uni).replace(/\(.*?\)/g, '') === u0 && c.name.indexOf(String(x.name).replace(/\(.*?\)/g, '').slice(0, 3)) === 0; })[0];
+      }
+      return cat || null;
+    }
+    function buildPick(){
+      var sel = $('fu-add-pick'), diag = diagTargets(), cat = catalog();
+      var h = '<option value="">比べる志望校をえらぶ…</option>';
+      if(diag.length) h += '<optgroup label="診断で選んだ志望先">' + diag.map(function(d){ return '<option value="' + esc(d.id) + '">' + esc(d.uni + ' ' + d.name) + '</option>'; }).join('') + '</optgroup>';
+      h += '<optgroup label="大学・短大の学部">' + cat.filter(function(x){ return x.kind === '大学'; }).map(function(d){ return '<option value="' + esc(d.id) + '">' + esc(d.uni + ' ' + d.name) + '</option>'; }).join('') + '</optgroup>';
+      h += '<optgroup label="専門学校">' + cat.filter(function(x){ return x.kind === '専門学校'; }).map(function(d){ return '<option value="' + esc(d.id) + '">' + esc(d.uni) + '</option>'; }).join('') + '</optgroup>';
+      sel.innerHTML = h;
+    }
+    function addCand(c, extra){
+      if(S.cands.some(function(x){ return x.id === c.id; })) return false;
+      if(S.cands.length >= 6) S.cands.shift();
+      var o = { id:c.id, uni:c.uni, name:c.name, kind:c.kind, desc:c.desc || '', cap:c.cap || '', url:c.url || '' };
+      if(extra){ for(var k in extra) o[k] = extra[k]; }
+      S.cands.push(o); persist(); return true;
+    }
+    function matchPlan(c){
+      var plans = CM.plans(); if(!plans.length) return null;
+      var uni = String(c.uni).replace(/\(.*?\)/g, ''), nm = String(c.name), key = null;
+      if(uni.indexOf('香川大学') === 0){
+        if(/創造工/.test(nm)) key = '林町'; else if(/医/.test(nm)) key = '医学部'; else if(/農/.test(nm)) key = '農学部'; else key = '幸町';
+      }
+      var hit = plans.filter(function(p){ return key ? (p.name.indexOf('香川大学') === 0 && p.name.indexOf(key) >= 0) : (p.name.indexOf(uni) === 0 || p.name.indexOf(uni.slice(0, 5)) === 0 || uni.indexOf(p.name.slice(0, 5)) === 0); })[0];
+      return hit || null;
+    }
+    function freeFor(c){
+      var p = matchPlan(c); if(!p) return null;
+      var r = DP.simulate(p.min); r.plan = p; return r;
+    }
+
+    function renderTable(){
+      var box = $('fu-table');
+      if(!S.cands.length){ box.innerHTML = '<p class="dp-empty">まだ志望校が入っていません。上の一覧から追加するか、「AIに志望校を提案してもらう」を押してください。</p>'; return; }
+      var rows = S.cands.map(function(c){ return { c:c, f:freeFor(c) }; });
+      var bestFree = 0; rows.forEach(function(r){ if(r.f && r.f.free > bestFree) bestFree = r.f.free; });
+      var zero = DP.simulate(0);
+      var h = '<table class="fu-table"><thead><tr><th>志望校</th><th>理想との近さ</th><th>通学(片道)</th><th>1日の自由時間</th><th>ロードマップ</th></tr></thead><tbody>';
+      rows.forEach(function(r){
+        var c = r.c, f = r.f, fit = c.fit;
+        h += '<tr><td class="nm"><b>' + esc(c.uni) + '</b><small>' + (c.ai ? '<span class="tag">AI提案</span>' : '') + (c.fromDiag ? '<span class="tag">診断</span>' : '') + esc(c.name) + '</small> <button type="button" class="rmv" data-rmc="' + esc(c.id) + '" aria-label="' + esc(c.uni) + 'を比較から外す">×</button></td>';
+        if(fit && typeof fit.score === 'number'){
+          h += '<td><div class="fu-fitbar"><b>' + fit.score + '</b><i><s style="width:' + Math.max(0, Math.min(100, fit.score)) + '%"></s></i></div>' + (fit.good ? '<div class="fu-why"><em>合う点</em> ' + esc(fit.good) + '</div>' : '') + (fit.gap ? '<div class="fu-why"><em>確かめたい点</em> ' + esc(fit.gap) + '</div>' : '') + '</td>';
+        }else h += '<td><span class="dp-empty">まだ見ていません</span></td>';
+        if(f) h += '<td>' + esc(f.plan.modeLabel) + '<br><b>' + fmtMin(f.plan.min) + '</b></td><td class="fu-free' + (f.free === bestFree && rows.length > 1 ? ' best' : '') + '"><b>' + fmtMin(f.free) + '</b><span class="fu-delta">通学なしなら ' + fmtMin(zero.free) + (zero.free !== f.free ? '(' + (f.free - zero.free > 0 ? '+' : '−') + fmtMin(Math.abs(f.free - zero.free)) + ')' : '') + (f.sample ? '<br>※サンプルの1日で計算' : '') + '</span></td>';
+        else h += '<td colspan="2"><button type="button" class="fu-linkbtn" data-gomap="1">通学マップで調べる</button><span class="fu-delta">通学時間を調べると、自由時間も出ます</span></td>';
+        h += '<td><div class="fu-cell-btn"><button type="button" class="btn primary" data-rmi="' + esc(c.id) + '"' + (hasCard() ? '' : ' disabled title="先に未来の自分カードをつくってください"') + '>理想をゴールに</button><button type="button" class="btn ghost" data-rmu="' + esc(c.id) + '">入学をゴールに</button></div></td></tr>';
+      });
+      box.innerHTML = h + '</tbody></table>';
+    }
+    function cmpMsg(t, err){ var el = $('fu-cmp-msg'); el.textContent = t || ''; el.hidden = !t; el.className = 'cm-msg' + (err ? ' err' : ''); }
+    function setBusy(b, label){
+      busy = b; ['fu-fit', 'fu-suggest', 'fu-add-btn'].forEach(function(id){ $(id).disabled = b; });
+      if(b) cmpMsg(label || 'AIが考えています…(30秒ほどかかることがあります)');
+    }
+    function candLine(c, i){
+      var f = freeFor(c), L = i + ': ' + c.uni + ' ' + c.name + ' / 特色: ' + (c.desc || '(情報なし)').slice(0, 140);
+      if(f) L += ' / 通学: ' + f.plan.modeLabel + '片道' + f.plan.min + '分';
+      return L;
+    }
+    function ctxLines(){
+      var L = ['【この生徒の理想の自分】' + summary()];
+      var ds = DP.summary(); if(ds) L.push('【理想の1日】' + ds);
+      return L;
+    }
+    function parseJsonTag(raw, tag){
+      var m = String(raw).match(new RegExp('<' + tag + '>([\\s\\S]*?)<\\/' + tag + '>')); if(!m) return null;
+      try{ var j = JSON.parse(m[1].trim().replace(/^```(?:json)?/i, '').replace(/```$/, '').trim()); return Array.isArray(j) ? j : null; }catch(e){ return null; }
+    }
+    async function callAI(prompt){
+      if(!window.VAYL_AI) throw { code:'not_declared' };
+      var res = await window.VAYL_AI.sample([{ role:'user', content:prompt }], { modelTier:'default', cache:false });
+      return res.text;
+    }
+    async function runFit(){
+      if(busy) return;
+      if(!hasCard()){ cmpMsg('先に「未来の自分」カードをつくってください(右のAIと話すか、「カードを手で直す」から)。', true); return; }
+      if(!S.cands.length){ cmpMsg('比べる志望校を追加してください。', true); return; }
+      setBusy(true);
+      try{
+        var P = ['あなたは「VAYL」というアプリの進路アドバイザーAIです。高校生の「理想の自分」と、いくつかの志望校の相性を、目安として採点します。'];
+        P = P.concat(ctxLines());
+        P.push('【志望校の候補】(番号: 名前 / 特色 / 通学)'); S.cands.forEach(function(c, i){ P.push(candLine(c, i)); });
+        P.push('【ルール】', '・score は 0〜100 の整数。「理想の自分の価値観・仕事・暮らしと、その学校の学びや環境がどれだけ合うか」の目安。合格しやすさ・偏差値・倍率・就職率などの数字には一切ふれない。', '・特色に書かれていないことは断定しない。分からないことは「確かめたい点」に書く。', '・good=合う点(40字以内)、gap=合わない点や確かめたい点(40字以内)。通学時間が分かる場合は、理想の暮らしとの兼ね合いにもふれてよい。', '・出力は、本文なしで次の形だけ: <fit>[{"i":0,"score":72,"good":"…","gap":"…"}]</fit>');
+        var raw = await callAI(P.join('\n'));
+        var arr = parseJsonTag(raw, 'fit');
+        if(!arr){ cmpMsg('うまく読み取れませんでした。もう一度お試しください。', true); setBusy(false); return; }
+        var n = 0;
+        arr.forEach(function(o){
+          var c = S.cands[+o.i]; var sc = Math.round(+o.score);
+          if(c && sc >= 0 && sc <= 100){ c.fit = { score:sc, good:clip(o.good, 60), gap:clip(o.gap, 60) }; n++; }
+        });
+        persist(); renderTable(); cmpMsg(n ? n + '件の志望校を見ました。点数は「理想との近さ」の目安で、合格しやすさではありません。' : 'うまく読み取れませんでした。もう一度お試しください。', !n);
+      }catch(e){ cmpMsg(aiErr(e), true); }
+      setBusy(false);
+    }
+    async function runSuggest(){
+      if(busy) return;
+      if(!hasCard()){ cmpMsg('先に「未来の自分」カードをつくってください(右のAIと話すか、「カードを手で直す」から)。', true); return; }
+      var cat = catalog(); if(!cat.length){ cmpMsg('志望校の一覧を読み込めませんでした。', true); return; }
+      setBusy(true);
+      try{
+        var P = ['あなたは「VAYL」というアプリの進路アドバイザーAIです。高校生の「理想の自分」に合いそうな志望校を、アプリ内の一覧から3つ選びます。'];
+        P = P.concat(ctxLines());
+        P.push('【選べる志望校の一覧】(番号: 名前 / 特色)'); cat.forEach(function(c, i){ P.push(i + ': ' + c.uni + ' ' + c.name + ' / ' + (c.desc || '').slice(0, 70)); });
+        P.push('【ルール】', '・必ず上の一覧の番号 i から3つ選ぶ(一覧にない学校は選ばない)。同じ学校ばかりにならないよう、種類(大学・専門学校)や分野の幅も考える。', '・score は 0〜100 の整数で、理想の自分との相性の目安(合格しやすさではない)。偏差値・倍率・就職率などの数字にはふれない。特色に書かれていないことは断定しない。', '・good=合う理由(50字以内)、gap=確かめたい点(40字以内)。', '・出力は、本文なしで次の形だけ: <suggest>[{"i":3,"score":80,"good":"…","gap":"…"}]</suggest>');
+        var raw = await callAI(P.join('\n'));
+        var arr = parseJsonTag(raw, 'suggest'), added = 0;
+        (arr || []).slice(0, 3).forEach(function(o){
+          var c = cat[+o.i]; if(!c) return; var sc = Math.round(+o.score); if(!(sc >= 0 && sc <= 100)) return;
+          var fit = { score:sc, good:clip(o.good, 70), gap:clip(o.gap, 60) };
+          if(!addCand(c, { ai:true, fit:fit })){ var ex = S.cands.filter(function(x){ return x.id === c.id; })[0]; if(ex) ex.fit = fit; }
+          added++;
+        });
+        persist(); renderTable();
+        cmpMsg(added ? 'AIが' + added + '校を提案して、比較表に入れました。気に入ったものは、右のボタンからロードマップにできます。' : 'うまく読み取れませんでした。もう一度お試しください。', !added);
+      }catch(e){ cmpMsg(aiErr(e), true); }
+      setBusy(false);
+    }
+
+    /* ---------- ロードマップへ ---------- */
+    function buildCtx(c, mode){
+      var info = findInfo(c) || c, f = freeFor(c), facts = [];
+      if(info.desc) facts.push('特色: ' + info.desc);
+      if(info.cap) facts.push('定員: ' + info.cap);
+      if(hasCard()) facts.push('この生徒の理想の自分(生徒自身の言葉でつくったカード): ' + summary());
+      var ds = DP.summary(); if(ds) facts.push('この生徒の理想の1日(24時間の内訳): ' + ds);
+      if(f) facts.push('通学: 自宅から片道約' + f.plan.min + '分(' + f.plan.modeLabel + ')。通学込みの1日で、自由に使える時間は約' + fmtMin(f.free));
+      facts.push('詳しい出願日程・配点・評定基準はこのアプリにないため、必ず公式サイト' + (info.url ? '(' + info.url + ')' : '') + 'や「予定表」タブで確認するよう案内すること。');
+      return { kind:c.kind === '専門学校' ? '専門学校' : '大学', key:'future|' + mode + '|' + c.id, uniName:c.uni, faculty:c.name + (mode === 'ideal' ? '(理想をゴールに)' : ''), facts:facts, goalMode:mode, ideal:{ north:S.card.north || '' } };
+    }
+    function openRm(id, mode){
+      var c = S.cands.filter(function(x){ return x.id === id; })[0]; if(!c) return;
+      if(mode === 'ideal' && !hasCard()){ cmpMsg('「理想をゴールに」するには、先に未来の自分カードをつくってください。', true); return; }
+      if(window.VAYL_RM) window.VAYL_RM.open(buildCtx(c, mode));
+    }
+
+    /* ---------- 項目を足す ---------- */
+    function renderAddSec(){
+      var box = $('fu-addsec'); if(!box) return;
+      var avail = CATALOG.filter(function(k){ return !getX(k.id); });
+      var h = '<h3>カードに項目を足す</h3><p class="dp-hint">人生のいろいろな面を、カードに足せます。AIも、会話の中で必要な項目を足します。足した項目は、カードの「編集」から書き直せます。</p>';
+      if(avail.length) h += '<div class="fu-addchips">' + avail.map(function(k){ return '<button type="button" class="fu-chipbtn" data-addcat="' + k.id + '" title="' + esc(k.hint) + '">＋ ' + esc(k.t) + '</button>'; }).join('') + '</div>';
+      h += '<form class="fu-addform" id="fu-addform"><input type="text" id="fu-add-t" maxlength="18" placeholder="自分で項目をつくる(例: ペットのいる暮らし)" aria-label="新しい項目の名前"><select id="fu-add-type" aria-label="項目の形"><option value="text">文章</option><option value="list">箇条書き</option><option value="kv">ラベルと値</option></select><button type="submit" class="btn ghost">追加</button></form>';
+      box.innerHTML = h;
+    }
+    function addExtra(o){
+      S.card.extra = Array.isArray(S.card.extra) ? S.card.extra : [];
+      if(S.card.extra.length >= 16){ deepenMsg('項目は16個までです。使わないものを消してください。', true); return false; }
+      S.card.extra.push({ id:o.id, t:o.t, type:o.type, text:'', items:[], rows:[] });
+      persist(); return true;
+    }
+    function saveExtra(form){
+      var id = form.getAttribute('data-xid'), old = getX(id); if(!old) return;
+      var title = clip(form.elements.t.value, 18) || old.t, o = xFromText(old, form.elements.b.value, title);
+      var n = cleanX(o, null); if(!n) return;
+      n.type = old.type; if(n.type === 'text'){ n.items = []; n.rows = []; } else if(n.type === 'list'){ n.text = ''; n.rows = []; } else { n.text = ''; n.items = []; }
+      S.card.extra[S.card.extra.indexOf(old)] = n; editing = null; persist(); renderCard(); renderGoalBar(); renderAddSec();
+    }
+
+    /* ---------- 画像・PDFで保存 ---------- */
+    var DPCOL = { sleep:'#4B5F9E', school:'#1F6FB2', commute:'#F2B84B', study:'#1B8A7C', meal:'#D2622F', club:'#4E8F3E', free:'#8A5FB8', care:'#2F86BD', work:'#7A6E5C', other:'#78879A', blank:'#C9D6E2' };
+    var PFONT = '"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif';
+    function rrect(x, px, py, w, h, r){
+      x.beginPath(); x.moveTo(px + r, py); x.arcTo(px + w, py, px + w, py + h, r); x.arcTo(px + w, py + h, px, py + h, r); x.arcTo(px, py + h, px, py, r); x.arcTo(px, py, px + w, py, r); x.closePath();
+    }
+    function wrapText(x, text, maxW){
+      var out = [];
+      String(text == null ? '' : text).split('\n').forEach(function(para){
+        var cur = '';
+        for(var i = 0; i < para.length; i++){
+          var ch = para.charAt(i);
+          if(cur && x.measureText(cur + ch).width > maxW){ out.push(cur); cur = ch; } else cur += ch;
+        }
+        out.push(cur);
+      });
+      return out;
+    }
+    function drawPosterOn(x, W, H, marks){
+      var PAD = 64, CW = W - PAD * 2, c = S.card, y = 0;
+      if(H){
+        var g = x.createLinearGradient(0, 0, W * 0.3, H); g.addColorStop(0, '#2278C0'); g.addColorStop(0.45, '#124E8C'); g.addColorStop(1, '#0B2F5E');
+        x.fillStyle = g; x.fillRect(0, 0, W, H);
+        var rg = x.createRadialGradient(W - 100, 90, 0, W - 100, 90, 360); rg.addColorStop(0, 'rgba(242,184,75,.38)'); rg.addColorStop(1, 'rgba(242,184,75,0)');
+        x.fillStyle = rg; x.fillRect(0, 0, W, 520);
+      }
+      x.textBaseline = 'alphabetic';
+      function font(sz, wt){ x.font = (wt || 400) + ' ' + sz + 'px ' + PFONT; }
+      function text(t, px, py, sz, wt, col){ font(sz, wt); x.fillStyle = col; x.fillText(t, px, py); }
+      function para(t, px, sz, lh, col, wt, maxW){ font(sz, wt || 400); var L = wrapText(x, t, maxW || CW); x.fillStyle = col; L.forEach(function(l){ y += lh; x.fillText(l, px, y - (lh - sz) / 2 - sz * 0.12); }); return L.length; }
+      function chips(list, col, bg, sz, bold){
+        font(sz, 700); var px = PAD, h = sz + 22; if(!list.length) return;
+        list.forEach(function(t){
+          var w = x.measureText(t).width + 36;
+          if(px + w > W - PAD){ px = PAD; y += h + 12; }
+          if(H){ x.fillStyle = bg; rrect(x, px, y, w, h, h / 2); x.fill(); x.fillStyle = col; font(sz, 700); x.fillText(t, px + 18, y + h / 2 + sz * 0.36); }
+          px += w + 12;
+        });
+        y += h;
+      }
+      function sec(title){
+        y += 52; if(marks) marks.push(y - 30); if(H){ x.strokeStyle = 'rgba(255,255,255,.25)'; x.lineWidth = 2; x.beginPath(); x.moveTo(PAD, y); x.lineTo(W - PAD, y); x.stroke(); }
+        y += 46; text(title, PAD, y, 26, 800, '#F6D58E'); y += 12;
+      }
+      /* ヘッダー */
+      y = 70;
+      text((c.years ? c.years + '年後の私' : 'FUTURE ME') + (S.goal ? '   ★ 目標にしている姿' : ''), PAD, y, 28, 800, '#F6D58E');
+      y += 24; font(68, 800); var nl = wrapText(x, c.north || '(なりたい自分)', CW - 100);
+      nl.forEach(function(l){ y += 90; text(l, PAD, y - 18, 68, 800, '#fff'); });
+      y += 28;
+      var meta = []; if(c.job) meta.push(c.job); if(c.place) meta.push(c.place); if(c.home) meta.push(c.home);
+      if(meta.length){ chips(meta, '#fff', 'rgba(255,255,255,.2)', 28); y += 26; }
+      if(c.story){ para(c.story, PAD, 31, 56, 'rgba(255,255,255,.95)', 400); y += 18; }
+      var tv = topValues(5);
+      if(tv.length){ chips(tv.map(function(a){ return a.n + ' ' + dots(c.v[a.k]); }), '#FBE7B5', 'rgba(246,213,142,.18)', 25); y += 6; }
+      /* 稼ぎ方 */
+      if(c.how || c.inc){
+        sec('どうやって稼ぐ?');
+        if(c.how){ y += 8; para(c.how, PAD, 30, 54, '#fff', 400); }
+        if(c.inc){
+          y += 30; text('年収の目安(税込)', PAD, y + 8, 26, 700, 'rgba(255,255,255,.85)');
+          y += 84; text(c.inc.lo + '〜' + c.inc.hi + '万円', PAD, y, 80, 800, '#F2B84B');
+          if(c.incNote){ y += 8; para(c.incNote, PAD, 25, 44, 'rgba(255,255,255,.85)', 400); }
+        }
+      }
+      /* お金 */
+      if((c.costs && c.costs.length) || c.inc){
+        sec('毎月のお金は?');
+        var net = netMonthly(), tot = costTotal(), mx = Math.max(net, tot, 1);
+        if(c.costs && c.costs.length){
+          y += 16;
+          c.costs.forEach(function(it){
+            y += 52; text(it.l, PAD, y, 27, 700, '#fff');
+            var bx = PAD + 230, bw = CW - 230 - 150;
+            if(H){ x.fillStyle = 'rgba(255,255,255,.16)'; rrect(x, bx, y - 22, bw, 18, 9); x.fill(); x.fillStyle = '#7FC4F0'; rrect(x, bx, y - 22, Math.max(14, bw * it.m / mx), 18, 9); x.fill(); }
+            font(27, 700); x.fillStyle = '#fff'; x.textAlign = 'right'; x.fillText(it.m + '万円', W - PAD, y); x.textAlign = 'left';
+          });
+          y += 20;
+        }
+        if(net && tot){
+          var diff = r1(net - tot), bh = 130; y += 20;
+          if(H){ x.fillStyle = 'rgba(255,255,255,.13)'; rrect(x, PAD, y, CW, bh, 26); x.fill(); }
+          var cols = [['手取りの目安', net + '万円', '#fff'], ['生活費', tot + '万円', '#fff'], ['毎月の余り', (diff >= 0 ? '+' : '') + diff + '万円', diff >= 0 ? '#9BE6A8' : '#FFB4A8']];
+          cols.forEach(function(cc, i){ var cx = PAD + 36 + i * (CW / 3); text(cc[0], cx, y + 44, 22, 700, 'rgba(255,255,255,.8)'); text(cc[1], cx, y + 98, 40, 800, cc[2]); });
+          y += bh;
+          para(diff < 0 ? 'このままだと毎月足りません。収入を上げるか、出費を見直す必要があります。' : '年に約' + Math.round(diff * 12) + '万円を、貯金や自由に使うお金にできる計算です。手取りは年収の約8割で計算した目安です。', PAD, 23, 42, 'rgba(255,255,255,.85)', 400);
+        }
+      }
+      /* 理想の1日 */
+      if(DP.hasBlocks()){
+        y += 56; if(marks) marks.push(y - 30); text('理想の1日', PAD, y + 8, 32, 800, '#F6D58E'); y += 40;
+        var L = DP.list(), tt = DP.totals(), runs = DP.runs();
+        font(25, 700); var tlW = CW - 64 - 410 - 36 + 20, rows = [];
+        var totalH = 0;
+        L.forEach(function(b){
+          var nl2 = b.n ? (font(24, 400), wrapText(x, b.n, tlW - 190)) : [], h = 40 + nl2.length * 34 + 14; rows.push({ b:b, nl:nl2, h:h }); totalH += h;
+        });
+        var ph = Math.max(totalH, 480) + 64;
+        if(H){ x.fillStyle = '#fff'; rrect(x, PAD, y, CW, ph, 36); x.fill(); }
+        var cx0 = PAD + 32 + 205, cy0 = y + ph / 2, rO = 200, rI = 124;
+        if(H){
+          runs.forEach(function(r){
+            var a0 = (r.from / 1440) * Math.PI * 2 - Math.PI / 2, a1 = (Math.min(r.to, r.from + 1439.9) / 1440) * Math.PI * 2 - Math.PI / 2;
+            x.beginPath(); x.arc(cx0, cy0, rO, a0, a1); x.arc(cx0, cy0, rI, a1, a0, true); x.closePath(); x.fillStyle = DPCOL[r.c] || DPCOL.other; x.fill(); x.strokeStyle = '#fff'; x.lineWidth = 3; x.stroke();
+          });
+          x.textAlign = 'center'; text('自由に使える時間', cx0, cy0 - 18, 23, 700, '#5B6B85'); text(fmtMin(tt.free), cx0, cy0 + 34, 50, 800, '#12284A'); text('睡眠 ' + fmtMin(tt.sleep), cx0, cy0 + 72, 23, 700, '#5B6B85'); x.textAlign = 'left';
+          [0, 6, 12, 18].forEach(function(hr){ var a = hr / 24 * Math.PI * 2 - Math.PI / 2; x.textAlign = 'center'; text(String(hr), cx0 + (rO + 22) * Math.cos(a), cy0 + (rO + 22) * Math.sin(a) + 8, 20, 700, '#8A97AD'); x.textAlign = 'left'; });
+        }
+        var ty = y + 40, tx = PAD + 32 + 410 + 36;
+        rows.forEach(function(r){
+          if(H){
+            text(DP.m2t(r.b.s) + '〜' + tlEnd(r.b.e), tx, ty + 24, 22, 700, '#5B6B85');
+            x.fillStyle = DPCOL[r.b.c] || DPCOL.other; rrect(x, tx + 158, ty + 8, 16, 16, 5); x.fill();
+            text(r.b.l, tx + 190, ty + 26, 27, 800, '#12284A');
+            r.nl.forEach(function(l, i){ text(l, tx + 190, ty + 26 + 36 + i * 34 - 6, 23, 400, '#4A5A75'); });
+          }
+          ty += r.h;
+        });
+        y += ph;
+      }
+      /* 道のり */
+      if(c.path && c.path.length){
+        sec('そこまでの道のり'); y += 14;
+        c.path.forEach(function(p, i){
+          font(27, 400); var l1 = wrapText(x, p.d, CW - 250), h = Math.max(70, l1.length * 44 + 22);
+          if(H){
+            if(i < c.path.length - 1){ x.strokeStyle = 'rgba(255,255,255,.3)'; x.lineWidth = 3; x.beginPath(); x.moveTo(PAD + 10, y + 26); x.lineTo(PAD + 10, y + 26 + h); x.stroke(); }
+            x.fillStyle = '#F2B84B'; x.beginPath(); x.arc(PAD + 10, y + 26, 11, 0, Math.PI * 2); x.fill();
+            text(p.t, PAD + 40, y + 36, 25, 800, '#F6D58E'); l1.forEach(function(l, k){ text(l, PAD + 230, y + 36 + k * 44, 27, 400, '#fff'); });
+          }
+          y += h;
+        });
+      }
+      if(c.need && c.need.length){ sec('必要な資格・スキル'); y += 16; chips(c.need, '#fff', 'rgba(255,255,255,.17)', 26); }
+      if(c.risks && c.risks.length){
+        sec('現実の壁と、その対策'); y += 16;
+        c.risks.forEach(function(rk){
+          var hw = (CW - 20) / 2; font(25, 400); var a = wrapText(x, rk.w, hw - 44), b = wrapText(x, rk.a || '(まだ決まっていません)', hw - 44), n = Math.max(a.length, b.length), bh2 = 70 + n * 38;
+          if(H){
+            x.fillStyle = 'rgba(255,255,255,.11)'; rrect(x, PAD, y, hw, bh2, 22); x.fill(); x.fillStyle = 'rgba(155,230,168,.18)'; rrect(x, PAD + hw + 20, y, hw, bh2, 22); x.fill();
+            text('壁', PAD + 22, y + 36, 20, 800, '#F6D58E'); text('対策', PAD + hw + 42, y + 36, 20, 800, '#F6D58E');
+            a.forEach(function(l, i){ text(l, PAD + 22, y + 72 + i * 38, 25, 400, '#fff'); }); b.forEach(function(l, i){ text(l, PAD + hw + 42, y + 72 + i * 38, 25, 400, '#fff'); });
+          }
+          y += bh2 + 16;
+        });
+        y -= 16;
+      }
+      if(c.holiday){ sec('休日の過ごし方'); y += 8; para(c.holiday, PAD, 30, 54, '#fff', 400); }
+      (c.extra || []).forEach(function(ex){
+        if(!xFilled(ex)) return;
+        sec(ex.t); y += 8;
+        if(ex.text) para(ex.text, PAD, 30, 54, '#fff', 400);
+        (ex.items || []).forEach(function(it){
+          font(28, 400); var l2 = wrapText(x, it, CW - 40), h = l2.length * 48 + 10;
+          if(H){ x.fillStyle = '#F2B84B'; x.beginPath(); x.arc(PAD + 8, y + 30, 7, 0, Math.PI * 2); x.fill(); l2.forEach(function(l, i){ text(l, PAD + 34, y + 38 + i * 48, 28, 400, '#fff'); }); }
+          y += h;
+        });
+        if(ex.rows && ex.rows.length){
+          var hw2 = (CW - 20) / 2, col = 0, rowTop = y, rowH = 0;
+          ex.rows.forEach(function(r){
+            font(26, 400); var l3 = wrapText(x, r.v, hw2 - 40), bh3 = 66 + l3.length * 38, px2 = PAD + col * (hw2 + 20);
+            if(H){ x.fillStyle = 'rgba(255,255,255,.12)'; rrect(x, px2, rowTop, hw2, bh3, 20); x.fill(); text(r.l, px2 + 20, rowTop + 34, 20, 800, '#F6D58E'); l3.forEach(function(l, i){ text(l, px2 + 20, rowTop + 70 + i * 38 - 6, 26, 400, '#fff'); }); }
+            rowH = Math.max(rowH, bh3);
+            if(col === 1){ rowTop += rowH + 16; rowH = 0; col = 0; } else col = 1;
+          });
+          y = rowTop + (col === 1 ? rowH : -16);
+        }
+      });
+      if(c.inc || (c.costs && c.costs.length)){ y += 46; font(22, 400); wrapText(x, '※ 金額・年数は、AIがつくった目安です。実際は、公式の統計(厚生労働省「賃金構造基本統計調査」など)や、求人・学校の情報で確かめましょう。', CW).forEach(function(l){ y += 34; text(l, PAD, y, 22, 400, 'rgba(255,255,255,.72)'); }); }
+      y += 56; var d = new Date();
+      text('VAYL ・ 北極星に向かって', PAD, y, 22, 800, 'rgba(255,255,255,.6)');
+      x.textAlign = 'right'; text(d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate() + ' つくった', W - PAD, y, 22, 700, 'rgba(255,255,255,.6)'); x.textAlign = 'left';
+      return y + 64;
+    }
+    function makePoster(){
+      var W = 1080, tmp = document.createElement('canvas'); tmp.width = W; tmp.height = 20; var tx = tmp.getContext('2d'), marks = [];
+      var H = drawPosterOn(tx, W, 0, marks);
+      var cv = document.createElement('canvas'); cv.width = W; cv.height = H; drawPosterOn(cv.getContext('2d'), W, H);
+      cv.marks = marks;
+      return cv;
+    }
+    function b64bytes(url){ var b = atob(url.split(',')[1]), u = new Uint8Array(b.length); for(var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
+    function makePdf(cv){
+      var W = cv.width, H = cv.height, pageHpx = Math.round(W * 841.89 / 595.28), cuts = [0], enc = new TextEncoder(), parts = [], off = [], len = 0;
+      function push(u){ parts.push(u); len += u.length; }
+      function str(t){ push(enc.encode(t)); }
+      function obj(i, fn){ off[i] = len; str(i + ' 0 obj\n'); fn(); str('endobj\n'); }
+      var marks = (cv.marks || []).slice();
+      while(cuts[cuts.length - 1] + pageHpx < H){
+        var st = cuts[cuts.length - 1], lim = st + pageHpx, best = 0;
+        marks.forEach(function(m){ if(m > st + pageHpx * 0.45 && m <= lim && m > best) best = m; });
+        cuts.push(best || lim);
+      }
+      var n = cuts.length, pages = [];
+      for(var p = 0; p < n; p++){
+        var y0 = cuts[p], hh = Math.min(pageHpx, H - y0);
+        var pc = document.createElement('canvas'); pc.width = W; pc.height = pageHpx; var px = pc.getContext('2d');
+        px.fillStyle = '#0B2F5E'; px.fillRect(0, 0, W, pageHpx); px.drawImage(cv, 0, y0, W, hh, 0, 0, W, hh);
+        pages.push(b64bytes(pc.toDataURL('image/jpeg', 0.92)));
+      }
+      str('%PDF-1.4\n');
+      obj(1, function(){ str('<< /Type /Catalog /Pages 2 0 R >>\n'); });
+      var kids = []; for(var k = 0; k < n; k++) kids.push((3 + k * 3) + ' 0 R');
+      obj(2, function(){ str('<< /Type /Pages /Kids [' + kids.join(' ') + '] /Count ' + n + ' >>\n'); });
+      pages.forEach(function(jp, k){
+        var po = 3 + k * 3, co = po + 1, io = po + 2;
+        obj(po, function(){ str('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im0 ' + io + ' 0 R >> >> /Contents ' + co + ' 0 R >>\n'); });
+        var cs = 'q 595.28 0 0 841.89 0 0 cm /Im0 Do Q';
+        obj(co, function(){ str('<< /Length ' + cs.length + ' >>\nstream\n' + cs + '\nendstream\n'); });
+        obj(io, function(){ str('<< /Type /XObject /Subtype /Image /Width ' + W + ' /Height ' + pageHpx + ' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + jp.length + ' >>\nstream\n'); push(jp); str('\nendstream\n'); });
+      });
+      var total = 3 + n * 3, xr = len;
+      str('xref\n0 ' + total + '\n0000000000 65535 f \n');
+      for(var i = 1; i < total; i++) str(('0000000000' + off[i]).slice(-10) + ' 00000 n \n');
+      str('trailer\n<< /Size ' + total + ' /Root 1 0 R >>\nstartxref\n' + xr + '\n%%EOF');
+      return new Blob(parts, { type:'application/pdf' });
+    }
+    var expUrls = [];
+    function closeExport(){ var m = $('fu-export'); if(m) m.remove(); expUrls.forEach(function(u){ try{ URL.revokeObjectURL(u); }catch(e){ /* no-op */ } }); expUrls = []; }
+    function openExport(){
+      if(!hasCard()) return;
+      closeExport();
+      var m = document.createElement('div'); m.className = 'adopt-modal fu-export'; m.id = 'fu-export'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.setAttribute('aria-label', '画像・PDFで保存');
+      m.innerHTML = '<div class="adopt-box fu-exbox"><h3>画像・PDFで保存</h3><p class="dp-hint" id="fu-exmsg">カードを画像にしています…</p><div class="fu-exprev" id="fu-exprev"></div><div class="fu-exbtns" id="fu-exbtns"></div></div>';
+      document.body.appendChild(m);
+      m.addEventListener('click', function(ev){ if(ev.target === m || ev.target.closest('[data-exclose]')) closeExport(); });
+      setTimeout(function(){
+        try{
+          var cv = makePoster(), name = 'VAYL_未来の自分_' + new Date().toISOString().slice(0, 10);
+          cv.toBlob(function(png){
+            var pu = URL.createObjectURL(png); expUrls.push(pu);
+            var pdf = makePdf(cv), du = URL.createObjectURL(pdf); expUrls.push(du);
+            $('fu-exprev').innerHTML = '<img src="' + pu + '" alt="未来の自分カードの画像">';
+            $('fu-exmsg').textContent = '保存のボタンが動かないときは、下の画像を長押し(パソコンでは右クリック)して保存してください。';
+            $('fu-exbtns').innerHTML = '<a class="btn primary" download="' + name + '.png" href="' + pu + '">画像(PNG)で保存</a><a class="btn ghost" download="' + name + '.pdf" href="' + du + '">PDFで保存</a><button type="button" class="btn ghost" data-exclose="1">閉じる</button>';
+          }, 'image/png');
+        }catch(e){ $('fu-exmsg').textContent = '画像をつくれませんでした。もう一度お試しください。'; }
+      }, 60);
+    }
+
+    /* ---------- 「これを目標にする!」 ---------- */
+    function selfCtx(){
+      var facts = ['この生徒が「これを目標にする」と決めた理想の自分(稼ぎ方・お金・道のり・1日まで具体化したカード): ' + summary()];
+      var ds = DP.summary(); if(ds) facts.push('理想の1日(24時間の内訳): ' + ds);
+      var rl2 = recentLog(5); if(rl2.length) facts.push('本人がこれまでにやってみたこと: ' + rl2.map(function(x){ return x.t; }).join(' / '));
+      facts.push('志望校はこれから決める段階。ゴールは、この理想の自分に近づくこと。カードの「道のり」「必要な資格・スキル」「壁と対策」を、高校生活・進学先選び・入試・資格などの具体的な項目に落とし込む。');
+      facts.push('詳しい出願日程・配点・評定基準はこのアプリにないため、必ず公式サイトや「予定表」タブで確認するよう案内すること。');
+      return { kind:'大学', key:'future|ideal|self', uniName:'(志望校はこれから決める)', faculty:'理想の自分から逆算', facts:facts, goalMode:'ideal', ideal:{ north:S.card.north || '' } };
+    }
+    function renderGoalBar(){
+      var box = $('fu-goalbar'); if(!box) return;
+      var ok = hasCard(), h = '';
+      if(ok){
+        var cv = coverage(), done = cv.filter(function(x){ return x.d; }).length, left = cv.filter(function(x){ return !x.d; }).map(function(x){ return x.n; });
+        h += '<div class="fu-cover"><b>具体度 ' + done + ' / ' + cv.length + '</b><i><s style="width:' + Math.round(done / cv.length * 100) + '%"></s></i><span>' + (left.length ? 'まだ: ' + esc(left.slice(0, 5).join('、')) + (left.length > 5 ? ' ほか' + (left.length - 5) + '項目' : '') : 'すべて埋まりました。足したい面があれば、下の「項目を足す」から。') + '</span></div>';
+      }
+      if(!S.goal){
+        h += '<button type="button" class="btn primary fu-goalbtn" id="fu-goal-set"' + (ok ? '' : ' disabled') + '>この姿を目標にする!</button>';
+        h += '<button type="button" class="btn ghost" id="fu-deepen"' + (ok ? '' : ' disabled') + '>AIで具体化する(シミュレーション)</button>';
+        h += '<p class="fu-goalhint">' + (ok ? '空いている項目は、右のAIと話しながら埋められます。「AIで具体化する」を押すと、AIが一気に下書きします。カードができあがって「この姿を目標にする!」を押すと、毎週の一歩・現在地メーター・見直しがはじまります。' : 'まず右のAIと話すか、「3分のガイド」で、未来の自分をつくってください。') + '</p>';
+      }else{
+        h += '<div class="fu-goalon"><b>目標に設定しました</b><span>この姿をゴールに、ロードマップをつくれます。上の「毎週の一歩」で、少しずつ近づきましょう。</span></div>';
+        h += '<button type="button" class="btn primary fu-goalbtn" id="fu-goal-rm">この目標のロードマップをつくる</button>';
+        h += '<button type="button" class="btn ghost" id="fu-deepen">AIで具体化する</button><button type="button" class="btn ghost" id="fu-goal-off">目標をはずす</button>';
+      }
+      if(ok) h += '<button type="button" class="btn ghost" id="fu-export-btn">画像・PDFで保存</button>';
+      h += '<p class="cm-msg" id="fu-deepen-msg" role="status" hidden></p>';
+      box.innerHTML = h;
+    }
+    function deepenMsg(t, err){ var el = $('fu-deepen-msg'); if(!el) return; el.textContent = t || ''; el.hidden = !t; el.className = 'cm-msg' + (err ? ' err' : ''); }
+    async function runDeepen(){
+      var b = $('fu-deepen'); if(b) b.disabled = true;
+      deepenMsg('AIが具体化しています…(30秒ほどかかることがあります)');
+      var r = await deepen();
+      renderGoalBar();
+      deepenMsg(r.ok ? '具体化しました。気になるところは、右のAIに「ここを変えたい」と伝えてください。金額などの数字は目安です。' : r.msg, !r.ok);
+    }
+
+    /* ---------- つづける仕掛け(今週の一歩・現在地メーター・3か月の見直し・行動ログ) ---------- */
+    var DAY = 86400000, REVIEW_DAYS = 90, NOW_DAYS = 30;
+    var AXSTEP = {
+      stability:'「安定した暮らし」に毎月いくら必要か、家族の家計や家賃の相場を参考に、1つ調べてメモする(20分)',
+      challenge:'やったことのない小さな挑戦(体験会・イベント・コンテストなど)を1つ探して、申込ページを開いてみる(20分)',
+      local:'香川で働いている人・暮らしている人の話(記事・動画・身近な大人)を1つ見つけて、気づいたことを3行メモする(30分)',
+      income:'気になる仕事の「初任給」と「30歳ごろの年収」を、公的な統計(厚労省の職業情報サイト jobtag など)で調べてメモする(30分)',
+      freedom:'1週間の自分の時間(勉強・部活・スマホ・睡眠)をざっくりメモして、自由に使える時間を数えてみる(15分)',
+      expert:'身につけたい資格・スキルを1つ選んで、試験の内容・日程・費用を調べる(30分)',
+      care:'人の役に立てた経験(手伝い・ボランティア・部活)を1つ書き出し、次にできる機会も1つ探す(20分)',
+      create:'つくってみたいものを1つ決めて、30分だけ手を動かす(スケッチ・工作・プログラムなど)'
+    };
+    function normTrk(t){
+      t = (t && typeof t === 'object') ? t : {};
+      var now = Date.now();
+      function arr(a, n){ return Array.isArray(a) ? a.slice(-n) : []; }
+      var o = {
+        step: null,
+        done: arr(t.done, 80).filter(function(x){ return x && x.t; }).map(function(x){ return { t:clip(x.t, 90), at:+x.at || now }; }),
+        log: arr(t.log, 80).filter(function(x){ return x && x.t; }).map(function(x){ return { t:clip(x.t, 100), at:+x.at || now, k:['step', 'free', 'review'].indexOf(x.k) >= 0 ? x.k : 'free' }; }),
+        skipped: arr(t.skipped, 40).map(function(x){ return clip(x, 90); }).filter(Boolean),
+        now: {}, nowAt: +t.nowAt || 0,
+        nowHist: arr(t.nowHist, 12).filter(function(x){ return x && x.now; }).map(function(x){ return { at:+x.at || now, now:x.now }; }),
+        snaps: arr(t.snaps, 12).filter(function(x){ return x && x.at; }),
+        reviewAt: +t.reviewAt || 0, revPend: !!t.revPend
+      };
+      if(t.step && t.step.t) o.step = { t:clip(t.step.t, 120), why:clip(t.step.why, 80), at:+t.step.at || now, due:+t.step.due || (now + 7 * DAY), src:clip(t.step.src, 8) || 'path' };
+      if(t.now && typeof t.now === 'object') AXES.forEach(function(a){ var n = Math.round(+t.now[a.k]); if(t.now[a.k] != null && n >= 0 && n <= 5) o.now[a.k] = n; });
+      return o;
+    }
+    function fmtD(ts){ var d = new Date(ts); return (d.getMonth() + 1) + '/' + (d.getDate()); }
+    function daysAgo(ts){ return Math.floor((Date.now() - ts) / DAY); }
+    function makeSnap(kind){
+      var c = S.card, cv = coverage();
+      return { at:Date.now(), kind:kind, north:c.north || '', job:c.job || '', place:c.place || '', years:c.years || 0, v:JSON.parse(JSON.stringify(c.v || {})), inc:c.inc ? { lo:c.inc.lo, hi:c.inc.hi } : null, cover:cv.filter(function(x){ return x.d; }).length, total:cv.length, steps:S.trk.done.length };
+    }
+    function addSnap(kind){ S.trk.snaps.push(makeSnap(kind)); S.trk.snaps = S.trk.snaps.slice(-12); S.trk.reviewAt = Date.now(); S.trk.revPend = false; }
+    function hasTrk(){ return hasCard() && !!S.goal; }
+    function ensureBase(){ if(hasTrk() && !S.trk.snaps.length){ addSnap('goal'); persist(); } }
+    function reviewDue(){ return hasTrk() && S.trk.snaps.length > 0 && !S.trk.revPend && (Date.now() - S.trk.reviewAt) >= REVIEW_DAYS * DAY; }
+    function nowStale(){ return !!S.trk.nowAt && (Date.now() - S.trk.nowAt) >= NOW_DAYS * DAY; }
+    function weekStreak(){
+      var n = 0, now = Date.now();
+      for(var i = 0; i < 52; i++){
+        var hi = now - i * 7 * DAY, lo = hi - 7 * DAY;
+        var c = S.trk.done.filter(function(x){ return x.at > lo && x.at <= hi; }).length;
+        if(c) n++; else if(i > 0) break;
+      }
+      return n;
+    }
+    function doneThisWeek(){ var lo = Date.now() - 7 * DAY; return S.trk.done.filter(function(x){ return x.at > lo; }).length; }
+    function recentLog(n){ return S.trk.log.slice(-n).reverse(); }
+    function weakest(){
+      var best = null;
+      AXES.forEach(function(a){
+        var ideal = S.card.v[a.k] || 0, nw = S.trk.now[a.k];
+        if(ideal < 1 || nw == null) return;
+        var g = ideal - nw; if(g > 0 && (!best || g > best.g)) best = { k:a.k, n:a.n, g:g, ideal:ideal, now:nw };
+      });
+      return best;
+    }
+    function candidates(){
+      var c = S.card, job = c.job || '', out = [], dn = {};
+      S.trk.done.forEach(function(x){ dn[x.t] = 1; });
+      S.trk.skipped.forEach(function(x){ dn[x] = 1; });
+      var jobs = job ? [
+        { t:'「' + job + '」で働く人のインタビュー記事か動画を1本見て、「思っていたのと違った点」と「いいなと思った点」を3行メモする(30分)', why:'なりたい仕事を知る', src:'job' },
+        { t:'「' + job + '」の求人や募集要項を1つ読んで、必要な資格・条件・初任給をメモする(20分)', why:'なりたい仕事を知る', src:'job' },
+        { t:'「' + job + '」に近い仕事をしている身近な大人(先生・家族・知り合い)に、仕事の話を10分聞かせてもらう約束をする', why:'なりたい仕事を知る', src:'job' }
+      ] : [{ t:'気になる仕事を1つ選んで、その仕事の1日を紹介した記事か動画を1本見て、気づいたことを3行メモする(30分)', why:'まずは仕事を知る', src:'job' }];
+      var needs = (c.need || []).map(function(x){ return { t:'「' + x + '」がどんな資格・スキルか、勉強時間・試験日程・費用を調べてメモする(20〜30分)', why:'必要な資格・スキルより', src:'need' }; });
+      var risks = (c.risks || []).map(function(x){ return x.a
+        ? { t:'壁「' + x.w + '」への対策「' + x.a + '」を、いまの自分がやるなら最初の1歩は何か、紙に書き出す(10分)', why:'壁と対策より', src:'risk' }
+        : { t:'壁「' + x.w + '」を乗りこえた人の例を1つ探して読む(20分)', why:'壁と対策より', src:'risk' }; });
+      var paths = (c.path || []).map(function(x){ return { t:'道のり「' + x.t + '」(' + x.d + ')のために、今日15分でできることを1つやる', why:'道のりより', src:'path' }; });
+      var extras = [];
+      if(c.place) extras.push({ t:'「' + c.place + '」で暮らす場合の家賃の相場を調べて、カードの「毎月のお金」と比べる(20分)', why:'暮らしとお金より', src:'life' });
+      if(DP.hasBlocks()) extras.push({ t:'理想の1日と、いまの自分の1日を見比べて、違う時間帯を1つ見つけ、今日だけそこを理想に近づけてみる', why:'理想の1日より', src:'day' });
+      extras.push({ t:'この理想に近づく進学先を1つ見つけて、オープンキャンパスなどの日程を「予定表」で確認する', why:'進学先づくり', src:'school', go:'schedule' });
+      var w = weakest(); if(w && AXSTEP[w.k]) extras.unshift({ t:AXSTEP[w.k], why:'現在地メーターで差が大きい「' + w.n + '」より', src:'axis' });
+      var lists = [w ? extras.slice(0, 1) : [], jobs, needs, risks, paths, extras.slice(w ? 1 : 0)], i, j, k = 0, max = 0;
+      lists.forEach(function(l){ max = Math.max(max, l.length); });
+      for(i = 0; i < max; i++) for(j = 0; j < lists.length; j++) if(lists[j][i]) out.push(lists[j][i]);
+      return out.filter(function(x){ return !dn[x.t]; });
+    }
+    function setStep(x){ var now = Date.now(); S.trk.step = { t:clip(x.t, 120), why:clip(x.why, 80), at:now, due:now + 7 * DAY, src:x.src || 'path' }; }
+    function nextStep(){
+      var cs = candidates();
+      if(!cs.length){ S.trk.skipped = []; cs = candidates(); }
+      if(!cs.length) cs = [{ t:'カードの空いている項目を1つ、右のAIと話して埋める(10分)', why:'カードを育てる', src:'card' }];
+      setStep(cs[0]);
+    }
+    async function aiStep(){
+      if(busy) return { ok:false, msg:'いま別の処理をしています。' };
+      busy = true;
+      try{
+        if(!window.VAYL_AI) throw { code:'not_declared' };
+        var dn = S.trk.done.slice(-8).map(function(x){ return x.t; }).join(' / ') || 'なし';
+        var lg = recentLog(4).map(function(x){ return x.t; }).join(' / ') || 'なし';
+        var w = weakest();
+        var P = ['あなたは香川の高校生を応援するキャリアのコーチです。次の「理想の自分カード」に近づくために、今週やる「小さな一歩」を1つだけ決めてください。',
+          '条件: 30分〜2時間で終わる/高校生が1人でできる/「何を・どこで・どのくらい」が分かる/お金がほとんどかからない/すでにやった一歩と重ならない。',
+          '出力は説明文なしで、必ず次の形だけ: <step>{"t":"一歩(80字以内)","why":"なぜ今この一歩か(50字以内)"}</step>',
+          'カード: ' + summary(), 'すでにやった一歩: ' + dn, '最近の行動ログ: ' + lg,
+          w ? '現在地メーターで理想との差が大きい項目: ' + w.n + '(理想' + w.ideal + '・いま' + w.now + ')' : ''].join('\n');
+        var res = await window.VAYL_AI.sample([{ role:'user', content:P }], { modelTier:'default', cache:false });
+        var sb = tagBody(res.text, 'step'), o = null;
+        if(sb != null){ try{ o = parseLoose(sb); }catch(e){ o = null; } }
+        busy = false;
+        if(!o || !o.t) return { ok:false, msg:'AIの答えをうまく読み取れませんでした。アプリが考えた一歩を出します。' };
+        setStep({ t:o.t, why:o.why || 'AIが考えた一歩', src:'ai' });
+        return { ok:true, msg:'' };
+      }catch(e){ busy = false; return { ok:false, msg:aiErr(e) + ' アプリが考えた一歩を出します。' }; }
+    }
+    function trkMsg(t, err){ var el = $('fu-trk-msg'); if(!el) return; el.textContent = t || ''; el.hidden = !t; el.className = 'cm-msg' + (err ? ' err' : ''); }
+    function dots5(n){ var h = ''; for(var i = 1; i <= 5; i++) h += i <= n ? '●' : '○'; return h; }
+
+    var revOpen = false, lastDone = null, lastLog = null;
+    function stepHtml(){
+      var st = S.trk.step, h = '<div class="trk-col"><h4>今週の一歩</h4>';
+      var wk = weekStreak(), n = S.trk.done.length;
+      if(st){
+        var late = Date.now() > st.due;
+        h += '<div class="trk-step' + (late ? ' late' : '') + '"><p class="trk-t">' + esc(st.t) + '</p>' +
+          '<p class="trk-why">' + esc(st.why || '') + ' ・ ' + (late ? '期限(' + fmtD(st.due) + ')をすぎています' : fmtD(st.due) + 'ごろまで') + '</p>' +
+          '<div class="trk-btns"><button type="button" class="btn primary" data-trk="done">できた!</button>' +
+          '<button type="button" class="btn ghost" data-trk="skip">別の一歩にする</button>' +
+          '<button type="button" class="btn ghost" data-trk="ai">AIに考えてもらう</button>' +
+          (late ? '<button type="button" class="btn ghost" data-trk="extend">あと1週間のばす</button>' : '') +
+          '<button type="button" class="btn ghost" data-trk="ask">どう進める?AIに聞く</button>' +
+          (st.src === 'school' ? '<button type="button" class="btn ghost" data-go="schedule">予定表をひらく</button>' : '') + '</div></div>';
+      }else{
+        if(lastDone) h += '<div class="trk-praise"><b>おつかれさま!</b> 「' + esc(lastDone) + '」を終えました。ムリのないペースで、週に1つが目安です。</div>';
+        else h += '<p class="trk-empty">理想の自分に近づく「小さな一歩」を、1つだけ決めましょう。30分ほどでできることから。</p>';
+        h += '<div class="trk-btns"><button type="button" class="btn primary" data-trk="next">' + (lastDone ? '次の一歩を出す' : '今週の一歩を出す') + '</button><button type="button" class="btn ghost" data-trk="ai">AIに考えてもらう</button></div>';
+      }
+      h += '<p class="trk-stat">これまでの一歩: <b>' + n + '回</b>' + (wk >= 2 ? ' ・ <b>' + wk + '週</b>つづけています' : '') + '</p>';
+      h += '<p class="cm-msg" id="fu-trk-msg" role="status" hidden></p></div>';
+      return h;
+    }
+    function logHtml(){
+      var h = '<div class="trk-col"><h4>やったことの記録</h4>';
+      h += '<form class="trk-logform" id="fu-trk-logform"><input type="text" id="fu-trk-logt" maxlength="100" placeholder="例: 看護学校のオープンキャンパスに行った" aria-label="やったこと"><button type="submit" class="btn ghost">記録する</button></form>';
+      if(lastLog) h += '<p class="trk-tell">記録しました。<button type="button" class="trk-link" data-trk="tell">AIに話して、カードに反映する</button></p>';
+      var L = recentLog(6);
+      if(L.length){
+        h += '<ul class="trk-log">' + L.map(function(x){ var i = S.trk.log.indexOf(x); return '<li><time>' + fmtD(x.at) + '</time><span class="trk-k ' + x.k + '">' + (x.k === 'step' ? '一歩' : x.k === 'review' ? '見直し' : 'メモ') + '</span><em>' + esc(x.t) + '</em><button type="button" class="trk-x" data-trk="dellog" data-i="' + i + '" aria-label="この記録を消す">×</button></li>'; }).join('') + '</ul>';
+      }else h += '<p class="trk-empty">ここに、やってみたことが積み上がります。小さなことでOKです。</p>';
+      return h + '</div>';
+    }
+    function meterHtml(){
+      var rows = AXES.filter(function(a){ return (S.card.v[a.k] || 0) >= 1; });
+      var h = '<div class="trk-col trk-meter"><h4>現在地メーター</h4>';
+      if(!rows.length) return h + '<p class="trk-empty">「カードを手で直す」で、価値観(8つの軸)を入れると、ここで理想との差が見えます。</p></div>';
+      var prev = null; S.trk.nowHist.forEach(function(x){ if(daysAgo(x.at) >= 1) prev = x; });
+      h += '<p class="trk-sub">' + (S.trk.nowAt ? '最後の更新: ' + fmtD(S.trk.nowAt) + (nowStale() ? '(' + daysAgo(S.trk.nowAt) + '日前。つけ直しましょう)' : '') : '「いまの自分」は5段階でどのくらい? タップして記録します。') + '</p><div class="trk-rows">';
+      rows.forEach(function(a){
+        var ideal = S.card.v[a.k], nw = S.trk.now[a.k], hasNow = nw != null, g = hasNow ? ideal - nw : null;
+        var dl = (prev && prev.now[a.k] != null && hasNow) ? nw - prev.now[a.k] : null;
+        h += '<div class="trk-row"><b>' + esc(a.n) + '</b><span class="trk-ideal" title="理想">理想 ' + dots5(ideal) + '</span><span class="trk-nowbtns" role="group" aria-label="いまの自分: ' + esc(a.n) + '">';
+        for(var i = 1; i <= 5; i++) h += '<button type="button" class="' + (hasNow && i <= nw ? 'on' : '') + '" data-nowax="' + a.k + '" data-n="' + i + '" aria-label="' + i + '" aria-pressed="' + (hasNow && i <= nw ? 'true' : 'false') + '">' + i + '</button>';
+        h += '</span><i class="trk-gap ' + (g == null ? '' : g > 0 ? 'lack' : 'ok') + '">' + (g == null ? '未記録' : g > 0 ? 'あと' + g : '届いた') + (dl ? '<small>(前回より' + (dl > 0 ? '+' : '') + dl + ')</small>' : '') + '</i></div>';
+      });
+      h += '</div>';
+      var w = weakest();
+      if(w) h += '<p class="trk-weak">いちばん差が大きいのは「<b>' + esc(w.n) + '</b>」(理想' + w.ideal + '・いま' + w.now + ')。 <button type="button" class="trk-link" data-trk="axisstep" data-k="' + w.k + '">この差をちぢめる一歩を出す</button></p>';
+      return h + '</div>';
+    }
+    function diffHtml(){
+      var a = S.trk.snaps[S.trk.snaps.length - 1], c = S.card, L = [];
+      if(!a) return '<p class="trk-empty">まだ比べる記録がありません。</p>';
+      function ch(n, x, y){ if((x || '') !== (y || '')) L.push(n + ': 「' + esc(x || '(未入力)') + '」→「' + esc(y || '(未入力)') + '」'); }
+      ch('なりたい姿', a.north, c.north); ch('仕事', a.job, c.job); ch('暮らす場所', a.place, c.place);
+      if((a.years || 0) !== (c.years || 0)) L.push('何年後の自分: ' + (a.years || '?') + '年後 → ' + (c.years || '?') + '年後');
+      var ai = a.inc ? a.inc.lo + '〜' + a.inc.hi : '', ci = c.inc ? c.inc.lo + '〜' + c.inc.hi : '';
+      if(ai !== ci) L.push('年収の目安: ' + (ai ? ai + '万円' : '(未入力)') + ' → ' + (ci ? ci + '万円' : '(未入力)'));
+      AXES.forEach(function(x){ var p = (a.v && a.v[x.k]) || 0, q = c.v[x.k] || 0; if(p !== q) L.push('価値観「' + x.n + '」: ' + p + ' → ' + q); });
+      var since = S.trk.done.filter(function(x){ return x.at > a.at; }).length, logs = S.trk.log.filter(function(x){ return x.at > a.at && x.k === 'free'; }).length;
+      return '<p class="trk-sub">前回(' + fmtD(a.at) + ')のカードと、いまのカードを比べました。</p>' +
+        (L.length ? '<ul class="trk-diff">' + L.map(function(t){ return '<li>' + t + '</li>'; }).join('') + '</ul>' : '<p class="trk-empty">前回から、カードの大きな変化はありません。</p>') +
+        '<p class="trk-sub">この間にやったこと: 一歩 <b>' + since + '回</b>・メモ <b>' + logs + '件</b></p>';
+    }
+    function reviewHtml(){
+      var due = reviewDue(), base = S.trk.snaps[S.trk.snaps.length - 1];
+      var h = '<div class="trk-review' + (due ? ' due' : '') + '"><div class="trk-rhead"><h4>3か月の見直し</h4><span>' + (base ? (due ? (daysAgo(S.trk.reviewAt)) + '日たちました。見直しどきです' : '前回: ' + fmtD(S.trk.reviewAt) + ' ・ 次は ' + fmtD(S.trk.reviewAt + REVIEW_DAYS * DAY) + 'ごろ') : '') + '</span></div>';
+      if(S.trk.revPend){
+        h += '<p class="trk-sub">カードを直し終えたら、「見直し完了」を押すと、いまのカードが記録されます。</p><div class="trk-btns"><button type="button" class="btn primary" data-trk="revdone">見直し完了(いまのカードを記録)</button><button type="button" class="btn ghost" data-trk="revcancel">やめる</button></div>';
+      }else if(revOpen){
+        h += diffHtml() + '<p class="trk-q">いまも、この姿を目指したいですか?</p><div class="trk-btns"><button type="button" class="btn primary" data-trk="revkeep">このまま続ける</button><button type="button" class="btn ghost" data-trk="revchange">少しちがってきた(AIと見直す)</button><button type="button" class="btn ghost" data-trk="revclose">閉じる</button></div>';
+      }else{
+        h += '<p class="trk-sub">時間がたつと、なりたい姿も変わります。それは成長のしるしです。3か月ごとに、カードを見直しましょう。</p><div class="trk-btns"><button type="button" class="btn ' + (due ? 'primary' : 'ghost') + '" data-trk="revopen">カードを見直す</button></div>';
+      }
+      if(S.trk.snaps.length > 1){
+        h += '<details class="trk-hist"><summary>これまでの記録(' + S.trk.snaps.length + ')</summary><ul>' + S.trk.snaps.slice().reverse().map(function(s){ return '<li><time>' + fmtD(s.at) + '</time><span class="trk-k">' + ({ start:'はじめ', goal:'目標に設定', review:'見直し', change:'見直し(変更)' }[s.kind] || '記録') + '</span><em>' + esc(s.north || s.job || '(未入力)') + '</em></li>'; }).join('') + '</ul></details>';
+      }
+      return h + '</div>';
+    }
+    function renderTrk(){
+      var box = $('fu-trk'); if(!box) return;
+      var ok = hasTrk(); box.hidden = !ok; if(!ok){ updateDot(); return; }
+      ensureBase();
+      box.innerHTML = '<div class="trk-head"><h3><span class="cm-num">つづける</span>理想に近づく、毎週の一歩</h3><p>カードは「つくって終わり」ではなく、「近づいていく」ためのもの。小さな一歩を重ねて、ときどき立ち止まって見直します。</p></div>' +
+        '<div class="trk-grid">' + stepHtml() + logHtml() + '</div>' + meterHtml() + reviewHtml();
+      updateDot();
+    }
+    function trkAct(act, el){
+      var T = S.trk;
+      if(act === 'done'){ if(!T.step) return; lastDone = T.step.t; T.done.push({ t:T.step.t, at:Date.now() }); T.log.push({ t:T.step.t, at:Date.now(), k:'step' }); T.step = null; }
+      else if(act === 'skip'){ if(T.step) T.skipped.push(T.step.t); nextStep(); lastDone = null; }
+      else if(act === 'next'){ nextStep(); lastDone = null; }
+      else if(act === 'extend'){ if(T.step) T.step.due = Date.now() + 7 * DAY; }
+      else if(act === 'axisstep'){ var k = el.getAttribute('data-k'), a = AXES.filter(function(x){ return x.k === k; })[0]; if(a && AXSTEP[k]){ setStep({ t:AXSTEP[k], why:'現在地メーターで差が大きい「' + a.n + '」より', src:'axis' }); lastDone = null; } }
+      else if(act === 'ask'){ if(T.step && chat) chat.send('今週の一歩「' + T.step.t + '」を、どう進めたらいいか、具体的な手順を教えて'); return; }
+      else if(act === 'tell'){ if(lastLog && chat){ var t = lastLog; lastLog = null; renderTrk(); chat.send('最近こんなことをやってみた: ' + t + '。これをふまえて、カードで直したほうがいいところがあれば教えて・直して'); } return; }
+      else if(act === 'dellog'){ var i = +el.getAttribute('data-i'); if(i >= 0 && i < T.log.length) T.log.splice(i, 1); lastLog = null; }
+      else if(act === 'revopen'){ revOpen = true; }
+      else if(act === 'revclose'){ revOpen = false; }
+      else if(act === 'revkeep'){ addSnap('review'); T.log.push({ t:'カードを見直して、このまま続けることにした', at:Date.now(), k:'review' }); revOpen = false; }
+      else if(act === 'revchange'){ T.revPend = true; T.reviewAt = Date.now(); revOpen = false; persist(); renderTrk(); if(chat) chat.send('3か月たったので、理想の自分カードを見直したい。いまのカードで、変えたほうがいいところ・ちがってきたところを一緒に考えたい'); return; }
+      else if(act === 'revdone'){ addSnap('change'); T.log.push({ t:'カードを見直して、内容を更新した', at:Date.now(), k:'review' }); }
+      else if(act === 'revcancel'){ T.revPend = false; }
+      persist(); renderTrk();
+    }
+    async function runAiStep(){
+      var bs = document.querySelectorAll('#fu-trk [data-trk="ai"]'); bs.forEach(function(b){ b.disabled = true; });
+      trkMsg('AIが、あなたのカードに合う一歩を考えています…');
+      var r = await aiStep();
+      if(!r.ok){ nextStep(); }
+      lastDone = null; persist(); renderTrk(); if(!r.ok) trkMsg(r.msg, true);
+    }
+    function bindTrk(){
+      var box = $('fu-trk'); if(!box) return;
+      box.addEventListener('click', function(ev){
+        var t = ev.target, b = t.closest && t.closest('[data-nowax]');
+        if(b){
+          var k = b.getAttribute('data-nowax'), n = +b.getAttribute('data-n'), T = S.trk;
+          T.now[k] = (T.now[k] === n) ? n - 1 : n; T.nowAt = Date.now();
+          var day = new Date().toDateString(), last = T.nowHist[T.nowHist.length - 1];
+          if(last && new Date(last.at).toDateString() === day){ last.now = JSON.parse(JSON.stringify(T.now)); last.at = Date.now(); }
+          else T.nowHist.push({ at:Date.now(), now:JSON.parse(JSON.stringify(T.now)) });
+          T.nowHist = T.nowHist.slice(-12); persist(); renderTrk(); return;
+        }
+        b = t.closest && t.closest('[data-trk]');
+        if(b){ var act = b.getAttribute('data-trk'); if(act === 'ai') runAiStep(); else trkAct(act, b); return; }
+        var g = t.closest && t.closest('[data-go]'); if(g && window.goTab) window.goTab(g.getAttribute('data-go'));
+      });
+      box.addEventListener('submit', function(ev){
+        if(!(ev.target.id === 'fu-trk-logform')) return; ev.preventDefault();
+        var v = clip($('fu-trk-logt').value, 100); if(!v) return;
+        S.trk.log.push({ t:v, at:Date.now(), k:'free' }); S.trk.log = S.trk.log.slice(-80); lastLog = v; persist(); renderTrk();
+      });
+    }
+
+    /* ---------- アプリを開いたときの声かけ ---------- */
+    var nudged = false;
+    function nudgeInfo(){
+      if(!hasTrk()) return null;
+      var st = S.trk.step;
+      if(reviewDue()) return { t:'3か月たちました。理想の自分カードを見直しましょう。', k:'review' };
+      if(st && Date.now() > st.due) return { t:'先週の一歩、どうなりましたか?「' + st.t + '」', k:'late' };
+      if(st) return { t:'今週の一歩: ' + st.t, k:'step' };
+      if(!doneThisWeek()) return { t:'今週の一歩を決めましょう。理想の自分に、少しだけ近づく30分です。', k:'new' };
+      if(nowStale()) return { t:'「いまの自分」を、つけ直しましょう。理想との差が見えます。', k:'meter' };
+      return null;
+    }
+    function updateDot(){
+      var tb = document.getElementById('tab-future'); if(!tb) return;
+      var d = tb.querySelector('.trk-dot'), on = !!nudgeInfo();
+      if(on && !d){ d = document.createElement('i'); d.className = 'trk-dot'; d.setAttribute('aria-label', '今週の一歩があります'); tb.appendChild(d); }
+      else if(!on && d) d.remove();
+    }
+    function nudge(){
+      updateDot();
+      if(nudged) return; nudged = true;
+      var info = nudgeInfo(), home = document.getElementById('panel-home');
+      if(!info || !home || document.getElementById('trk-nudge')) return;
+      var el = document.createElement('div'); el.id = 'trk-nudge'; el.className = 'trk-nudge ' + info.k; el.setAttribute('role', 'status');
+      el.innerHTML = '<span class="trk-nudge-ico" aria-hidden="true">★</span><p>' + esc(info.t) + '</p><button type="button" class="btn primary" data-n="go">ひらく</button><button type="button" class="btn ghost" data-n="later">あとで</button>';
+      el.addEventListener('click', function(ev){
+        var b = ev.target.closest && ev.target.closest('[data-n]'); if(!b) return;
+        el.remove(); if(b.getAttribute('data-n') === 'go' && window.goTab) window.goTab('future');
+      });
+      home.insertBefore(el, home.firstChild);
+    }
+
+    S.trk = normTrk(S.trk);
+
+    /* ---------- 初期化 ---------- */
+    function init(){
+      if(inited) return; inited = true;
+      buildPick(); syncFields(); renderCard(); renderTable(); renderGoalBar(); renderAddSec(); bindTrk(); renderTrk();
+      chat = MiniChat({
+        log:'fu-chat-log', form:'fu-chat-form', quick:'fu-chat-quick',
+        state:function(){ return S.chat; }, rules:rules, note:note,
+        intro:'「これを目標にする!」と思える未来の自分を、一緒に具体的につくりましょう。仕事のこと、どうやって稼ぐか、毎月のお金、理想の1日まで、話しながらカードに描いていきます。正解はないので、思いつくままに話してください。',
+        quickDefault:['将来やりたいことを話す', 'まだ決まっていない', 'どうやって稼ぐか考えたい', '理想の1日を考えたい'],
+        strip:function(t){ return stripTags(t, ['future', 'day', 'quick']); },
+        onReply:onReply, onStream:onStream,
+        persist:persist
+      });
+      chat.render();
+      function field(id, key, max){ $(id).addEventListener('input', function(){ S.card[key] = clip($(id).value, max); persist(); renderCard(); renderTable(); notifyDP(); }); }
+      field('fu-north', 'north', 40); field('fu-job', 'job', 26); field('fu-place', 'place', 26);
+      $('fu-story').addEventListener('input', function(){ S.card.story = $('fu-story').value.slice(0, 220); persist(); renderCard(); });
+      $('fu-years').addEventListener('change', function(){ S.card.years = +$('fu-years').value; persist(); renderCard(); });
+      $('fu-axes').addEventListener('input', function(ev){
+        var t = ev.target; if(!t.getAttribute || !t.getAttribute('data-ax')) return;
+        var v = +t.value; S.card.v[t.getAttribute('data-ax')] = v; t.parentNode.querySelector('output').textContent = v || '−';
+        persist(); renderCard(); renderTable();
+      });
+      $('fu-card').addEventListener('click', function(ev){ var g = ev.target.closest && ev.target.closest('[data-go]'); if(g && window.goTab) window.goTab(g.getAttribute('data-go')); });
+      $('fu-seg').addEventListener('click', function(ev){ var b = ev.target.closest && ev.target.closest('button[data-v]'); if(b) setView(b.getAttribute('data-v')); });
+      $('fu-guide').addEventListener('click', function(){ if(window.obOpen) window.obOpen(true); });
+      $('fu-card').addEventListener('click', function(ev){
+        var t = ev.target, b = t.closest && t.closest('[data-say]');
+        if(b && chat){ chat.send(b.getAttribute('data-say')); return; }
+        if((b = t.closest('[data-xedit]'))){ editing = b.getAttribute('data-xedit'); armDel = null; renderCard(); return; }
+        if((b = t.closest('[data-xdel]'))){
+          var id = b.getAttribute('data-xdel');
+          if(armDel !== id){ armDel = id; renderCard(); return; }
+          S.card.extra = (S.card.extra || []).filter(function(e){ return e.id !== id; }); armDel = null; if(editing === id) editing = null;
+          persist(); renderCard(); renderGoalBar(); renderAddSec(); return;
+        }
+        if(t.closest('[data-xcancel]')){ editing = null; renderCard(); }
+      });
+      $('fu-card').addEventListener('submit', function(ev){ var f = ev.target.closest && ev.target.closest('.fu-xform'); if(!f) return; ev.preventDefault(); saveExtra(f); });
+      $('fu-addsec').addEventListener('click', function(ev){
+        var b = ev.target.closest && ev.target.closest('[data-addcat]'); if(!b) return;
+        var k = catOf(b.getAttribute('data-addcat')); if(!k || getX(k.id)) return;
+        if(addExtra({ id:k.id, t:k.t, type:k.type })){ renderCard(); renderGoalBar(); renderAddSec(); }
+      });
+      $('fu-addsec').addEventListener('submit', function(ev){
+        ev.preventDefault();
+        var t = clip($('fu-add-t').value, 18); if(!t) return;
+        var id = 'c' + hash36(t + Date.now()).slice(0, 8);
+        if(addExtra({ id:id, t:t, type:$('fu-add-type').value })){ editing = id; renderCard(); renderGoalBar(); renderAddSec(); }
+      });
+      $('fu-goalbar').addEventListener('click', function(ev){
+        var t = ev.target;
+        if(t.closest('#fu-goal-set')){ if(!hasCard()) return; S.goal = { at:Date.now() }; addSnap('goal'); persist(); renderCard(); renderGoalBar(); renderTrk(); var tb = $('fu-trk'); if(tb && tb.scrollIntoView){ try{ tb.scrollIntoView({ behavior:'smooth', block:'start' }); }catch(e){ /* no-op */ } } }
+        else if(t.closest('#fu-goal-off')){ S.goal = null; persist(); renderCard(); renderGoalBar(); renderTrk(); }
+        else if(t.closest('#fu-goal-rm')){ if(window.VAYL_RM) window.VAYL_RM.open(selfCtx()); }
+        else if(t.closest('#fu-deepen')) runDeepen();
+        else if(t.closest('#fu-export-btn')) openExport();
+      });
+      $('fu-add-btn').addEventListener('click', function(){
+        var v = $('fu-add-pick').value; if(!v) return;
+        var all = diagTargets().concat(catalog()), c = all.filter(function(x){ return x.id === v; })[0];
+        if(c){ addCand(c, c.fromDiag ? { fromDiag:true } : null); renderTable(); cmpMsg(''); }
+        $('fu-add-pick').value = '';
+      });
+      $('fu-fit').addEventListener('click', runFit);
+      $('fu-suggest').addEventListener('click', runSuggest);
+      $('fu-table').addEventListener('click', function(ev){
+        var t = ev.target, b;
+        if((b = t.closest && t.closest('[data-rmc]'))){ var id = b.getAttribute('data-rmc'); S.cands = S.cands.filter(function(c){ return c.id !== id; }); persist(); renderTable(); }
+        else if((b = t.closest && t.closest('[data-rmi]'))) openRm(b.getAttribute('data-rmi'), 'ideal');
+        else if((b = t.closest && t.closest('[data-rmu]'))) openRm(b.getAttribute('data-rmu'), 'univ');
+        else if(t.closest && t.closest('[data-gomap]') && window.goTab) window.goTab('commute');
+      });
+    }
+    var view = 'card', editing = null, armDel = null;
+    function setView(v){
+      view = v === 'day' ? 'day' : 'card';
+      $('fu-view-card').hidden = view !== 'card'; $('fu-view-day').hidden = view !== 'day';
+      $('fu-seg').querySelectorAll('button').forEach(function(b){ b.setAttribute('aria-selected', b.getAttribute('data-v') === view ? 'true' : 'false'); });
+      if(view === 'day') DP.show(); else { renderCard(); renderTable(); renderGoalBar(); renderTrk(); }
+    }
+    function show(){
+      init(); buildPick(); renderCard(); renderTable(); syncFields(); renderGoalBar(); renderAddSec();
+      var want = window.__futView; window.__futView = null;
+      setView(want || 'card');
+    }
+    function setCard(o){
+      var c = S.card;
+      if(o.years && [3, 5, 10, 15].indexOf(+o.years) >= 0) c.years = +o.years;
+      ['north', 'job', 'place', 'story'].forEach(function(k){ if(o[k] != null) c[k] = clip(o[k], k === 'story' ? 220 : (k === 'north' ? 40 : 26)); });
+      if(o.v){ c.v = {}; AXES.forEach(function(a){ if(o.v[a.k]) c.v[a.k] = Math.max(0, Math.min(5, Math.round(+o.v[a.k]))); }); }
+      persist(); if(inited){ renderCard(); syncFields(); renderTable(); renderGoalBar(); renderTrk(); }
+    }
+    function reset(){ S = { card:{ v:{} }, goal:null, cands:[], trk:normTrk({}), chat:{ turns:[], display:[], quick:[] } }; revOpen = false; lastDone = null; lastLog = null; if(inited){ buildPick(); syncFields(); renderCard(); renderTable(); renderGoalBar(); renderAddSec(); renderTrk(); chat.render(); } updateDot(); }
+    function refresh(){ if(inited){ renderCard(); renderTable(); renderGoalBar(); renderTrk(); } }
+    return { show:show, reset:reset, refresh:refresh, setView:setView, setCard:setCard, applyFuture:applyFuture, deepen:deepen, kickoff:kickoff, goal:function(){ return S.goal; }, cardHtml:cardHtml, hasCard:hasCard, raw:function(){ return S.card; }, trk:function(){ return S.trk; }, nudge:nudge, nudgeInfo:nudgeInfo, AXES:AXES, card:function(){ return hasCard() ? S.card : null; }, summary:summary };
+  })();
+
+  /* =================================================================
+     はじめの「理想の自分づくり」(アカウントをつくった直後・診断の前に出る、3分のガイド)
+     ================================================================= */
+  var OB = (function(){
+    var OK = 'kagawa-compass-ideal-onboard-v1';
+    var JOBS = ['医療・福祉', 'ものづくり・技術', '情報・AI', '教育・保育', 'ビジネス・経営', '公務員・地域', 'デザイン・表現', '農・食・自然', 'まだ決まっていない'];
+    var PLACES = ['香川県内', '香川を出て、また戻る', '県外・都会', '海外', 'どこでもいい', 'まだ決まっていない'];
+    var YEARS = [3, 5, 10, 15];
+    var VALS = [
+      { k:'stability', n:'安定', d:'ゆらがない暮らし' }, { k:'challenge', n:'挑戦', d:'新しいことに飛び込む' },
+      { k:'local', n:'地元・香川', d:'香川で暮らす' }, { k:'income', n:'収入', d:'しっかり稼ぐ' },
+      { k:'freedom', n:'自由な時間', d:'自分の時間を持つ' }, { k:'expert', n:'専門性', d:'資格・スキルを磨く' },
+      { k:'care', n:'人を支える', d:'だれかの役に立つ' }, { k:'create', n:'ものづくり・創造', d:'何かをつくり出す' }
+    ];
+    var NORTH = {
+      stability:'安定した暮らしを、自分の力で築く自分', challenge:'新しいことに挑戦し続ける自分', local:'地元・香川で、自分の居場所をつくる自分',
+      income:'自分の力で、しっかり稼げる自分', freedom:'自分の時間を大切にしながら、はたらく自分', expert:'ひとつの専門を、とことん磨いた自分',
+      care:'だれかの力になれる自分', create:'ものをつくり出して、人をよろこばせる自分'
+    };
+    var O = null, step = 0, root = null, started = false, LAST = 3;
+
+    function hasDiag(){
+      try{ var j = JSON.parse(localStorage.getItem('kagawa-shimazutai-results-v1') || 'null'); return !!(j && j.items && j.items.length); }catch(e){ return false; }
+    }
+    function flag(){ return load(OK, null); }
+    function setFlag(o){ save(OK, o); }
+    function valNames(){ return O.vals.map(function(k){ return VALS.filter(function(v){ return v.k === k; })[0].n; }); }
+    function composeCard(){
+      var job = O.job && O.job !== 'まだ決まっていない' ? O.job : '', place = O.place && O.place !== 'まだ決まっていない' ? O.place : '';
+      var north = O.north.trim();
+      if(!north){
+        if(job && place === '香川県内') north = '香川で、' + job + 'の仕事に向き合う自分';
+        else north = NORTH[O.vals[0]] || '自分らしく歩んでいる自分';
+      }
+      var story = O.years + '年後の私は、' + (place ? place + 'で' : '') + (job ? job + 'の仕事に' : '自分の道に') + '向き合っています。大切にしているのは、' + valNames().join('・') + '。';
+      var v = {}; O.vals.forEach(function(k, i){ v[k] = i === 0 ? 5 : 4; });
+      return { years:O.years, north:north, job:job ? job + 'の仕事' : '', place:place, story:story, v:v };
+    }
+    function chip(label, on, attrs, sub){ return '<button type="button" class="ob-chip' + (on ? ' on' : '') + '" ' + attrs + ' aria-pressed="' + (on ? 'true' : 'false') + '">' + esc(label) + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</button>'; }
+    function body(){
+      if(step === 0){
+        return '<svg class="ob-star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5l2 8.5 8.5 2-8.5 2-2 8.5-2-8.5-8.5-2 8.5-2z"/></svg>' +
+          '<h2 id="ob-title">まず、理想の自分を描いてみよう</h2>' +
+          '<p class="ob-lead">診断の前に、先に「どんな自分になっていたいか」を描きます。行きたい先が少し見えていると、学校や進路もえらびやすくなります。</p>' +
+          '<ul class="ob-points"><li>最初は、えらぶだけの2ステップ(1分ほど)。そのあと、AIと話しながら、どうやって稼ぐか・毎月のお金・理想の1日まで、「これを目標にする!」と思えるくらい具体的にしていきます。</li><li>正解はありません。ざっくりでだいじょうぶです。</li><li>つくった理想は、志望校をくらべるときや、ロードマップづくりに使われます。</li></ul>';
+      }
+      if(step === 1){
+        return '<h2 id="ob-title">どんな自分になっていたい?</h2><p class="ob-lead">ピンとくるものを選んでください。どれも空欄でもOKです。</p>' +
+          '<div class="ob-q"><b>何年後の自分?</b><div class="ob-chips">' + YEARS.map(function(y){ return chip(y + '年後', O.years === y, 'data-years="' + y + '"'); }).join('') + '</div></div>' +
+          '<div class="ob-q"><b>どんな仕事・分野のイメージ?</b><div class="ob-chips">' + JOBS.map(function(j){ return chip(j, O.job === j, 'data-job="' + esc(j) + '"'); }).join('') + '</div></div>' +
+          '<div class="ob-q"><b>どこで暮らしていたい?</b><div class="ob-chips">' + PLACES.map(function(j){ return chip(j, O.place === j, 'data-place="' + esc(j) + '"'); }).join('') + '</div></div>' +
+          '<div class="ob-q"><label for="ob-north"><b>ひとことで言うと?</b><small>(空欄なら、このあとの答えから自動でつくります)</small></label><input type="text" id="ob-north" maxlength="40" value="' + esc(O.north) + '" placeholder="例: 地元の病院で、人を支える看護師になる"></div>';
+      }
+      if(step === 2){
+        return '<h2 id="ob-title">大切にしたいことは?</h2><p class="ob-lead">3つまで選べます。選んだことが、「理想との近さ」を測るものさしになります。</p>' +
+          '<div class="ob-chips ob-vals">' + VALS.map(function(v){ return chip(v.n, O.vals.indexOf(v.k) >= 0, 'data-val="' + v.k + '"', v.d); }).join('') + '</div>' +
+          '<p class="ob-count" id="ob-count">' + (O.vals.length ? O.vals.length + '個えらびました(最大3つ)' : 'まだ選んでいません。1つ以上えらぶと、つぎへ進めます。') + '</p>';
+      }
+      return '<h2 id="ob-title">最初のカードができました</h2>' +
+        '<div class="ob-card">' + FUT.cardHtml(true) + '</div>' +
+        '<p class="ob-next"><b>ここからが本番です。</b>AIと話しながら、どうやって稼ぐか、毎月のお金、理想の1日、そこまでの道のり、現実の壁まで、ぐっと具体的にしていきます。話の中で、理想の1日も一緒に描きます。</p>';
+    }
+    function foot(){
+      if(step === 0) return '<button type="button" class="btn primary" data-act="next">描いてみる</button><button type="button" class="btn ghost" data-act="later">あとでやる</button>';
+      if(step === LAST) return '<button type="button" class="btn primary" data-act="talk">AIと話して、具体的にする →</button><button type="button" class="btn ghost" data-act="diag">先に診断をはじめる</button><button type="button" class="ob-link" data-act="home">ホームへ</button>';
+      return '<button type="button" class="btn ghost" data-act="back">もどる</button><button type="button" class="btn primary" data-act="next"' + (step === 2 && !O.vals.length ? ' disabled' : '') + '>' + (step === 2 ? 'カードをつくる' : 'つぎへ') + '</button>';
+    }
+    function render(keep){
+      if(!root) return;
+      var dots = ''; for(var i = 0; i <= LAST; i++) dots += '<i class="' + (i === step ? 'on' : (i < step ? 'done' : '')) + '"></i>';
+      root.querySelector('.ob-dots').innerHTML = dots;
+      root.querySelector('.ob-skip').hidden = step === 0 || step === LAST;
+      root.querySelector('.ob-body').innerHTML = body();
+      root.querySelector('.ob-foot').innerHTML = foot();
+      if(keep === true) return;
+      root.querySelector('.ob-scroll').scrollTop = 0;
+      var f = root.querySelector('.ob-foot .primary'); if(f && step !== 1) try{ f.focus({ preventScroll:true }); }catch(e){ /* no-op */ }
+    }
+    function toggle(arr, v, max){ var i = arr.indexOf(v); if(i >= 0) arr.splice(i, 1); else if(arr.length < max) arr.push(v); }
+    function close(flagObj){
+      if(flagObj) setFlag(flagObj);
+      if(root){ root.classList.remove('in'); var r = root; setTimeout(function(){ if(r.parentNode) r.parentNode.removeChild(r); }, 350); root = null; }
+      document.documentElement.classList.remove('ob-open');
+    }
+    function onClick(ev){
+      var t = ev.target, b;
+      if((b = t.closest('[data-years]'))){ O.years = +b.getAttribute('data-years'); render(true); return; }
+      if((b = t.closest('[data-job]'))){ var j = b.getAttribute('data-job'); O.job = O.job === j ? '' : j; render(true); return; }
+      if((b = t.closest('[data-place]'))){ var pl = b.getAttribute('data-place'); O.place = O.place === pl ? '' : pl; render(true); return; }
+      if((b = t.closest('[data-val]'))){ toggle(O.vals, b.getAttribute('data-val'), 3); render(true); return; }
+      if(t.closest('.ob-skip')){ close({ skipped:1 }); return; }
+      b = t.closest('[data-act]'); if(!b) return;
+      var a = b.getAttribute('data-act');
+      if(a === 'later'){ close({ skipped:1 }); }
+      else if(a === 'back'){ if(step > 0){ step--; render(); } }
+      else if(a === 'next'){
+        if(step === 2){ if(!O.vals.length) return; FUT.setCard(composeCard()); }
+        step++; render();
+      }
+      else if(a === 'talk'){ close({ done:1, at:Date.now() }); if(window.goTab) window.goTab('future'); setTimeout(function(){ FUT.kickoff(); }, 350); }
+      else if(a === 'diag'){ close({ done:1, at:Date.now() }); if(window.goTab) window.goTab('shindan'); }
+      else if(a === 'home'){ close({ done:1, at:Date.now() }); if(window.goTab) window.goTab('home'); }
+    }
+    function open(force){
+      if(root) return;
+      var c = FUT.raw() || {};
+      O = { years:[3, 5, 10, 15].indexOf(+c.years) >= 0 ? +c.years : 10, job:'', place:'', north:c.north || '', vals:[] };
+      if(force){
+        JOBS.forEach(function(j){ if(c.job && c.job.indexOf(j) === 0) O.job = j; });
+        PLACES.forEach(function(p){ if(c.place === p) O.place = p; });
+        O.vals = FUT.AXES.filter(function(a){ return (c.v && c.v[a.k] >= 4); }).map(function(a){ return a.k; }).slice(0, 3);
+      }
+      step = 0;
+      root = document.createElement('div'); root.className = 'ob'; root.setAttribute('role', 'dialog'); root.setAttribute('aria-modal', 'true'); root.setAttribute('aria-labelledby', 'ob-title');
+      root.innerHTML = '<div class="ob-top"><div class="ob-dots" aria-hidden="true"></div><button type="button" class="ob-skip">あとでやる</button></div><div class="ob-scroll"><div class="ob-box"><div class="ob-body"></div></div></div><div class="ob-foot"></div>';
+      document.body.appendChild(root);
+      document.documentElement.classList.add('ob-open');
+      root.addEventListener('click', onClick);
+      root.addEventListener('input', function(ev){ if(ev.target.id === 'ob-north') O.north = ev.target.value; });
+      root.addEventListener('keydown', function(ev){ if(ev.key === 'Escape'){ close({ skipped:1 }); } });
+      render();
+      void root.offsetWidth; root.classList.add('in');
+    }
+    function maybeStart(){
+      if(started || root) return;
+      if(flag() || hasDiag() || FUT.hasCard()) return;
+      var intro = $('home-intro'); if(intro && !intro.hidden) return;
+      started = true; open(false);
+    }
+    function watch(){
+      var intro = $('home-intro');
+      if(!intro || intro.hidden){ setTimeout(maybeStart, 350); return; }
+      var mo = new MutationObserver(function(){ if(intro.hidden){ mo.disconnect(); setTimeout(maybeStart, 300); } });
+      mo.observe(intro, { attributes:true, attributeFilter:['hidden'] });
+    }
+    function reset(){ if(root) close(null); started = false; }
+    return { open:open, watch:watch, reset:reset };
+  })();
+  window.obOpen = OB.open;
+  OB.watch();
+
+
+  window.FUTAPI = { card:FUT.card, summary:FUT.summary, trk:FUT.trk, nudgeInfo:FUT.nudgeInfo };
+  (function(){ function go(){ setTimeout(function(){ try{ FUT.nudge(); }catch(e){ /* no-op */ } }, 900); } if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go(); })();
+  window.futShow = FUT.show; window.futRefresh = FUT.refresh; window.futView = function(v){ var act = document.getElementById('panel-future').classList.contains('active'); if(act) FUT.setView(v); else if(window.goTab){ window.__futView = v; window.goTab('future'); } };
+  window.cmShow = CM.show; window.dpShow = DP.show; window.dpApplyCommute = DP.apply; window.dpRefresh = function(){ DP.refresh(); if(FUT && FUT.refresh) FUT.refresh(); };
+  window.vaylFeatureReset = function(){ try{ CM.reset(); DP.reset(); FUT.reset(); OB.reset(); }catch(e){ /* no-op */ } };
   window.CM = CM;
 })();
 
