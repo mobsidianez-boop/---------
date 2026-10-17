@@ -19,6 +19,11 @@
 <script>
 /* 昼/夜の設定を、画面が出る前に反映する(ちらつき防止) */
 (function(){ try{ var m = localStorage.getItem('vayl-theme-v1'); var r = document.documentElement; if(m==='light'||m==='dark') r.setAttribute('data-theme', m); }catch(e){} })();
+/* アカウント(Supabase)の設定。公開用のURLとキーだけを入れる(秘密のキーは、絶対に入れない)。 */
+var SUPABASE_URL = 'https://rnbfsgncwvzriecvmrwr.supabase.co';
+var SUPABASE_ANON_KEY = 'sb_publishable_0KEtC4pQPpcHtZuCmjIM9w_NleW7vAF';
+/* アカウントを使う設定で、まだログインしていないときは、アプリより先にログイン画面だけを出す(アプリがちらっと見えないように) */
+(function(){ try{ if(SUPABASE_URL && SUPABASE_ANON_KEY && !localStorage.getItem('tyosen-account-v1')) document.documentElement.classList.add('gated'); }catch(e){} })();
 </script>
 <title>VAYL</title>
 <style>
@@ -1055,6 +1060,36 @@
     padding:10px 14px 10px 18px; border-radius:999px; background:var(--paper-raise); color:var(--ink); border:1.5px solid var(--sea); box-shadow:0 12px 30px -12px rgba(11,74,133,.5); font-weight:700; font-size:.9rem; max-width:calc(100vw - 24px); }
   .acct-banner[hidden]{ display:none; }
   .acct-banner .btn{ padding:8px 16px; font-size:.85rem; }
+  .acct-pwbox{ margin-top:14px; } .acct-pwbox summary{ cursor:pointer; font-weight:700; }
+  /* ===== ログイン画面(アカウントを使う設定のとき、ログインするまで、これだけを出す) ===== */
+  html.gated body > *:not(#login-gate):not(#priv-modal):not(script):not(style):not(title){ visibility:hidden; }
+  .gate{ position:fixed; inset:0; z-index:250; overflow-y:auto; display:grid; place-items:center; visibility:visible;
+    padding:max(20px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+    background:radial-gradient(120% 80% at 50% 0%, var(--sea-soft) 0%, var(--paper) 72%); color:var(--ink); }
+  .gate[hidden]{ display:none; }
+  .gate-box{ width:min(440px, 100%); margin:auto; background:var(--paper-raise); border:1px solid var(--line); border-radius:20px; padding:26px 22px 22px; box-shadow:0 16px 44px -22px rgba(11,74,133,.45); }
+  .gate-mark{ margin:0 0 4px; text-align:center; font-family:"Shippori Mincho",serif; font-weight:800; font-size:1.9rem; letter-spacing:.2em; color:var(--sea); }
+  .gate h2{ margin:0 0 10px; text-align:center; font-size:1.12rem; line-height:1.5; }
+  .gate-lead{ margin:0 0 18px; }
+  .gate .acct-input{ flex:1 1 100%; max-width:none; }
+  .gate .acct-code{ text-align:center; font-size:1.4rem; }
+  .gate .acct-row .btn{ flex:1 1 auto; justify-content:center; }
+  .gate .acct-row #acct-send, .gate .acct-row #acct-login{ flex:1 1 100%; }
+  .gate .acct-choice{ margin-top:6px; }
+  .gate-foot{ margin:16px 0 0; text-align:center; }
+  .gate-tabs{ display:flex; gap:6px; margin:0 0 14px; padding:4px; background:var(--sea-soft); border-radius:12px; }
+  .gate-tabs[hidden]{ display:none; }
+  .gate-tabs button{ flex:1; font:inherit; font-weight:800; padding:9px 8px; border:0; border-radius:9px; background:transparent; color:var(--sea); cursor:pointer; }
+  .gate-tabs button[aria-selected="true"]{ background:var(--paper-raise); box-shadow:0 1px 5px rgba(11,74,133,.2); }
+  .gate .acct-field{ margin-top:12px; }
+  .gate .acct-field:first-child{ margin-top:0; }
+  .gate .acct-field .acct-input{ display:block; width:100%; box-sizing:border-box; }
+  .gate .set-note:not(.set-wipe-msg){ padding:0; background:none; border:0; border-radius:0; }
+  .acct-choice[hidden]{ display:none; }
+  .gate-links{ display:flex; flex-direction:column; align-items:flex-start; gap:8px; margin-top:14px; font-size:.88rem; }
+  .gate-links[hidden]{ display:none; }
+  .gate-show{ display:flex; gap:8px; align-items:center; margin-top:14px; font-size:.86rem; cursor:pointer; }
+  .gate-wait{ margin:0; text-align:center; font-weight:700; }
   /* ===== AIが書き換え中のアニメーション / 編集した箇所の印(10秒) ===== */
   .aibusy{ display:flex; align-items:center; gap:8px; position:relative; margin:6px 0 8px; padding:8px 12px; border-radius:12px; overflow:hidden;
     background:color-mix(in srgb, var(--terracotta) 11%, var(--paper-raise)); border:1.5px solid color-mix(in srgb, var(--terracotta) 45%, var(--line));
@@ -2976,7 +3011,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <div class="section-head">
       <span class="eyebrow">Settings</span>
       <h2>設定</h2>
-      <p>画面の色(昼と夜)・利用者の切り替え・アカウント・音量・チュートリアル・データの初期化の設定です。音量などの変更は、この端末のブラウザに保存されます。</p>
+      <p>画面の色(昼と夜)・アカウント・音量・チュートリアル・データの初期化の設定です。音量などの変更は、この端末のブラウザに保存されます。</p>
     </div>
     <div class="card set-card" id="theme-card">
       <h3>画面の色(昼と夜)</h3>
@@ -2987,51 +3022,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <button type="button" role="radio" data-theme-pick="dark" aria-checked="false">夜<small>北極星の夜空</small></button>
       </div>
     </div>
-    <div class="card set-card" id="prof-card">
-      <h3>利用者の切り替え</h3>
-      <div id="prof-locked" hidden><p class="set-note" style="margin:0">アカウントでログイン中は、アカウントのデータを使うので、利用者の切り替えは使えません。</p></div>
-      <div id="prof-body">
-        <p class="set-note" style="margin:0 0 12px">同じブラウザ(同じパソコンやスマホ)を、何人かで使うときに、データを分けられます。アプリを開いたときは、いつも最初から入っている利用者「TEST」から始まります(「TEST」の名前は変えられません)。人を切り替えると、診断の結果・ロードマップ・予定表などが、その人のものに入れかわります。データはこのブラウザの中だけに保存され、サーバーには送られません。</p>
-        <ul class="prof-list" id="prof-list"></ul>
-        <form id="prof-add-form" class="acct-row" novalidate>
-          <input type="text" id="prof-add-name" class="acct-input" maxlength="12" autocomplete="off" placeholder="あたらしい人の名前(例: たろう)" aria-label="あたらしい人の名前">
-          <button type="submit" class="btn ghost">つくって切り替える</button>
-        </form>
-      </div>
-      <p class="set-note set-wipe-msg" id="prof-msg" role="status" hidden></p>
-    </div>
     <div class="card set-card" id="acct-card" hidden>
       <h3>アカウント</h3>
-      <div id="acct-out">
-        <p class="set-note" style="margin:0 0 14px">メールアドレスでログインすると、診断の結果・ロードマップ・予定表などが、別の端末(スマホやパソコン)でも続きから使えます。パスワードは要りません。メールに届く数字のコードを入れるだけです。ログインしなくても、これまで通り使えます。</p>
-        <form id="acct-form-email" class="acct-form" novalidate>
-          <label class="acct-label" for="acct-email">メールアドレス</label>
-          <div class="acct-row">
-            <input type="email" id="acct-email" class="acct-input" autocomplete="email" inputmode="email" placeholder="例: mail@example.com">
-            <button type="submit" class="btn primary" id="acct-send">コードを送る</button>
-          </div>
-        </form>
-        <form id="acct-form-code" class="acct-form" hidden novalidate>
-          <p class="set-note" id="acct-sent" style="margin:0 0 10px"></p>
-          <label class="acct-label" for="acct-code">メールに書かれたコード</label>
-          <div class="acct-row">
-            <input type="text" id="acct-code" class="acct-input acct-code" autocomplete="one-time-code" inputmode="numeric" maxlength="10" placeholder="数字のコード">
-            <button type="submit" class="btn primary" id="acct-login">ログイン</button>
-          </div>
-          <div class="acct-row">
-            <button type="button" class="btn ghost" id="acct-resend">コードをもう一度送る</button>
-            <button type="button" class="btn ghost" id="acct-back">メールアドレスを入れなおす</button>
-          </div>
-        </form>
-        <p class="set-note">メールアドレスは、ログインと、データの保存のためだけに使います。</p>
-      </div>
       <div id="acct-in" hidden>
         <p class="acct-who"><b id="acct-who"></b> でログイン中</p>
         <p class="set-note" id="acct-status" style="margin:6px 0 0"></p>
-        <div id="acct-choice" class="acct-choice" hidden>
-          <button type="button" class="btn primary" id="acct-use-cloud">アカウントのデータを使う<small>(この端末のデータは消えます)</small></button>
-          <button type="button" class="btn ghost" id="acct-use-local">この端末のデータを使う<small>(アカウントのデータは上書きされます)</small></button>
-        </div>
         <div class="set-actions">
           <button type="button" class="btn ghost" id="acct-sync">いますぐ同期</button>
           <button type="button" class="btn ghost" id="acct-logout">ログアウト</button>
@@ -3040,6 +3035,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
           <p class="set-note" style="margin:0 0 10px">ログアウトすると、<b>この端末のデータは消えます</b>(アカウントには残っています。ログインすれば、また使えます)。</p>
           <div class="set-actions" style="margin-top:0"><button type="button" class="btn ghost" id="acct-logout-no">やめる</button><button type="button" class="btn danger" id="acct-logout-go">ログアウトする</button></div>
         </div>
+        <details class="acct-pwbox">
+          <summary>パスワードを決める・変える</summary>
+          <p class="set-note" style="margin:10px 0 8px">次からは、メールアドレスとパスワードだけで、ログインできます。</p>
+          <form id="acct-pw-form" class="acct-row" novalidate>
+            <input type="password" id="acct-pw-new" class="acct-input" autocomplete="new-password" minlength="8" placeholder="あたらしいパスワード(8文字以上)" aria-label="あたらしいパスワード">
+            <button type="submit" class="btn ghost" id="acct-pw-go">決める</button>
+          </form>
+        </details>
         <details class="acct-danger">
           <summary>アカウントを削除する</summary>
           <p class="set-note" style="margin:10px 0 0">アカウントと、アカウントに預けたデータをすべて消します。<b>もとには戻せません。</b></p>
@@ -3109,6 +3112,71 @@ svg.leaflet-image-layer.leaflet-interactive path {
         <button type="button" class="btn ghost" id="reset-cancel">やめる</button>
         <button type="button" class="btn danger" id="reset-ok">初期化する</button>
       </div>
+    </div>
+  </div>
+
+  <div class="gate" id="login-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title" hidden>
+    <div class="gate-box">
+      <p class="gate-mark" aria-hidden="true">VAYL</p>
+      <div id="acct-out">
+        <h2 id="gate-title">ログイン</h2>
+        <div class="gate-tabs" id="gate-tabs" role="tablist" aria-label="ログインか、新規登録か">
+          <button type="button" role="tab" data-gmode="login" aria-selected="true">ログイン</button>
+          <button type="button" role="tab" data-gmode="signup" aria-selected="false">新規登録</button>
+        </div>
+        <p class="set-note gate-lead" id="gate-lead"></p>
+
+        <form id="acct-form-pw" class="acct-form" novalidate>
+          <div class="acct-field"><label class="acct-label" for="pw-email">メールアドレス</label>
+            <input type="email" id="pw-email" class="acct-input" autocomplete="username" inputmode="email" placeholder="例: mail@example.com"></div>
+          <div class="acct-field"><label class="acct-label" for="pw-pass">パスワード</label>
+            <input type="password" id="pw-pass" class="acct-input" autocomplete="current-password"></div>
+          <div class="acct-row"><button type="submit" class="btn primary" id="pw-login">ログイン</button></div>
+          <div class="gate-links">
+            <button type="button" class="linklike" data-gmode="recover">パスワードを忘れた・まだ決めていない</button>
+            <button type="button" class="linklike" data-gmode="code">パスワードなしで、メールのコードだけでログイン</button>
+          </div>
+        </form>
+
+        <form id="acct-form-signup" class="acct-form" hidden novalidate>
+          <div class="acct-field"><label class="acct-label" for="su-email">メールアドレス</label>
+            <input type="email" id="su-email" class="acct-input" autocomplete="username" inputmode="email" placeholder="例: mail@example.com"></div>
+          <div class="acct-field"><label class="acct-label" for="su-pass">パスワード(8文字以上)</label>
+            <input type="password" id="su-pass" class="acct-input" autocomplete="new-password" minlength="8"></div>
+          <div class="acct-row"><button type="submit" class="btn primary" id="su-send">コードを送る</button></div>
+        </form>
+
+        <form id="acct-form-email" class="acct-form" hidden novalidate>
+          <div class="acct-field"><label class="acct-label" for="acct-email">メールアドレス</label>
+            <input type="email" id="acct-email" class="acct-input" autocomplete="email" inputmode="email" placeholder="例: mail@example.com"></div>
+          <div class="acct-row"><button type="submit" class="btn primary" id="acct-send">コードを送る</button></div>
+        </form>
+
+        <form id="acct-form-code" class="acct-form" hidden novalidate>
+          <p class="set-note" id="acct-sent" style="margin:0 0 10px"></p>
+          <div class="acct-field"><label class="acct-label" for="acct-code">メールに書かれたコード</label>
+            <input type="text" id="acct-code" class="acct-input acct-code" autocomplete="one-time-code" inputmode="numeric" maxlength="10" placeholder="数字のコード"></div>
+          <div class="acct-field" id="acct-newpw-wrap" hidden><label class="acct-label" for="acct-newpw">あたらしいパスワード(8文字以上)</label>
+            <input type="password" id="acct-newpw" class="acct-input" autocomplete="new-password" minlength="8"></div>
+          <div class="acct-row"><button type="submit" class="btn primary" id="acct-login">ログイン</button></div>
+          <div class="acct-row">
+            <button type="button" class="btn ghost" id="acct-resend">コードをもう一度送る</button>
+            <button type="button" class="btn ghost" id="acct-back">さいしょにもどる</button>
+          </div>
+        </form>
+
+        <label class="gate-show"><input type="checkbox" id="gate-showpw"> パスワードを表示する</label>
+        <div class="gate-links" id="gate-backlink" hidden><button type="button" class="linklike" data-gmode="login">← ログイン画面にもどる</button></div>
+      </div>
+      <p class="set-note gate-wait" id="gate-wait" role="status" hidden>データを読みこんでいます…</p>
+      <div id="acct-choice" class="acct-choice" hidden>
+        <h2>どちらのデータを使いますか?</h2>
+        <p class="set-note" style="margin:0">この端末にも、アカウントにも、データがあります。どちらか1つを選んでください。</p>
+        <button type="button" class="btn primary" id="acct-use-cloud">アカウントのデータを使う<small>(この端末のデータは消えます)</small></button>
+        <button type="button" class="btn ghost" id="acct-use-local">この端末のデータを使う<small>(アカウントのデータは上書きされます)</small></button>
+      </div>
+      <p class="set-note set-wipe-msg" id="gate-msg" role="status" hidden></p>
+      <p class="set-note gate-foot">メールアドレスは、ログインと、データの保存のためだけに使います。<button type="button" class="linklike" data-priv-open>データの扱いについて</button></p>
     </div>
   </div>
 
@@ -3237,18 +3305,19 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <h3 id="priv-title">データの扱いについて</h3>
     <p class="priv-lead">「VAYL」は、いま開発中のテスト版です。あなたの入力したことが、どこに保存され、どこに送られるのかを、短く説明します。</p>
     <h4>保存される場所</h4>
-    <p>診断の回答や結果、AIとのチャット、ロードマップ、予定表などは、いま使っているこの端末のブラウザの中に保存されます。運営のサーバーに集められることはありません。</p>
+    <p>診断の回答や結果、AIとのチャット、ロードマップ、予定表などは、いま使っているこの端末のブラウザの中に保存されます。(アカウントでログインする場合は、下の「アカウントを使うとき」のとおり、預け先のサーバーにも保存されます。)</p>
     <h4>AIに質問するとき</h4>
     <p>AIに送った文章と、診断で選んだ学校や学部などの情報は、インターネットを通って、AIの中継サーバー(Cloudflare)に送られ、AIが返事を作ります。中継サーバーに、会話を保存するしくみは入れていません。</p>
     <p class="priv-warn"><b>名前・住所・電話番号・メールアドレス・学校名などの、個人が分かる情報は、AIに書かないでください。</b></p>
     <div id="priv-acct" hidden>
       <h4>アカウントを使うとき</h4>
-      <p>メールアドレスでログインしたときだけ、メールアドレスと、診断の結果やロードマップなどのデータが、預け先のサーバー(Supabase)に保存されます。別の端末で続きから使うためです。ログインしなければ、サーバーには何も保存されません。</p>
+      <p>ログインすると、メールアドレスと、診断の結果やロードマップなどのデータが、預け先のサーバー(Supabase)に保存されます。別の端末で続きから使うためです。ログアウトすると、この端末のデータは消えます(アカウントには残っています)。</p>
+      <p>パスワードは、預け先のサーバーが、読めない形に変えて保存します。このアプリの運営が、パスワードを見ることはできません。</p>
     </div>
     <h4>データを消したいとき</h4>
     <p>「設定」の「データの初期化」で、アプリのデータをすべて消せます(ログイン中は、アカウントに預けたデータも消えます)。アカウントの削除も、設定からできます。</p>
     <h4>同じ端末を、みんなで使うとき</h4>
-    <p>「利用者の切り替え」は、データを分けるためのものです。パスワードのような鍵ではありません。見られたくないデータは、使い終わったら初期化してください。</p>
+    <p>見られたくないデータは、使い終わったら「設定」の「データの初期化」で消してください。アカウントでログインしているときは、「ログアウト」でも、この端末のデータが消えます(アカウントには残っています)。</p>
     <h4>AIの答えについて</h4>
     <p>AIの答えは、まちがうことがあります。出願の日程や学費、奨学金の金額などの大切なことは、必ず学校や大学の公式サイトで確かめてください。</p>
     <div class="set-actions" style="justify-content:flex-end;margin-top:18px">
@@ -3711,16 +3780,12 @@ svg.leaflet-image-layer.leaflet-interactive path {
        ※ anon key(公開用のキー)は、ページに書いてよいもの。データは「行ごとのアクセス制限(RLS)」で、本人だけが読める。
        ※ service_role key(秘密のキー)は、絶対にここへ書かない。 */
   var ACCT = (function(){
-    var SUPABASE_URL = 'https://rnbfsgncwvzriecvmrwr.supabase.co';
-    var SUPABASE_ANON_KEY = 'sb_publishable_0KEtC4pQPpcHtZuCmjIM9w_NleW7vAF';
-
     var enabled = !!(SUPABASE_URL && SUPABASE_ANON_KEY);
     var card = document.getElementById('acct-card');
     var SESS_KEY = 'tyosen-account-v1', META_KEY = 'tyosen-sync-meta-v1', FLASH_KEY = 'tyosen-flash';
     var NOSYNC = { 'kagawa-shimazutai-settings-v1': 1, 'kagawa-compass-commute-v1': 1 };    /* 音量は端末ごとの設定なので、同期しない */
     var stub = { enabled:false, loggedIn:function(){ return false; }, beginReset:function(){}, finishReset:function(){ return Promise.resolve(true); } };
     if(!enabled || !card) return stub;
-    card.hidden = false;
 
     var origSet = Storage.prototype.setItem, origRem = Storage.prototype.removeItem;
     function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
@@ -3899,14 +3964,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
     var $ = function(id){ return document.getElementById(id); };
     var elOut = $('acct-out'), elIn = $('acct-in'), fEmail = $('acct-form-email'), fCode = $('acct-form-code');
     var inEmail = $('acct-email'), inCode = $('acct-code'), elSent = $('acct-sent'), elMsg = $('acct-msg'), elStatus = $('acct-status');
-    var elWho = $('acct-who'), elChoice = $('acct-choice'), banner = $('acct-banner');
+    var elWho = $('acct-who'), elChoice = $('acct-choice'), banner = $('acct-banner'), gate = $('login-gate'), gMsg = $('gate-msg'), gWait = $('gate-wait'), gateBusy = false;
     var sentTo = '', cooldownTimer = null, cooldownLeft = 0;
-    function say(t, bad){ elMsg.textContent = t || ''; elMsg.hidden = !t; elMsg.classList.toggle('bad', !!bad); }
+    function say(t, bad){ [elMsg, gMsg].forEach(function(m){ if(!m) return; m.textContent = t || ''; m.hidden = !t; m.classList.toggle('bad', !!bad); }); }
     function two(n){ return n < 10 ? '0' + n : '' + n; }
     function setStatus(t){ if(elStatus) elStatus.textContent = t; }
     function render(){
       var on = !!sess;
-      elOut.hidden = on; elIn.hidden = !on;
+      elOut.hidden = on; elIn.hidden = !on; card.hidden = !on;
       if(on){
         elWho.textContent = (sess.user && sess.user.email) || '';
         var dirtyN = Object.keys(meta.dirty).length;
@@ -3918,24 +3983,115 @@ svg.leaflet-image-layer.leaflet-interactive path {
         else if(meta.lastSync){ var d = new Date(meta.lastSync); t = (dirtyN ? '同期まち…' : '同期ずみ') + '(' + two(d.getHours()) + ':' + two(d.getMinutes()) + ')'; }
         else t = '';
         setStatus(t);
-        elChoice.hidden = !needChoice;
       }
+      elChoice.hidden = !(on && needChoice);
+      var showGate = !on || needChoice || gateBusy;      /* ログインするまで(と、データを選ぶあいだ)は、ログイン画面だけを出す */
+      gate.hidden = !showGate; gWait.hidden = !(on && gateBusy && !needChoice);
+      document.documentElement.classList.toggle('gated', showGate);
       banner.hidden = !(sess && pending.length && !needChoice);
-      if(window.PROF && PROF.refresh) PROF.refresh();
     }
+    var mode = 'login', purpose = 'otp';        /* mode: login / signup / code / recover   purpose(コードの使いみち): otp / signup / recovery */
+    var fPw = $('acct-form-pw'), fSign = $('acct-form-signup'), elTabs = $('gate-tabs'), elLead = $('gate-lead'), elTitle = $('gate-title'), elBack = $('gate-backlink');
+    var TXT = {
+      login:   ['ログイン', 'メールアドレスとパスワードで、ログインします。'],
+      signup:  ['新規登録', 'はじめての人は、メールアドレスとパスワードを決めてください。メールに届く数字のコードで、メールアドレスを確かめたら、登録が終わります。次からは、メールアドレスとパスワードだけでログインできます。'],
+      code:    ['コードでログイン', 'パスワードなしで、メールに届く数字のコードだけで、ログインします。'],
+      recover: ['パスワードを決めなおす', 'パスワードを忘れたとき・まだ決めていないときは、メールに届く数字のコードを入れて、あたらしいパスワードを決めます。']
+    };
+    function setMode(m){
+      mode = m; say('');
+      clearInterval(cooldownTimer); cooldownLeft = 0;
+      fPw.hidden = m !== 'login'; fSign.hidden = m !== 'signup';
+      fEmail.hidden = !(m === 'code' || m === 'recover'); fCode.hidden = true;
+      elTabs.hidden = !(m === 'login' || m === 'signup');
+      elBack.hidden = (m === 'login' || m === 'signup');
+      Array.prototype.forEach.call(elTabs.querySelectorAll('[data-gmode]'), function(b){ b.setAttribute('aria-selected', b.getAttribute('data-gmode') === m ? 'true' : 'false'); });
+      elTitle.textContent = TXT[m][0]; elLead.textContent = TXT[m][1];
+      purpose = m === 'recover' ? 'recovery' : (m === 'signup' ? 'signup' : 'otp');
+      var b1 = $('acct-send'); b1.disabled = false; b1.textContent = 'コードを送る';
+      var b2 = $('su-send'); b2.disabled = false; b2.textContent = 'コードを送る';
+    }
+    gate.addEventListener('click', function(ev){
+      var t = ev.target.closest && ev.target.closest('[data-gmode]');
+      if(t){ ev.preventDefault(); setMode(t.getAttribute('data-gmode')); }
+    });
+    $('gate-showpw').addEventListener('change', function(ev){
+      Array.prototype.forEach.call(gate.querySelectorAll('input[type="password"], input[data-pw="1"]'), function(i){ i.type = ev.target.checked ? 'text' : 'password'; i.setAttribute('data-pw', '1'); });
+    });
     function startCooldown(){
       cooldownLeft = 60; clearInterval(cooldownTimer);
-      var b = $('acct-send');
-      function tick(){ if(cooldownLeft > 0){ b.disabled = true; b.textContent = 'コードを送る(' + cooldownLeft + '秒後に、もう一度)'; cooldownLeft--; } else { clearInterval(cooldownTimer); b.disabled = false; b.textContent = 'コードを送る'; } }
+      var b = $('acct-resend');
+      function tick(){ if(cooldownLeft > 0){ b.disabled = true; b.textContent = 'もう一度送る(' + cooldownLeft + '秒後に)'; cooldownLeft--; } else { clearInterval(cooldownTimer); b.disabled = false; b.textContent = 'コードをもう一度送る'; } }
       tick(); cooldownTimer = setInterval(tick, 1000);
     }
     function errText(e, what){
       if(e && e.status === 0) return 'ネットワークにつながっていません。';
-      if(e && (e.status === 429 || /rate|seconds/i.test(e.message || ''))) return '短い時間に何度も送っています。少し(1分ほど)待ってから、もう一度ためしてください。';
+      var code = e && (e.code || ''), msg = (e && e.message) || '';
+      if(code === 'email_not_confirmed' || /not confirmed/i.test(msg)) return 'メールアドレスの確認が、まだ終わっていません。「新規登録」から、もう一度コードを送って、確認してください。';
+      if(e && (e.status === 429 || /rate|seconds/i.test(msg))) return '短い時間に何度も送っています。少し(1分ほど)待ってから、もう一度ためしてください。';
+      if(what === 'pwlogin') return 'メールアドレスか、パスワードが違います。パスワードを忘れたときは、下のリンクから決めなおせます。';
       if(what === 'verify') return 'コードが違うか、期限が切れています。もう一度ためすか、新しいコードを送ってください。';
-      if(e && /email/i.test((e.code || '') + (e.message || ''))) return 'メールアドレスを確かめてください。';
+      if(code === 'weak_password' || /password/i.test(code + msg)) return 'パスワードが使えません。8文字以上で、かんたんすぎないものにしてください。';
+      if(/email/i.test(code + msg)) return 'メールアドレスを確かめてください。';
       return 'うまくいきませんでした。しばらくしてから、もう一度ためしてください。';
     }
+    function showCodeStep(em, text){
+      sentTo = em; fPw.hidden = true; fSign.hidden = true; fEmail.hidden = true; fCode.hidden = false;
+      elTabs.hidden = true; elBack.hidden = true;
+      elSent.textContent = text;
+      $('acct-newpw-wrap').hidden = purpose !== 'recovery';
+      $('acct-login').textContent = purpose === 'recovery' ? 'パスワードを決めて、ログイン' : (purpose === 'signup' ? '登録する' : 'ログイン');
+      inCode.value = ''; $('acct-newpw').value = ''; try{ inCode.focus({preventScroll:true}); }catch(e){ /* no-op */ }
+      startCooldown();
+    }
+    var SENT = ' にコードを送りました。メールに書かれた数字を入れてください(届くまで1〜2分かかることがあります。迷惑メールのフォルダも見てください)。';
+    /* ---- ログイン後の共通の処理 ---- */
+    async function afterLogin(d, prev){
+      setSession(d);
+      if(!prev || prev !== sess.user.id){ meta = { remoteAt:{}, dirty:{}, initialized:false }; }
+      meta.uid = sess.user.id; saveMeta();
+      ['pw-email','pw-pass','su-email','su-pass','acct-email','acct-code','acct-newpw'].forEach(function(i){ $(i).value = ''; });
+      clearInterval(cooldownTimer);
+      if(prev && prev !== sess.user.id){
+        /* 前に使っていた人とは、別のアカウント: 前の人のデータを、この人のアカウントに混ぜないよう、消してから読み直す */
+        muted = true; localKeys().forEach(lsDel); location.reload(); return;
+      }
+      say('');
+      gateBusy = true; render();      /* アカウントのデータを読みこむまで、ログイン画面のまま「読みこんでいます」を出す */
+      var r = await sync({ apply:true });
+      if(!(r && r.changed)){ gateBusy = false; render(); setMode('login'); }
+    }
+    function prevUser(){ return (sess && sess.user && sess.user.id) || meta.uid; }
+    /* ---- メールアドレス + パスワードで、ログイン ---- */
+    fPw.addEventListener('submit', async function(ev){
+      ev.preventDefault();
+      var em = ($('pw-email').value || '').trim(), pw = $('pw-pass').value || '';
+      if(!em || !pw){ say('メールアドレスと、パスワードを入れてください。', true); return; }
+      say(''); var b = $('pw-login'); b.disabled = true;
+      try{
+        var d = await http('POST', '/auth/v1/token?grant_type=password', { email:em, password:pw });
+        await afterLogin(d, prevUser());
+      }catch(e){ say(errText(e, 'pwlogin'), true); }
+      finally{ b.disabled = false; }
+    });
+    /* ---- 新規登録(メールアドレス + パスワード → コードで確かめる) ---- */
+    fSign.addEventListener('submit', async function(ev){
+      ev.preventDefault();
+      var em = ($('su-email').value || '').trim(), pw = $('su-pass').value || '';
+      if(!em){ say('メールアドレスを入れてください。', true); return; }
+      if(pw.length < 8){ say('パスワードは、8文字以上にしてください。', true); return; }
+      say(''); var b = $('su-send'); b.disabled = true;
+      try{
+        var d = await http('POST', '/auth/v1/signup', { email:em, password:pw });
+        if(d && d.access_token){ await afterLogin(d, prevUser()); return; }          /* メールの確認が要らない設定のとき */
+        var u = d && (d.user || d);
+        if(u && Array.isArray(u.identities) && u.identities.length === 0){
+          b.disabled = false; say('このメールアドレスは、もう登録されています。「ログイン」から入ってください。パスワードを忘れたときは、「パスワードを忘れた」から決めなおせます。', true); return;
+        }
+        purpose = 'signup'; showCodeStep(em, em + SENT);
+      }catch(e){ b.disabled = false; say(errText(e, 'send'), true); }
+    });
+    /* ---- コードだけでログイン / パスワードを決めなおす: メールアドレスを送る ---- */
     fEmail.addEventListener('submit', async function(ev){
       ev.preventDefault();
       var em = (inEmail.value || '').trim();
@@ -3943,33 +4099,51 @@ svg.leaflet-image-layer.leaflet-interactive path {
       say('');
       var b = $('acct-send'); b.disabled = true;
       try{
-        await http('POST', '/auth/v1/otp', { email:em, create_user:true });
-        sentTo = em; fEmail.hidden = true; fCode.hidden = false;
-        elSent.textContent = em + ' にコードを送りました。メールに書かれた数字を入れてください(届くまで1〜2分かかることがあります。迷惑メールのフォルダも見てください)。';
-        inCode.value = ''; try{ inCode.focus({preventScroll:true}); }catch(e){ /* no-op */ }
-        startCooldown();
+        if(mode === 'recover') await http('POST', '/auth/v1/recover', { email:em });
+        else await http('POST', '/auth/v1/otp', { email:em, create_user:true });
+        purpose = mode === 'recover' ? 'recovery' : 'otp';
+        showCodeStep(em, em + SENT);
       }catch(e){ b.disabled = false; say(errText(e, 'send'), true); }
     });
     $('acct-resend').addEventListener('click', async function(){
       if(cooldownLeft > 0 || !sentTo) return;
-      try{ await http('POST', '/auth/v1/otp', { email:sentTo, create_user:true }); say('もう一度、コードを送りました。'); startCooldown(); }
-      catch(e){ say(errText(e, 'send'), true); }
+      try{
+        if(purpose === 'signup') await http('POST', '/auth/v1/resend', { type:'signup', email:sentTo });
+        else if(purpose === 'recovery') await http('POST', '/auth/v1/recover', { email:sentTo });
+        else await http('POST', '/auth/v1/otp', { email:sentTo, create_user:true });
+        say('もう一度、コードを送りました。'); startCooldown();
+      }catch(e){ say(errText(e, 'send'), true); }
     });
-    $('acct-back').addEventListener('click', function(){ fCode.hidden = true; fEmail.hidden = false; say(''); $('acct-send').disabled = false; $('acct-send').textContent = 'コードを送る'; clearInterval(cooldownTimer); });
+    $('acct-back').addEventListener('click', function(){ setMode(mode); });
+    /* ---- コードを入れる(ログイン / 新規登録 / パスワードを決めなおす) ---- */
     fCode.addEventListener('submit', async function(ev){
       ev.preventDefault();
       var code = (inCode.value || '').replace(/\s+/g, '');
       if(!code) return;
+      var newpw = $('acct-newpw').value || '';
+      if(purpose === 'recovery' && newpw.length < 8){ say('あたらしいパスワードは、8文字以上にしてください。', true); return; }
       say(''); var b = $('acct-login'); b.disabled = true;
       try{
-        var d = await http('POST', '/auth/v1/verify', { type:'email', email:sentTo, token:code });
-        var prev = sess && sess.user && sess.user.id;
-        setSession(d);
-        if(!prev || prev !== sess.user.id){ meta = { remoteAt:{}, dirty:{}, initialized:false }; saveMeta(); }
-        inEmail.value = ''; inCode.value = ''; fCode.hidden = true; fEmail.hidden = false; clearInterval(cooldownTimer); $('acct-send').disabled = false; $('acct-send').textContent = 'コードを送る';
-        say('ログインしました。'); render();
-        sync({ apply:true });
-      }catch(e){ say(errText(e, 'verify'), true); }
+        var prev = prevUser();
+        var d = await http('POST', '/auth/v1/verify', { type: purpose === 'otp' ? 'email' : purpose, email:sentTo, token:code });
+        if(purpose === 'recovery'){
+          var keep = sess; sess = { access_token:d.access_token, user:{ id:d.user && d.user.id } };      /* まだ保存しない、いちじ的なログイン */
+          try{ await http('PUT', '/auth/v1/user', { password:newpw }); }
+          catch(e2){ sess = keep; throw e2; }
+          sess = keep;
+        }
+        await afterLogin(d, prev);
+      }catch(e){ say(purpose === 'recovery' && e && e.status !== 0 && /password/i.test((e.code || '') + (e.message || '')) ? errText(e, 'pw') : errText(e, 'verify'), true); }
+      finally{ b.disabled = false; }
+    });
+    setMode('login');
+    $('acct-pw-form').addEventListener('submit', async function(ev){
+      ev.preventDefault();
+      var pw = $('acct-pw-new').value || '';
+      if(pw.length < 8){ say('パスワードは、8文字以上にしてください。', true); return; }
+      var b = $('acct-pw-go'); b.disabled = true; say('');
+      try{ await authed('PUT', '/auth/v1/user', { password:pw }); $('acct-pw-new').value = ''; say('パスワードを決めました。次からは、メールアドレスとパスワードで、ログインできます。'); }
+      catch(e){ say((e && e.code === 'reauthentication_needed') ? 'いちど、ログアウトして、ログインしなおしてから、もう一度ためしてください。' : errText(e, 'pw'), true); }
       finally{ b.disabled = false; }
     });
     $('acct-sync').addEventListener('click', function(){ say(''); sync({ apply:true }); });
@@ -3982,6 +4156,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       muted = true;
       localKeys().forEach(lsDel);
       sess = null; saveSess(); lsDel(META_KEY);
+      try{ for(var i = localStorage.length - 1; i >= 0; i--){ var lk = localStorage.key(i); if(lk && (lk.indexOf('tyosen-pdata-') === 0 || lk === 'tyosen-profiles-v1')) lsDel(lk); } }catch(e){ /* no-op */ }   /* むかしの「利用者の切り替え」の残りも消す */
       try{ sessionStorage.setItem(FLASH_KEY, flash); }catch(e){ /* no-op */ }
       location.reload();
     }
@@ -4036,153 +4211,6 @@ svg.leaflet-image-layer.leaflet-interactive path {
     return { enabled:true, loggedIn:function(){ return !!sess; }, beginReset:beginReset, finishReset:finishReset, sync:sync };
   })();
   window.ACCT = ACCT;
-
-  /* ---------------- 利用者の切り替え(同じブラウザを、何人かで分けて使う) ----------------
-     ・テスト中に、ほかの人が入れたデータが残っていて混ざらないように、利用者ごとにデータを分ける。
-     ・サーバーは使わない。いまの利用者のデータは、ふつうの保存場所(localStorage の kagawa-… のキー)に置き、
-       切り替えるときだけ、いまのデータを「しまって」、選んだ人のデータを「取り出す」(そのあと画面を読み直す)。
-     ・音量などの設定(kagawa-shimazutai-settings-v1)は、全員で共通。
-     ・アカウントでログイン中は、データがアカウントとつながっているので、切り替えは使えない。 */
-  var PROF = (function(){
-    var card = document.getElementById('prof-card');
-    if(!card) return { names:function(){ return []; } };
-    var LIST_KEY = 'tyosen-profiles-v1', DATA_PREFIX = 'tyosen-pdata-', FLASH_KEY = 'tyosen-prof-flash';
-    var KEEP = { 'kagawa-shimazutai-settings-v1': 1 };
-    function dataKeys(){
-      var out = [];
-      try{ for(var i = 0; i < localStorage.length; i++){ var k = localStorage.key(i); if(k && k.indexOf('kagawa') === 0 && !KEEP[k]) out.push(k); } }catch(e){ /* no-op */ }
-      return out;
-    }
-    var st = null;
-    try{ st = JSON.parse(localStorage.getItem(LIST_KEY) || 'null'); }catch(e){ st = null; }
-    if(!st || !Array.isArray(st.list) || !st.list.length || !st.list.some(function(p){ return p.id === st.current; })){
-      st = { current:'p0', list:[{ id:'p0', name:'わたし' }] };
-    }
-    /* 初期設定の利用者(p0)は、名前が「TEST」で固定。名前を変えたり、削除したりはできない。 */
-    var BASE_ID = 'p0', BASE_NAME = 'TEST';
-    st.list.forEach(function(p){
-      if(p.id === BASE_ID) p.name = BASE_NAME;
-      else if(String(p.name).toLowerCase() === BASE_NAME.toLowerCase()) p.name = BASE_NAME + '2';
-    });
-    if(!st.list.some(function(p){ return p.id === BASE_ID; })) st.list.unshift({ id:BASE_ID, name:BASE_NAME });
-    function save(){ try{ localStorage.setItem(LIST_KEY, JSON.stringify(st)); return true; }catch(e){ return false; } }
-    function cur(){ return st.list.filter(function(p){ return p.id === st.current; })[0]; }
-    var $ = function(id){ return document.getElementById(id); };
-    var elList = $('prof-list'), elMsg = $('prof-msg'), chip = $('prof-chip');
-    function say(t, bad){ elMsg.textContent = t || ''; elMsg.hidden = !t; elMsg.classList.toggle('bad', !!bad); }
-    function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-    function cleanName(t){ return String(t || '').replace(/\s+/g, ' ').trim().slice(0, 12); }
-    function locked(){ return !!(window.ACCT && ACCT.loggedIn && ACCT.loggedIn()); }
-
-    function render(){
-      var lk = locked();
-      $('prof-body').hidden = lk; $('prof-locked').hidden = !lk;
-      var multi = st.list.length > 1;
-      if(chip){ chip.hidden = !multi || lk; chip.textContent = cur().name + ' さん'; }
-      var h = '';
-      st.list.forEach(function(p){
-        var on = p.id === st.current;
-        h += '<li class="prof-item' + (on ? ' on' : '') + '" data-id="' + p.id + '">' +
-          '<span class="prof-name">' + esc(p.name) + (on ? '<em>使用中</em>' : '') + '</span>' +
-          '<span class="prof-btns">' +
-          (p.id === BASE_ID
-              ? (on ? '<span class="prof-fixed">名前は変えられません</span>' : '<button type="button" class="btn primary" data-act="switch">この人にする</button><span class="prof-fixed">名前は変えられません</span>')
-              : (on ? '<button type="button" class="btn ghost" data-act="rename">名前を変える</button>'
-                    : '<button type="button" class="btn primary" data-act="switch">この人にする</button><button type="button" class="btn ghost" data-act="del">削除…</button>')) +
-          '</span></li>';
-      });
-      elList.innerHTML = h;
-    }
-
-    /* データをしまう → 選んだ人のデータを取り出す → 画面を読み直す */
-    function switchTo(id, quiet){
-      if(locked()) return;
-      var target = st.list.filter(function(p){ return p.id === id; })[0];
-      if(!target || id === st.current) return;
-      var snap = {}, keys = dataKeys();
-      keys.forEach(function(k){ snap[k] = localStorage.getItem(k); });
-      var incoming = {};
-      try{ incoming = JSON.parse(localStorage.getItem(DATA_PREFIX + id) || '{}') || {}; }catch(e){ incoming = {}; }
-      try{
-        localStorage.setItem(DATA_PREFIX + st.current, JSON.stringify(snap));      /* いまのデータを、しまう */
-        keys.forEach(function(k){ localStorage.removeItem(k); });
-        Object.keys(incoming).forEach(function(k){ if(k.indexOf('kagawa') === 0 && !KEEP[k]) localStorage.setItem(k, incoming[k]); });
-        st.current = id;
-        if(!save()) throw new Error('save');
-        localStorage.removeItem(DATA_PREFIX + id);
-      }catch(e){
-        /* 失敗したら、もとにもどす */
-        try{ dataKeys().forEach(function(k){ localStorage.removeItem(k); }); Object.keys(snap).forEach(function(k){ localStorage.setItem(k, snap[k]); }); }catch(e2){ /* no-op */ }
-        say('切り替えられませんでした(ブラウザの保存場所がいっぱいかもしれません)。', true);
-        return;
-      }
-      try{ if(!quiet) sessionStorage.setItem(FLASH_KEY, target.name + ' さんに切り替えました。'); }catch(e){ /* no-op */ }
-      location.reload();
-    }
-    function addProfile(name){
-      name = cleanName(name);
-      if(!name){ say('名前を入れてください。', true); return; }
-      if(st.list.some(function(p){ return String(p.name).toLowerCase() === name.toLowerCase(); })){ say('同じ名前の人がいます。ちがう名前にしてください。(「TEST」は最初から入っている利用者の名前です)', true); return; }
-      if(st.list.length >= 10){ say('利用者は10人までです。使わない人を削除してください。', true); return; }
-      var id = 'p' + Date.now().toString(36);
-      st.list.push({ id:id, name:name });
-      if(!save()){ st.list.pop(); say('保存できませんでした。', true); return; }
-      try{ localStorage.setItem(DATA_PREFIX + id, '{}'); }catch(e){ /* no-op */ }
-      switchTo(id);
-    }
-    elList.addEventListener('click', function(ev){
-      var b = ev.target.closest && ev.target.closest('[data-act]');
-      if(!b) return;
-      var li = b.closest('.prof-item'), id = li && li.getAttribute('data-id'), act = b.getAttribute('data-act');
-      var p = st.list.filter(function(x){ return x.id === id; })[0];
-      if(!p) return;
-      if(p.id === BASE_ID && (act === 'rename' || act === 'rename-ok' || act === 'del' || act === 'del-ok')){ say('「TEST」は、名前を変えたり削除したりできません。', true); return; }
-      say('');
-      if(act === 'switch') switchTo(id);
-      else if(act === 'rename'){
-        var span = li.querySelector('.prof-btns');
-        span.innerHTML = '<input type="text" class="acct-input prof-rename" maxlength="12" value="' + esc(p.name) + '" aria-label="あたらしい名前"><button type="button" class="btn primary" data-act="rename-ok">決める</button><button type="button" class="btn ghost" data-act="cancel">やめる</button>';
-        var inp = span.querySelector('input'); inp.focus(); inp.select();
-      }else if(act === 'rename-ok'){
-        var nn = cleanName(li.querySelector('input').value);
-        if(!nn){ say('名前を入れてください。', true); return; }
-        if(st.list.some(function(x){ return x.id !== id && x.name === nn; })){ say('同じ名前の人がいます。', true); return; }
-        p.name = nn; save(); render();
-      }else if(act === 'cancel') render();
-      else if(act === 'del'){
-        li.querySelector('.prof-btns').innerHTML = '<span class="prof-ask">「' + esc(p.name) + '」さんのデータを、消しますか?</span><button type="button" class="btn danger" data-act="del-ok">消す</button><button type="button" class="btn ghost" data-act="cancel">やめる</button>';
-      }else if(act === 'del-ok'){
-        st.list = st.list.filter(function(x){ return x.id !== id; }); save();
-        try{ localStorage.removeItem(DATA_PREFIX + id); }catch(e){ /* no-op */ }
-        render(); say('「' + p.name + '」さんを削除しました。');
-      }
-    });
-    $('prof-add-form').addEventListener('submit', function(ev){
-      ev.preventDefault();
-      var inp = $('prof-add-name');
-      addProfile(inp.value);
-    });
-    if(chip) chip.addEventListener('click', function(){ if(window.goTab) window.goTab('settings'); });
-    try{ var fl = sessionStorage.getItem(FLASH_KEY); if(fl){ sessionStorage.removeItem(FLASH_KEY); say(fl); } }catch(e){ /* no-op */ }
-    save();
-    render();
-    window.addEventListener('storage', function(){ render(); });
-    /* アプリに入った(このタブで最初に開いた)ときは、いつも「TEST」から始める。
-       利用者を切り替えたあとの読み直しでは、切り替えた人のままにする。 */
-    try{
-      if(!sessionStorage.getItem('tyosen-prof-entered')){
-        sessionStorage.setItem('tyosen-prof-entered', '1');
-        if(!locked() && st.current !== BASE_ID) switchTo(BASE_ID, true);
-      }
-    }catch(e){ /* no-op */ }
-    return {
-      names:function(){ return st.list.map(function(p){ return p.name; }); },
-      count:function(){ return st.list.length; },
-      currentName:function(){ return cur().name; },
-      refresh:render
-    };
-  })();
-  window.PROF = PROF;
 
   /* ---------------- side nav ---------------- */
   var tabButtons = document.querySelectorAll('.sidenav-items button[role="tab"]');
@@ -9098,9 +9126,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       if(wipeMsg) wipeMsg.hidden = true;
       var cli = document.getElementById('reset-cloud-li'); if(cli) cli.hidden = !(window.ACCT && ACCT.loggedIn());
       var rln = document.getElementById('reset-last-note');
-      if(rln) rln.textContent = (window.PROF && PROF.count && PROF.count() > 1)
-        ? ('消えるのは、いまの利用者「' + PROF.currentName() + '」さんのデータだけです。ほかの利用者のデータは消えません。')
-        : 'このアプリのデータは、すべてなくなります。';
+      if(rln) rln.textContent = (window.ACCT && ACCT.loggedIn()) ? 'ログインの情報(メールアドレス・パスワード)と、アカウントは、消えません。ログインしたままです。' : 'このアプリのデータは、すべてなくなります。';
       resetModal.hidden = false;
       var c = document.getElementById('reset-cancel'); if(c) c.focus({preventScroll:true});
     });
