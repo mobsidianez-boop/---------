@@ -2601,6 +2601,10 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 .set-credit{ margin-top:6px; font-weight:700; color:var(--ink-soft); }
 
+.cm-here{ width:100%; margin-top:10px; display:flex; align-items:center; justify-content:center; gap:8px; }
+.cm-here .ico-svg{ width:18px; height:18px; }
+.cm-here[disabled]{ opacity:.6; cursor:progress; }
+
 </style>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -2829,7 +2833,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <h2>通学マップ</h2>
       <p>自宅にピンを立てて、志望校までの通学方法と時間をチェックします。大学を選ぶときの材料にどうぞ。</p>
     </div>
-    <div class="cm-privacy"><svg class="ico-svg" aria-hidden="true"><use href="#i-info"/></svg><span>自宅の場所は、この端末にだけ保存されます(アカウントにも、AIにも送りません)。AIには「距離」と「かかる時間」だけを伝えます。</span></div>
+    <div class="cm-privacy"><svg class="ico-svg" aria-hidden="true"><use href="#i-info"/></svg><span>自宅の場所は、この端末にだけ保存されます(アカウントにも、AIにも送りません)。AIには「距離」と「かかる時間」だけを伝えます。「いまいる場所を自宅にする」で使う現在地も、同じようにこの端末の中だけで使います。</span></div>
     <div class="cm-grid">
       <div class="cm-left">
         <div class="cm-mapbox">
@@ -2847,6 +2851,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
             <input type="search" id="cm-home-q" placeholder="住所や駅名(例: 高松市幸町1-1 / 琴電瓦町駅)" aria-label="自宅の住所や駅名">
             <button type="submit" class="btn primary">検索</button>
           </form>
+          <button type="button" class="btn ghost cm-here" id="cm-here"><svg class="ico-svg" aria-hidden="true"><use href="#i-map-pin"/></svg><span>いまいる場所を自宅にする</span></button>
           <ul class="cm-results" id="cm-home-res" hidden></ul>
           <p class="cm-msg" id="cm-home-msg" role="status" hidden></p>
           <p class="cm-homeinfo" id="cm-home-info"></p>
@@ -3706,8 +3711,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
        ※ anon key(公開用のキー)は、ページに書いてよいもの。データは「行ごとのアクセス制限(RLS)」で、本人だけが読める。
        ※ service_role key(秘密のキー)は、絶対にここへ書かない。 */
   var ACCT = (function(){
-    var SUPABASE_URL = '';
-    var SUPABASE_ANON_KEY = '';
+    var SUPABASE_URL = 'https://rnbfsgncwvzriecvmrwr.supabase.co';
+    var SUPABASE_ANON_KEY = 'sb_publishable_0KEtC4pQPpcHtZuCmjIM9w_NleW7vAF';
 
     var enabled = !!(SUPABASE_URL && SUPABASE_ANON_KEY);
     var card = document.getElementById('acct-card');
@@ -10561,6 +10566,32 @@ svg.leaflet-image-layer.leaflet-interactive path {
       wireSearch($('cm-home-form'), $('cm-home-q'), $('cm-home-res'), $('cm-home-msg'), function(r){ $('cm-home-q').value = ''; setHome({ lat:r.lat, lon:r.lon, label:r.name }); }, false);
       wireSearch($('cm-dest-form'), $('cm-dest-q'), $('cm-dest-res'), $('cm-dest-msg'), function(r){ $('cm-dest-q').value = ''; addDest(r); }, false);
       $('cm-tap-home').addEventListener('click', function(){ ensureMap(); setTap(!tapMode); });
+      (function(){
+        var hb = $('cm-here'), hm = $('cm-home-msg'), busyG = false;
+        function say(t){ hm.textContent = t; hm.hidden = !t; }
+        hb.addEventListener('click', function(){
+          if(busyG) return;
+          if(!navigator.geolocation){ say('この画面では、現在地を使えません。住所や駅名で探すか、地図をタップして、自宅のピンを置いてください。'); return; }
+          busyG = true; hb.disabled = true; hb.querySelector('span').textContent = '場所をさがしています…'; say('');
+          var done = function(){ busyG = false; hb.disabled = false; hb.querySelector('span').textContent = 'いまいる場所を自宅にする'; };
+          try{
+            navigator.geolocation.getCurrentPosition(function(pos){
+              done();
+              var c = pos.coords, acc = Math.round(c.accuracy || 0);
+              if(!(isFinite(c.latitude) && isFinite(c.longitude))){ say('場所をうまく読み取れませんでした。もう一度ためしてください。'); return; }
+              setHome({ lat:c.latitude, lon:c.longitude, label:'いまいる場所(現在地)' });
+              say('いまいる場所を自宅にしました。' + (acc > 1000 ? 'ただ、ズレが大きいかもしれません(誤差およそ' + (acc >= 10000 ? Math.round(acc / 1000) + 'km' : Math.round(acc / 100) / 10 + 'km') + ')。ピンをドラッグして直してください。' : (acc ? '(誤差およそ' + acc + 'm)ピンはドラッグで動かせます。' : 'ピンはドラッグで動かせます。')));
+            }, function(err){
+              done();
+              var code = err && err.code;
+              say(code === 1 ? '位置情報の許可がオフになっています。ブラウザの設定(Safariなら「Webサイト」→「位置情報」)で、このサイトを許可してから、もう一度押してください。' :
+                  code === 2 ? '場所がわかりませんでした。電波のよいところで、もう一度ためしてください。' :
+                  code === 3 ? '時間がかかりすぎました。もう一度ためしてください。' :
+                  'この画面では現在地を使えないようです。住所や駅名で探すか、地図をタップしてください。');
+            }, { enableHighAccuracy:true, timeout:15000, maximumAge:60000 });
+          }catch(e){ done(); say('この画面では現在地を使えないようです。住所や駅名で探すか、地図をタップしてください。'); }
+        });
+      })();
       $('cm-dests').addEventListener('click', function(ev){
         var p = ev.target.closest && ev.target.closest('[data-pick]'), r = ev.target.closest && ev.target.closest('[data-rmd]');
         if(r){ var id = r.getAttribute('data-rmd'); S.dests = S.dests.filter(function(d){ return d.id !== id; }); if(S.sel === id) S.sel = S.dests.length ? S.dests[S.dests.length - 1].id : null; persist(); redrawMarkers(true); renderAll(); return; }
