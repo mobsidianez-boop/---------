@@ -202,10 +202,10 @@
     border:none; border-radius:999px; padding:13px 22px; font-weight:700; font-size:.95rem;
     display:inline-flex; align-items:center; gap:8px; transition:transform .15s ease, box-shadow .15s ease;
   }
-  .btn:hover{ transform:translateY(-1px); }
+  @media (hover:hover){ .btn:hover{ transform:translateY(-1px); } }
   .btn.primary{ background:var(--terracotta); color:var(--on-accent); box-shadow:0 10px 22px -10px rgba(242,184,75,.55); }
   .btn.ghost{ background:transparent; color:var(--sea); border:1.5px solid var(--line); }
-  .btn.ghost:hover{ border-color:var(--sea); background:var(--sea-soft); }
+  @media (hover:hover){ .btn.ghost:hover{ border-color:var(--sea); background:var(--sea-soft); } }
 
   /* ---------- 初回チュートリアル / 設定 / ロードマップ一覧 ---------- */
   .intro{ position:fixed; inset:0; z-index:90; display:grid; place-items:center; padding:24px; color:#fff; text-align:center;
@@ -252,7 +252,7 @@
   /* ---------- 診断の選択 / 診断結果 / ロードマップ作成の確認 ---------- */
   .shindan-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; }
   .sh-card{ position:relative; text-align:left; background:var(--paper-raise); border:1.5px solid var(--line); border-radius:18px; padding:20px; display:flex; flex-direction:column; gap:8px; font:inherit; color:inherit; cursor:pointer; transition:transform .15s, box-shadow .15s, border-color .15s; }
-  .sh-card:hover{ transform:translateY(-2px); border-color:var(--sea); box-shadow:0 12px 26px -16px rgba(11,74,133,.5); }
+  @media (hover:hover){ .sh-card:hover{ transform:translateY(-2px); border-color:var(--sea); box-shadow:0 12px 26px -16px rgba(11,74,133,.5); } }
   .sh-ico{ width:46px; height:46px; border-radius:50%; background:var(--sea-soft); color:var(--sea); display:grid; place-items:center; }
   .sh-ico .ico-svg{ width:24px; height:24px; }
   .sh-card h3{ margin:4px 0 0; font-size:1.1rem; }
@@ -323,7 +323,7 @@
     background:transparent; border:none; border-radius:12px; padding:12px 13px;
     font-weight:700; font-size:.86rem; color:var(--ink-soft); text-align:left; white-space:nowrap;
   }
-  .sidenav-items button:hover{ background:var(--sea-soft); }
+  @media (hover:hover){ .sidenav-items button:hover{ background:var(--sea-soft); } }
   .sidenav-items button .ico{ flex:none; width:22px; display:flex; align-items:center; justify-content:center; }
   .sidenav-items button .ico .ico-svg{ width:20px; height:20px; }
   .sidenav-items button .navlabel{ opacity:0; width:0; overflow:hidden; transition:opacity .15s; }
@@ -400,7 +400,7 @@
     padding:14px 16px; font-size:.96rem; color:var(--ink); display:flex; gap:10px; align-items:flex-start;
     transition:border-color .15s ease, background .15s ease;
   }
-  .opt:hover{ border-color:var(--sea); background:var(--sea-soft); }
+  @media (hover:hover){ .opt:hover{ border-color:var(--sea); background:var(--sea-soft); } }
   .opt .letter{
     flex:none; width:24px; height:24px; border-radius:50%; background:var(--sea-soft); color:var(--sea);
     font-weight:900; font-size:.78rem; display:grid; place-items:center;
@@ -485,7 +485,7 @@
     border:1px solid var(--line); background:var(--paper-raise); color:var(--ink-soft);
     cursor:pointer; font:inherit;
   }
-  .catchip:hover{ border-color:var(--catcolor, var(--sea)); }
+  @media (hover:hover){ .catchip:hover{ border-color:var(--catcolor, var(--sea)); } }
   .catchip.active{ background:var(--catcolor, var(--sea)); border-color:var(--catcolor, var(--sea)); color:var(--oncat, #fff); }
   .daychip{
     display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -494,13 +494,13 @@
   }
   .daychip .d{ font-size:.86rem; font-weight:800; line-height:1.1; }
   .daychip .wd{ font-size:.62rem; margin-top:1px; }
-  .daychip:hover{ border-color:var(--sea); }
+  @media (hover:hover){ .daychip:hover{ border-color:var(--sea); } }
   .daychip.active{ background:var(--sea); border-color:var(--sea-deep); color:var(--on-sea); }
   .daychip.past, .daychip:disabled{
     cursor:not-allowed; opacity:.35; background:var(--paper); border-color:var(--line);
     color:var(--muted); text-decoration:line-through;
   }
-  .daychip.past:hover, .daychip:disabled:hover{ border-color:var(--line); }
+  @media (hover:hover){ .daychip.past:hover, .daychip:disabled:hover{ border-color:var(--line); } }
 
   .trail{ position:relative; padding-left:6px; }
   .month-row{ position:relative; display:flex; align-items:center; gap:16px; min-height:88px; }
@@ -519,7 +519,7 @@
     display:grid; place-items:center; cursor:pointer; font-family:"Shippori Mincho",serif;
     transition:transform .18s, border-color .18s, background .18s; color:var(--ink); padding:0;
   }
-  .month-node:hover{ transform:scale(1.05); }
+  @media (hover:hover){ .month-node:hover{ transform:scale(1.05); } }
   .month-node .num{ font-size:1.3rem; font-weight:800; line-height:1; }
   .month-node .lbl{ font-size:.58rem; color:var(--muted); margin-top:2px; }
   .month-node.has-events{ border-color:var(--sea); }
@@ -543,14 +543,14 @@
     color:var(--accent-ink); background:var(--terracotta-soft); border:1px solid transparent;
     border-radius:999px; padding:3px 11px; cursor:pointer; font-family:inherit;
   }
-  .goal-pill:hover{ border-color:var(--terracotta); }
+  @media (hover:hover){ .goal-pill:hover{ border-color:var(--terracotta); } }
   .goal-pill .txt{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:220px; }
   .goal-add{
     display:inline-flex; align-items:center; font-size:.74rem; font-weight:600; color:var(--muted);
     background:none; border:1px dashed var(--line); border-radius:999px; padding:3px 11px;
     cursor:pointer; font-family:inherit;
   }
-  .goal-add:hover{ color:var(--sea); border-color:var(--sea); }
+  @media (hover:hover){ .goal-add:hover{ color:var(--sea); border-color:var(--sea); } }
   .goal-edit{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; max-width:320px; }
   .goal-edit input{
     flex:1; min-width:120px; font-size:.82rem; padding:5px 9px; border-radius:8px;
@@ -572,7 +572,7 @@
     box-shadow:var(--shadow); transition:.15s;
   }
   .week-node::before{ content:''; position:absolute; left:50%; top:-14px; width:2px; height:14px; background:var(--sea); opacity:.35; transform:translateX(-50%); }
-  .week-node:hover{ transform:scale(1.07); }
+  @media (hover:hover){ .week-node:hover{ transform:scale(1.07); } }
   .week-node.open{ background:var(--sea); color:var(--on-sea); }
   .week-node .wk{ font-size:.62rem; color:var(--muted); }
   .week-node.open .wk{ color:#dceeff; }
@@ -591,7 +591,7 @@
     background:var(--sea); color:var(--on-sea); border:none; display:grid; place-items:center;
     font-size:1.1rem; font-weight:900; box-shadow:var(--shadow); transition:.15s; cursor:pointer;
   }
-  .week-add-toggle:hover{ background:var(--sea-deep); transform:scale(1.08); }
+  @media (hover:hover){ .week-add-toggle:hover{ background:var(--sea-deep); transform:scale(1.08); } }
   .week-add-toggle.active{ background:var(--terracotta); color:var(--on-accent); }
 
   .events-panel{ margin-top:14px; display:grid; gap:10px; }
@@ -622,16 +622,16 @@
     flex:none; background:none; border:1px solid var(--olive); color:var(--olive); font-size:.72rem;
     font-weight:700; padding:3px 10px; border-radius:999px; cursor:pointer; white-space:nowrap;
   }
-  .donebtn:hover{ background:var(--olive-soft); }
+  @media (hover:hover){ .donebtn:hover{ background:var(--olive-soft); } }
   .donebtn.active{ background:var(--olive); color:var(--on-olive); }
   .editbtn{
     flex:none; background:none; border:1px solid var(--sea); color:var(--sea-deep); font-size:.72rem;
     font-weight:700; padding:3px 10px; border-radius:999px; cursor:pointer; white-space:nowrap;
   }
   :root[data-vtheme="dark"] .editbtn{ color:var(--ink); }
-  .editbtn:hover{ background:var(--sea-soft); }
+  @media (hover:hover){ .editbtn:hover{ background:var(--sea-soft); } }
   .delbtn{ flex:none; background:none; border:none; color:var(--muted); font-size:.74rem; text-decoration:underline; padding:2px; cursor:pointer; }
-  .delbtn:hover{ color:var(--accent-ink); }
+  @media (hover:hover){ .delbtn:hover{ color:var(--accent-ink); } }
   /* スマホ: 週の丸の右に予定カード・入力欄を置くと幅が足りず、文字が1文字ずつ縦に折れて画面からはみ出す。
      予定カードと入力欄は左の余白を打ち消して横いっぱいに広げ、ボタンは下の段に回す。 */
   @media (max-width:640px){
@@ -698,7 +698,7 @@
     display:inline-flex; align-items:center; gap:5px; background:transparent; border:none;
     color:var(--sea); font-weight:700; font-size:.92rem; padding:8px 4px; white-space:nowrap;
   }
-  .ai-back:hover{ text-decoration:underline; }
+  @media (hover:hover){ .ai-back:hover{ text-decoration:underline; } }
   .ai-screen-title{ flex:1; min-width:140px; }
   .ai-screen-title .uni{ display:block; font-size:.74rem; color:var(--muted); letter-spacing:.03em; }
   .ai-screen-title h3{ margin:2px 0 0; font-family:"Shippori Mincho",serif; font-size:1.08rem; }
@@ -767,7 +767,7 @@
   .rm-quick{ flex:none; display:flex; flex-wrap:wrap; gap:8px; padding:4px 18px 10px; }
   .rm-quick:empty{ display:none; }
   .rm-quick button{ border:1.5px solid var(--sea); background:var(--paper); color:var(--sea); border-radius:999px; padding:7px 14px; font:inherit; font-size:.86rem; font-weight:700; }
-  .rm-quick button:hover{ background:var(--sea-soft); }
+  @media (hover:hover){ .rm-quick button:hover{ background:var(--sea-soft); } }
   .rm-viewbtn{ display:none; margin-top:10px; border:none; background:var(--sea); color:var(--on-sea); border-radius:999px; padding:8px 14px; font:inherit; font-size:.84rem; font-weight:700; }
 
   .rm-goal-label{ font-size:.74rem; color:var(--muted); letter-spacing:.04em; }
@@ -864,7 +864,7 @@
   .rmm-leaves{ grid-column:2; grid-row:2; list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; }
   .rmm .rm-item{ background:var(--paper-raise); border:1.5px solid color-mix(in srgb, var(--c) 38%, var(--line)); border-radius:14px; font-size:.86rem; line-height:1.55;
     transition:transform .15s, box-shadow .15s, background .2s; }
-  .rmm .rm-item:hover{ box-shadow:0 8px 18px -10px var(--c); border-color:var(--c); }
+  @media (hover:hover){ .rmm .rm-item:hover{ box-shadow:0 8px 18px -10px var(--c); border-color:var(--c); } }
   .rmm .rm-item label{ display:flex; gap:10px; align-items:flex-start; padding:9px 12px 3px 10px; cursor:pointer; background:transparent; border:0; border-radius:0; font-size:.86rem; }
   .rmm .rm-item label{ position:relative; }
   .rmm .rm-item input{ position:absolute; left:10px; top:10px; width:20px; height:20px; margin:0; opacity:0; cursor:pointer; z-index:2; }
@@ -885,7 +885,7 @@
   .rmm-subbtn.new{ animation:rmmnew 1.4s ease-in-out 3; }
   .rmm-subs{ list-style:none; margin:0 10px 10px 40px; padding:0 0 0 12px; border-left:3px solid color-mix(in srgb, var(--c) 45%, var(--line)); display:flex; flex-direction:column; gap:2px; }
   .rm-sub label{ display:flex; gap:9px; align-items:flex-start; padding:5px 6px; border-radius:9px; cursor:pointer; font-size:.82rem; line-height:1.5; position:relative; }
-  .rm-sub label:hover{ background:color-mix(in srgb, var(--c) 10%, transparent); }
+  @media (hover:hover){ .rm-sub label:hover{ background:color-mix(in srgb, var(--c) 10%, transparent); } }
   .rmm .rm-sub input{ position:absolute; left:6px; top:6px; width:18px; height:18px; margin:0; opacity:0; cursor:pointer; z-index:2; }
   .rm-sub .rmm-chk{ width:18px; height:18px; border-radius:6px; margin-top:1px; }
   .rm-sub input:checked + .rmm-chk{ background:var(--c); }
@@ -898,7 +898,7 @@
   .rmm-more.open i{ transform:rotate(180deg); }
   .rmm-more.new{ animation:rmmnew 1.4s ease-in-out 3; }
   .rmm-ask{ border:0; background:transparent; color:var(--muted); padding:2px 4px; text-decoration:underline dotted; text-underline-offset:3px; }
-  .rmm-ask:hover, .rmm-more:hover{ background:color-mix(in srgb, var(--c) 22%, var(--paper-raise)); }
+  @media (hover:hover){ .rmm-ask:hover, .rmm-more:hover{ background:color-mix(in srgb, var(--c) 22%, var(--paper-raise)); } }
   @keyframes rmmnew{ 0%,100%{ box-shadow:0 0 0 0 transparent; } 50%{ box-shadow:0 0 0 5px color-mix(in srgb, var(--c) 35%, transparent); } }
   .rmm-detail{ margin:0 10px 10px 10px; padding:9px 12px; border-left:4px solid var(--c); background:color-mix(in srgb, var(--c) 8%, var(--paper-raise)); border-radius:4px 10px 10px 4px;
     font-size:.82rem; line-height:1.7; white-space:pre-wrap; overflow-wrap:anywhere; }
@@ -983,7 +983,7 @@
   .hd-ev .t small{ color:var(--muted); font-size:.74rem; }
   .hd-diag{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px; }
   .hd-diag button{ text-align:left; font:inherit; color:var(--ink); background:var(--paper); border:1.5px solid var(--line); border-radius:14px; padding:12px 14px; cursor:pointer; display:flex; flex-direction:column; gap:4px; }
-  .hd-diag button:hover{ border-color:var(--sea); }
+  @media (hover:hover){ .hd-diag button:hover{ border-color:var(--sea); } }
   .hd-diag b{ font-size:.92rem; }
   .hd-diag .st{ font-size:.78rem; color:var(--muted); }
   .hd-diag .st.on{ color:var(--olive); font-weight:700; }
@@ -1010,7 +1010,7 @@
     .home-dock .rm-split{ grid-template-columns:minmax(0,2fr) minmax(300px,.85fr); }
   }
   .btn.danger{ background:#B3261E; border-color:#B3261E; color:#fff; }
-  .btn.danger:hover{ background:#8C1D18; border-color:#8C1D18; }
+  @media (hover:hover){ .btn.danger:hover{ background:#8C1D18; border-color:#8C1D18; } }
   .reset-list{ margin:6px 0 12px; padding-left:1.3em; font-size:.92rem; line-height:1.8; }
   /* データの扱い(プライバシー)の説明 */
   .priv-modal{ z-index:300; }
@@ -1210,7 +1210,7 @@
   :root[data-theme="dark"] .sm-tier{ color:var(--ink); }
   .sm-kindschools{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
   .sm-kindschools button{ border:1px solid var(--line); background:var(--paper); color:var(--sea); border-radius:10px; padding:5px 10px; font:inherit; font-size:.8rem; font-weight:700; text-align:left; }
-  .sm-kindschools button:hover{ background:var(--sea-soft); }
+  @media (hover:hover){ .sm-kindschools button:hover{ background:var(--sea-soft); } }
   .sm-sortbar{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
   .sm-sortbar button{ border:1.5px solid var(--line); background:var(--paper-raise); color:var(--ink-soft); border-radius:999px; padding:7px 14px; font:inherit; font-size:.82rem; font-weight:700; }
   .sm-sortbar button[aria-pressed="true"]{ background:var(--terracotta); border-color:var(--terracotta); color:var(--on-accent); }
@@ -1258,7 +1258,7 @@
   .vy-icon{ width:42px; height:42px; border-radius:12px; box-shadow:var(--shadow); flex:none; }
   .vy-word{ height:24px; width:auto; display:block; }
   .theme-quick{ margin-left:auto; display:inline-flex; align-items:center; gap:7px; font:inherit; font-size:.78rem; font-weight:800; letter-spacing:0; padding:6px 12px; border-radius:999px; border:1.5px solid var(--line); background:var(--paper-raise); color:var(--ink-soft); cursor:pointer; }
-  .theme-quick:hover{ border-color:var(--sea); color:var(--ink); }
+  @media (hover:hover){ .theme-quick:hover{ border-color:var(--sea); color:var(--ink); } }
   .theme-quick .tq-ico{ width:16px; height:16px; display:inline-block; background:var(--terracotta); border-radius:50%; position:relative; overflow:hidden; }
   :root[data-vtheme="dark"] .theme-quick .tq-ico{ background:transparent; box-shadow:inset -5px -2px 0 0 var(--terracotta); transform:rotate(-20deg); }
   .theme-seg{ display:flex; flex-wrap:wrap; gap:8px; }
@@ -1958,7 +1958,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   .cm-search .btn{ flex:none; padding:10px 18px; }
   .cm-results{ list-style:none; margin:8px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; }
   .cm-results button{ width:100%; text-align:left; border:1px solid var(--line); background:var(--paper); color:var(--ink); border-radius:12px; padding:9px 12px; font:inherit; font-size:.86rem; line-height:1.5; }
-  .cm-results button:hover{ background:var(--sea-soft); border-color:var(--sea); }
+  @media (hover:hover){ .cm-results button:hover{ background:var(--sea-soft); border-color:var(--sea); } }
   .cm-results small{ display:block; color:var(--muted); font-size:.74rem; }
   .cm-msg{ margin-top:8px; font-size:.8rem; color:var(--ink-soft); line-height:1.6; }
   .cm-msg.err{ color:var(--accent-ink); }
@@ -1991,7 +1991,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   .quickrow{ display:flex; flex-wrap:wrap; gap:8px; padding:8px 0 12px; }
   .quickrow:empty{ display:none; }
   .quickrow button{ border:1.5px solid var(--sea); background:var(--paper); color:var(--sea); border-radius:999px; padding:7px 14px; font:inherit; font-size:.84rem; font-weight:700; }
-  .quickrow button:hover{ background:var(--sea-soft); }
+  @media (hover:hover){ .quickrow button:hover{ background:var(--sea-soft); } }
   .cm-pin{ position:relative; width:38px; height:38px; border-radius:50% 50% 50% 4px; transform:rotate(-45deg); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,0,0,.35); border:2px solid #fff; }
   .cm-pin span{ transform:rotate(45deg); font-size:.78rem; font-weight:800; line-height:1; }
   .cm-pin.home{ background:var(--sea); color:#fff; }
@@ -2017,7 +2017,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   .dp-lg i{ flex:none; width:12px; height:12px; border-radius:4px; }
   .dp-lg span{ flex:1 1 auto; min-width:0; }
   .dp-lg b{ font-variant-numeric:tabular-nums; font-size:.82rem; }
-  .dp-lg:hover{ background:var(--sea-soft); }
+  @media (hover:hover){ .dp-lg:hover{ background:var(--sea-soft); } }
   .dp-commute{ font-size:.88rem; line-height:1.7; }
   .dp-commute .row{ display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; justify-content:space-between; }
   .dp-commute select{ border:1.5px solid var(--line); border-radius:10px; background:var(--paper); color:var(--ink); font:inherit; padding:6px 10px; max-width:100%; }
@@ -2137,7 +2137,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   .ob-q input[type="text"]{ width:100%; box-sizing:border-box; border:1.5px solid var(--line); border-radius:12px; background:var(--paper); color:var(--ink); font:inherit; padding:11px 14px; }
   .ob-chips{ display:flex; flex-wrap:wrap; gap:8px; }
   .ob-chip{ border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font:inherit; font-size:.88rem; font-weight:700; padding:9px 15px; border-radius:999px; cursor:pointer; text-align:left; line-height:1.4; max-width:100%; }
-  .ob-chip:hover{ border-color:var(--sea); }
+  @media (hover:hover){ .ob-chip:hover{ border-color:var(--sea); } }
   .ob-chip.on{ border-color:var(--sea); background:var(--sea-soft); box-shadow:inset 0 0 0 1px var(--sea); }
   .ob-chip small{ display:block; font-weight:600; color:var(--muted); font-size:.74rem; margin:2px 0 0; }
   .ob-vals{ display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); }
@@ -2169,7 +2169,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   }
   @media (prefers-reduced-motion:reduce){ .ob{ transition:none; } }
   .ob-foot .btn.ghost{ color:#fff; border-color:rgba(255,255,255,.55); background:transparent; }
-  .ob-foot .btn.ghost:hover{ background:rgba(255,255,255,.14); border-color:#fff; }
+  @media (hover:hover){ .ob-foot .btn.ghost:hover{ background:rgba(255,255,255,.14); border-color:#fff; } }
 
   /* ---------- 大きな「未来の自分」目標カード ---------- */
   .fu-grid{ grid-template-columns:minmax(0,1.75fr) minmax(0,1fr); gap:20px; }
@@ -2270,7 +2270,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   /* ---------- 自由項目(カードに足せる項目) ---------- */
   .fu-sec h4 .xtools{ margin-left:12px; letter-spacing:0; display:inline-flex; gap:6px; }
   .fu-sec h4 .xtools button{ border:1px solid rgba(255,255,255,.4); background:transparent; color:rgba(255,255,255,.86); font:inherit; font-size:.7rem; font-weight:700; padding:2px 10px; border-radius:999px; cursor:pointer; }
-  .fu-sec h4 .xtools button:hover{ background:rgba(255,255,255,.16); }
+  @media (hover:hover){ .fu-sec h4 .xtools button:hover{ background:rgba(255,255,255,.16); } }
   .fu-sec h4 .xtools button.arm{ background:#C44A3A; border-color:#C44A3A; color:#fff; }
   .fu-xl{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
   .fu-xl li{ position:relative; padding-left:20px; font-size:.95rem; line-height:1.75; overflow-wrap:anywhere; }
@@ -2295,7 +2295,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   .fu-addsec h3{ margin:0 0 6px; font-size:1rem; }
   .fu-addchips{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 12px; }
   .fu-chipbtn{ border:1.5px dashed var(--sea); background:transparent; color:var(--sea); font:inherit; font-size:.84rem; font-weight:700; padding:7px 14px; border-radius:999px; cursor:pointer; }
-  .fu-chipbtn:hover{ background:var(--sea-soft); }
+  @media (hover:hover){ .fu-chipbtn:hover{ background:var(--sea-soft); } }
   .fu-addform{ display:flex; flex-wrap:wrap; gap:8px; }
   .fu-addform input{ flex:1 1 220px; min-width:0; border:1.5px solid var(--line); border-radius:12px; background:var(--paper); color:var(--ink); font:inherit; padding:9px 12px; }
   .fu-addform select{ border:1.5px solid var(--line); border-radius:12px; background:var(--paper); color:var(--ink); font:inherit; padding:9px 10px; }
@@ -2392,6 +2392,214 @@ svg.leaflet-image-layer.leaflet-interactive path {
   @media (min-width:1280px){
     .wrap:has(#panel-future.active){ max-width:min(1560px, 100%); transition:max-width .2s; }
   }
+
+  /* ---------- タッチ端末: 押した瞬間だけ色を変える(押したあとは残さない) ---------- */
+  .opt:active{ border-color:var(--sea); background:var(--sea-soft); }
+  .quickrow button:active, .rm-quick button:active, .ob-chip:active{ background:var(--sea-soft); }
+
+  /* ---------- 昼と夜の切り替え: ふわっとフェード ---------- */
+  ::view-transition-old(root), ::view-transition-new(root){ animation-duration:.7s; animation-timing-function:ease-in-out; }
+  .theme-fade{ position:fixed; inset:0; z-index:2147483000; pointer-events:none; opacity:0; transition:opacity .3s ease-in-out; }
+
+  /* ---------- 背景の上の文字: 半透明(約58%)の丸い板を敷いて読みやすく ---------- */
+  :root{ --plate:rgba(255,255,255,.58); }
+  :root[data-vtheme="dark"]{ --plate:rgba(8,20,44,.58); }
+  .section-head, .home-below, .fu-goalbar{
+    background:var(--plate); border-radius:20px; padding:16px 18px;
+    -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  }
+  .section-head, .home-below{ width:fit-content; max-width:100%; box-sizing:border-box; }
+  .section-head .btn{ margin-top:10px; }
+  @media print{ .section-head, .home-below, .fu-goalbar{ background:none; -webkit-backdrop-filter:none; backdrop-filter:none; padding:0; } }
+
+  /* ---------- カードの外にある注意書き・補足にも、同じ半透明の板 ---------- */
+  .set-note, .disclaimer, .sm-count, .shindan-back, .panel > p, .panel > .muted{
+    background:var(--plate); border-radius:14px; padding:10px 14px;
+    -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+    width:fit-content; max-width:100%; box-sizing:border-box;
+  }
+  .shindan-back{ border-radius:999px; padding:8px 16px; text-decoration:none; }
+  @media print{ .set-note, .disclaimer, .sm-count, .shindan-back, .panel > p, .panel > .muted{ background:none; -webkit-backdrop-filter:none; backdrop-filter:none; padding:0; } }
+
+  /* ---------- 左のメニュー: アイコンをボタンの真ん中にそろえる(スマホで右にずれていた) ---------- */
+  .sidenav-items button{ padding-left:calc((var(--rail-w) - 1px - 16px - 22px) / 2); padding-right:8px; }
+  .sidenav-toggle{ padding-left:calc((var(--rail-w) - 1px - 22px) / 2); padding-right:8px; }
+
+  /* ---------- 診断: 2問目からは上の案内を隠して、質問がすぐ見えるようにする ---------- */
+  .panel.in-quiz > .section-head, .panel.in-quiz > .asof{ display:none; }
+
+  /* ---------- ページ上の説明をたたむ ---------- */
+  details.sh-more{ margin-top:6px; }
+  details.sh-more > summary{ list-style:none; display:inline-flex; align-items:center; gap:6px; cursor:pointer; font-size:.82rem; font-weight:700; color:var(--sea); padding:4px 0; -webkit-tap-highlight-color:transparent; }
+  details.sh-more > summary::-webkit-details-marker{ display:none; }
+  details.sh-more > summary::before{ content:"i"; display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; border-radius:50%; border:1.5px solid currentColor; font-size:.7rem; font-style:italic; font-family:Georgia,serif; line-height:1; }
+  details.sh-more > summary::after{ content:"▾"; font-size:.75rem; transition:transform .2s; }
+  details.sh-more[open] > summary::after{ transform:rotate(180deg); }
+  details.sh-more > p{ margin-top:8px; }
+  details.sh-more > .asof{ margin-top:10px; }
+  .panel.in-quiz > .section-head, .panel.in-quiz > .asof{ display:none; }
+
+  /* ---------- ホーム: はじめの3ステップ ---------- */
+  .hs-card{ margin:0 0 16px; max-width:640px; }
+  .hs-card[hidden]{ display:none; }
+  .hs-card h2{ margin:0 0 10px; font-size:1rem; display:flex; align-items:center; gap:8px; color:var(--ink); }
+  .hs-card ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .hs-card li{ display:flex; gap:12px; align-items:flex-start; padding:12px 14px; border-radius:14px; border:1.5px solid var(--line); background:var(--plate, transparent); }
+  .hs-card li.now{ border-color:var(--sea); background:var(--sea-soft); }
+  .hs-card li.done{ opacity:.65; padding-block:8px; }
+  .hs-n{ flex:none; width:28px; height:28px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:.9rem; background:var(--sea-soft); color:var(--sea); border:1.5px solid var(--sea); }
+  .hs-card li.now .hs-n{ background:var(--sea); color:#fff; }
+  .hs-card li.done .hs-n{ background:transparent; color:var(--muted); border-color:var(--line); }
+  .hs-b{ min-width:0; display:flex; flex-direction:column; gap:4px; align-items:flex-start; }
+  .hs-b b{ font-size:.98rem; color:var(--ink); }
+  .hs-b b small{ margin-left:8px; font-weight:600; font-size:.74rem; color:var(--muted); }
+  .hs-b > span{ font-size:.84rem; line-height:1.6; color:var(--ink-soft); }
+  .hs-b .btn{ margin-top:6px; }
+  .hs-foot{ margin:10px 0 0; font-size:.8rem; color:var(--muted); line-height:1.7; }
+
+/* ===== 輪の案内帯(理想 → 進路 → 見直し → ロードマップ) ===== */
+.flow-strip{ margin:0 0 14px; padding:10px 12px; border:1px solid var(--line); border-radius:14px; background:var(--plate, transparent); max-width:900px; }
+.flow-strip .fl-steps{ list-style:none; margin:0; padding:0; display:flex; align-items:center; gap:4px; }
+.flow-strip .fl-steps li{ flex:1 1 0; min-width:0; position:relative; }
+.flow-strip .fl-steps li + li::before{ content:''; position:absolute; left:-4px; top:50%; width:8px; height:1.5px; background:var(--line); }
+.flow-strip .fl-steps button{ width:100%; display:flex; align-items:center; justify-content:center; gap:6px; padding:6px 4px; border:0; background:transparent; border-radius:10px; color:var(--ink-soft); font:inherit; font-size:.78rem; font-weight:700; cursor:pointer; min-height:36px; }
+.flow-strip .fl-steps button:disabled{ cursor:default; }
+.flow-strip .fl-steps button i{ flex:none; width:22px; height:22px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-style:normal; font-size:.74rem; font-weight:800; border:1.5px solid var(--line); color:var(--muted); background:transparent; }
+.flow-strip .fl-steps button span{ min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.flow-strip li.now button i{ background:var(--sea); border-color:var(--sea); color:#fff; }
+.flow-strip li.now button{ color:var(--ink); }
+.flow-strip li.done button i{ border-color:var(--sea); color:var(--sea); background:var(--sea-soft); }
+.flow-strip li.here button{ background:var(--sea-soft); box-shadow:inset 0 -2px 0 var(--sea); }
+.flow-strip li.next button{ opacity:.7; }
+.flow-strip .fl-row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:8px; }
+.flow-strip .fl-row p{ margin:0; flex:1 1 220px; min-width:0; font-size:.84rem; line-height:1.6; color:var(--ink-soft); }
+.flow-strip .fl-row .btn{ flex:none; }
+.panel.in-quiz > .flow-strip{ display:none; }
+@media (max-width:520px){
+  .flow-strip{ padding:8px 10px; }
+  .flow-strip .fl-steps button{ flex-direction:column; gap:2px; font-size:.68rem; padding:4px 2px; }
+  .flow-strip .fl-steps li + li::before{ display:none; }
+}
+
+/* ===== 理想の見直し(進路を決めたあと) ===== */
+.fu-rv{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px; border-color:var(--line); }
+.fu-rv[hidden]{ display:none; }
+.fu-rv .rv-t{ flex:1 1 260px; min-width:0; display:flex; flex-direction:column; gap:3px; }
+.fu-rv .rv-t b{ color:var(--ink); font-size:.98rem; }
+.fu-rv .rv-t span{ font-size:.86rem; line-height:1.6; color:var(--ink-soft); }
+.fu-rv .rv-b{ display:flex; gap:8px; flex-wrap:wrap; }
+.fu-rv.need{ border-color:var(--sea); background:var(--sea-soft); }
+.fu-rv.on{ border-color:var(--sea); }
+.fu-rv.calm{ padding-block:10px; }
+.fu-pend{ margin:10px 0; padding:12px; border:1.5px solid var(--sea); border-radius:14px; background:var(--sea-soft); font-size:.86rem; line-height:1.6; color:var(--ink); }
+.fu-pend > b{ font-size:.92rem; }
+.fu-pend > small{ margin-left:8px; color:var(--muted); font-size:.74rem; }
+.fu-pend p{ margin:6px 0 8px; color:var(--ink-soft); }
+.fu-pend ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+.fu-pend li label{ display:flex; gap:10px; align-items:flex-start; padding:8px 10px; border-radius:10px; background:var(--plate, rgba(255,255,255,.5)); border:1px solid var(--line); cursor:pointer; }
+.fu-pend input[type=checkbox]{ flex:none; width:20px; height:20px; margin-top:2px; accent-color:var(--sea); }
+.fu-pend .pl{ min-width:0; display:flex; flex-direction:column; gap:2px; }
+.fu-pend .pl b{ font-size:.84rem; }
+.fu-pend .pf{ color:var(--muted); text-decoration:line-through; text-decoration-color:var(--line); overflow-wrap:anywhere; }
+.fu-pend .pa{ color:var(--sea); line-height:1; }
+.fu-pend .pt{ color:var(--ink); font-weight:600; overflow-wrap:anywhere; }
+.fu-pend .pbtns{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+.fu-pend.closed{ border-color:var(--line); background:transparent; padding:8px 12px; }
+.fu-pend.closed small{ margin:0; }
+.fu-revs{ margin-top:12px; }
+.fu-revs[hidden]{ display:none; }
+.fu-revs summary{ cursor:pointer; font-weight:700; color:var(--ink); }
+.fu-revs ul{ list-style:none; margin:8px 0 0; padding:0; display:flex; flex-direction:column; gap:8px; }
+.fu-revs li{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:.84rem; color:var(--ink-soft); }
+.fu-revs li time{ flex:none; color:var(--muted); font-variant-numeric:tabular-nums; }
+.fu-revs li span{ flex:1 1 140px; min-width:0; overflow-wrap:anywhere; }
+
+/* ---- 県内の就職先(香川で叶うキャリア) ---- */
+.sr-only{ position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); border:0; white-space:nowrap; }
+.corp-entry{ display:flex; align-items:center; gap:14px; width:100%; margin-top:18px; padding:16px 18px; text-align:left; font:inherit; color:var(--ink); background:var(--sea-soft); border:1.5px solid var(--sea); border-radius:var(--radius); cursor:pointer; }
+@media (hover:hover){ .corp-entry:hover{ transform:translateY(-1px); box-shadow:var(--shadow); } }
+.corp-entry .ce-t{ flex:1; min-width:0; display:flex; flex-direction:column; gap:3px; }
+.corp-entry strong{ font-size:1rem; }
+.corp-entry small{ font-size:.8rem; color:var(--ink-soft); line-height:1.6; }
+.corp-entry .ce-go{ font-size:1.3rem; font-weight:700; color:var(--sea); }
+.corp-lnk{ align-self:flex-start; margin:0; padding:2px 0; border:0; background:none; font:inherit; font-size:.8rem; font-weight:700; color:var(--sea); cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
+.panel.corp-open > :not(#corp-page){ display:none !important; }
+#corp-page{ max-width:900px; }
+#corp-page[hidden]{ display:none; }
+.corp-back{ margin-bottom:12px; }
+.corp-filters{ display:flex; flex-direction:column; gap:10px; margin:6px 0 10px; }
+.corp-q input{ width:100%; box-sizing:border-box; padding:10px 14px; font:inherit; font-size:.92rem; color:var(--ink); background:var(--paper-raise); border:1.5px solid var(--line); border-radius:999px; }
+.corp-q input:focus{ outline:2px solid var(--sea); outline-offset:1px; border-color:var(--sea); }
+.corp-chips{ display:flex; gap:6px; overflow-x:auto; padding-bottom:4px; scrollbar-width:thin; -webkit-overflow-scrolling:touch; }
+.corp-chips.corp-es{ align-items:center; }
+.corp-lab{ flex:none; font-size:.76rem; font-weight:700; color:var(--muted); }
+.corp-chip{ flex:none; padding:6px 12px; font:inherit; font-size:.8rem; font-weight:700; color:var(--ink-soft); background:var(--paper-raise); border:1.5px solid var(--line); border-radius:999px; cursor:pointer; white-space:nowrap; }
+.corp-chip[aria-pressed="true"]{ background:var(--sea); border-color:var(--sea); color:var(--on-sea); }
+.corp-count{ margin:0 0 8px; font-size:.8rem; color:var(--muted); }
+.corp-grp{ margin:0 0 18px; }
+.corp-grp h3{ margin:0 0 8px; font-family:"Shippori Mincho",serif; font-size:1rem; color:var(--ink); }
+.corp-row{ background:var(--paper-raise); border:1px solid var(--line); border-radius:12px; margin-bottom:8px; }
+.corp-row > summary{ list-style:none; cursor:pointer; padding:11px 40px 11px 14px; position:relative; display:flex; flex-direction:column; gap:2px; min-width:0; }
+.corp-row > summary::-webkit-details-marker{ display:none; }
+.corp-row > summary::after{ content:'＋'; position:absolute; right:14px; top:50%; transform:translateY(-50%); color:var(--sea); font-weight:700; }
+.corp-row[open] > summary::after{ content:'－'; }
+.cr-n{ font-weight:700; font-size:.95rem; overflow-wrap:anywhere; }
+.cr-m{ font-size:.76rem; color:var(--muted); overflow-wrap:anywhere; }
+.cr-b{ padding:2px 14px 14px; border-top:1px dashed var(--line); }
+.cr-biz{ margin:10px 0; font-size:.86rem; color:var(--ink-soft); line-height:1.7; }
+.cr-dl{ margin:0; display:grid; grid-template-columns:auto 1fr; gap:8px 12px; font-size:.84rem; }
+.cr-dl dt{ font-weight:700; color:var(--muted); font-size:.76rem; padding-top:2px; }
+.cr-dl dd{ margin:0; min-width:0; overflow-wrap:anywhere; line-height:1.6; }
+.cr-dl dd small{ color:var(--muted); margin-left:4px; }
+@media (max-width:520px){ .cr-dl{ grid-template-columns:1fr; gap:2px; } .cr-dl dd{ margin-bottom:8px; } }
+.cr-es{ display:flex; flex-wrap:wrap; gap:4px 12px; }
+.cr-es span{ font-size:.8rem; white-space:nowrap; }
+.cr-dl b.ok{ color:var(--good); } .cr-dl b.no{ color:var(--muted); } .cr-dl b.unk{ color:var(--muted); font-weight:600; }
+.cr-foot{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; margin-top:12px; }
+.cr-foot a{ font-size:.82rem; font-weight:700; color:var(--sea); }
+.cr-conf{ font-size:.7rem; font-weight:700; padding:3px 9px; border-radius:999px; }
+.cr-conf.hi{ background:var(--olive-soft); color:var(--olive); }
+.cr-conf.mid{ background:var(--terracotta-soft); color:var(--accent-ink); }
+.corp-none{ padding:18px; text-align:center; color:var(--muted); font-size:.88rem; }
+.corp-how{ margin:6px 0 14px; padding:10px 14px; background:var(--paper-raise); border:1px solid var(--line); border-radius:12px; font-size:.84rem; color:var(--ink-soft); }
+.corp-how summary{ cursor:pointer; font-weight:700; color:var(--ink); }
+.corp-how ul{ margin:10px 0 0; padding-left:1.2em; display:flex; flex-direction:column; gap:6px; line-height:1.7; }
+.corp-next{ font-size:.86rem; color:var(--ink-soft); }
+
+/* ---- 就職先診断 ---- */
+.corp-jd{ display:flex; align-items:center; gap:14px; width:100%; box-sizing:border-box; margin:0 0 10px; padding:14px 16px; text-align:left; font:inherit; color:var(--ink); background:var(--terracotta-soft); border:1.5px solid var(--terracotta); border-radius:var(--radius); cursor:pointer; }
+.corp-jd[hidden]{ display:none; }
+.corp-jd strong{ font-size:.98rem; }
+.corp-jd small{ font-size:.78rem; color:var(--ink-soft); line-height:1.6; }
+.corp-jd .ce-t{ flex:1; min-width:0; display:flex; flex-direction:column; gap:3px; }
+.corp-jd .ce-go{ font-size:1.3rem; font-weight:700; color:var(--accent-ink); }
+.jd-last{ margin:0 0 12px; } .jd-last[hidden]{ display:none; }
+#corp-diag[hidden]{ display:none; }
+#corp-main[hidden]{ display:none; }
+.jd-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; }
+.jd-prog{ font-size:.8rem; font-weight:700; color:var(--muted); font-variant-numeric:tabular-nums; }
+.jd-bar{ height:6px; border-radius:999px; background:var(--line); overflow:hidden; margin-bottom:16px; }
+.jd-bar i{ display:block; height:100%; background:var(--sea); border-radius:999px; transition:width .25s; }
+.jd-q{ margin:0 0 8px; font-family:"Shippori Mincho",serif; font-size:1.2rem; line-height:1.5; color:var(--ink); text-wrap:balance; }
+.jd-sub,.jd-pre{ margin:0 0 10px; font-size:.82rem; color:var(--muted); line-height:1.6; }
+.jd-pre{ color:var(--olive); font-weight:700; }
+.jd-opts{ display:flex; flex-direction:column; gap:8px; margin:12px 0 16px; }
+.jd-opt{ padding:13px 16px; text-align:left; font:inherit; font-size:.94rem; font-weight:600; color:var(--ink); background:var(--paper-raise); border:1.5px solid var(--line); border-radius:12px; cursor:pointer; min-height:48px; }
+.jd-opt[aria-pressed="true"]{ border-color:var(--sea); background:var(--sea-soft); color:var(--ink); box-shadow:inset 0 0 0 1px var(--sea); }
+.jd-nav{ display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-top:8px; }
+.jd-nav .btn[disabled]{ opacity:.45; cursor:not-allowed; }
+.jd-sum{ display:flex; flex-wrap:wrap; gap:6px; margin:0 0 14px; }
+.jd-sum span{ font-size:.74rem; font-weight:700; padding:3px 10px; border-radius:999px; background:var(--sea-soft); color:var(--sea); }
+.jd-tier{ align-self:flex-start; font-size:.68rem; font-weight:700; padding:2px 9px; border-radius:999px; margin-bottom:3px; }
+.jd-tier.t0{ background:var(--olive-soft); color:var(--olive); }
+.jd-tier.t1{ background:var(--sea-soft); color:var(--sea); }
+.jd-tier.t2{ background:var(--terracotta-soft); color:var(--accent-ink); }
+.jd-why{ margin:10px 0 0; padding-left:1.2em; font-size:.82rem; color:var(--ink-soft); line-height:1.7; }
+.jd-more{ margin-top:12px; }
+.jd-more .corp-list{ margin-top:10px; }
+.jd-note{ margin:14px 0; font-size:.8rem; color:var(--muted); line-height:1.7; }
+
+.set-credit{ margin-top:6px; font-weight:700; color:var(--ink-soft); }
 
 </style>
 
@@ -2680,12 +2888,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
       <button type="button" role="tab" data-v="day" aria-selected="false">理想の1日</button>
     </div>
     <div id="fu-view-card">
+    <div class="card fu-rv" id="fu-rv" hidden></div>
     <div class="card fu-trk" id="fu-trk" hidden></div>
     <div class="fu-grid">
       <div class="fu-left">
         <div id="fu-card"></div>
         <div class="fu-goalbar" id="fu-goalbar"></div>
         <div class="card fu-addsec" id="fu-addsec"></div>
+        <details class="card fu-revs" id="fu-revs" hidden></details>
         <details class="card fu-edit">
           <summary>カードを手で直す</summary>
           <div class="fu-fields">
@@ -2840,13 +3050,13 @@ svg.leaflet-image-layer.leaflet-interactive path {
     <div class="card set-card">
       <h3>音量</h3>
       <div class="set-row"><label for="set-master">全体の音量</label><input type="range" id="set-master" min="0" max="100" step="5"><output id="set-master-v" for="set-master"></output></div>
-      <div class="set-row"><label for="set-ambient">環境音(波の音)</label><input type="range" id="set-ambient" min="0" max="100" step="5"><output id="set-ambient-v" for="set-ambient"></output></div>
+      <div class="set-row"><label for="set-ambient">BGM(音楽)</label><input type="range" id="set-ambient" min="0" max="100" step="5"><output id="set-ambient-v" for="set-ambient"></output></div>
       <div class="set-row"><label for="set-sfx">効果音(ボタン・完了チェック・AIの返信)</label><input type="range" id="set-sfx" min="0" max="100" step="5"><output id="set-sfx-v" for="set-sfx"></output></div>
       <div class="set-actions">
         <button type="button" class="btn ghost" id="set-test">効果音をためす</button>
         <button type="button" class="btn ghost" id="set-reset">音量を初期値にもどす</button>
       </div>
-      <p class="set-note">環境音は、はじめは「0」(鳴らない)にしてあります。教室などで急に音が出ないようにするためです。ブラウザの仕様で、画面をタッチしたあとから音が出ます。</p>
+      <p class="set-note">BGMの音量です。「0」にすると鳴りません。教室などでは音量に気をつけてね。ブラウザの仕様で、画面をタッチしたあとから音が出ます。</p><p class="set-note set-credit">楽曲提供:ZERO</p>
     </div>
     <div class="card set-card">
       <h3>チュートリアル</h3>
@@ -3275,13 +3485,17 @@ svg.leaflet-image-layer.leaflet-interactive path {
   /* ---------------- 設定・音(WebAudioで作る簡単な音) ---------------- */
   var KS = (function(){
     var KEY = 'kagawa-shimazutai-settings-v1';
-    var DEF = { introSeen:false, master:80, ambient:0, sfx:60 };
-    var st = { introSeen:false, master:80, ambient:0, sfx:60 };
+    var DEF = { introSeen:false, master:80, ambient:60, sfx:60, v:0 };
+    var st = { introSeen:false, master:80, ambient:60, sfx:60, v:0 };
     try{
       var j = JSON.parse(localStorage.getItem(KEY) || 'null');
       if(j) Object.keys(DEF).forEach(function(k){ if(typeof j[k] === typeof DEF[k]) st[k] = j[k]; });
     }catch(e){ /* no-op */ }
     function save(){ try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){ /* no-op */ } }
+    /* 以前の版で保存された「環境音 0」は、触っていない初期値だったので、一度だけ30に直す */
+    if(st.v < 1){ if(st.ambient === 0) st.ambient = 30; st.v = 1; }
+    /* BGMにしたら30では小さすぎたので、触っていない「30」は一度だけ60に直す */
+    if(st.v < 2){ if(st.ambient === 30) st.ambient = 60; st.v = 2; if(localStorage.getItem(KEY)) save(); }
     function curve(v){ v = Math.max(0, Math.min(100, v)) / 100; return v * v; }
 
     var ctx = null, mGain, aGain, sGain, amb = null;
@@ -3292,11 +3506,27 @@ svg.leaflet-image-layer.leaflet-interactive path {
       try{ ctx = new AC(); }catch(e){ return null; }
       mGain = ctx.createGain(); aGain = ctx.createGain(); sGain = ctx.createGain();
       aGain.connect(mGain); sGain.connect(mGain); mGain.connect(ctx.destination);
+      ctx.onstatechange = function(){ if(ctx && ctx.state === 'running') syncAmbient(); };
       apply();
       return ctx;
     }
+    var musicEl = null, musG = null, musicOk = true;
+    function startMusic(){
+      if(!musicOk) return false;
+      try{
+        if(!musicEl){
+          musicEl = new Audio('negaigoto.mp3'); musicEl.loop = true; musicEl.preload = 'auto';
+          musicEl.addEventListener('error', function(){ musicOk = false; if(amb && amb.music) amb = null; try{ musicEl.pause(); }catch(e){ /* no-op */ } apply(); });
+          var ms = ctx.createMediaElementSource(musicEl), cmp = ctx.createDynamicsCompressor(); musG = ctx.createGain(); cmp.threshold.value = -8; cmp.knee.value = 6; cmp.ratio.value = 10; ms.connect(musG); musG.connect(cmp); cmp.connect(aGain); apply();
+        }
+        var pr = musicEl.play(); if(pr && pr.catch) pr.catch(function(){ if(amb && amb.music){ amb = null; } });
+        amb = { music:true };
+        return true;
+      }catch(e){ musicOk = false; return false; }
+    }
     function startAmbient(){
       if(amb || !ctx) return;
+      if(startMusic()) return;
       var rate = ctx.sampleRate, len = rate * 6, buf = ctx.createBuffer(2, len, rate), fade = Math.floor(rate * 0.25);
       for(var c = 0; c < 2; c++){
         var d = buf.getChannelData(c), last = 0;
@@ -3315,6 +3545,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     }
     function stopAmbient(){
       if(!amb) return;
+      if(amb.music){ try{ musicEl.pause(); }catch(e){ /* no-op */ } amb = null; return; }
       try{ amb.src.stop(); amb.lfo.stop(); }catch(e){ /* no-op */ }
       amb = null;
     }
@@ -3323,13 +3554,15 @@ svg.leaflet-image-layer.leaflet-interactive path {
       if(!ctx) return;
       var t = ctx.currentTime;
       mGain.gain.setTargetAtTime(curve(st.master), t, 0.05);
-      aGain.gain.setTargetAtTime(curve(st.ambient) * 0.9, t, 0.3);
+      var useM = !!(musicEl && musicOk);
+      aGain.gain.setTargetAtTime(useM ? 0.9 : curve(st.ambient) * 0.9, t, 0.3);
+      if(musG) musG.gain.setTargetAtTime(Math.max(0, Math.min(100, st.ambient)) / 100 * 3.0, t, 0.3);
       sGain.gain.setTargetAtTime(curve(st.sfx), t, 0.05);
       syncAmbient();
     }
-    function tone(freq, t0, dur, vol){
+    function tone(freq, t0, dur, vol, type){
       var o = ctx.createOscillator(), g = ctx.createGain();
-      o.type = 'sine'; o.frequency.value = freq;
+      o.type = type || 'sine'; o.frequency.value = freq;
       g.gain.setValueAtTime(0.0001, t0); g.gain.linearRampToValueAtTime(vol, t0 + 0.012); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
       o.connect(g); g.connect(sGain); o.start(t0); o.stop(t0 + dur + 0.05);
     }
@@ -3338,12 +3571,31 @@ svg.leaflet-image-layer.leaflet-interactive path {
       check: function(t){ tone(659.25, t, 0.25, 0.20); tone(880, t + 0.09, 0.38, 0.20); tone(1318.5, t + 0.09, 0.22, 0.05); },
       undo:  function(t){ tone(659.25, t, 0.12, 0.12); tone(493.9, t + 0.08, 0.22, 0.12); },
       done:  function(t){ [523.25, 659.25, 783.99, 1046.5].forEach(function(f, i){ tone(f, t + i * 0.11, 0.55, 0.18); }); },
-      reply: function(t){ tone(587.33, t, 0.18, 0.14); tone(783.99, t + 0.08, 0.3, 0.12); }
+      reply: function(t){ tone(587.33, t, 0.18, 0.14); tone(783.99, t + 0.08, 0.3, 0.12); },
+      tab:     function(t){ glide(520, 760, t, 0.11, 0.10); },
+      pick:    function(t){ tone(784, t, 0.10, 0.15); tone(1174.7, t + 0.06, 0.18, 0.10); },
+      open:    function(t){ glide(480, 840, t, 0.13, 0.10); },
+      close:   function(t){ glide(840, 480, t, 0.13, 0.09); },
+      confirm: function(t){ tone(587.33, t, 0.14, 0.16); tone(880, t + 0.07, 0.30, 0.16); },
+      send:    function(t){ glide(420, 1000, t, 0.18, 0.11); },
+      start:   function(t){ [392, 523.25, 659.25].forEach(function(f, i){ tone(f, t + i * 0.09, 0.34, 0.16); }); },
+      welcome: function(t){ [523.25, 659.25, 783.99, 1046.5].forEach(function(f, i){ tone(f, t + i * 0.13, 0.7, 0.14); }); tone(261.63, t, 1.0, 0.10, 'triangle'); },
+      result:  function(t){ [523.25, 659.25, 783.99, 987.77, 1318.5].forEach(function(f, i){ tone(f, t + i * 0.1, 0.7, 0.16); }); tone(1046.5, t + 0.5, 1.1, 0.10); tone(1318.5, t + 0.5, 1.1, 0.08); },
+      sparkle: function(t){ tone(1760, t, 0.14, 0.08); tone(2217.5, t + 0.06, 0.14, 0.07); tone(2637, t + 0.12, 0.22, 0.06); tone(3520, t + 0.2, 0.2, 0.03); },
+      sunrise: function(t){ [523.25, 659.25, 783.99].forEach(function(f, i){ tone(f, t + i * 0.16, 0.8, 0.12); }); },
+      moon:    function(t){ [493.88, 392, 329.63].forEach(function(f, i){ tone(f, t + i * 0.18, 0.9, 0.10); }); },
+      error:   function(t){ tone(246.94, t, 0.2, 0.13, 'triangle'); tone(196, t + 0.13, 0.3, 0.13, 'triangle'); }
     };
+    function glide(f0, f1, t0, dur, vol){
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine'; o.frequency.setValueAtTime(f0, t0); o.frequency.exponentialRampToValueAtTime(f1, t0 + dur);
+      g.gain.setValueAtTime(0.0001, t0); g.gain.linearRampToValueAtTime(vol, t0 + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur + 0.06);
+      o.connect(g); g.connect(sGain); o.start(t0); o.stop(t0 + dur + 0.1);
+    }
     function play(name){
       if(st.sfx <= 0 || st.master <= 0 || !SFX[name]) return;
       if(!ensure()) return;
-      if(ctx.state === 'suspended' && ctx.resume) ctx.resume();
+      if(ctx.state !== 'running') wake();
       try{ SFX[name](ctx.currentTime + 0.01); }catch(e){ /* no-op */ }
     }
     /* ブラウザは、ユーザーが触れるまで音を出せない。最初の操作で音の準備をする */
@@ -3352,10 +3604,37 @@ svg.leaflet-image-layer.leaflet-interactive path {
       if(ensure() && ctx.state === 'suspended' && ctx.resume) ctx.resume();
     }
     ['pointerdown', 'keydown'].forEach(function(n){ document.addEventListener(n, unlock, true); });
-    document.addEventListener('visibilitychange', function(){ if(ctx) syncAmbient(); });
+    /* 別のアプリへ移って戻ると、iPhoneは音を止める('suspended' や 'interrupted')。戻ったとき・触れたときに、音を動かし直す */
+    function wake(){
+      if(!ctx) return;
+      if(ctx.state === 'closed'){ ctx = null; amb = null; if(!ensure()) return; }
+      if(ctx.state !== 'running' && ctx.resume){
+        try{ var pr = ctx.resume(); if(pr && pr.then) pr.then(function(){ syncAmbient(); }, function(){ /* 次に触れたときに、もう一度 */ }); }catch(e){ /* no-op */ }
+      }
+      syncAmbient();
+    }
+    document.addEventListener('visibilitychange', function(){ if(!ctx) return; if(document.hidden) syncAmbient(); else wake(); });
+    window.addEventListener('pageshow', function(){ wake(); });
+    window.addEventListener('focus', function(){ wake(); });
+    /* 触れても音が動かないままのとき(iPhoneの不具合)は、2回目に音の仕組みを作り直す */
+    var stuck = 0;
+    ['pointerdown', 'touchend', 'keydown'].forEach(function(n){ document.addEventListener(n, function(){
+      if(!ctx) return;
+      if(ctx.state === 'running'){ stuck = 0; return; }
+      if(stuck >= 2){ stuck = 0; try{ ctx.close(); }catch(e){ /* no-op */ } ctx = null; amb = null; if(ensure() && ctx.resume){ try{ ctx.resume(); }catch(e){ /* no-op */ } } return; }
+      stuck++; wake();
+    }, true); });
     document.addEventListener('click', function(ev){
-      var b = ev.target.closest && ev.target.closest('button, a[href], [role="tab"]');
-      if(b && !b.disabled) play('tap');
+      var b = ev.target.closest && ev.target.closest('button, a[href], [role="tab"], summary');
+      if(!b || b.disabled) return;
+      var nm = 'tap';
+      if(b.id === 'intro-go') nm = 'welcome';
+      else if(b.id === 'suisen-start' || b.id === 'sm-start-own' || b.id === 'sm-start-reuse') nm = 'start';
+      else if(b.tagName === 'SUMMARY'){ var dd = b.parentNode; nm = (dd && dd.open) ? 'close' : 'open'; }
+      else if(b.classList.contains('opt')) nm = 'pick';
+      else if(b.getAttribute('role') === 'tab') nm = 'tab';
+      else if(b.classList.contains('primary') && b.type !== 'submit') nm = 'confirm';
+      play(nm);
     });
 
     /* ---- 設定画面 ---- */
@@ -3946,6 +4225,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     if(id === 'settings') KS.syncUI();
     if(id === 'commute' && window.cmShow) window.cmShow();
     if(id === 'future' && window.futShow) window.futShow();
+    try{ if(window.flowRender) window.flowRender(); }catch(e){ /* no-op */ }
     window.scrollTo({top:0, behavior:'smooth'});
   };
   tabButtons.forEach(function(b, i){
@@ -7926,7 +8206,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
     var html = suisenRenderRoute();
     html += '<div class="qcard"><span class="qtag">Question '+(suisenQIndex+1)+'</span><h3>'+q.q+'</h3><div class="options">';
     var letters = ['A','B','C','D','E','F','G','H','I','J','K','L'];
-    q.opts.forEach(function(o,i){ html += '<button class="opt" data-i="'+i+'"><span class="letter">'+letters[i]+'</span><span>'+o.t+'</span></button>'; });
+    var order = q.opts.map(function(o,i){ return i; }); if(q.opts === SUISEN_LIKERT) order.reverse();
+    order.forEach(function(i, n){ var o = q.opts[i]; html += '<button class="opt" data-i="'+i+'"><span class="letter">'+letters[n]+'</span><span>'+o.t+'</span></button>'; });
     html += '</div><div class="quiznav"><button class="linklike" id="suisen-back">← 前の質問に戻る</button></div></div>';
     qa.innerHTML = html;
     qa.querySelectorAll('.opt').forEach(function(btn){
@@ -8601,6 +8882,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       ORDER.forEach(function(t){ try{ sts[t] = DIAGS[t] ? DIAGS[t].status() : { state:'new', text:'' }; }catch(e){ sts[t] = { state:'new', text:'' }; } });
       var anyDiag = ORDER.some(function(t){ return sts[t].state !== 'new'; }) || list().length > 0;
       var has = rms.length > 0 || anyDiag;
+      try{ if(window.homeStartRender) window.homeStartRender({ diagDone: ORDER.some(function(t){ return sts[t].state === 'result'; }) || list().length > 0, diagProg: ORDER.some(function(t){ return sts[t].state === 'progress'; }), rm: rms.length }); }catch(e){ /* no-op */ }
       panel.classList.toggle('has-data', has);
       box.hidden = !has;
       if(!has){ box.innerHTML = ''; return; }
@@ -8648,6 +8930,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       box.innerHTML = h;
     }
     window.homeDashRender = homeDashRender;
+    window.__flowInfo = function(){ var st2 = {}; ORDER.forEach(function(t){ try{ st2[t] = DIAGS[t] ? DIAGS[t].status() : { state:'new' }; }catch(e){ st2[t] = { state:'new' }; } }); return { diagDone: ORDER.some(function(t){ return st2[t].state === 'result'; }) || list().length > 0, diagProg: ORDER.some(function(t){ return st2[t].state === 'progress'; }), rm: rmSavedList().length }; };
     document.getElementById('home-dash').addEventListener('click', function(ev){
       var r = ev.target.closest && ev.target.closest('[data-rm]');
       if(r){ openSavedRoadmap(r.getAttribute('data-rm')); return; }
@@ -9713,6 +9996,104 @@ svg.leaflet-image-layer.leaflet-interactive path {
   function fmtMin(m){ m = Math.round(m); if(m < 60) return m + '分'; var h = Math.floor(m / 60), r = m % 60; return h + '時間' + (r ? r + '分' : ''); }
   function aiErr(e){ var m = ''; try{ m = window.VAYL_AI ? window.VAYL_AI.err(e) : ''; }catch(x){ /* no-op */ } return m || 'AIをいま使えません。しばらくしてからもう一度お試しください。'; }
 
+  /* ---------- 県内の就職先(確認度「高・中」の会社だけ。AIが「理想の自分」づくりの例として使う) ----------
+     データは県内の会社の公式ページなどで確認した内容。確認できなかった項目は「？」のまま渡し、AIに推測で埋めさせない。 */
+  var CORPS = /*CORPDATA*/[{"u":"https://www.114bank.co.jp/","r":"https://www.114bank.co.jp/recruit/graduates/information/","j":"総合職、エリア総合職(システム分野は総合職)","b":"地方銀行","n":"百十四銀行","g":"金融・保険","p":"本社 高松市","s":"地方銀行","e":"○○○","w":"総合職 大卒 280,000 / エリア総合職 高卒 222,000(2027年度入行)","c":"高"},{"u":"https://www.kagawabank.co.jp/","r":"https://www.kagawabank.co.jp/recruit/recruitment/recruitment_newgraduate.html","j":"総合職、エリア総合職。仕事内容は業務課(窓口応対・事務手続き・預金/融資受付)と営業課(顧客訪問・法人向けコンサルティング)","b":"銀行業務(預金、資産運用、事業融資、各種ローンなどの相談・提案)を行う","n":"香川銀行","g":"金融・保険","p":"本社 高松市","s":"地方銀行","e":"？○○","w":"総合職 大卒 260,000 / 短大・専門・高専 205,500(年度不明)","c":"中"},{"u":"https://www.shikoku-rokin.or.jp/","r":"https://www.shikoku-rokin.or.jp/recruit/","j":"職員採用。Gコース、Eコースに区分","b":"預金と融資の取り扱い、個人向け・団体向けインターネットバンキングなどを行う(2026年3月末 預金残高6,388億35百万円、融資残高4,322億60百万円)","n":"四国労働金庫(四国ろうきん)","g":"金融・保険","p":"本社 高松市","s":"労働金庫","e":"○○○","w":"大卒 235,000(Gコース)/ 高卒 195,000(Eコース)(2026年度から)","c":"高"},{"u":"https://www.kagawaken.shinkumi.jp/","r":"https://www.kagawaken.shinkumi.jp/recruit/graduate/","j":"総合職","b":"信用組合として預金業務、貸出業務、内国為替業務などを行う協同組織の金融機関","n":"香川県信用組合(けんしん)","g":"金融・保険","p":"本社 高松市","s":"信用組合","e":"？○○","w":"大卒 210,000 / 短大・専門 190,000(前年度実績)","c":"高"},{"u":"https://www.iyobank.co.jp/","r":"https://www.iyobank.co.jp/sp/shinsotsu/recruit/managerial/","j":"総合職コース(エリアF・W・L)、デジタルテクノロジーコース、オフィスコース","b":"愛媛県松山市に本店を置く銀行","n":"伊予銀行","g":"金融・保険","p":"県内拠点 高松市","s":"地方銀行(四国他県)","e":"○○○","w":"総合職 大卒 280,000/252,600、オフィスコース 大卒 231,000・短大 210,000・高卒 206,100(2026年度)","c":"中"},{"u":"https://www.shikokubank.co.jp/","r":"https://www.shikokubank.co.jp/recruit/newgrads/","j":"総合職、地域総合職(新卒)。香川県内では契約社員の地域限定総合職(法人営業・個人営業)、証券コンサルティング業務の募集もあり","b":"銀行","n":"四国銀行","g":"金融・保険","p":"県内拠点 高松市","s":"地方銀行(四国他県)","e":"○○○","w":"大卒 総合職 270,000 / 地域総合職 220,000、短大・専門 250,000/200,000、高卒 192,000(2027年度)","c":"中"},{"u":"https://www.jfc.go.jp/","r":"https://www.jfc.go.jp/n/recruit/recruit/","j":"総合職、地域総合職(新卒)","b":"一般の金融を補う政策金融機関で、国民一般・農林水産・食品関連の事業者・中小企業者を対象に3つの事業を展開","n":"日本政策金融公庫(高松支店)","g":"金融・保険","p":"県内拠点 高松市","s":"政策金融機関","e":"？？○","w":"大卒・院卒 総合職 254,000 / 地域総合職 228,600(令和8年4月予定)","c":"中"},{"u":"https://www.nomura.co.jp/","r":"https://www.nomura-recruit.jp/newgraduate/requirements/","j":"総合職(ウェルス・マネジメント、ウェルス・マネジメント(エリア限定)、インベストメント・バンキング、グローバル・マーケッツ、IT・デジタル、リスク・マネジメント、コーポレート等)","b":"証券会社","n":"野村證券(高松支店)","g":"金融・保険","p":"県内拠点 高松市","s":"証券会社","e":"？？○","w":"月例給与 300,000(学歴別の記載なし、2027年卒向け)","c":"中"},{"u":"https://www.yonden.co.jp/","r":"https://www.yonden.co.jp/corporate/recruit/shinsotsu/info/","j":"事務系(総合・事業開発・エリアの各コース)、技術系(発電、電力ネットワーク、情報通信、土木建築、事業開発、エネルギーソリューション)","b":"水力・火力・原子力・新エネルギーの発電設備を保有し、電気の供給事業を中心に、個人・法人向けの電気料金サービスや再生可能エネルギー関連の事業も行う","n":"四国電力","g":"エネルギー・交通・物流","p":"本社 高松市","s":"電力","e":"○？○","w":"大卒 255,000 / 高卒 209,000(2026年度)","c":"高"},{"u":"https://www.yonden.co.jp/nw/","r":"https://www.yonden.co.jp/corporate/recruit/shinsotsu/info/","j":"技術系(電力ネットワークなどのコース。募集・選考は四国電力と合同)","b":"『一般送配電事業』などを行う","n":"四国電力送配電","g":"エネルギー・交通・物流","p":"本社 高松市","s":"電力(送配電)","e":"○？○","w":"四国電力と同じ募集要項: 大卒 255,000 / 高卒 209,000(2026年度)","c":"中"},{"u":"https://www.jr-shikoku.co.jp/","r":"https://www.jr-shikoku.co.jp/04_company/recruit/kousotsu/index.html","j":"高卒: 保線・土木、建築、電気、機械、車両検修、駅、車掌、運転士。大卒(総合職): 事務・事業開発、運輸、車両、土木、建築、機械設備、電気…","b":"四国で鉄道事業を行い、駅ビルなどの不動産開発、ホテル・物販業の運営などの事業開発も行う","n":"四国旅客鉄道(JR四国)","g":"エネルギー・交通・物流","p":"本社 高松市","s":"鉄道","e":"○○○","w":"大卒 総合職 225,000 / 高卒 184,900(2026年4月実績)","c":"高"},{"u":"https://www.kotoden.co.jp/","r":"https://www.kotoden.co.jp/publichtm/kotoden/company/recruit.htm","j":"乗務係(車掌)、技術係(電気・保線・車両)、設備管理員、一般事務、駅業務係、清掃パート","b":"琴平線・長尾線・志度線の鉄道事業を行う","n":"高松琴平電気鉄道(ことでん)","g":"エネルギー・交通・物流","p":"本社 高松市","s":"鉄道","e":"？？？","w":"本給 192,500〜(職種で差。年度・学歴の記載なし)","c":"中"},{"u":"https://www.kotoden.co.jp/publichtm/bus/gaikyo/index.html","r":"https://www.kotoden.co.jp/publichtm/bus/saiyo/index.html","j":"バス運転士、養成バス運転士、タクシー運転士、事務員、整備","b":"一般乗合旅客自動車運送事業(路線バス)、一般貸切旅客自動車運送事業、タクシー事業、高速バス乗車券の取扱い、損害保険代理店業を行う","n":"ことでんバス","g":"エネルギー・交通・物流","p":"本社 高松市","s":"バス・タクシー","e":"？？？","w":"運転士 基本給 280,000〜350,000(残業等別。年度・学歴の記載なし)","c":"中"},{"u":"https://www.shikoku-gas.co.jp/","r":"https://www.shikoku-gas.co.jp/recruit/","j":"生産グループ、供給設備グループ、保安グループ、リビング営業グループ、エネルギー営業グループ、業務グループ、お客さまセンター","b":"ガス事業に重点をおき、より多くのお客さまに安定してガスを届ける事業を行う","n":"四国ガス","g":"エネルギー・交通・物流","p":"県内拠点 高松市","s":"都市ガス","e":"？○○","w":"総合コース 大卒 242,200 / 短大卒 220,000(年度不明)","c":"中"},{"u":"https://www.shikokuferry.com/","r":"https://www.shikokuferry.com/recruit","j":"甲板員(車両誘導・出入港の準備作業)、機関員(機関整備)","b":"一般旅客定期航路事業","n":"小豆島フェリー","g":"エネルギー・交通・物流","p":"本社 高松市","s":"フェリー・海運","e":"？？？","w":"200,000〜(学歴の記載なし、2025年3月更新)","c":"中"},{"u":"https://www.shikokuferry.com/","r":"","j":"","b":"一般旅客定期航路事業","n":"四国フェリー","g":"エネルギー・交通・物流","p":"本社 高松市","s":"フェリー・海運","e":"？？？","w":"確認できず","c":"中"},{"u":"https://www.kotosan.co.jp/","r":"https://www.kotosan.co.jp/recruit/","j":"バス運転手(中讃地域の路線バス、丸亀から高松空港へのリムジンバスなど。未経験者歓迎、運転手養成制度あり)","b":"一般乗合旅客運送事業(路線バス)、一般貸切旅客運送事業(貸切バス)、旅行業を行う会社","n":"琴参バス","g":"エネルギー・交通・物流","p":"本社 丸亀市(営業所は坂出・善通寺)","s":"路線バス・貸切バス","e":"？？？","w":"募集ページに月給 222,000〜300,000(乗務手当含む。初任給としての記載なし)","c":"中"},{"u":"https://www.nipponexpress.com/jp/ja/","r":"https://www.nipponexpress.com/jp/ja/site/jinji/","j":"営業・事務職採用(ジェネラル・国際フォワーディング・グローバル・ローカルキャリア各コース)、技能職採用(トラック運転、フォークリフト作業など)","b":"陸・海・空の輸送から倉庫、通関、旅行、重量物・プラントの輸送・建設、特殊輸送、情報処理・解析まで物流事業全般と関連事業を手がける","n":"日本通運(NXグループ)","g":"エネルギー・交通・物流","p":"県内拠点 高松市","s":"総合物流(陸・海・空輸送、倉庫、通関など)","e":"○○○","w":"大卒 256,700 / 短大 253,900 / 専門 251,100(2025年度、東京23区基準)","c":"中"},{"u":"https://www.tadano.co.jp/","r":"https://www.tadano.co.jp/ja/recruit/ng-recruitment/","j":"研究・開発職、生産技術職、カスタマーサポート(CS)職、システムエンジニア(SE)職、購買職、営業職、コーポレートスタッフ職","b":"建設用クレーン、車両搭載型クレーン、高所作業車、運搬機械などの製造と販売を行っている","n":"タダノ","g":"機械・電気機械","p":"本社 高松市","s":"建設機械(移動式クレーン・高所作業車)","e":"？？○","w":"大卒 260,000 / 高専卒 242,000(年度不明)","c":"中"},{"u":"https://www.yonkei.co.jp/","r":"https://www.yonkei.co.jp/recruit/index.php","j":"製造、エンジニアリング","b":"電力量計関連、電力会社向けシステム、半導体関連、LED照明関連、産業用製品、省エネ関連などの製品と、電気計装トータルエンジニアリング、環境分析、計器校正などを手がける","n":"四国計測工業","g":"機械・電気機械","p":"本社 仲多度郡多度津町","s":"電気機械・計測機器(電力量計、半導体関連装置、電気計装)","e":"？？○","w":"大卒 240,000 / 高専本科卒 218,000(2026年度)","c":"中"},{"u":"https://www.aoi-electronics.co.jp/","r":"https://www.aoi-electronics.co.jp/recruit/","j":"総合職(理系: 製品開発、生産技術、設備開発、研究開発、施設管理、システムエンジニア、工程管理・品質改善・設備保全など / 文系: 工程管理、生産管理、営業技術、貿易通関…","b":"生産品目としてIC・モジュール・光学センサー・LED・サーマルプリントヘッド・MEMSデバイスを掲げている","n":"アオイ電子","g":"機械・電気機械","p":"本社 高松市","s":"電気機械・電子部品(IC・サーマルプリントヘッド・センサー)","e":"○○○","w":"総合職 大卒 232,580 / 一般職 大卒 191,440、短大・専門 185,000(2026年4月実績)","c":"高"},{"u":"https://www.imazo.co.jp/","r":"https://www.imazo.co.jp/rec/student/requirements/index.html","j":"大卒: 技術系総合職(設計エンジニア、工作スタッフ)、事務系総合職(営業、資材購買、経理財務、情報システム、総務、人事)…","b":"船舶(新造船)の建造事業","n":"今治造船(丸亀事業本部)","g":"機械・電気機械","p":"県内拠点 丸亀市","s":"造船(新造船の建造)","e":"○？○","w":"大卒 総合職 257,366 / 高校生採用 基本給 230,250(大卒は2026年4月実績)","c":"中"},{"u":"https://www.shikoku.co.jp/","r":"https://www.shikoku.co.jp/recruit/","j":"化学品事業・建材事業・シェアードサービス事業の職種紹介あり(研究開発、生産・技術、製造技術、プラント技術、商品開発・設計、営業、事業企画、情報システム…","b":"グループ会社の経営管理等を行う持株会社","n":"四国化成ホールディングス","g":"化学・食品・日用品","p":"本社 丸亀市","s":"化学品(無機・有機化成品、ファインケミカル)・建材(エクステリア等)","e":"○？○","w":"大卒 271,000 / 高卒 220,000(年度不明)","c":"高"},{"u":"https://www.tablemark.co.jp/","r":"https://www.tablemark.co.jp/corp/recruit/index.html","j":"業務用営業、家庭用営業、品質管理、製造、商品開発","b":"冷凍うどんを中心に冷凍そば・冷凍ラーメン、パックごはん、冷凍お好み焼、焼成冷凍パン・冷凍デザートなど冷凍食品・常温食品の製造・販売","n":"テーブルマーク","g":"化学・食品・日用品","p":"県内拠点 多度津町","s":"冷凍食品(冷凍うどん等)","e":"○○○","w":"確認できず","c":"中"},{"u":"https://moritakk.com/","r":"https://moritakk.com/company/recruit","j":"","b":"酒類、醤油、調味料、味噌、漬物、清涼飲料水の製造及び販売","n":"盛田(小豆島工場・坂出工場)","g":"化学・食品・日用品","p":"県内拠点 小豆島町・坂出市","s":"醤油・調味料・酒類","e":"？？？","w":"確認できず","c":"中"},{"u":"https://www.lecinc.co.jp/","r":"https://www.lecinc.co.jp/recruit/graduate/","j":"総合職(営業)、デザイン職、品質管理職(四国工場勤務)。中途採用では製造オペレーター(四国工場)","b":"採用ページにバルサン、アンパンマン、激落ちくん等のブランドが並ぶ","n":"レック","g":"化学・食品・日用品","p":"県内拠点 三豊市","s":"日用品メーカー(生活用品)","e":"？○○","w":"品質管理職(四国工場) 大卒 217,000(2026年度新卒)","c":"中"},{"u":"","r":"https://job.mynavi.jp/27/pc/search/corp243944/outline.html","j":"","b":"香川県に本社を置くケアシューズの専門メーカー","n":"徳武産業","g":"地場産業・印刷","p":"本社 さぬき市","s":"ケアシューズ(縫製)","e":"？○○","w":"確認できず","c":"中"},{"u":"https://www.kw-ja.or.jp/","r":"https://www.recruit.kw-ja.or.jp/","j":"総合職(2027年卒向け新卒採用職員。香川県下の支店・事業所等で信用・共済・営農・経済等の事業、企画管理、システム運用保守に従事。ワクサポかがわ掲載)","b":"組合員の農畜産物の集荷・販売、農業生産資材や生活物資の購買、貯金や融資などの信用事業、各種共済事業などを手がける農協(マイナビ掲載の会社概要による)","n":"JA香川県(香川県農業協同組合)","g":"農業・水産・市場","p":"本社 高松市","s":"農協(総合農協)","e":"？？○","w":"確認できず","c":"中"},{"u":"https://www.kagawa-gyoren.or.jp/","r":"https://www.kagawa-gyoren.or.jp/recruit","j":"総合職","b":"瀬戸内海で漁業を営む漁業者を支える漁協の連合会","n":"JF香川漁連(香川県漁業協同組合連合会)","g":"農業・水産・市場","p":"本社 高松市","s":"漁協(県域連合会)・水産物の販売/加工","e":"？？？","w":"確認できず","c":"中"},{"u":"https://takamatsuseika.co.jp","r":"https://takamatsuseika.co.jp/recruit/","j":"総合職(営業部門、管理部門。キャリア採用では夜間商品管理業務も)。勤務地は高松市で転勤なし","b":"青果物(野菜・果物)の卸売業","n":"高松青果","g":"農業・水産・市場","p":"本社 高松市","s":"青果物卸売(高松市中央卸売市場)","e":"？○○","w":"短大・専門 195,000 / 大卒 220,000(年度不明)","c":"高"},{"u":"https://www.stnet.co.jp/","r":"https://www.stnet.co.jp/saiyou/recruit/","j":"総合職(技術系・営業系): システム/ネットワークの提案・設計・開発・構築・運用・保守、データセンター運用、通信設備の工事・保守・監視、情報通信サービスの営業","b":"通信や情報処理のシステム・ソフトウェアの設計・開発・運用・保守・販売、通信・放送関連の機器や工事、電力の購入・販売、通信・放送サービスの代理店業務などを手がける","n":"STNet","g":"IT・放送・メディア","p":"本社 高松市","s":"通信・システム開発・データセンター","e":"？？○","w":"大卒 252,000 / 高専卒 228,000(2026年4月実績)","c":"中"},{"u":"https://www.rnc.co.jp/","r":"https://www.rnc.co.jp/info/recruit/","j":"総合職(放送現場のラジオ・テレビ、営業、編成、総務など。アナウンサーも総合職採用)。技術職は『理系WELCOME!』ページで紹介(陸上無線技術士などの資格取得支援あり)","b":"一般放送業(テレビ・ラジオ放送)","n":"西日本放送(RNC西日本放送)","g":"IT・放送・メディア","p":"本社 高松市","s":"テレビ・ラジオ放送","e":"？？○","w":"大卒 240,100(2027年度入社向け)","c":"中"},{"u":"https://www.tosbac-systems.co.jp/","r":"https://www.tosbac-systems.co.jp/recruit.html","j":"営業職(ソリューション営業)、技術職(システムエンジニア・プログラマ)","b":"コンピュータ販売、ソフトウェア開発・販売、インターネットサービス、システム運用サービスを手がける","n":"トスバックシステムズ","g":"IT・放送・メディア","p":"本社 高松市","s":"システム開発・コンピュータ販売(業種別業務システム)","e":"？？？","w":"確認できず","c":"中"},{"u":"https://www.cavy.co.jp/","r":"https://www.cavy.co.jp/corp/recruit/","j":"事務系スタッフ(解約防止の付加サービス営業の委託先管理、アフターフォローコール業務の委託先管理、LINE運用管理。勤務地高松、募集1名)","b":"有線テレビジョン放送事業および電気通信事業を行う","n":"ケーブルメディア四国","g":"IT・放送・メディア","p":"本社 高松市","s":"ケーブルテレビ・通信(愛称CMS)","e":"？？？","w":"確認できず","c":"中"},{"u":"https://www.ntt-west.co.jp/","r":"https://www.ntt-west.co.jp/newgrad/info/requirements/","j":"ICTソリューション提供のコンサルティング、通信ネットワークの構築・運用・保守、設備投資戦略の策定、新サービス開発など","b":"フレッツ光、ビジネスフォン、IP電話、情報セキュリティ、ネットワーク、クラウド・データセンター、コンタクトセンターなど通信・ICTサービス・ソリューションを提供する","n":"NTT西日本 香川支店","g":"IT・放送・メディア","p":"県内拠点 高松市","s":"通信・ICTサービス","e":"？○○","w":"大卒 339,500 / 短大・専門・高専 321,500(2026年3月時点、住宅補助含む)","c":"中"},{"u":"https://www.nishimura-joy.co.jp/","r":"https://nishimura-joy-saiyo.jp/-/top/index.html","j":"販売スタッフ(スタッフ・アシスタント)","b":"木材事業、住生活関連用品の販売、カード事業、リフォーム事業、宅地開発、マンション事業を行う","n":"西村ジョイ","g":"小売・ホテル・サービス","p":"本社 高松市","s":"ホームセンター(住生活関連用品販売・木材・リフォーム)","e":"？？？","w":"スタッフ 198,000(学歴・年度の記載なし)","c":"中"},{"u":"https://www.izumi.co.jp/","r":"https://www.izumi.co.jp/recruit/","j":"総合職(ナショナル正社員・リージョナル正社員)、一般職(フィールド正社員)。グループ会社では販売・接客、営業、物流、工事・施工管理など","b":"中国・四国・九州を主なエリアとして、ショッピングセンター「ゆめタウン」「LECT」と、食料品スーパー「ゆめマート」などを運営している","n":"イズミ","g":"小売・ホテル・サービス","p":"県内拠点 高松市","s":"ショッピングセンター(ゆめタウン)・食品スーパー(ゆめマート)","e":"○○○","w":"大卒 226,200〜260,000(職種で差) / 短大・専門 210,000〜240,000","c":"高"},{"u":"https://www.halows.com/","r":"https://www.halows.com/recruit/newgrad/","j":"新卒採用ページの紹介職種: 精肉部、チェッカー部門、鮮魚部門、副店長、店長、バイヤー、商品開発、品質管理","b":"「24時間営業型の食品スーパーマーケット」を展開","n":"ハローズ","g":"小売・ホテル・サービス","p":"県内拠点 高松市","s":"食品スーパーマーケット","e":"○○○","w":"大卒 280,000 / 短大・専門 255,500 / 高卒 244,500(総合職・基本給。年度の記載なし)","c":"高"},{"u":"https://www.dcm-hc.co.jp/","r":"https://www.dcm-hc.co.jp/recruit/","j":"総合職(入社後の初任配属は店舗、その後ジョブローテーション)","b":"ホームセンター事業","n":"DCM","g":"小売・ホテル・サービス","p":"県内拠点 県内14店舗(市町は確認できず)","s":"ホームセンター","e":"？○○","w":"大卒 244,000〜 / 短大・専門 216,000〜(年度不明、手当別)","c":"中"},{"u":"https://wellswedding.jp/","r":"https://wellsbellmony-recruit.jp/guide-new/","j":"フューネラルディレクター(葬祭)、キャリア営業職(互助会)、ブライダルプロデューサー(冠婚)、管理系総合職","b":"互助会事業、冠婚事業(結婚式・披露宴など)、葬祭事業(葬儀・法要・墓石仏壇等販売など)、関連事業(ギフト、旅客・貨物運送業)","n":"ベルモニー(ウェルズベルモニーグループ)","g":"小売・ホテル・サービス","p":"本社 高松市","s":"冠婚葬祭(互助会・結婚式・葬祭)","e":"？○○","w":"葬祭職 大卒 210,200 / 短大・高専・専門 200,400(年度不明)","c":"高"},{"u":"https://www.yondenko.co.jp/","r":"https://www.yondenko.co.jp/recruit/new-graduate/","j":"技術職(施工管理、設計・積算、営業)、事務職(企画・広報、人事・労務、経理、システム開発・運用など)、技能職(建築設備・配電・送電の技能職は高卒想定)","b":"建築設備工事(電気、計装、情報通信、防災・防犯、空調、給排水など)と送配電設備工事(送電線・配電線など)を行う","n":"四電工","g":"建設・不動産","p":"本社 高松市","s":"設備工事(電気・空調管・情報通信・送配電)","e":"○○○","w":"大卒 261,500 / 高卒 217,900(年度不明)","c":"高"},{"u":"https://www.godaweb.com/","r":"https://www.godaweb.com/recruit/recruitment/kagawa","j":"技術職(施工管理、積算、設計、設備)、営業職、事務職","b":"建築工事業(官公庁、学校、医療施設、マンション、オフィスビル、工場、店舗、ホテル、住宅など)、土木工事業、一級建築士事務所を営む","n":"合田工務店","g":"建設・不動産","p":"本社 高松市","s":"総合建設業(建築・土木)","e":"○○○","w":"技術職 大卒 286,000 / 高卒 244,000(2026年4月実績)","c":"高"},{"u":"https://www.anabuki.ne.jp/","r":"https://recruit.anabuki-kosan.co.jp/shinsotsu/recruit/info.html","j":"総合職","b":"分譲マンション、不動産ソリューション、区分マンション投資、投資用不動産、再生可能エネルギー開発推進、シニア事業などを行う","n":"あなぶき興産(旧・穴吹興産)","g":"建設・不動産","p":"本社 高松市","s":"不動産(分譲マンション・不動産ソリューション)、ホテル・施設運営など","e":"？○○","w":"大卒・院了 288,000 / 高専 276,000 / 短大・専門 264,600(職務手当込み、高卒の記載なし)","c":"高"},{"u":"https://www.takamatsu.jrc.or.jp/","r":"https://www.takamatsu.jrc.or.jp/recruit/","j":"看護師、助産師、事務職員(正職員)。薬剤師・診療放射線技師の新卒向け募集要項PDFもあり。臨時職員として看護助手、医療助手、臨時事務員など","b":"日本赤十字社が運営する病院で、多数の診療科と部門を持つ医療機関","n":"高松赤十字病院","g":"医療・福祉・教育","p":"県内拠点 高松市","s":"総合病院(赤十字)","e":"？○○","w":"看護師 大卒 326,632 / 2年課程 313,172(令和9年4月採用)","c":"中"},{"u":"https://www.pref.kagawa.lg.jp/kenritsubyoin/","r":"https://www.pref.kagawa.lg.jp/kenritsubyoin/kenritsubyoin/kyuujinjouhou.html","j":"看護師、病院事務、薬剤師、臨床検査技師、診療放射線技師、理学療法士、視能訓練士、臨床工学技士(令和8年度試験)","b":"香川県の県立病院(中央病院・白鳥病院・丸亀病院など)の職員採用を県病院局が実施している","n":"香川県病院局(県立中央病院ほか)","g":"医療・福祉・教育","p":"本社 高松市","s":"公立病院(県立)","e":"？○○","w":"看護師 大卒 270,800 / 短大2年 263,400(令和8年4月採用例)","c":"中"},{"u":"https://mitoyo-hosp.jp/","r":"https://mitoyo-hosp.jp/recruit/","j":"看護師、助産師、薬剤師、臨床検査技師、理学療法士、作業療法士、歯科衛生士、臨床工学技士、介護福祉士、介護員、社会福祉士、調理師、看護アシスタント(令和9年度採用)","b":"","n":"三豊総合病院","g":"医療・福祉・教育","p":"本社 観音寺市","s":"公立病院(企業団)","e":"？○○","w":"看護師 大卒 287,208 / 2年制 271,664","c":"中"},{"u":"https://www.yashima-hp.com/","r":"https://www.yashima-hp.com/category/news/recruit/","j":"看護師、薬剤師、作業療法士、臨床工学技士、社会福祉士、事務職員(総合職)、システムエンジニア(院内)、医師","b":"高松市屋島西町にある総合病院","n":"屋島総合病院(JA香川厚生連)","g":"医療・福祉・教育","p":"県内拠点 高松市","s":"総合病院","e":"？？○","w":"薬剤師(6年制) 271,411(手当込み、令和9年4月採用)。看護師などは確認できず","c":"中"},{"u":"https://t-heiwa.com/","r":"https://kagawacoop.com/","j":"臨床研修医、看護師、看護補助者、セラピスト、介護福祉士、社会福祉士、薬剤師、歯科衛生士、調理師、事務総合職など","b":"高松平和病院(123床、内科・家庭医療科・整形外科・緩和ケア内科など)を運営","n":"高松平和病院(香川医療生協)","g":"医療・福祉・教育","p":"本社 高松市","s":"病院・医療生協","e":"？？？","w":"確認できず","c":"中"},{"u":"https://www.kagawah.johas.go.jp/","r":"https://www.kagawah.johas.go.jp/recruit/","j":"看護師(正規・嘱託)、助産師、薬剤師、臨床検査技師、事務職員(正規)、MSW、医師事務作業補助者、調理師など","b":"丸亀市城東町にある病院","n":"香川労災病院(労働者健康安全機構)","g":"医療・福祉・教育","p":"県内拠点 丸亀市","s":"総合病院(中讃地域の基幹病院)","e":"？○○","w":"看護師 大卒・専門 基本給 212,700(諸手当込み 293,588)/ 3年課程 207,700(令和9年度採用)","c":"高"},{"u":"https://www.pref.kagawa.lg.jp/","r":"https://www.pref.kagawa.lg.jp/jinjii/saiyou/kfvn.html","j":"一般行政事務(企画・折衝・調査・指導、事務・会計)、学校事務、警察行政事務、農業土木、土木。大学卒業程度は一般行政事務、電気(営繕)、機械(営繕)、化学・農芸化学(環境)…","b":"香川県の行政機関","n":"香川県庁","g":"公務・公的機関","p":"県内拠点 高松市","s":"都道府県庁","e":"○○○","w":"大卒程度 245,203 / 高卒程度 213,314(2026年4月)","c":"高"},{"u":"https://www.pref.kagawa.lg.jp/police/","r":"https://www.pref.kagawa.lg.jp/police/kskeimu/saiyou/exam/schedule.html","j":"警察官、警察行政事務、サイバー犯罪特別捜査官、警察職員(情報処理技術者、保健師、職務経験者型)","b":"香川県の警察組織","n":"香川県警察","g":"公務・公的機関","p":"県内拠点 県警察本部・県内各署","s":"都道府県警察","e":"○○○","w":"警察官 大卒程度 280,291 / 高卒程度 247,576(2026年4月)","c":"高"},{"u":"https://www.city.takamatsu.kagawa.jp/","r":"https://www.city.takamatsu.kagawa.jp/kurashi/shinotorikumi/saiyo/shokuin/takamatsu_shokuin/yoko.files/r8tankoussotu.pdf","j":"事務(心理)、事務(短大・高校)、土木(高校)、自動車整備士、保育教育士、消防(短大・高校)、技能職員(保育所・学校給食調理等)(令和8年度 短大・高校卒業程度等の試験案内)","b":"香川県高松市の地方公共団体","n":"高松市役所","g":"公務・公的機関","p":"県内拠点 高松市","s":"市役所(県庁所在地・中核市)","e":"○○○","w":"大卒 247,104 / 高卒 214,968(2026年7月)","c":"中"},{"u":"https://www.city.marugame.lg.jp/","r":"https://www.city.marugame.lg.jp/site/saiyou/","j":"行政事務(大学卒、短大卒・高校卒、デジタル、学芸員、文化財専門員、職務経験者、障がい者対象)、土木(大学卒・短大卒、高校卒)、建築(大学卒・短大卒、高校卒)、保育士・幼稚園教諭…","b":"香川県丸亀市の地方公共団体","n":"丸亀市役所","g":"公務・公的機関","p":"県内拠点 丸亀市","s":"市役所","e":"○○○","w":"大卒 237,600(令和8年度試験案内)","c":"中"},{"u":"https://www.boj.or.jp/","r":"https://www.boj.or.jp/about/recruit/index.htm","j":"一般職(データ管理・統計作成のアシスタント、発券業務、システム関連、証票処理、秘書業務など)","b":"日本銀行の支店","n":"日本銀行 高松支店","g":"公務・公的機関","p":"県内拠点 高松市","s":"中央銀行の支店","e":"？○○","w":"一般職 大卒 274,000 / 高卒 240,000(2026年度から)","c":"中"},{"u":"https://www.nta.go.jp/about/organization/takamatsu/index.htm","r":"https://www.nta.go.jp/about/organization/takamatsu/recruitment/shokuin_saiyo.htm","j":"国税専門官(大学卒業程度の採用試験)、税務職員(高校卒業程度の採用試験)、経験者採用(大学卒業後8年経過)","b":"国税庁の地方機関","n":"高松国税局","g":"公務・公的機関","p":"県内拠点 高松市","s":"国の出先機関(国税局・税務署)","e":"○？○","w":"確認できず","c":"中"},{"u":"https://www.city.sakaide.lg.jp/","r":"https://www.city.sakaide.lg.jp/site/to-the-next-sakaide/","j":"事務、土木、建築、環境衛生現業員、給食調理員、保健師、保育・教諭、消防士","b":"坂出市の地方自治体","n":"坂出市役所","g":"公務・公的機関","p":"本社 坂出市","s":"市役所","e":"○○○","w":"大卒 244,728 / 短大 229,278 / 高卒 212,901(令和8年1月1日現在)","c":"中"},{"u":"https://www.city.kanonji.kagawa.jp/","r":"https://www.city.kanonji.kagawa.jp/life/14/97/332/","j":"一般事務(上級)、一般事務(初級)、一般事務(社会人経験者)、一般事務(障がい者対象)、土木、土木(初級)、建築、建築(初級)、保健師、社会福祉士、保育士・幼稚園教諭","b":"観音寺市の地方自治体","n":"観音寺市役所","g":"公務・公的機関","p":"本社 観音寺市","s":"市役所","e":"○？？","w":"確認できず","c":"中"},{"u":"https://www.city.sanuki.kagawa.jp/","r":"https://www.city.sanuki.kagawa.jp/saiyou-seiki","j":"事務(高校卒)、事務(大学卒)、事務(短大卒)、事務(文化財専門員)、保健師、医療職(診療情報管理士など)","b":"さぬき市の地方自治体","n":"さぬき市役所","g":"公務・公的機関","p":"本社 さぬき市","s":"市役所","e":"○○○","w":"高校卒 170,900(令和6年度)/ 大卒 225,600・短大 210,600(令和7年度・医療職)","c":"中"},{"u":"https://www.pref.kagawa.lg.jp/kenkyoui/","r":"https://www.pref.kagawa.lg.jp/kenkyoui/kokokyoiku/saiyo/kyousyokuin/adoption.html","j":"小学校教諭、中学校教諭(各教科)、高等学校教諭、特別支援学校教諭、養護教諭、栄養教諭","b":"香川県公立学校教員採用選考試験を実施し、県内の公立の小学校・中学校・高等学校・特別支援学校などの教員、養護教諭、栄養教諭を採用している","n":"香川県教育委員会(公立学校の教員)","g":"公務・公的機関","p":"本社 県内各地の公立学校","s":"教育委員会(教員採用)","e":"？？○","w":"確認できず","c":"中"},{"u":"https://www.skr.mlit.go.jp/","r":"https://www.skr.mlit.go.jp/recruit/index.html","j":"技術系(河川、道路、港湾・空港、電気通信、機械、官庁営繕、施設営繕、防災など)、事務系(総務・人事・厚生、用地、会計・契約、公物管理、建政、防災など)","b":"徳島・香川・愛媛・高知の4県を管轄し、河川、道路、港湾・空港などの社会資本整備を担当する国土交通省の地方支分部局","n":"国土交通省 四国地方整備局","g":"公務・公的機関","p":"県内拠点 高松市","s":"国の機関(国土交通省)","e":"○？○","w":"大卒程度 232,000〜 / 高卒 200,300〜(令和8年4月1日現在)","c":"高"},{"u":"https://www.mod.go.jp/pco/kagawa/","r":"https://www.mod.go.jp/pco/kagawa/recruit/kyuuyo.html","j":"自衛官候補生、一般曹候補生、一般幹部候補生、防衛大学校生・防衛医科大学校学生、高等工科学校生徒","b":"香川県で自衛官の募集・採用の相談を受け付ける防衛省の機関(高松サンポート合同庁舎南館2階)","n":"自衛隊香川地方協力本部(防衛省)","g":"公務・公的機関","p":"県内拠点 高松市","s":"国の機関(自衛官募集)","e":"○？○","w":"一般曹候補生(高卒) 224,600 / 一般幹部候補生(大卒) 296,100(令和6年人事院勧告後)","c":"中"}]/*END*/;
+  var CORP_LEX = [
+    { g:'金融・保険', re:/銀行|金融|証券|保険|信用金庫|信用組合|ろうきん|お金|融資|資産運用|ファイナンス/g },
+    { g:'エネルギー・交通・物流', re:/電力|ガス|エネルギー|電気|インフラ|鉄道|電車|バス|運転|フェリー|船|海運|物流|運送|トラック|配送|倉庫|空港|交通|乗り物/g },
+    { g:'機械・電気機械', re:/機械|ものづくり|製造|工場|エンジニア|設計|開発|電子|半導体|造船|クレーン|技術者|メーカー|ロボット/g },
+    { g:'化学・食品・日用品', re:/化学|食品|醤油|うどん|食べ物|調味料|日用品|研究|薬品|オリーブ|製麺|冷凍/g },
+    { g:'地場産業・印刷', re:/印刷|デザイン|手袋|縫製|伝統|うちわ|家具|紙器|地場産業/g },
+    { g:'農業・水産・市場', re:/農業|農家|漁|水産|市場|青果|野菜|果物|農協|農産/g },
+    { g:'IT・放送・メディア', re:/IT|システム|プログラ|アプリ|ネットワーク|通信|データ|放送|テレビ|ラジオ|メディア|新聞|映像|情報|AI/g },
+    { g:'小売・ホテル・サービス', re:/店|小売|スーパー|接客|販売|ホテル|旅館|観光|結婚式|ブライダル|冠婚葬祭|葬祭|サービス業|人材|ホームセンター|百貨店|おもてなし/g },
+    { g:'建設・不動産', re:/建設|建築|土木|工事|不動産|住宅|施工|現場|設備|マンション|街づくり/g },
+    { g:'医療・福祉・教育', re:/医療|看護|病院|介護|福祉|保育|教育|先生|教員|薬剤|リハビリ|人を支え|人の役に立|ケア|学校/g },
+    { g:'公務・公的機関', re:/公務員|役所|県庁|市役所|警察|消防|自衛隊|国家|国の機関|行政|海上保安|裁判|税務|地域のために|公共/g }
+  ];
+  var CORP_VAL = {
+    local:['公務・公的機関', '金融・保険', '医療・福祉・教育', '地場産業・印刷', '農業・水産・市場', 'エネルギー・交通・物流'],
+    stability:['公務・公的機関', 'エネルギー・交通・物流', '金融・保険'],
+    create:['機械・電気機械', '化学・食品・日用品', '建設・不動産', '地場産業・印刷'],
+    care:['医療・福祉・教育', '公務・公的機関'],
+    expert:['機械・電気機械', 'IT・放送・メディア', '医療・福祉・教育'],
+    challenge:['IT・放送・メディア', '小売・ホテル・サービス', '機械・電気機械'],
+    income:['金融・保険', 'IT・放送・メディア', 'エネルギー・交通・物流']
+  };
+  function corpNote(msg, card){
+    if(!CORPS.length) return '';
+    card = card || {};
+    var cardTxt = [card.north, card.job, card.place, card.story, card.how, (card.need || []).join(' '), (card.extra || []).map(function(x){ return [x.t, x.text, (x.items || []).join(' '), (x.rows || []).map(function(r){ return r.l + r.v; }).join(' ')].join(' '); }).join(' ')].join(' ');
+    var msgTxt = String(msg || '');
+    var sc = {}, direct = {};
+    CORP_LEX.forEach(function(L){
+      var a = (msgTxt.match(L.re) || []).length, b = (cardTxt.match(L.re) || []).length;
+      if(a || b) sc[L.g] = (sc[L.g] || 0) + a * 2 + b;
+    });
+    var all = msgTxt + ' ' + cardTxt;
+    CORPS.forEach(function(c){
+      var core = c.n.replace(/\(.*?\)/g, '').replace(/^(株式会社|国立大学法人)/, '').trim();
+      if(core.length >= 3 && all.indexOf(core) >= 0){ direct[c.n] = 1; sc[c.g] = (sc[c.g] || 0) + 3; }
+    });
+    var hasWork = !!(card.north || card.job);
+    if(hasWork && card.v){
+      Object.keys(CORP_VAL).forEach(function(k){
+        if((card.v[k] || 0) >= 4) CORP_VAL[k].forEach(function(g){ sc[g] = (sc[g] || 0) + 0.5; });
+      });
+    }
+    var gs = Object.keys(sc).filter(function(g){ return sc[g] >= 1; }).sort(function(a, b){ return sc[b] - sc[a]; });
+    var picked = [];
+    if(gs.length){
+      var top = sc[gs[0]];
+      gs.filter(function(g){ return sc[g] >= Math.max(1, top * 0.5); }).slice(0, 3).forEach(function(g){
+        CORPS.filter(function(c){ return c.g === g; })
+          .sort(function(a, b){ return (direct[b.n] ? 1 : 0) - (direct[a.n] ? 1 : 0) || (a.c === '高' ? 0 : 1) - (b.c === '高' ? 0 : 1) || (/\d{3},\d{3}/.test(b.w) ? 1 : 0) - (/\d{3},\d{3}/.test(a.w) ? 1 : 0); })
+          .slice(0, 4).forEach(function(c){ if(picked.length < 8) picked.push(c); });
+      });
+    }
+    CORPS.forEach(function(c){ if(direct[c.n] && picked.indexOf(c) < 0) picked.unshift(c); });
+    picked = picked.slice(0, 9);
+    var L = ['', '[県内の就職先リスト(アプリが公式ページなどで調べた実在の情報。会社名を出すときは、この中のものだけを使う)]',
+      '記号: 入口の○=その学歴の採用を確認 / ？=確認できず(ないとは限らない)。確認度 高=公式ページで多くを確認 / 中=一部を確認。'];
+    if(picked.length){
+      L.push('いまの会話や理想に関係しそうな会社:');
+      picked.forEach(function(c){
+        L.push('・' + c.n + '(' + c.g + ' / ' + c.p + ' / ' + c.s + ') 入口 高' + c.e.charAt(0) + ' 専' + c.e.charAt(1) + ' 大' + c.e.charAt(2) + ' / 初任給の例: ' + c.w + ' / 確認度' + c.c);
+      });
+    }else{
+      L.push('(まだ理想や興味の分野が見えないので、会社の例は出していない。分野の話になったら、下の一覧から例を出せる)');
+    }
+    var by = {}; CORPS.forEach(function(c){ (by[c.g] = by[c.g] || []).push(c.n.replace(/\(.*?\)/g, '')); });
+    L.push('県内の分野と会社の例(分野を広げたい時の手がかり):');
+    Object.keys(by).forEach(function(g){ L.push('  ' + g + '(' + by[g].length + '社): ' + by[g].slice(0, 3).join('、')); });
+    return L.join('\n');
+  }
+
+
+  /* ---------- 進路づくりの記録(診断で決めた志望先・ロードマップ)を、端末から読む ---------- */
+  function pathInfo(){
+    var res = [], rms = [];
+    try{
+      var j = JSON.parse(localStorage.getItem('kagawa-shimazutai-results-v1') || 'null');
+      ((j && j.items) || []).forEach(function(r){
+        var cx = r && r.target && r.target.ctx; if(!cx || !cx.uniName) return;
+        res.push({ at:+r.at || 0, type:r.type, uni:String(cx.uniName), fac:String(cx.faculty || ''), kind:cx.kind === '専門学校' ? '専門学校' : '大学', fact:String((cx.facts || [])[0] || '').replace(/^特色: /, '').slice(0, 80) });
+      });
+      res.sort(function(a, b){ return b.at - a.at; });
+    }catch(e){ /* no-op */ }
+    try{
+      var m = JSON.parse(localStorage.getItem('kagawa-compass-roadmaps-v1') || 'null');
+      Object.keys((m && m.items) || {}).forEach(function(k){
+        var it = m.items[k]; if(!it || !it.roadmap || !it.roadmap.data) return;
+        var cx = it.ctx || {}; rms.push({ at:+it.updatedAt || 0, made:+it.createdAt || +it.updatedAt || 0, uni:String(cx.uniName || ''), fac:String(cx.faculty || '') });
+      });
+      rms.sort(function(a, b){ return b.at - a.at; });
+    }catch(e){ /* no-op */ }
+    var latest = res.length ? res[0].at : (rms.length ? Math.min.apply(null, rms.map(function(r){ return r.made; })) : 0);
+    return { res:res, rms:rms, latest:latest, any:res.length > 0 || rms.length > 0 };
+  }
+
   /* ---------- ミニAIチャット(通学相談・1日づくりの共通部品) ---------- */
   function MiniChat(cfg){
     var busy = false;
@@ -9748,7 +10129,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       st.display.push({ role:'user', text:text });
       bubble('user', text);
       ta.value = '';
-      st.turns.push({ role:'user', content: first ? cfg.rules() + '\n\n生徒の最初のメッセージ: ' + text + cfg.note() : text + cfg.note() });
+      st.turns.push({ role:'user', content: first ? cfg.rules() + '\n\n生徒の最初のメッセージ: ' + text + cfg.note(text) : text + cfg.note(text) });
       var pend = bubble('assistant', '考えています…', true);
       setBusy(true);
       try{
@@ -9765,6 +10146,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
         if(st.turns.length > 24) st.turns = [st.turns[0]].concat(st.turns.slice(-22));
         if(st.display.length > 30) st.display = st.display.slice(-30);
         pend.remove(); bubble('assistant', shown);
+        if(out.afterRender){ try{ out.afterRender(logEl); }catch(e){ /* no-op */ } }
         cfg.persist();
       }catch(e){
         st.turns.pop(); st.display.pop();
@@ -10509,7 +10891,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       var out = { svg:miniSvg(), summary:summary(), free:paint(nb).tot.free || 0, sleep:paint(nb).tot.sleep || 0, blocks:nb };
       S.blocks = keep; return out;
     }
-    return { show:show, apply:applyCommute, refresh:refresh, reset:reset, simulate:simulate, summary:summary, miniSvg:miniSvg, hasBlocks:hasBlocks, setBlocks:setBlocks, previewFor:previewFor, applyDayTag:applyDayTag, runs:function(){ var P = paint(S.blocks); return P.runs.map(function(r){ return { c:(r.i < 0 ? 'blank' : S.blocks[r.i].c), from:r.from, to:r.to }; }); }, chartSvg:function(){ return chartSvg(S.blocks); }, list:blocksList, totals:totals, t2m:t2m, m2t:m2t, CATS:CATS };
+    return { show:show, apply:applyCommute, refresh:refresh, reset:reset, simulate:simulate, summary:summary, miniSvg:miniSvg, hasBlocks:hasBlocks, setBlocks:setBlocks, previewFor:previewFor, applyDayTag:applyDayTag, rawBlocks:function(){ return JSON.parse(JSON.stringify(S.blocks)); }, putBlocks:function(a){ S.blocks = JSON.parse(JSON.stringify(a || [])); persist(); if(inited) renderAll(); }, runs:function(){ var P = paint(S.blocks); return P.runs.map(function(r){ return { c:(r.i < 0 ? 'blank' : S.blocks[r.i].c), from:r.from, to:r.to }; }); }, chartSvg:function(){ return chartSvg(S.blocks); }, list:blocksList, totals:totals, t2m:t2m, m2t:m2t, CATS:CATS };
   })();
 
   /* =================================================================
@@ -10528,8 +10910,11 @@ svg.leaflet-image-layer.leaflet-interactive path {
     S.cands = Array.isArray(S.cands) ? S.cands : [];
     S.chat = S.chat || { turns:[], display:[], quick:[] };
     S.goal = S.goal && typeof S.goal === 'object' ? S.goal : null;
+    S.revs = Array.isArray(S.revs) ? S.revs.filter(function(r){ return r && r.card; }).slice(-8) : [];
+    S.rv = (S.rv && typeof S.rv === 'object') ? S.rv : { on:false, at:0 };
+    S.revAt = +S.revAt || 0;
     var chat = null, inited = false, busy = false;
-    function persist(){ save(FK, { card:S.card, goal:S.goal, cands:S.cands, trk:S.trk, chat:{ turns:(S.chat.turns.length > 20 ? [S.chat.turns[0]].concat(S.chat.turns.slice(-19)) : S.chat.turns), display:S.chat.display.slice(-20), quick:[] } }); }
+    function persist(){ save(FK, { card:S.card, goal:S.goal, cands:S.cands, trk:S.trk, revs:S.revs, rv:S.rv, revAt:S.revAt, chat:{ turns:(S.chat.turns.length > 20 ? [S.chat.turns[0]].concat(S.chat.turns.slice(-19)) : S.chat.turns), display:S.chat.display.slice(-20), quick:[] } }); }
     function hasCard(){ return !!(S.card.north || S.card.job || S.card.story); }
     function topValues(n){
       return AXES.filter(function(a){ return (S.card.v[a.k] || 0) >= 4; }).sort(function(a, b){ return S.card.v[b.k] - S.card.v[a.k]; }).slice(0, n || 5);
@@ -10543,7 +10928,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
       { id:'community', t:'地域・社会とのつながり', type:'text', hint:'香川や社会との関わり・ボランティアなど' },
       { id:'year', t:'1年のリズム', type:'kv', hint:'旅行・帰省・忙しい時期・長い休みの使い方' },
       { id:'future', t:'将来の備え', type:'kv', hint:'貯金の目標・保険・住宅・老後' },
-      { id:'words', t:'大切にしている言葉', type:'text', hint:'座右の銘・口ぐせ・信条' }
+      { id:'words', t:'大切にしている言葉', type:'text', hint:'座右の銘・口ぐせ・信条' },
+      { id:'kenai', t:'県内の就職先の例', type:'list', hint:'興味をもった香川県内の会社と、その採用の入口(高卒・専門・大卒)' }
     ];
     var TYPE_LABEL = { text:'文章', list:'箇条書き', kv:'ラベルと値' };
     function catOf(id){ return CATALOG.filter(function(k){ return k.id === id; })[0] || null; }
@@ -10775,14 +11161,24 @@ svg.leaflet-image-layer.leaflet-interactive path {
         '・2〜3回やり取りするたびに、わかったことを <future> で出す。生徒が決めていないことは、「たとえば〇〇という選択肢がある」と例を出して聞き、生徒が選んだら反映する。',
         '【現実的に話すためのルール】',
         '・お金の数字はすべて「目安」。年収は税込みのレンジ(万円)で、根拠が弱いときは幅を広めにする。手取りと「毎月の余り」は、アプリが年収(inc)と生活費(costs)から自動で計算して表示する(あなたは手取りの数字は出さない)。だから年収や生活費を <future> で書き換えれば、手取りも自動で変わる。出費は、香川県の暮らし(車が必要な地域が多い・家賃が都会より低めなど)を踏まえて見積もる。',
-        '・数字を出したときは、本文で一言「あくまで目安なので、厚生労働省の統計や求人票で確かめてね」のように、確かめ方にふれる。特定の企業名・求人・給与額を断定しない。',
+        '・数字を出したときは、本文で一言「あくまで目安なので、厚生労働省の統計や求人票で確かめてね」のように、確かめ方にふれる。会社名は、アプリから届く「県内の就職先リスト」にあるものだけ使える(使い方は下の【県内の就職先リストの使い方】)。リストにない企業名・求人・給与額は出さない。',
         '・夢をそのまま肯定せず、倍率・資格・地方の求人の少なさ・転勤・体力など、現実の壁も、対策とセットで伝える。',
         '・「もしも」の相談(例: 東京で働いたら? 公務員と民間のちがいは?)には、カードは変えずに、数字つきで比べて答え、「カードに反映する?」と聞く。生徒が決めたら反映する。',
         '・特定の職業や進路を押しつけない。「正解」はないことを、必要なら一言添える。個人情報は聞かない。',
+        '【県内の就職先リストの使い方】(アプリが毎回「県内の就職先リスト」を送る。香川県内に本社や拠点がある実在の会社で、確認度が高・中のものだけ)',
+        '・目的は、生徒の「理想の自分」を、香川県内の具体的な働き先に結びつけて、現実的にすること。生徒の価値観・やりたいこと・暮らし(場所・お金・時間)に合う会社だけを、1回に2〜3社まで「たとえば」と例にして出す。合わない会社は出さない。なりたい姿がまだ空のうちは、無理に会社名を出さず、まず話を聞く。',
+        '・会社名は、リストの表記のまま使う。リストにない会社は、県内にあるかどうか分からないので名前を出さず、「ほかにもあるので学校や求人で探せる」と伝える。',
+        '・使えるのは、リストにある分野・場所・採用の入口・初任給の例だけ。リストにない項目(仕事の中身、社風、倍率、年収、福利厚生、転勤の有無、人数など)を作らない。「？」や「確認できず」は「公式ページで確認できなかった」と正直に伝え、「採用していない」とは言わない。',
+        '・初任給は「月額の例(年度・条件つき)」。年収(inc)にそのまま使わない。賞与や昇給は別なので、年収を書くときは幅を広めにして、「初任給は月◯万円の例」と分けて伝える。確認度が「中」の会社は「公式ページで一部を確認した情報」と添える。',
+        '・採用の入口(高卒・専門・大卒)は、生徒の進路に合わせて話す。まだ決まっていなければ「高校から就職」「専門学校」「大学」で入口がどう違うかを伝え、どれが合いそうか聞く。入口が「？」の学歴は、断定せず「公式ページで確認してみよう」と案内する。',
+        '・会社を理想に合わせて話すときは、「あなたの◯◯(理想の言葉)に近いのは、たとえば△△」のように、生徒自身の言葉と結びつける。そのうえで、現実の壁(転勤・夜勤・資格・倍率など、リストで分かる範囲)と確かめ方を添える。',
+        '・生徒が「いいな」と反応した会社だけ、カードに反映する。<future> の job・place・path(例: 「△△の採用ページで募集を確認」)・need・risks のほか、extra の id=kenai「県内の就職先の例」(type:list、1項目48字以内、「会社名(分野・入口の要点)」の形)に入れる。押しつけず、「他の会社も見てみる?」と選択肢を残す。',
+        '・最新の募集・待遇は、必ず公式サイトと学校の進路指導の先生で確かめるよう、一言添える。',
+        '【進路を決めたあとの見直し】アプリが「進路づくりの記録」(診断で決めた志望先・ロードマップ)を送ったり、「見直しモード」と伝えたりしたときは、' + REVIEW_NOTE,
         '・アプリから届く「現在のカード」「理想の1日」「通学条件」「空き状況」を踏まえて話す。'
       ].join('\n');
     }
-    function note(){
+    function note(msg){
       var L = ['', '', '[アプリからの情報]'];
       L.push('(カードのどの項目も、あなたが書き換えてよい。年収・生活費・道のり・資格・壁・休日・自由項目も含む。「編集できない」とは言わない。変えるときは、返信本文のあとに <future>{"inc":{"lo":500,"hi":800}}</future> のように、変えたいキーだけを付ける。キー: years north job place story v how inc costs home path need risks holiday extra。消すときは空文字・null・[]。理想の1日は <day>)');
       L.push(hasCard() ? '現在のカード: ' + summary() : '現在のカード: まだ空');
@@ -10795,6 +11191,19 @@ svg.leaflet-image-layer.leaflet-interactive path {
         var rl = recentLog(3); if(rl.length) L.push('最近やったこと(新しい順): ' + rl.map(function(x){ return fmtD(x.at) + ' ' + x.t; }).join(' / ') + '(本人の行動をほめ、カードに反映できることがあれば提案する)');
       }
       var cp = CM.plan(); if(cp) L.push('通学条件(進学先): ' + cp.name + ' / ' + cp.modeLabel + ' / 片道' + cp.min + '分');
+      var PI = pathInfo();
+      if(PI.res.length || PI.rms.length){
+        L.push('[進路づくりの記録(アプリが保存した、この生徒が決めた進路)]');
+        PI.res.slice(0, 3).forEach(function(r){ L.push('・診断で決めた志望先: ' + r.uni + (r.fac ? ' ' + r.fac : '') + '(' + r.kind + ')' + (r.fact ? ' / 特色: ' + r.fact : '')); });
+        if(PI.rms.length) L.push('・ロードマップを作成済み: ' + PI.rms.slice(0, 3).map(function(r){ return r.uni + (r.fac ? ' ' + r.fac : ''); }).join('、'));
+        if(needsReview()) L.push('・進路を決めたあとの、理想の見直しはまだ(話の流れで、見直しを提案してよい)');
+      }
+      if(previewOn()) L.push('【見直しモード】' + REVIEW_NOTE);
+      try{
+        var jd = JSON.parse(localStorage.getItem('kagawa-compass-jobdiag-v1') || 'null');
+        if(jd && jd.a && jd.top && jd.top.length) L.push('[就職先診断(本人がアプリで受けた、あくまで目安)] 合いそうと出た県内の就職先: ' + jd.top.join('、') + ' / 本人の答え: ' + (jd.sum || []).join('、'));
+      }catch(e){ /* no-op */ }
+      L.push(corpNote(msg, S.card));
       return L.join('\n');
     }
     function clip(t, n){ return String(t == null ? '' : t).replace(/\s+/g, ' ').trim().slice(0, n); }
@@ -10845,19 +11254,150 @@ svg.leaflet-image-layer.leaflet-interactive path {
       persist(); renderCard(); if(!live){ syncFields(); renderTable(); renderGoalBar(); renderAddSec(); renderTrk(); notifyDP(); }
       return true;
     }
+    /* ---------- 進路を決めたあとの「理想の見直し」(AIの変更案を、変更ごとに選んで反映する) ---------- */
+    var KEYLAB = { years:'何年後の自分', north:'なりたい自分', job:'仕事・立場', place:'暮らす場所', story:'未来のある日', how:'どうやって稼ぐか', inc:'年収の目安', costs:'毎月の生活費', home:'住まい', path:'そこまでの道のり', need:'必要な資格・スキル', risks:'現実の壁と対策', holiday:'休日の過ごし方' };
+    var REVIEW_NOTE = '進路(志望先)と、いまのカードを比べて、合っている点と、ずれていそうな点(場所・仕事・必要な資格・道のり・お金・通学を含む1日など)を、1〜2個ずつ伝える。ずれがあるときは、必要な項目だけ <future>(理想の1日は <day>)で変更案を出す。生徒はアプリの画面で、変更ごとに「反映する」を選ぶので、変更案は遠慮せず出してよい。ただし価値観(v)は、生徒が言わない限り変えない。志望先は生徒が決めたものなので否定せず、理想に近づく「道のり」に落とし込む。変更案を出したあとは、「この変更でどう?」と1つだけ聞く。';
+    function jclone(o){ return JSON.parse(JSON.stringify(o == null ? null : o)); }
+    function needsReview(){ var P = pathInfo(); return hasCard() && P.any && (S.revAt || 0) < P.latest; }
+    function reviewed(){ var P = pathInfo(); return hasCard() && P.any && !needsReview(); }
+    function previewOn(){ return !!(S.rv && S.rv.on) && hasCard(); }
+    function shortVal(k, c){
+      var v = c[k]; if(v == null || v === '') return '';
+      if(k === 'inc') return c.inc ? (c.inc.lo === c.inc.hi ? c.inc.lo : c.inc.lo + '〜' + c.inc.hi) + '万円' : '';
+      if(k === 'costs') return (Array.isArray(v) && v.length) ? '合計' + r1(v.reduce(function(a, x){ return a + (+x.m || 0); }, 0)) + '万円(' + v.length + '項目)' : '';
+      if(k === 'path') return (Array.isArray(v) && v.length) ? v.map(function(x){ return x.t + ' ' + x.d; }).join(' → ') : '';
+      if(k === 'need') return Array.isArray(v) ? v.join('、') : '';
+      if(k === 'risks') return Array.isArray(v) ? v.map(function(x){ return x.w; }).join(' / ') : '';
+      if(k === 'years') return v + '年後';
+      return String(v);
+    }
+    function cardDiff(before, after){
+      var out = [];
+      ['years', 'north', 'job', 'place', 'story', 'how', 'inc', 'costs', 'home', 'path', 'need', 'risks', 'holiday'].forEach(function(k){
+        var a = JSON.stringify(before[k] == null ? null : before[k]), b = JSON.stringify(after[k] == null ? null : after[k]);
+        if(a !== b) out.push({ key:k, label:KEYLAB[k], from:shortVal(k, before), to:shortVal(k, after) });
+      });
+      AXES.forEach(function(a){ var x = (before.v || {})[a.k] || 0, y = (after.v || {})[a.k] || 0; if(x !== y) out.push({ key:'v:' + a.k, label:'価値観: ' + a.n, from:x ? x + ' / 5' : '', to:y ? y + ' / 5' : '' }); });
+      var ids = {}; (before.extra || []).concat(after.extra || []).forEach(function(e){ ids[e.id] = 1; });
+      Object.keys(ids).forEach(function(id){
+        var x = (before.extra || []).filter(function(e){ return e.id === id; })[0], y = (after.extra || []).filter(function(e){ return e.id === id; })[0];
+        if(JSON.stringify(x || null) !== JSON.stringify(y || null)) out.push({ key:'x:' + id, label:(y || x).t, from:x ? xPlain(x) : '', to:y ? xPlain(y) : '' });
+      });
+      return out;
+    }
+    function putCard(o){ Object.keys(S.card).forEach(function(k){ delete S.card[k]; }); Object.keys(o).forEach(function(k){ S.card[k] = o[k]; }); }
+    function redrawAll(){ renderCard(); syncFields(); renderTable(); renderGoalBar(); renderAddSec(); renderTrk(); renderRv(); renderRevs(); notifyDP(); try{ if(window.flowRender) window.flowRender(); }catch(e){ /* no-op */ } }
+    var PEND = null;
+    function makeProposal(raw){
+      var before = jclone(S.card), bB = DP.rawBlocks(), totB = DP.totals(), hadDay = bB.length > 0;
+      var okF = false, okD = null;
+      try{ okF = applyFuture(raw); okD = DP.applyDayTag(raw); }catch(e){ /* no-op */ }
+      var after = jclone(S.card), bA = DP.rawBlocks(), totA = DP.totals();
+      putCard(before); DP.putBlocks(bB); persist();
+      var items = cardDiff(before, after);
+      if(JSON.stringify(bB) !== JSON.stringify(bA)){
+        items.push({ key:'day', label:'理想の1日', from:hadDay ? '自由時間 ' + fmtMin(totB.free) + '・睡眠 ' + fmtMin(totB.sleep) : '', to:'自由時間 ' + fmtMin(totA.free) + '・睡眠 ' + fmtMin(totA.sleep) });
+      }
+      redrawAll();
+      PEND = items.length ? { id:Date.now(), after:after, bA:bA, items:items } : null;
+      return { pend:PEND, okF:okF, okD:okD };
+    }
+    function pendHtml(P){
+      var h = '<div class="fu-pend" data-pend="' + P.id + '"><b>AIの変更案</b><small>まだカードには入っていません</small><p>入れたい変更にチェックを付けて、「選んだ変更を反映」を押してください。</p><ul>';
+      P.items.forEach(function(it, i){
+        h += '<li><label><input type="checkbox" data-pi="' + i + '" checked><span class="pl"><b>' + esc(it.label) + '</b><span class="pf">' + (it.from ? esc(clip(it.from, 90)) : 'なし') + '</span><span class="pa" aria-hidden="true">↓</span><span class="pt">' + (it.to ? esc(clip(it.to, 90)) : '(なくす)') + '</span></span></label></li>';
+      });
+      return h + '</ul><div class="pbtns"><button type="button" class="btn primary" data-pact="apply">選んだ変更を反映</button><button type="button" class="btn ghost" data-pact="no">今回は反映しない</button></div></div>';
+    }
+    function showPend(el, P){
+      Array.prototype.forEach.call(el.querySelectorAll('.fu-pend:not(.closed)'), function(x){ x.classList.add('closed'); x.innerHTML = '<small>(新しい変更案が出たので、この案は閉じました)</small>'; });
+      var d = document.createElement('div'); d.innerHTML = pendHtml(P); el.appendChild(d.firstChild); el.scrollTop = el.scrollHeight;
+    }
+    function snapNow(label){
+      S.revs = Array.isArray(S.revs) ? S.revs : [];
+      S.revs.push({ at:Date.now(), label:label, card:jclone(S.card), blocks:DP.rawBlocks() });
+      if(S.revs.length > 8) S.revs = S.revs.slice(-8);
+    }
+    function applyPend(sel){
+      var P = PEND; if(!P) return 0;
+      var chosen = P.items.filter(function(it, i){ return sel[i]; }); if(!chosen.length) return 0;
+      snapNow('見直し前');
+      var c = S.card, A = P.after;
+      chosen.forEach(function(it){
+        var k = it.key;
+        if(k === 'day'){ DP.putBlocks(P.bA); return; }
+        if(k.indexOf('v:') === 0){ var ax = k.slice(2); c.v = c.v || {}; if(A.v && A.v[ax]) c.v[ax] = A.v[ax]; else delete c.v[ax]; return; }
+        if(k.indexOf('x:') === 0){
+          var id = k.slice(2), na = (A.extra || []).filter(function(e){ return e.id === id; })[0], oi = -1;
+          c.extra = c.extra || []; c.extra.forEach(function(e, i){ if(e.id === id) oi = i; });
+          if(na){ if(oi >= 0) c.extra[oi] = jclone(na); else c.extra.push(jclone(na)); } else if(oi >= 0) c.extra.splice(oi, 1);
+          return;
+        }
+        if(k === 'inc'){ if(A.inc) c.inc = jclone(A.inc); else delete c.inc; if(A.incNote) c.incNote = A.incNote; else delete c.incNote; return; }
+        if(A[k] == null || A[k] === '' || (Array.isArray(A[k]) && !A[k].length)) delete c[k]; else c[k] = jclone(A[k]);
+      });
+      persist(); redrawAll(); PEND = null;
+      return chosen.length;
+    }
+    function restoreRev(i){
+      var r = (S.revs || [])[i]; if(!r) return;
+      snapNow('戻す前');
+      putCard(jclone(r.card)); DP.putBlocks(r.blocks || []); persist(); redrawAll();
+    }
+    function startReview(){
+      if(!hasCard()){ if(window.goTab) window.goTab('future'); return; }
+      S.rv = { on:true, at:Date.now() }; persist();
+      if(window.goTab) window.goTab('future');
+      setView('card'); redrawAll();
+      setTimeout(function(){ if(chat) chat.send('進路が決まったので、いまの理想の自分カードを見直したい'); }, 350);
+    }
+    function finishReview(){ S.rv = { on:false, at:0 }; S.revAt = Date.now(); PEND = null; persist(); redrawAll(); }
+    function renderRv(){
+      var box = $('fu-rv'); if(!box) return;
+      var P = pathInfo(), h = '';
+      if(previewOn()){
+        h = '<div class="rv-t"><b>見直し中</b><span>AIが出す変更案は、あなたが選んだものだけがカードに入ります。</span></div><div class="rv-b"><button type="button" class="btn ghost" data-rv="end">見直しを終える</button></div>';
+      }else if(needsReview()){
+        var r0 = P.res[0];
+        h = '<div class="rv-t"><b>進路が決まりました</b><span>' + (r0 ? esc(r0.uni + (r0.fac ? ' ' + r0.fac : '')) + 'を選んだので、' : '') + '理想の自分とずれていないか、AIと見直してみましょう。</span></div><div class="rv-b"><button type="button" class="btn primary" data-rv="start">AIと見直す</button><button type="button" class="btn ghost" data-rv="keep">このままでOK</button></div>';
+      }else if(reviewed()){
+        h = '<div class="rv-t"><span>進路や気持ちが変わったときは、ここからまた見直せます。</span></div><div class="rv-b"><button type="button" class="btn ghost" data-rv="start">AIと見直す</button></div>';
+      }
+      box.hidden = !h; box.className = 'card fu-rv' + (previewOn() ? ' on' : (needsReview() ? ' need' : ' calm')); box.innerHTML = h;
+    }
+    function renderRevs(){
+      var box = $('fu-revs'); if(!box) return;
+      var L = S.revs || [];
+      if(!L.length){ box.hidden = true; box.innerHTML = ''; return; }
+      box.hidden = false;
+      var h = '<summary>カードの記録(' + L.length + ')</summary><p class="dp-hint">見直しで変える前のカードを、自動で残しています。戻しても、戻す前のカードも残ります。</p><ul>';
+      L.slice().reverse().forEach(function(r, n){
+        var i = L.length - 1 - n, d = new Date(r.at);
+        h += '<li><time>' + (d.getMonth() + 1) + '/' + d.getDate() + ' ' + ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2) + '</time><span><b>' + esc(r.label || '記録') + '</b> ' + esc(clip((r.card && (r.card.north || r.card.job)) || '(未入力)', 28)) + '</span><button type="button" class="btn ghost" data-rev="' + i + '">この時点に戻す</button></li>';
+      });
+      box.innerHTML = h + '</ul>';
+    }
     var lastLive = 0, lastLiveLen = 0;
     function onStream(t){
       var now = Date.now(), len = String(t || '').length;
       if(now - lastLive < 450 || len === lastLiveLen) return;
       lastLive = now; lastLiveLen = len;
+      if(previewOn()) return;
       if(String(t).indexOf('<future>') >= 0) applyFuture(t, true);
     }
     function onReply(raw){
       lastLive = 0; lastLiveLen = 0;
+      if(previewOn() && /<future>|<day>/.test(raw)){
+        var pr = makeProposal(raw), note3 = '';
+        if(/<future>/.test(raw) && !pr.okF && !pr.pend) note3 += '\n(カードの内容をうまく読み取れませんでした。もう一度送ってみてください)';
+        try{ if(window.kSnd) kSnd.play('reply'); }catch(e){ /* no-op */ }
+        return { text:stripTags(raw, ['future', 'day', 'quick']) + note3, quick:parseQuick(raw), afterRender:(pr.pend ? function(el){ showPend(el, pr.pend); } : null) };
+      }
       var okF = applyFuture(raw), okD = DP.applyDayTag(raw), note2 = '';
       if(/<future>/.test(raw) && !okF) note2 += '\n(カードの内容をうまく読み取れませんでした。もう一度送ってみてください)';
       if(/<day>/.test(raw) && okD === false) note2 += '\n(1日の内容をうまく読み取れませんでした。もう一度送ってみてください)';
       if(okD){ renderCard(); }
+      try{ if(window.kSnd) kSnd.play(okF ? 'sparkle' : 'reply'); }catch(e){ /* no-op */ }
       return { text:stripTags(raw, ['future', 'day', 'quick']) + note2, quick:parseQuick(raw) };
     }
     async function deepen(){
@@ -11555,7 +12095,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     }
     function trkAct(act, el){
       var T = S.trk;
-      if(act === 'done'){ if(!T.step) return; lastDone = T.step.t; T.done.push({ t:T.step.t, at:Date.now() }); T.log.push({ t:T.step.t, at:Date.now(), k:'step' }); T.step = null; }
+      if(act === 'done'){ if(!T.step) return; try{ if(window.kSnd) kSnd.play('done'); }catch(e){ /* no-op */ } lastDone = T.step.t; T.done.push({ t:T.step.t, at:Date.now() }); T.log.push({ t:T.step.t, at:Date.now(), k:'step' }); T.step = null; }
       else if(act === 'skip'){ if(T.step) T.skipped.push(T.step.t); nextStep(); lastDone = null; }
       else if(act === 'next'){ nextStep(); lastDone = null; }
       else if(act === 'extend'){ if(T.step) T.step.due = Date.now() + 7 * DAY; }
@@ -11648,7 +12188,30 @@ svg.leaflet-image-layer.leaflet-interactive path {
         onReply:onReply, onStream:onStream,
         persist:persist
       });
-      chat.render();
+      chat.render(); renderRv(); renderRevs();
+      $('fu-rv').addEventListener('click', function(ev){
+        var b = ev.target.closest && ev.target.closest('[data-rv]'); if(!b) return; var a = b.getAttribute('data-rv');
+        if(a === 'start') startReview(); else if(a === 'keep' || a === 'end'){ finishReview(); try{ if(window.kSnd) kSnd.play('confirm'); }catch(e){ /* no-op */ } }
+      });
+      $('fu-revs').addEventListener('click', function(ev){
+        var b = ev.target.closest && ev.target.closest('[data-rev]'); if(!b) return; restoreRev(+b.getAttribute('data-rev'));
+      });
+      $('fu-chat-log').addEventListener('click', function(ev){
+        var b = ev.target.closest && ev.target.closest('[data-pact]'); if(!b) return;
+        var box = b.closest('.fu-pend'); if(!box || !PEND || String(PEND.id) !== box.getAttribute('data-pend')) return;
+        if(b.getAttribute('data-pact') === 'apply'){
+          var sel = {}; Array.prototype.forEach.call(box.querySelectorAll('input[data-pi]'), function(c){ sel[+c.getAttribute('data-pi')] = c.checked; });
+          var n = applyPend(sel);
+          box.classList.add('closed');
+          box.innerHTML = n ? '<b>' + n + '件をカードに反映しました</b> <button type="button" class="btn ghost" data-pundo="1">元に戻す</button>' : '<small>変更は選ばれなかったので、カードはそのままです。</small>';
+          if(n){ try{ if(window.kSnd) kSnd.play('sparkle'); }catch(e){ /* no-op */ } }
+        }else{ PEND = null; box.classList.add('closed'); box.innerHTML = '<small>今回の変更案は反映しませんでした。カードはそのままです。</small>'; }
+      });
+      $('fu-chat-log').addEventListener('click', function(ev){
+        var b = ev.target.closest && ev.target.closest('[data-pundo]'); if(!b) return;
+        var L = S.revs || []; if(!L.length) return; restoreRev(L.length - 1);
+        var box = b.closest('.fu-pend'); if(box) box.innerHTML = '<small>元に戻しました(戻す前のカードも「カードの記録」に残っています)。</small>';
+      });
       function field(id, key, max){ $(id).addEventListener('input', function(){ S.card[key] = clip($(id).value, max); persist(); renderCard(); renderTable(); notifyDP(); }); }
       field('fu-north', 'north', 40); field('fu-job', 'job', 26); field('fu-place', 'place', 26);
       $('fu-story').addEventListener('input', function(){ S.card.story = $('fu-story').value.slice(0, 220); persist(); renderCard(); });
@@ -11717,7 +12280,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
       if(view === 'day') DP.show(); else { renderCard(); renderTable(); renderGoalBar(); renderTrk(); }
     }
     function show(){
-      init(); buildPick(); renderCard(); renderTable(); syncFields(); renderGoalBar(); renderAddSec();
+      init(); buildPick(); renderCard(); renderTable(); syncFields(); renderGoalBar(); renderAddSec(); renderRv(); renderRevs();
       var want = window.__futView; window.__futView = null;
       setView(want || 'card');
     }
@@ -11728,9 +12291,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
       if(o.v){ c.v = {}; AXES.forEach(function(a){ if(o.v[a.k]) c.v[a.k] = Math.max(0, Math.min(5, Math.round(+o.v[a.k]))); }); }
       persist(); if(inited){ renderCard(); syncFields(); renderTable(); renderGoalBar(); renderTrk(); }
     }
-    function reset(){ S = { card:{ v:{} }, goal:null, cands:[], trk:normTrk({}), chat:{ turns:[], display:[], quick:[] } }; revOpen = false; lastDone = null; lastLog = null; if(inited){ buildPick(); syncFields(); renderCard(); renderTable(); renderGoalBar(); renderAddSec(); renderTrk(); chat.render(); } updateDot(); }
-    function refresh(){ if(inited){ renderCard(); renderTable(); renderGoalBar(); renderTrk(); } }
-    return { show:show, reset:reset, refresh:refresh, setView:setView, setCard:setCard, applyFuture:applyFuture, deepen:deepen, kickoff:kickoff, goal:function(){ return S.goal; }, cardHtml:cardHtml, hasCard:hasCard, raw:function(){ return S.card; }, trk:function(){ return S.trk; }, nudge:nudge, nudgeInfo:nudgeInfo, AXES:AXES, card:function(){ return hasCard() ? S.card : null; }, summary:summary };
+    function reset(){ S = { card:{ v:{} }, goal:null, cands:[], trk:normTrk({}), revs:[], rv:{ on:false, at:0 }, revAt:0, chat:{ turns:[], display:[], quick:[] } }; PEND = null; revOpen = false; lastDone = null; lastLog = null; if(inited){ buildPick(); syncFields(); renderCard(); renderTable(); renderGoalBar(); renderAddSec(); renderTrk(); chat.render(); } updateDot(); }
+    function refresh(){ if(inited){ renderCard(); renderTable(); renderGoalBar(); renderTrk(); renderRv(); renderRevs(); } }
+    return { show:show, reset:reset, refresh:refresh, setView:setView, setCard:setCard, applyFuture:applyFuture, deepen:deepen, kickoff:kickoff, goal:function(){ return S.goal; }, cardHtml:cardHtml, hasCard:hasCard, raw:function(){ return S.card; }, trk:function(){ return S.trk; }, nudge:nudge, nudgeInfo:nudgeInfo, needsReview:needsReview, reviewed:reviewed, reviewing:previewOn, startReview:startReview, AXES:AXES, card:function(){ return hasCard() ? S.card : null; }, summary:summary };
   })();
 
   /* =================================================================
@@ -11875,7 +12438,453 @@ svg.leaflet-image-layer.leaflet-interactive path {
   OB.watch();
 
 
-  window.FUTAPI = { card:FUT.card, summary:FUT.summary, trk:FUT.trk, nudgeInfo:FUT.nudgeInfo };
+  /* 効果音: 送信・診断の結果・昼夜の切り替え */
+  (function(){
+    function snd(n){ try{ if(window.kSnd) window.kSnd.play(n); }catch(e){ /* no-op */ } }
+    var lastGesture = 0;
+    ['pointerdown', 'keydown', 'touchstart', 'click'].forEach(function(n){ document.addEventListener(n, function(){ lastGesture = Date.now(); }, true); });
+    function recent(){ return Date.now() - lastGesture < 1500; }
+    document.addEventListener('submit', function(ev){
+      var f = ev.target; if(f && f.classList && f.classList.contains('chatform')) snd('send');
+    }, true);
+    /* 診断の結果が出た瞬間(質問から結果に変わったとき)だけ鳴らす */
+    function watchResults(id){
+      var area = document.getElementById(id); if(!area) return;
+      var hadQ = !!area.querySelector('.opt');
+      new MutationObserver(function(){
+        var hasR = !!area.querySelector('.results, .sm-results, .sm-result');
+        var hasQ = !!area.querySelector('.opt');
+        if(hasR && hadQ && recent()) snd('result');
+        hadQ = hasQ;
+      }).observe(area, { childList:true });
+    }
+    function go(){ ['quiz-area', 'suisen-quiz-area', 'sm-diag'].forEach(watchResults); }
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+    /* 昼↔夜 */
+    var root = document.documentElement, prev = root.getAttribute('data-vtheme');
+    new MutationObserver(function(){
+      var now = root.getAttribute('data-vtheme');
+      if(now !== prev){ prev = now; if(recent()) snd(now === 'dark' ? 'moon' : 'sunrise'); }
+    }).observe(root, { attributes:true, attributeFilter:['data-vtheme'] });
+  })();
+
+  /* ホームの「はじめの3ステップ」: どこから始めるか迷わないように、次にやることを1つだけ目立たせる */
+  (function(){
+    var last = { diagDone:false, diagProg:false, rm:0 };
+    function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+    function render(info){
+      if(info) last = info;
+      var brand = document.querySelector('#panel-home .homebrand'); if(!brand) return;
+      var box = document.getElementById('home-start');
+      if(!box){ box = document.createElement('div'); box.id = 'home-start'; box.className = 'hs-card hd-card'; brand.parentNode.insertBefore(box, brand.nextSibling);
+        box.addEventListener('click', function(ev){ var a = ev.target.closest && ev.target.closest('[data-hsa]'); if(a){ if(window.FUTAPI && window.FUTAPI.startReview) window.FUTAPI.startReview(); return; } var b = ev.target.closest && ev.target.closest('[data-hs]'); if(b && window.goTab) window.goTab(b.getAttribute('data-hs')); }); }
+      var hasCardNow = false; try{ hasCardNow = !!(window.FUTAPI && window.FUTAPI.card()); }catch(e){ /* no-op */ }
+      var PH = pathInfo(), api = window.FUTAPI || {};
+      var pathDone = PH.any, revDone = !!(api.reviewed && api.reviewed());
+      var steps = [
+        { n:1, t:'理想の自分を描く', s:'えらぶだけ・1分ほど。行きたい先が少し見えてきます', done:hasCardNow, go:'future', btn:'描いてみる' },
+        { n:2, t:'診断を受けて、進路を決める', s:'まずは「大学の推薦診断」(21問・5分ほど)。結果が出たら「この結果でロードマップを作る」で進路を決めます', done:pathDone, go:'suisen', btn:last.diagProg ? 'つづきから' : (last.diagDone ? '診断の結果へ' : '診断をはじめる') },
+        { n:3, t:'理想の自分を見直す', s:'進路が決まったら、理想とずれていないかAIと確かめます。何度でもやり直せます', done:revDone, avail:pathDone && hasCardNow, act:'review', btn:'AIと見直す' },
+        { n:4, t:'ロードマップを作る', s:'診断の結果から、AIといっしょに「やることの道すじ」を作ります', done:PH.rms.length > 0, avail:pathDone, go:(PH.res.length ? 'results' : 'shindan'), btn:'ロードマップを作る' }
+      ];
+      var cur = -1; steps.forEach(function(x, i){ if(cur < 0 && !x.done && x.avail !== false) cur = i; });
+      if(cur < 0){ box.hidden = true; box.innerHTML = ''; return; }
+      var h = '<h2><span class="eyebrow-dot"></span>はじめての人へ: まずはこの4つ</h2><ol>';
+      steps.forEach(function(x, i){
+        var cls = x.done ? 'done' : (i === cur ? 'now' : 'next');
+        h += '<li class="' + cls + '"><span class="hs-n" aria-hidden="true">' + (x.done ? '✓' : x.n) + '</span><div class="hs-b"><b>' + esc(x.t) + (x.done ? '<small>できた</small>' : '') + '</b>' +
+          (x.done ? '' : '<span>' + esc(x.s) + '</span>') +
+          (i === cur ? '<button type="button" class="btn primary" ' + (x.act ? 'data-hsa="' + x.act + '"' : 'data-hs="' + x.go + '"') + '>' + esc(x.btn) + ' →</button>' : '') + '</div></li>';
+      });
+      h += '</ol><p class="hs-foot">順番は自由です。進路を決めたあとは、理想の自分にもどって見直すと、道すじがはっきりします。ほかにも、香川のキャリア・奨学金・予定表・通学マップは、左のメニューからいつでも見られます。</p>';
+      box.hidden = false; box.innerHTML = h;
+    }
+    window.homeStartRender = render;
+    function go(){ render(); }
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+    setTimeout(function(){ try{ if(window.homeDashRender) window.homeDashRender(); else render(); }catch(e){ /* no-op */ } }, 1200);
+  })();
+
+  /* 各ページ上の長い説明は、はじめは「説明を見る」にたたんで、ごちゃつきを減らす */
+  (function(){
+    function go(){
+      document.querySelectorAll('.panel > .section-head').forEach(function(h){
+        if(h.querySelector('details.sh-more')) return;
+        var p = h.querySelector(':scope > p');
+        if(!p || (p.textContent || '').trim().length < 40) return;
+        var asof = (h.nextElementSibling && h.nextElementSibling.classList.contains('asof')) ? h.nextElementSibling : null;
+        var d = document.createElement('details'); d.className = 'sh-more';
+        var sm = document.createElement('summary'); sm.textContent = asof ? '説明と情報基準日を見る' : '説明を見る';
+        d.appendChild(sm); h.insertBefore(d, p); d.appendChild(p);
+        if(asof) d.appendChild(asof);
+      });
+    }
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  })();
+
+  /* 診断の案内(タイトル・説明・情報基準日)は、はじめの1問目までだけ出す。2問目以降は隠してスクロールを減らす */
+  (function(){
+    function sync(areaId){
+      var area = document.getElementById(areaId); if(!area) return;
+      var panel = area.closest('.panel'); if(!panel) return;
+      function upd(){
+        var lab = area.querySelector('.quiz-progress .label span');
+        var m = lab && /^Q(\d+)\s*\//.exec(lab.textContent || '');
+        var on = !!(m && parseInt(m[1], 10) >= 2);
+        if(panel.classList.contains('in-quiz') !== on){
+          panel.classList.toggle('in-quiz', on);
+          if(on){ try{ var r = panel.getBoundingClientRect(); if(r.top < 0) window.scrollTo(0, Math.max(0, window.pageYOffset + r.top - 8)); }catch(e){ /* no-op */ } }
+        }
+      }
+      new MutationObserver(upd).observe(area, { childList:true });
+      upd();
+    }
+    function go(){ ['quiz-area', 'suisen-quiz-area', 'sm-diag'].forEach(sync); }
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  })();
+
+
+  /* ---------- 「理想 → 進路 → 理想の見直し → ロードマップ」の輪の案内帯(各ページの上) ---------- */
+  (function(){
+    var PANELS = ['future', 'shindan', 'suisen', 'diag', 'senmon', 'results', 'roadmaps'];
+    var HERE = { future:1, shindan:2, suisen:2, diag:2, senmon:2, results:2, roadmaps:4 };
+    function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+    function flags(){
+      var api = window.FUTAPI || {}, P = pathInfo(), fi = {};
+      try{ fi = window.__flowInfo ? window.__flowInfo() : {}; }catch(e){ /* no-op */ }
+      return { hasCard:!!(api.card && api.card()), path:P.any, resCount:P.res.length, diagDone:!!fi.diagDone, diagProg:!!fi.diagProg,
+        needRev:!!(api.needsReview && api.needsReview()), revDone:!!(api.reviewed && api.reviewed()), reviewing:!!(api.reviewing && api.reviewing()), rm:P.rms.length > 0 };
+    }
+    function model(){
+      var f = flags();
+      var steps = [
+        { n:1, t:'理想', done:f.hasCard, ok:true },
+        { n:2, t:'進路', done:f.path, ok:true },
+        { n:3, t:'見直し', done:f.revDone, ok:f.path && f.hasCard },
+        { n:4, t:'ロードマップ', done:f.rm, ok:f.path }
+      ];
+      var cur = -1; steps.forEach(function(s, i){ if(cur < 0 && !s.done && s.ok) cur = i; });
+      var hint, btn = '', act = '';
+      if(!f.hasCard){ hint = 'まず「理想の自分」を描くと、進路が選びやすくなります。診断のあとにも、何度でも直せます。'; btn = '理想を描く'; act = 'go:future'; }
+      else if(!f.path){
+        if(f.diagDone){ hint = '診断の結果が出ています。「この結果でロードマップを作る」を選ぶと、進路が決まります。'; btn = '診断の結果へ'; act = 'go:shindan'; }
+        else{ hint = f.diagProg ? '診断のつづきがあります。' : '理想が見えてきました。次は、診断で進路の候補を探しましょう。'; btn = f.diagProg ? 'つづきから' : '診断へ'; act = 'go:shindan'; }
+      }
+      else if(f.reviewing){ hint = '見直し中です。AIの変更案から、入れたいものを選びましょう。'; }
+      else if(f.needRev){ hint = '進路が決まりました。理想の自分とずれていないか、見直しましょう。'; btn = '理想を見直す'; act = 'review'; }
+      else if(!f.rm){ hint = '見直しができました。次は、ロードマップで道すじを作りましょう。'; btn = 'ロードマップへ'; act = 'go:' + (f.resCount ? 'results' : 'shindan'); }
+      else { hint = 'ひと回りできました。進路や気持ちが変わったら、また理想から見直せます。'; btn = '理想を見直す'; act = 'review'; }
+      return { steps:steps, cur:cur, hint:hint, btn:btn, act:act, f:f };
+    }
+    function html(id, m){
+      var here = HERE[id]; if(id === 'future' && m.f.path && (m.f.needRev || m.f.reviewing)) here = 3;
+      var h = '<ol class="fl-steps">';
+      m.steps.forEach(function(s, i){
+        var cls = s.done ? 'done' : (i === m.cur ? 'now' : 'next'); if(here === s.n) cls += ' here';
+        var act = s.n === 1 ? 'go:future' : (s.n === 2 ? 'go:shindan' : (s.n === 3 ? (s.ok ? 'review' : '') : (s.ok ? 'go:' + (m.f.resCount ? 'results' : 'shindan') : '')));
+        h += '<li class="' + cls + '"><button type="button"' + (act && !(id === 'future' && s.n === 1) ? ' data-fl="' + act + '"' : ' disabled') + (here === s.n ? ' aria-current="step"' : '') + '><i aria-hidden="true">' + (s.done ? '✓' : s.n) + '</i><span>' + esc(s.t) + '</span></button></li>';
+      });
+      h += '</ol><div class="fl-row"><p>' + esc(m.hint) + '</p>';
+      var hideBtn = !m.btn || (m.act === 'go:future' && id === 'future') || (m.act === 'review' && id === 'future') || (m.act === 'go:shindan' && (id === 'shindan' || id === 'suisen' || id === 'diag' || id === 'senmon')) || (m.act === 'go:results' && id === 'results');
+      if(!hideBtn) h += '<button type="button" class="btn primary" data-fl="' + m.act + '">' + esc(m.btn) + ' →</button>';
+      return h + '</div>';
+    }
+    function render(){
+      var m; try{ m = model(); }catch(e){ return; }
+      PANELS.forEach(function(id){
+        var p = document.getElementById('panel-' + id); if(!p) return;
+        var el = p.querySelector(':scope > .flow-strip');
+        if(!el){ el = document.createElement('nav'); el.className = 'flow-strip'; el.setAttribute('aria-label', '進路づくりの流れ'); p.insertBefore(el, p.firstChild); }
+        el.innerHTML = html(id, m);
+      });
+    }
+    document.addEventListener('click', function(ev){
+      var b = ev.target.closest && ev.target.closest('[data-fl]'); if(!b) return;
+      var a = b.getAttribute('data-fl') || '';
+      if(a === 'review'){ if(window.FUTAPI && window.FUTAPI.startReview) window.FUTAPI.startReview(); }
+      else if(a.indexOf('go:') === 0 && window.goTab) window.goTab(a.slice(3));
+    });
+    window.flowRender = render;
+    window.flowModel = model;
+    function go(){ render(); setTimeout(render, 1300); }
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+  })();
+
+  /* ---------- 県内の就職先(香川で叶うキャリアの専用ページ) ----------
+     データは CORPS(確認度が高・中の61件)。画面は「入口カード1枚」+「専用ページ」だけで、
+     既存の分野カードには小さなリンクを1つ足すだけ。詳しい中身は1件ずつ折りたたみ。 */
+  (function(){
+    if(!CORPS.length) return;
+    var panel = document.getElementById('panel-career'); if(!panel) return;
+    var GORD = ['金融・保険','エネルギー・交通・物流','機械・電気機械','化学・食品・日用品','地場産業・印刷','農業・水産・市場','IT・放送・メディア','小売・ホテル・サービス','建設・不動産','医療・福祉・教育','公務・公的機関'];
+    var IND2G = { '建設機械・ものづくり':'機械・電気機械', '電力・インフラ':'エネルギー・交通・物流', '金融':'金融・保険', '情報通信・IT':'IT・放送・メディア', '重化学工業(坂出)':'化学・食品・日用品', '醤油・食品(小豆島)':'化学・食品・日用品', '農業・水産業':'農業・水産・市場', '医療・福祉':'医療・福祉・教育', '公務員・地域行政':'公務・公的機関' };
+    var ELAB = ['高卒', '専門・短大・高専卒', '大学・大学院卒'];
+    var st = { g:'', e:[false,false,false], q:'', open:false };
+    var page = null;
+    function cnt(g){ return CORPS.filter(function(c){ return !g || c.g === g; }).length; }
+    function mark(ch){ return ch === '○' ? '<b class="ok">募集あり</b>' : (ch === '×' ? '<b class="no">募集なし</b>' : '<b class="unk">確認できず</b>'); }
+
+    /* 入口カード */
+    var entry = document.createElement('button');
+    entry.type = 'button'; entry.className = 'corp-entry'; entry.setAttribute('data-corp-open', '');
+    entry.innerHTML = '<span class="ce-t"><strong>県内の就職先を、一覧で見る</strong><small>香川にある実在の企業・機関 ' + CORPS.length + '件。一覧のほか、5つの質問で「合いそうな就職先」の診断もできます</small></span><span class="ce-go" aria-hidden="true">→</span>';
+    var disc = panel.querySelector(':scope > .disclaimer');
+    var grid = document.getElementById('career-grid');
+    if(grid && grid.parentNode === panel) panel.insertBefore(entry, disc || grid.nextSibling); else panel.appendChild(entry);
+
+    /* 分野カードに小さなリンクを足す */
+    if(grid) Array.prototype.forEach.call(grid.querySelectorAll('.indcard'), function(card){
+      var h = card.querySelector('h4'); var g = h && IND2G[h.textContent.trim()]; if(!g) return;
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'corp-lnk';
+      b.setAttribute('data-corp-g', g); b.textContent = 'この分野の就職先 ' + cnt(g) + '件 →';
+      card.appendChild(b);
+    });
+
+    function build(){
+      page = document.createElement('div'); page.id = 'corp-page'; page.hidden = true;
+      page.innerHTML =
+        '<button type="button" class="btn ghost corp-back" data-corp-close>← 香川で叶うキャリアにもどる</button>' +
+        '<div class="section-head"><span class="eyebrow">Jobs in Kagawa</span><h2>県内の就職先</h2>' +
+        '<p>香川県内に勤務先がある、実在の企業・機関の一例です。気になったところは、タップすると中身が開きます。</p></div>' +
+        '<button type="button" class="corp-jd" data-jd-start><span class="ce-t"><strong>あなたに合う就職先を診断する</strong><small>5つの質問(約1分)。理想の自分カードがあれば、答えを先に選んでおきます</small></span><span class="ce-go" aria-hidden="true">→</span></button>' +
+        '<p class="jd-last" id="corp-jdlast" hidden><button type="button" class="corp-lnk" data-jd-last>前回の診断結果を見る →</button></p>' +
+        '<div id="corp-diag" hidden></div>' +
+        '<div id="corp-main"><div class="corp-filters"><label class="corp-q"><span class="sr-only">名前や仕事で探す</span><input type="search" id="corp-q" placeholder="名前や仕事で探す(例: 看護師、銀行)" autocomplete="off"></label>' +
+        '<div class="corp-chips" id="corp-gs" role="group" aria-label="分野"></div>' +
+        '<div class="corp-chips corp-es" id="corp-es" role="group" aria-label="採用の区分"></div></div>' +
+        '<p class="corp-count" id="corp-count" aria-live="polite"></p>' +
+        '<div class="corp-list" id="corp-list"></div>' +
+        '<details class="corp-how"><summary>このページの見かた(かならず読んでね)</summary><ul>' +
+        '<li>「確認できず」は<b>「ない」ではありません</b>。公式ページで確かめられなかった、という意味です。</li>' +
+        '<li>初任給は<b>月給の目安</b>で、年収ではありません。年度や学歴によって変わります。</li>' +
+        '<li>公開されている情報をもとにした一例で、県内の就職先のすべてではありません。募集の条件は毎年変わるので、<b>最新の情報は必ず公式ページで確認</b>してください。</li>' +
+        '<li>「公式で確認」は公式ページで多くの項目を確かめられたもの、「一部のみ確認」は確かめられた項目が少ないものです。</li></ul></details>' +
+        '<p class="corp-next">気になる会社の仕事が見つかったら、<button type="button" class="corp-lnk" onclick="goTab(\'shindan\')">診断で進路を考える →</button></p></div>';
+      panel.appendChild(page);
+      page.querySelector('#corp-q').addEventListener('input', function(e){ st.q = e.target.value; renderList(); });
+    }
+    function chips(){
+      var gs = page.querySelector('#corp-gs');
+      gs.innerHTML = '<button type="button" class="corp-chip" data-cg="" aria-pressed="' + (!st.g) + '">すべて ' + CORPS.length + '</button>' +
+        GORD.filter(function(g){ return cnt(g); }).map(function(g){ return '<button type="button" class="corp-chip" data-cg="' + esc(g) + '" aria-pressed="' + (st.g === g) + '">' + esc(g) + ' ' + cnt(g) + '</button>'; }).join('');
+      var es = page.querySelector('#corp-es');
+      es.innerHTML = '<span class="corp-lab">募集あり:</span>' + ELAB.map(function(l, i){ return '<button type="button" class="corp-chip e" data-ce="' + i + '" aria-pressed="' + st.e[i] + '">' + l + '</button>'; }).join('');
+    }
+    function match(c){
+      if(st.g && c.g !== st.g) return false;
+      for(var i = 0; i < 3; i++) if(st.e[i] && c.e.charAt(i) !== '○') return false;
+      var q = st.q.trim().toLowerCase();
+      if(q && (c.n + ' ' + c.s + ' ' + c.j + ' ' + c.b + ' ' + c.p + ' ' + c.g).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    }
+    function row(c, ex){
+      var place = c.p.replace(/^本社 /, '').replace(/^県内拠点 /, '');
+      var kind = /^県内拠点/.test(c.p) ? '県内拠点' : (/^本社/.test(c.p) ? '本社' : '');
+      var h = '<details class="corp-row' + (ex ? ' jd-hit' : '') + '"><summary>' + (ex ? '<span class="jd-tier t' + ex.ti + '">' + ['とても合いそう', '合いそう', 'ここも見てみよう'][ex.ti] + '</span>' : '') + '<span class="cr-n">' + esc(c.n) + '</span><span class="cr-m">' + esc(place) + (kind ? ' ・ ' + kind : '') + (c.s ? ' ・ ' + esc(c.s) : '') + '</span></summary><div class="cr-b">';
+      if(ex && ex.why.length) h += '<ul class="jd-why">' + ex.why.map(function(w){ return '<li>' + esc(w) + '</li>'; }).join('') + '</ul>';
+      if(c.b && c.b !== c.s) h += '<p class="cr-biz">' + esc(c.b) + '</p>';
+      h += '<dl class="cr-dl"><dt>採用の区分</dt><dd class="cr-es">' + ELAB.map(function(l, i){ return '<span>' + l + ' ' + mark(c.e.charAt(i)) + '</span>'; }).join('') + '</dd>';
+      h += '<dt>初任給の目安</dt><dd>' + (c.w && c.w !== '確認できず' ? esc(c.w) + '<small>(月給・円)</small>' : '<b class="unk">確認できず</b>') + '</dd>';
+      if(c.j) h += '<dt>主な職種</dt><dd>' + esc(c.j) + '</dd>';
+      h += '</dl><div class="cr-foot"><span class="cr-conf ' + (c.c === '高' ? 'hi' : 'mid') + '">' + (c.c === '高' ? '公式で確認' : '一部のみ確認') + '</span>';
+      if(c.u) h += '<a href="' + esc(c.u) + '" target="_blank" rel="noopener">公式サイト</a>';
+      if(c.r) h += '<a href="' + esc(c.r) + '" target="_blank" rel="noopener">採用ページ</a>';
+      return h + '</div></div></details>';
+    }
+    function renderList(){
+      var L = CORPS.filter(match);
+      page.querySelector('#corp-count').textContent = L.length === CORPS.length ? CORPS.length + '件' : CORPS.length + '件中 ' + L.length + '件';
+      var el = page.querySelector('#corp-list');
+      if(!L.length){ el.innerHTML = '<p class="corp-none">条件に合う就職先がありません。しぼりこみをゆるめてみてください。</p>'; return; }
+      var by = {}; L.forEach(function(c){ (by[c.g] = by[c.g] || []).push(c); });
+      el.innerHTML = GORD.filter(function(g){ return by[g]; }).map(function(g){
+        return '<section class="corp-grp"><h3>' + esc(g) + '</h3>' + by[g].map(function(c){ return row(c); }).join('') + '</section>';
+      }).join('');
+    }
+    function open(g){
+      if(!page) build();
+      st.g = g || ''; st.e = [false,false,false]; st.q = ''; page.querySelector('#corp-q').value = '';
+      st.open = true; panel.classList.add('corp-open'); page.hidden = false;
+      jdShow(false);
+      chips(); renderList();
+      try{ panel.scrollIntoView({ block:'start' }); }catch(e){ /* no-op */ }
+      try{ window.scrollTo(0, 0); }catch(e){ /* no-op */ }
+    }
+    function close(){
+      if(!st.open) return;
+      st.open = false; panel.classList.remove('corp-open'); if(page) page.hidden = true;
+      try{ entry.scrollIntoView({ block:'center' }); }catch(e){ /* no-op */ }
+    }
+    /* ---------- 就職先診断(理想の自分カード+質問のあわせ技) ---------- */
+    var JK = 'kagawa-compass-jobdiag-v1';
+    var JQ = [
+      { k:'edu', t:'高校を出たあと、どの形で働きはじめたい?', o:[['hs','高校を出てすぐ就職'], ['vo','専門学校・短大・高専を出て'], ['un','大学・大学院を出て'], ['any','まだ決めていない']] },
+      { k:'area', t:'香川のどのあたりで働きたい?', o:[['tk','高松市まわり'], ['ea','東(さぬき・東かがわ)'], ['mi','中(丸亀・坂出・善通寺・多度津)'], ['we','西(観音寺・三豊)'], ['is','小豆島'], ['any','どこでもよい']] },
+      { k:'style', t:'どんな仕事のしかたが好き?', multi:true, o:[['people','人と話す・人を支える'], ['make','手を動かして、ものをつくる'], ['desk','机で、しくみ・数字・システムを考える'], ['pub','地域や社会のために働く'], ['nat','自然・食・くらしに近い仕事']] },
+      { k:'val', t:'仕事で大事にしたいことは?', multi:true, o:[['stab','安定して長く働ける'], ['inc','収入'], ['free','自由な時間'], ['chal','新しいことに挑戦・成長'], ['exp','専門性・手に職'], ['local','地元・香川で暮らす']] },
+      { k:'move', t:'転勤はどう思う?', o:[['no','なるべく県内だけで働きたい'], ['ok','転勤があってもよい']] }
+    ];
+    var EDUL = { hs:'高卒', vo:'専門・短大・高専卒', un:'大学・大学院卒' };
+    var LAB = {}; JQ.forEach(function(q){ q.o.forEach(function(o){ LAB[q.k + ':' + o[0]] = o[1]; }); });
+    /* 分野ごとの「らしさ」(0〜1)。仕事のしかた(style)と、大事にしたいこと(val)に、どれくらい近いかの目安 */
+    var GP = {
+      '金融・保険': { people:.6, desk:.8, stab:.8, inc:.7, exp:.5, chal:.3, free:.3, local:.5 },
+      'エネルギー・交通・物流': { pub:.7, make:.4, desk:.3, stab:.9, inc:.6, exp:.5, local:.7, free:.3 },
+      '機械・電気機械': { make:1, desk:.4, exp:.9, chal:.6, inc:.6, stab:.6, local:.4 },
+      '化学・食品・日用品': { make:.8, nat:.5, exp:.6, stab:.6, chal:.4, inc:.5, local:.4 },
+      '地場産業・印刷': { make:.8, nat:.3, local:.8, exp:.7, free:.4, stab:.4 },
+      '農業・水産・市場': { nat:1, pub:.4, people:.3, local:.9, free:.5, exp:.5, stab:.4 },
+      'IT・放送・メディア': { desk:1, people:.3, make:.4, chal:.8, exp:.7, free:.5, inc:.5, local:.3 },
+      '小売・ホテル・サービス': { people:1, nat:.2, chal:.4, local:.6, free:.3, stab:.4, inc:.4 },
+      '建設・不動産': { make:.7, desk:.3, people:.3, inc:.6, exp:.6, local:.6, stab:.5 },
+      '医療・福祉・教育': { people:1, pub:.6, stab:.8, exp:.8, local:.7, inc:.5, free:.2 },
+      '公務・公的機関': { pub:1, desk:.5, people:.4, stab:1, local:.9, free:.6, inc:.4, exp:.3 }
+    };
+    var WHY = { people:'人と関わる・支える仕事が多い分野', make:'ものをつくる仕事が多い分野', desk:'しくみ・数字・システムを考える仕事が多い分野', pub:'地域や社会のための仕事が多い分野', nat:'自然・食・くらしに近い分野',
+      stab:'安定して長く働きやすい分野', inc:'収入面で期待しやすい分野(初任給は一覧で確認)', free:'自由な時間を持ちやすい分野', chal:'新しいことに挑戦しやすい分野', exp:'専門性・手に職がつきやすい分野', local:'地元・香川で暮らしながら働きやすい分野' };
+    function regionOf(p){
+      p = p || '';
+      if(/小豆島|土庄|直島/.test(p)) return 'is';
+      if(/さぬき|東かがわ|三木/.test(p)) return 'ea';
+      if(/観音寺|三豊/.test(p)) return 'we';
+      if(/丸亀|坂出|善通寺|多度津|宇多津|綾川|琴平|まんのう/.test(p)) return 'mi';
+      if(/高松/.test(p)) return 'tk';
+      return '';
+    }
+    function jdLoad(){ try{ var o = JSON.parse(localStorage.getItem(JK) || 'null'); return (o && o.a) ? o : null; }catch(e){ return null; } }
+    function jdSave(o){ try{ localStorage.setItem(JK, JSON.stringify(o)); }catch(e){ /* no-op */ } }
+    var JD = { i:0, a:{ edu:'', area:'', style:[], val:[], move:'' }, pre:{} };
+    function prefill(){
+      var a = { edu:'', area:'', style:[], val:[], move:'' }, pre = {}, c = null;
+      try{ c = window.FUTAPI && window.FUTAPI.card ? window.FUTAPI.card() : null; }catch(e){ c = null; }
+      if(c){
+        var r = regionOf(c.place); if(r){ a.area = r; pre.area = 1; }
+        var v = c.v || {}, VM = { stability:'stab', income:'inc', freedom:'free', challenge:'chal', expert:'exp', local:'local' };
+        var top = Object.keys(VM).filter(function(k){ return (v[k] || 0) >= 4; }).sort(function(x, y){ return v[y] - v[x]; }).slice(0, 2).map(function(k){ return VM[k]; });
+        if(top.length){ a.val = top; pre.val = 1; }
+        var SM = { care:'people', create:'make' };
+        var st2 = Object.keys(SM).filter(function(k){ return (v[k] || 0) >= 4; }).sort(function(x, y){ return v[y] - v[x]; }).slice(0, 2).map(function(k){ return SM[k]; });
+        if(st2.length){ a.style = st2; pre.style = 1; }
+        if((v.local || 0) >= 4){ a.move = 'no'; pre.move = 1; }
+      }
+      return { a:a, pre:pre, has:!!c };
+    }
+    function score(a){
+      var out = [];
+      CORPS.forEach(function(c){
+        var pf = GP[c.g] || {}, why = [], ed = a.edu && a.edu !== 'any' ? c.e.charAt(['hs','vo','un'].indexOf(a.edu)) : '';
+        if(ed === '×') return;
+        var ss = a.style.length ? a.style.reduce(function(n, k){ return n + (pf[k] || 0); }, 0) / a.style.length : .5;
+        var vs = a.val.length ? a.val.reduce(function(n, k){ return n + (pf[k] || 0); }, 0) / a.val.length : .5;
+        var t = 55 * ss + 30 * vs;
+        a.style.forEach(function(k){ if((pf[k] || 0) >= .6) why.push(WHY[k]); });
+        a.val.forEach(function(k){ if((pf[k] || 0) >= .6) why.push(WHY[k]); });
+        var rg = regionOf(c.p);
+        if(a.area && a.area !== 'any'){ if(rg === a.area){ t += 10; why.push('希望のあたり(' + c.p.replace(/^(本社|県内拠点) /, '') + ')で働ける'); } else if(!rg) t += 5; }
+        else t += 5;
+        if(ed === '○'){ t += 8; why.push(EDUL[a.edu] + 'の募集あり'); }
+        else if(ed === '？') why.push(EDUL[a.edu] + 'の募集は確認できず(公式で確認)');
+        else t += 4;
+        if(a.move === 'no'){ if(/^本社/.test(c.p)){ t += 4; why.push('県内に本社があり、県内で働きやすい'); } else if(/^県内拠点/.test(c.p)){ t -= 3; why.push('本社は県外のことが多く、転勤はよく確認'); } }
+        out.push({ c:c, t:t, why:why.slice(0, 4) });
+      });
+      out.sort(function(x, y){ return (y.t - x.t) || ((x.c.c === '高' ? 0 : 1) - (y.c.c === '高' ? 0 : 1)); });
+      var mx = 55 + 30 + 10 + 8 + 4;
+      out.forEach(function(r){ var q = r.t / mx; r.ti = q >= .7 ? 0 : (q >= .55 ? 1 : 2); });
+      return out;
+    }
+    function summaryOf(a){
+      var L = [];
+      if(a.edu) L.push(a.edu === 'any' ? '学歴はまだ決めていない' : EDUL[a.edu]);
+      if(a.area) L.push(a.area === 'any' ? '場所はどこでもよい' : LAB['area:' + a.area]);
+      a.style.forEach(function(k){ L.push(LAB['style:' + k]); });
+      a.val.forEach(function(k){ L.push(LAB['val:' + k]); });
+      if(a.move) L.push(a.move === 'no' ? '県内だけで' : '転勤OK');
+      return L;
+    }
+    function jdEl(){ return page.querySelector('#corp-diag'); }
+    function jdShow(on){
+      page.querySelector('#corp-main').hidden = on; page.querySelector('.corp-jd').hidden = on; page.querySelector('#corp-diag').hidden = !on;
+      page.querySelector('.section-head').hidden = on;
+      page.querySelector('#corp-jdlast').hidden = on || !jdLoad();
+      try{ panel.scrollIntoView({ block:'start' }); window.scrollTo(0, 0); }catch(e){ /* no-op */ }
+    }
+    function jdQ(){
+      var q = JQ[JD.i], cur = JD.a[q.k], sel = function(v){ return q.multi ? cur.indexOf(v) >= 0 : cur === v; };
+      var h = '<div class="jd-head"><button type="button" class="corp-lnk" data-jd-exit>← 一覧にもどる</button><span class="jd-prog">' + (JD.i + 1) + ' / ' + JQ.length + '</span></div>' +
+        '<div class="jd-bar"><i style="width:' + Math.round((JD.i + 1) / JQ.length * 100) + '%"></i></div>' +
+        '<h3 class="jd-q">' + esc(q.t) + '</h3>' + (q.multi ? '<p class="jd-sub">いくつか当てはまる場合は、いちばん近い2つまで選べます。</p>' : '');
+      if(JD.pre[q.k]) h += '<p class="jd-pre">理想の自分カードから、選んでおきました。ちがうときは選びなおしてね。</p>';
+      h += '<div class="jd-opts">' + q.o.map(function(o){ return '<button type="button" class="jd-opt" data-jd-o="' + o[0] + '" aria-pressed="' + sel(o[0]) + '">' + esc(o[1]) + '</button>'; }).join('') + '</div>';
+      var ok = q.multi ? cur.length > 0 : !!cur;
+      h += '<div class="jd-nav">' + (JD.i ? '<button type="button" class="btn ghost" data-jd-prev>もどる</button>' : '<span></span>') +
+        '<button type="button" class="btn primary" data-jd-next' + (ok ? '' : ' disabled') + '>' + (JD.i === JQ.length - 1 ? '結果を見る' : 'つぎへ') + '</button></div>';
+      jdEl().innerHTML = h;
+    }
+    function jdResult(saved){
+      var a = saved.a, R = score(a), top = R.slice(0, 6), more = R.slice(6, 12);
+      var h = '<div class="jd-head"><button type="button" class="corp-lnk" data-jd-exit>← 一覧にもどる</button></div>' +
+        '<h3 class="jd-q">あなたに合いそうな就職先</h3>' +
+        '<div class="jd-sum">' + summaryOf(a).map(function(x){ return '<span>' + esc(x) + '</span>'; }).join('') + '</div>';
+      if(!R.length) h += '<p class="corp-none">条件に合う就職先が見つかりませんでした。答えを変えてやりなおしてみてください。</p>';
+      else{
+        h += '<div class="corp-list">' + top.map(function(r){ return row(r.c, r); }).join('') + '</div>';
+        if(more.length) h += '<details class="corp-how jd-more"><summary>ほかの候補も見る(' + more.length + '件)</summary><div class="corp-list">' + more.map(function(r){ return row(r.c, r); }).join('') + '</div></details>';
+      }
+      h += '<p class="jd-note">これは、あなたの答えと、分野ごとの仕事のようすを照らし合わせた<b>目安</b>です。会社のよしあしや、合格のしやすさを決めるものではありません。気になったところは、公式サイトで最新の情報を確かめてください。</p>' +
+        '<div class="jd-nav"><button type="button" class="btn ghost" data-jd-redo>答えをかえてやりなおす</button><button type="button" class="btn primary" data-jd-exit>すべての就職先を見る</button></div>';
+      jdEl().innerHTML = h;
+    }
+    function jdStart(useSaved){
+      if(!page) build();
+      st.open = true; panel.classList.add('corp-open'); page.hidden = false;
+      chips(); renderList();
+      var sv = jdLoad();
+      if(useSaved && sv){ JD.a = sv.a; jdShow(true); jdResult(sv); return; }
+      var pf = sv ? { a:sv.a, pre:{} } : prefill();
+      JD.a = JSON.parse(JSON.stringify(pf.a)); JD.pre = pf.pre || {}; JD.i = 0;
+      jdShow(true); jdQ();
+    }
+    function jdClick(t){
+      var b;
+      if((b = t.closest('[data-jd-o]'))){
+        var q = JQ[JD.i], v = b.getAttribute('data-jd-o');
+        delete JD.pre[q.k];
+        if(q.multi){ var i = JD.a[q.k].indexOf(v); if(i >= 0) JD.a[q.k].splice(i, 1); else{ if(JD.a[q.k].length >= 2) JD.a[q.k].shift(); JD.a[q.k].push(v); } jdQ(); }
+        else{ JD.a[q.k] = v; jdQ(); setTimeout(function(){ if(JD.i === JQ.indexOf(q) && st.open && !jdEl().hidden) jdNext(); }, 220); }
+        return true;
+      }
+      if(t.closest('[data-jd-next]')){ jdNext(); return true; }
+      if(t.closest('[data-jd-prev]')){ if(JD.i > 0){ JD.i--; jdQ(); } return true; }
+      if(t.closest('[data-jd-redo]')){ jdStart(false); return true; }
+      if(t.closest('[data-jd-exit]')){ jdShow(false); return true; }
+      if(t.closest('[data-jd-start]')){ jdStart(false); return true; }
+      if(t.closest('[data-jd-last]')){ jdStart(true); return true; }
+      return false;
+    }
+    function jdNext(){
+      var q = JQ[JD.i], cur = JD.a[q.k];
+      if(q.multi ? !cur.length : !cur) return;
+      if(JD.i < JQ.length - 1){ JD.i++; jdQ(); return; }
+      var sv = { a:JD.a, at:Date.now() }; sv.top = score(sv.a).slice(0, 5).map(function(r){ return r.c.n; }); sv.sum = summaryOf(sv.a); jdSave(sv); jdResult(sv);
+      try{ panel.scrollIntoView({ block:'start' }); window.scrollTo(0, 0); }catch(e){ /* no-op */ }
+    }
+    panel.addEventListener('click', function(ev){
+      var t = ev.target; if(!t.closest) return;
+      var b;
+      if(jdClick(t)) return;
+      if((b = t.closest('[data-corp-open]'))) open('');
+      else if((b = t.closest('[data-corp-g]'))) open(b.getAttribute('data-corp-g'));
+      else if(t.closest('[data-corp-close]')) close();
+      else if((b = t.closest('[data-cg]'))){ st.g = b.getAttribute('data-cg'); chips(); renderList(); }
+      else if((b = t.closest('[data-ce]'))){ var i = +b.getAttribute('data-ce'); st.e[i] = !st.e[i]; chips(); renderList(); }
+    });
+    var tab = document.getElementById('tab-career');
+    if(tab) tab.addEventListener('click', function(){ if(st.open && panel.classList.contains('active')) close(); });
+    window.corpOpen = function(g){ if(window.goTab) window.goTab('career'); open(g || ''); };
+  })();
+
+  window.FUTAPI = { card:FUT.card, summary:FUT.summary, trk:FUT.trk, nudgeInfo:FUT.nudgeInfo, needsReview:FUT.needsReview, reviewed:FUT.reviewed, reviewing:FUT.reviewing, startReview:FUT.startReview };
   (function(){ function go(){ setTimeout(function(){ try{ FUT.nudge(); }catch(e){ /* no-op */ } }, 900); } if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go(); })();
   window.futShow = FUT.show; window.futRefresh = FUT.refresh; window.futView = function(v){ var act = document.getElementById('panel-future').classList.contains('active'); if(act) FUT.setView(v); else if(window.goTab){ window.__futView = v; window.goTab('future'); } };
   window.cmShow = CM.show; window.dpShow = DP.show; window.dpApplyCommute = DP.apply; window.dpRefresh = function(){ DP.refresh(); if(FUT && FUT.refresh) FUT.refresh(); };
@@ -11902,14 +12911,34 @@ svg.leaflet-image-layer.leaflet-interactive path {
     if(q){ q.querySelector('.tq-lab').textContent = eff==='dark' ? '夜' : '昼'; q.setAttribute('aria-label', eff==='dark' ? '昼の表示に切り替える(いまは夜)' : '夜の表示に切り替える(いまは昼)'); }
     Array.prototype.forEach.call(document.querySelectorAll('[data-theme-pick]'), function(b){ b.setAttribute('aria-checked', String(b.getAttribute('data-theme-pick')===mode)); });
   }
-  function setMode(m){ try{ if(m==='auto') localStorage.removeItem(KEY); else localStorage.setItem(KEY, m); }catch(e){} paint(); }
+  var fading = false;
+  function swap(fn, nextEff){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce || fading){ fn(); return; }
+    fading = true;
+    if(document.startViewTransition){
+      try{
+        var vt = document.startViewTransition(fn);
+        var done = function(){ fading = false; };
+        if(vt && vt.finished) vt.finished.then(done, done); else setTimeout(done, 900);
+        return;
+      }catch(e){ /* 下のフェードに切り替える */ }
+    }
+    var ov = document.createElement('div'); ov.className = 'theme-fade';
+    ov.style.background = nextEff === 'dark' ? '#0A1830' : '#F2F8FC';
+    document.body.appendChild(ov);
+    void ov.offsetWidth; ov.style.opacity = '1';
+    setTimeout(function(){
+      fn();
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ ov.style.opacity = '0'; }); });
+      setTimeout(function(){ if(ov.parentNode) ov.parentNode.removeChild(ov); fading = false; }, 650);
+    }, 300);
+  }
+  function setMode(m){ swap(function(){ try{ if(m==='auto') localStorage.removeItem(KEY); else localStorage.setItem(KEY, m); }catch(e){} paint(); }, effective(m)); }
   var q = document.getElementById('theme-quick');
   if(q) q.addEventListener('click', function(){ setMode(effective(getMode())==='dark' ? 'light' : 'dark'); });
   Array.prototype.forEach.call(document.querySelectorAll('[data-theme-pick]'), function(b){ b.addEventListener('click', function(){ setMode(b.getAttribute('data-theme-pick')); }); });
-  if(mq){ var f = function(){ if(getMode()==='auto') paint(); }; if(mq.addEventListener) mq.addEventListener('change', f); else if(mq.addListener) mq.addListener(f); }
+  if(mq){ var f = function(){ if(getMode()==='auto') swap(paint, effective('auto')); }; if(mq.addEventListener) mq.addEventListener('change', f); else if(mq.addListener) mq.addListener(f); }
   paint();
 })();
 </script>
-
-</body>
-</html>
