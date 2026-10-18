@@ -2858,6 +2858,39 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
 .rm-ov-p.todo{ opacity:.75; }
 @media print{ .hd-chk{ display:none; } }
 
+/* ---------- メニュー: 「もっと見る」と、設定の「見た目」 ---------- */
+.sidenav-items.more-closed .nav-extra{ display:none !important; }
+.sidenav-items button.nav-more{ color:var(--muted); }
+@media (hover:hover){ .sidenav-items button.nav-more:hover{ color:var(--ink); } }
+.set-fold{ margin:0 0 16px; border:1px solid var(--line); border-radius:20px; background:var(--paper-raise); box-shadow:var(--shadow); }
+.set-fold > summary{ list-style:none; cursor:pointer; padding:16px 48px 16px 20px; display:flex; flex-direction:column; gap:2px; position:relative; min-height:44px; justify-content:center; }
+.set-fold > summary::-webkit-details-marker{ display:none; }
+.set-fold > summary b{ font-size:1.05rem; color:var(--ink); }
+.set-fold > summary small{ color:var(--muted); font-size:.8rem; line-height:1.5; }
+.set-fold > summary::after{ content:""; position:absolute; right:20px; top:50%; width:9px; height:9px; margin-top:-7px; border-right:2px solid var(--muted); border-bottom:2px solid var(--muted); transform:rotate(45deg); transition:transform .2s; }
+.set-fold[open] > summary::after{ transform:rotate(-135deg); margin-top:-3px; }
+.set-fold-body{ padding:0 12px 4px; }
+.set-fold-body .set-card{ box-shadow:none; background:var(--paper); }
+@media (prefers-reduced-motion:reduce){ .set-fold > summary::after{ transition:none; } }
+
+/* ---------- 初期化のあとの暗転 ---------- */
+#reset-fade{ position:fixed; inset:0; z-index:100000; background:#05080f; display:grid; place-items:center; opacity:0; transition:opacity .9s ease; }
+#reset-fade[hidden]{ display:none; }
+#reset-fade.on{ opacity:1; }
+#reset-fade p{ margin:0; color:rgba(255,255,255,.78); font-size:.95rem; letter-spacing:.06em; opacity:0; transition:opacity .6s ease .5s; }
+#reset-fade.on p{ opacity:1; }
+@media (prefers-reduced-motion:reduce){ #reset-fade, #reset-fade p{ transition:none; } }
+
+/* ---------- 地図: 地図/写真の切りかえ、学校カード内のピン案内 ---------- */
+.cm-layersw{ display:flex; background:var(--paper-raise,#fff); border:2px solid rgba(0,0,0,.25); border-radius:8px; overflow:hidden; }
+.cm-layersw button{ border:0; background:transparent; color:#16324f; font:inherit; font-size:.8rem; font-weight:700; padding:8px 12px; min-height:36px; cursor:pointer; }
+.cm-layersw button.on{ background:#1f6fb0; color:#fff; }
+.mc-pin-hint{ margin:0 0 10px; font-size:.86rem; line-height:1.7; color:var(--ink-soft); }
+.mc-pin-hint b{ color:var(--ink); }
+.mc-commute .mc-home-form{ margin:6px 0 8px; }
+.mc-commute #mc-clear-home{ margin-right:14px; }
+.mc-commute .mc-cm-map{ min-height:300px; }
+
 </style>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -3087,7 +3120,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       <h2>通学マップ</h2>
       <p>自宅にピンを立てて、志望校までの通学方法と時間をチェックします。大学を選ぶときの材料にどうぞ。</p>
     </div>
-    <div class="cm-privacy"><svg class="ico-svg" aria-hidden="true"><use href="#i-info"/></svg><span>自宅の場所は、この端末にだけ保存されます(アカウントにも、AIにも送りません)。AIには「距離」と「かかる時間」だけを伝えます。「いまいる場所を自宅にする」で使う現在地も、同じようにこの端末の中だけで使います。</span></div>
+    <div class="cm-privacy"><svg class="ico-svg" aria-hidden="true"><use href="#i-info"/></svg><span>自宅のピンは、どこにも保存されません。置いているあいだだけ、この画面の中で使います(アプリを閉じる・開き直すと消えます)。アカウントにも、AIにも送りません。AIには「距離」と「かかる時間」だけを伝えます。</span></div>
     <div class="cm-grid">
       <div class="cm-left">
         <div class="cm-mapbox">
@@ -3105,7 +3138,6 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
             <input type="search" id="cm-home-q" placeholder="住所や駅名(例: 高松市幸町1-1 / 琴電瓦町駅)" aria-label="自宅の住所や駅名">
             <button type="submit" class="btn primary">検索</button>
           </form>
-          <button type="button" class="btn ghost cm-here" id="cm-here"><svg class="ico-svg" aria-hidden="true"><use href="#i-map-pin"/></svg><span>いまいる場所を自宅にする</span></button>
           <ul class="cm-results" id="cm-home-res" hidden></ul>
           <p class="cm-msg" id="cm-home-msg" role="status" hidden></p>
           <p class="cm-homeinfo" id="cm-home-info"></p>
@@ -4640,6 +4672,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     if(id === 'commute' && window.cmShow) window.cmShow();
     if(id === 'future' && window.futShow) window.futShow();
     if(id === 'roadmaps' && window.futTrk) window.futTrk();
+    try{ if(window.menuSync) window.menuSync(id); }catch(e){ /* no-op */ }
     try{ if(window.flowRender) window.flowRender(); }catch(e){ /* no-op */ }
     window.scrollTo({top:0, behavior:'smooth'});
   };
@@ -9334,6 +9367,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       ORDER.forEach(function(t){ try{ sts[t] = DIAGS[t] ? DIAGS[t].status() : { state:'new', text:'' }; }catch(e){ sts[t] = { state:'new', text:'' }; } });
       var anyDiag = ORDER.some(function(t){ return sts[t].state !== 'new'; }) || list().length > 0;
       var has = rms.length > 0 || anyDiag;
+      try{ if(window.menuSync) window.menuSync(); }catch(e){ /* no-op */ }
       try{ if(window.homeStartRender) window.homeStartRender({ diagDone: ORDER.some(function(t){ return sts[t].state === 'result'; }) || list().length > 0, diagProg: ORDER.some(function(t){ return sts[t].state === 'progress'; }), rm: rms.length }); }catch(e){ /* no-op */ }
       panel.classList.toggle('has-data', has);
       box.hidden = !has;
@@ -9520,6 +9554,14 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       if(wipeFrom && wipeFrom.focus){ try{ wipeFrom.focus({preventScroll:true}); }catch(e){} }
       wipeFrom = null;
     }
+    /* このアプリが作った保存データ(kagawa-… と vayl-…)を、すべて消す。ログイン情報(tyosen-…)は残す */
+    function wipeLocalKeys(){
+      try{
+        var ks = [];
+        for(var i = 0; i < localStorage.length; i++){ var k = localStorage.key(i); if(k && (k.indexOf('kagawa') === 0 || k.indexOf('vayl-') === 0)) ks.push(k); }
+        ks.forEach(function(k){ localStorage.removeItem(k); });
+      }catch(e){ /* no-op */ }
+    }
     function resetAllData(){
       if(window.ACCT) ACCT.beginReset();      /* ログイン中は、アカウントに預けたデータも消す(この間は、同期の記録をとめる) */
       /* AIとのチャット・ロードマップ */
@@ -9541,11 +9583,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       /* 設定(音量・チュートリアル既読) */
       try{ if(window.kSnd && window.kSnd.resetAll) window.kSnd.resetAll(); }catch(e){ /* no-op */ }
       /* 念のため、このアプリが作った保存データ(kagawa-…)をすべて消す */
-      try{
-        var ks = [];
-        for(var i = 0; i < localStorage.length; i++){ var k = localStorage.key(i); if(k && k.indexOf('kagawa') === 0) ks.push(k); }
-        ks.forEach(function(k){ localStorage.removeItem(k); });
-      }catch(e){ /* no-op */ }
+      wipeLocalKeys();
       renderHomeResume();     /* ロードマップがなくなるので、ホームは元の表示に戻る */
       shindanRender();
       resRender();
@@ -9563,12 +9601,37 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     document.getElementById('reset-cancel').addEventListener('click', closeResetModal);
     resetModal.addEventListener('click', function(ev){ if(ev.target === resetModal) closeResetModal(); });
     document.addEventListener('keydown', function(ev){ if(ev.key === 'Escape' && !resetModal.hidden){ ev.stopPropagation(); closeResetModal(); } }, true);
+    /* 初期化のあと: 画面が暗くなって、ページを読みこみなおす。ほんとうに「はじめて開いた状態」(最初の質問・チュートリアルも)にもどる */
+    var resetFade = null;
+    function showResetFade(){
+      if(!resetFade){
+        resetFade = document.createElement('div');
+        resetFade.id = 'reset-fade'; resetFade.setAttribute('role', 'status'); resetFade.setAttribute('aria-live', 'polite');
+        resetFade.innerHTML = '<p>はじめの状態にもどしています…</p>';
+        document.body.appendChild(resetFade);
+      }
+      resetFade.hidden = false;
+      void resetFade.offsetWidth;
+      resetFade.classList.add('on');
+    }
+    function hideResetFade(){ if(resetFade){ resetFade.classList.remove('on'); resetFade.hidden = true; } }
     document.getElementById('reset-ok').addEventListener('click', function(){
-      var cloudP = resetAllData();
+      var t0 = Date.now();
       closeResetModal();
-      if(wipeMsg){ wipeMsg.textContent = '初期化しました。アプリ内のデータをすべて消して、はじめの状態にもどしました。'; wipeMsg.hidden = false; }
+      showResetFade();
+      var cloudP = resetAllData();
       cloudP.then(function(ok){
-        if(!ok && wipeMsg){ wipeMsg.textContent = 'この端末のデータは消しました。ただ、アカウントに預けたデータは消せませんでした。ネットワークを確かめて、もう一度初期化してください。'; }
+        if(!ok){
+          hideResetFade();
+          if(wipeMsg){ wipeMsg.textContent = 'この端末のデータは消しました。ただ、アカウントに預けたデータは消せませんでした。ネットワークを確かめて、もう一度初期化してください。'; wipeMsg.hidden = false; }
+          return;
+        }
+        var reduce = false; try{ reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){ /* no-op */ }
+        var wait = Math.max(0, (reduce ? 300 : 1400) - (Date.now() - t0));
+        setTimeout(function(){
+          wipeLocalKeys();     /* 暗くしている間に、保存し直された分があっても、もう一度消す */
+          try{ location.reload(); }catch(e){ hideResetFade(); if(wipeMsg){ wipeMsg.textContent = '初期化しました。ページを開きなおしてください。'; wipeMsg.hidden = false; } }
+        }, wait);
       });
     });
     document.getElementById('results-list').addEventListener('click', function(ev){
@@ -10701,6 +10764,9 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     var S = load(CM_KEY, {});
     S.dests = Array.isArray(S.dests) ? S.dests : [];
     S.chat = S.chat || { turns:[], display:[], quick:[] };
+    /* 自宅のピンは、保存しない(このページを開いているあいだだけ、メモリの中に置く)。以前の版で保存された分は、ここで消す */
+    var hadSavedHome = !!S.home; delete S.home;
+    S.dests.forEach(function(d){ d.t = null; d.src = null; d.km = null; d.kmSrc = null; d.kmRoute = false; d.routing = false; d.key0 = null; });
     var map = null, homeMk = null, destMks = {}, routeLine = null, tapMode = false, GEO = {}, tileOk = 0, tileErr = 0, noticeShown = false;
     var MODES = [
       { k:'walk', label:'徒歩', speed:4.8, prof:'routed-foot' },
@@ -10708,7 +10774,8 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       { k:'car', label:'車(送迎など)', speed:32, prof:'routed-car' },
       { k:'transit', label:'電車・バス', speed:0, prof:'' }
     ];
-    function persist(){ var c = S.chat; save(CM_KEY, { home:S.home || null, dests:S.dests, sel:S.sel || null, chat:{ turns:c.turns.slice(-20), display:c.display.slice(-20), quick:[] } }); }
+    function persist(){ var c = S.chat; save(CM_KEY, { dests:S.dests, sel:S.sel || null, chat:{ turns:c.turns.slice(-20), display:c.display.slice(-20), quick:[] } }); }
+    if(hadSavedHome) setTimeout(function(){ try{ persist(); }catch(e){ /* no-op */ } }, 0);
     function modeLabel(k){ var m = MODES.filter(function(x){ return x.k === k; })[0]; return m ? m.label : ''; }
     function active(){ return S.dests.filter(function(d){ return d.id === S.sel; })[0] || null; }
     function haversine(a, b){
@@ -10824,11 +10891,36 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     }
 
     /* ----- 地図 ----- */
+    /* 国土地理院の「標準地図」(地名・施設名・建物がくわしい)をはじめに出す。自宅をさがしやすいように「航空写真」にも切りかえられる */
+    function addBase(mp, onStdFail){
+      var attr = '<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">地理院タイル</a>';
+      var std = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', { minZoom:5, maxZoom:18, attribution:attr });
+      var photo = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg', { minZoom:5, maxZoom:18, attribution:attr + '(航空写真)' });
+      std.addTo(mp);
+      var Sw = L.Control.extend({
+        options:{ position:'topright' },
+        onAdd:function(){
+          var d = L.DomUtil.create('div', 'cm-layersw');
+          d.innerHTML = '<button type="button" data-l="std" class="on">地図</button><button type="button" data-l="photo">写真</button>';
+          L.DomEvent.disableClickPropagation(d);
+          d.addEventListener('click', function(ev){
+            var b = ev.target.closest && ev.target.closest('button[data-l]'); if(!b) return;
+            var w = b.getAttribute('data-l');
+            if(w === 'photo'){ if(mp.hasLayer(std)) mp.removeLayer(std); photo.addTo(mp); }
+            else{ if(mp.hasLayer(photo)) mp.removeLayer(photo); std.addTo(mp); }
+            d.querySelectorAll('button').forEach(function(x){ x.classList.toggle('on', x === b); });
+          });
+          return d;
+        }
+      });
+      new Sw().addTo(mp);
+      return std;
+    }
     function ensureMap(){
       if(map || typeof L === 'undefined') return;
       var el = $('cm-map');
       map = L.map(el, { zoomControl:true, attributionControl:true }).setView([34.28, 134.05], 10);
-      var tl = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:18, attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors' }).addTo(map);
+      var tl = addBase(map);
       tl.on('tileload', function(){ tileOk++; });
       tl.on('tileerror', function(){
         tileErr++;
@@ -10905,7 +10997,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     }
     function renderHome(){
       var el = $('cm-home-info');
-      el.innerHTML = S.home ? '自宅のピン: <b>' + esc(S.home.label || '設定ずみ') + '</b>(ピンはドラッグで動かせます)' : '自宅がまだ決まっていません。住所を検索するか、地図をタップしてください。';
+      el.innerHTML = S.home ? '自宅のピン: <b>' + esc(S.home.label || '設定ずみ') + '</b>(ピンはドラッグで動かせます。保存はされません)' : '自宅がまだ決まっていません。住所を検索するか、地図をタップしてください(置いたピンは保存されません)。';
     }
     function renderDests(){
       var box = $('cm-dests');
@@ -11045,32 +11137,6 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       wireSearch($('cm-home-form'), $('cm-home-q'), $('cm-home-res'), $('cm-home-msg'), function(r){ $('cm-home-q').value = ''; setHome({ lat:r.lat, lon:r.lon, label:r.name }); }, false);
       wireSearch($('cm-dest-form'), $('cm-dest-q'), $('cm-dest-res'), $('cm-dest-msg'), function(r){ $('cm-dest-q').value = ''; addDest(r); }, false);
       $('cm-tap-home').addEventListener('click', function(){ ensureMap(); setTap(!tapMode); });
-      (function(){
-        var hb = $('cm-here'), hm = $('cm-home-msg'), busyG = false;
-        function say(t){ hm.textContent = t; hm.hidden = !t; }
-        hb.addEventListener('click', function(){
-          if(busyG) return;
-          if(!navigator.geolocation){ say('この画面では、現在地を使えません。住所や駅名で探すか、地図をタップして、自宅のピンを置いてください。'); return; }
-          busyG = true; hb.disabled = true; hb.querySelector('span').textContent = '場所をさがしています…'; say('');
-          var done = function(){ busyG = false; hb.disabled = false; hb.querySelector('span').textContent = 'いまいる場所を自宅にする'; };
-          try{
-            navigator.geolocation.getCurrentPosition(function(pos){
-              done();
-              var c = pos.coords, acc = Math.round(c.accuracy || 0);
-              if(!(isFinite(c.latitude) && isFinite(c.longitude))){ say('場所をうまく読み取れませんでした。もう一度ためしてください。'); return; }
-              setHome({ lat:c.latitude, lon:c.longitude, label:'いまいる場所(現在地)' });
-              say('いまいる場所を自宅にしました。' + (acc > 1000 ? 'ただ、ズレが大きいかもしれません(誤差およそ' + (acc >= 10000 ? Math.round(acc / 1000) + 'km' : Math.round(acc / 100) / 10 + 'km') + ')。ピンをドラッグして直してください。' : (acc ? '(誤差およそ' + acc + 'm)ピンはドラッグで動かせます。' : 'ピンはドラッグで動かせます。')));
-            }, function(err){
-              done();
-              var code = err && err.code;
-              say(code === 1 ? '位置情報の許可がオフになっています。ブラウザの設定(Safariなら「Webサイト」→「位置情報」)で、このサイトを許可してから、もう一度押してください。' :
-                  code === 2 ? '場所がわかりませんでした。電波のよいところで、もう一度ためしてください。' :
-                  code === 3 ? '時間がかかりすぎました。もう一度ためしてください。' :
-                  'この画面では現在地を使えないようです。住所や駅名で探すか、地図をタップしてください。');
-            }, { enableHighAccuracy:true, timeout:15000, maximumAge:60000 });
-          }catch(e){ done(); say('この画面では現在地を使えないようです。住所や駅名で探すか、地図をタップしてください。'); }
-        });
-      })();
       $('cm-dests').addEventListener('click', function(ev){
         var p = ev.target.closest && ev.target.closest('[data-pick]'), r = ev.target.closest && ev.target.closest('[data-rmd]');
         if(r){ var id = r.getAttribute('data-rmd'); S.dests = S.dests.filter(function(d){ return d.id !== id; }); if(S.sel === id) S.sel = S.dests.length ? S.dests[S.dests.length - 1].id : null; persist(); redrawMarkers(true); renderAll(); return; }
@@ -11100,6 +11166,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     }
     function show(){
       init(); ensureMap();
+      if(S.home){ try{ renderHome(); S.dests.forEach(function(d){ if(!d.t) routeAll(d); }); renderAll(); }catch(e){ /* no-op */ } }
       if(map){ setTimeout(function(){ map.invalidateSize(); redrawMarkers(true); }, 60); }
     }
     function reset(){ S = { dests:[], chat:{ turns:[], display:[], quick:[] } }; GEO = {}; if(inited){ if(map) redrawMarkers(false); renderAll(); if(chat) chat.render(); } }
@@ -11123,11 +11190,6 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     async function embed(el, ctx){
       embedDestroy();
       if(!el) return;
-      if(!S.home){
-        el.innerHTML = '<p class="set-note">自宅の場所がまだ決まっていません。「進路に役立つ情報」の「通学マップ」で自宅を決めると、ここに、この学校までのルートと時間の目安が出ます。自宅の場所は、この端末の中だけに置かれ、AIには送られません。</p><button type="button" class="btn ghost" id="mc-go-cm">通学マップで自宅を決める</button>';
-        el.querySelector('#mc-go-cm').onclick = function(){ var b = document.getElementById('ai-chat-back'); if(b) b.click(); if(window.goTab) window.goTab('commute'); };
-        return;
-      }
       var c = campusFor(ctx && ctx.uniName, ctx && ctx.faculty), tok = {};
       emb = { tok:tok, map:null };
       el.innerHTML = '<p class="set-note">「' + esc(c[0]) + '」の場所を探しています…</p>';
@@ -11136,47 +11198,95 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       catch(e){ if(emb && emb.tok === tok) el.innerHTML = '<p class="cm-msg err">検索できませんでした。ネットワークをご確認ください。</p>'; return; }
       if(!emb || emb.tok !== tok) return;
       if(!list.length){ el.innerHTML = '<p class="cm-msg err">学校の場所が見つかりませんでした。「通学マップ」から探してみてください。</p>'; return; }
-      var dest = { lat:list[0].lat, lon:list[0].lon }, home = S.home;
-      var straight = haversine(home, dest), km = Math.round(straight * 1.3 * 10) / 10, T = {}, SRC = {}, GE = {};
-      MODES.filter(function(m){ return m.prof; }).forEach(function(m){ T[m.k] = estimate(m.k, straight); SRC[m.k] = 'est'; });
-      var gUrl = 'https://www.google.com/maps/dir/?api=1&origin=' + home.lat.toFixed(6) + ',' + home.lon.toFixed(6) + '&destination=' + dest.lat.toFixed(6) + ',' + dest.lon.toFixed(6) + '&travelmode=transit';
+      var dest = { lat:list[0].lat, lon:list[0].lon }, home = S.home || null, mp = null, hm = null, line = null, ver = 0;
+      var km = 0, T = {}, SRC = {}, GE = {};
+      el.innerHTML =
+        '<div class="mc-cm-top"></div>' +
+        '<form class="cm-search mc-home-form" autocomplete="off"><input type="search" class="mc-home-q" placeholder="住所・駅名でさがす" aria-label="自宅の近くの住所や駅名"><button type="submit" class="btn primary">さがす</button></form>' +
+        '<ul class="cm-results mc-home-res" hidden></ul><p class="cm-msg" id="mc-home-msg" role="status" hidden></p>' +
+        '<div class="mc-cm-map" id="mc-cm-map"></div>' +
+        '<p class="cm-note mc-cm-note"></p>' +
+        '<p class="cm-note"><button type="button" class="linklike" id="mc-clear-home" hidden>ピンを消す</button><button type="button" class="linklike" id="mc-open-cm">通学マップで、くわしく見る</button></p>';
       function paint(){
+        var box = el.querySelector('.mc-cm-top'), note = el.querySelector('.mc-cm-note'), clr = el.querySelector('#mc-clear-home');
+        if(clr) clr.hidden = !home;
+        if(!home){
+          if(box) box.innerHTML = '<p class="mc-pin-hint"><b>自宅のピンを置くと、「' + esc(c[0]) + '」までの距離と時間が出ます。</b>地図をタップして、自宅の場所にピンを置いてください。見つけにくいときは、下の「写真」に切りかえるか、住所・駅名でさがしてください。置いたピンは保存されず、アプリを閉じると消えます。</p>';
+          if(note) note.innerHTML = '';
+          return;
+        }
         var h = '<p class="cm-sub">自宅から「' + esc(c[0]) + '」まで、' + (SRC.car === 'route' ? '道のりで約' : '約') + km + 'km' + (SRC.car === 'route' ? '' : '(直線距離×1.3の概算)') + '</p><div class="cm-modes mc-cm-modes">';
         MODES.filter(function(m){ return m.prof; }).forEach(function(m){ h += '<div class="cm-mode"><span class="nm">' + m.label + '</span><span class="tm">' + T[m.k] + '<small>分</small></span><span class="cm-src">' + (SRC[m.k] === 'route' ? '道路で計算' : '概算') + '</span></div>'; });
         h += '</div>';
-        var box = el.querySelector('.mc-cm-top'); if(box) box.innerHTML = h;
+        if(box) box.innerHTML = h;
+        var gUrl = 'https://www.google.com/maps/dir/?api=1&origin=' + home.lat.toFixed(6) + ',' + home.lon.toFixed(6) + '&destination=' + dest.lat.toFixed(6) + ',' + dest.lon.toFixed(6) + '&travelmode=transit';
+        if(note) note.innerHTML = '時間は目安です。信号・坂・天気・混雑は含みません。電車・バスは、本数や時刻でかわるので、<a href="' + gUrl + '" target="_blank" rel="noopener">Googleマップで調べてください</a>。ピンの場所は保存されません(アプリを閉じると消えます)。';
       }
-      el.innerHTML = '<div class="mc-cm-top"></div><div class="mc-cm-map" id="mc-cm-map"></div><p class="cm-note">時間は目安です。信号・坂・天気・混雑は含みません。電車・バスは、本数や時刻でかわるので、<a href="' + gUrl + '" target="_blank" rel="noopener">Googleマップで調べてください</a>。自宅の場所は、この端末の中だけに置かれています。</p><p class="cm-note"><button type="button" class="linklike" id="mc-open-cm">通学マップで、くわしく見る</button></p>';
-      paint();
+      function drawLine(coords){
+        if(!mp) return;
+        if(line){ try{ mp.removeLayer(line); }catch(e){ /* no-op */ } line = null; }
+        if(!home) return;
+        line = L.polyline(coords && coords.length ? coords.map(function(q){ return [q[1], q[0]]; }) : [[home.lat, home.lon], [dest.lat, dest.lon]], { color:'#F2B84B', weight:5, opacity:.9, dashArray:coords && coords.length ? null : '8 10' }).addTo(mp);
+      }
+      function drawHome(fit){
+        if(!mp) return;
+        if(hm){ try{ mp.removeLayer(hm); }catch(e){ /* no-op */ } hm = null; }
+        if(!home){ drawLine(null); return; }
+        hm = L.marker([home.lat, home.lon], { icon:pinIcon('home', '自宅'), draggable:true, title:'自宅(ドラッグで動かせます)' }).addTo(mp);
+        hm.on('dragend', function(){ var q = hm.getLatLng(); setPin({ lat:q.lat, lon:q.lng, label:'地図で指定した位置' }, true); });
+        drawLine(null);
+        if(fit) mp.fitBounds([[home.lat, home.lon], [dest.lat, dest.lon]], { padding:[40, 40], maxZoom:15 });
+      }
+      async function compute(){
+        var my = ++ver;
+        if(!home){ paint(); return; }
+        var straight = haversine(home, dest); km = Math.round(straight * 1.3 * 10) / 10; T = {}; SRC = {}; GE = {};
+        MODES.filter(function(m){ return m.prof; }).forEach(function(m){ T[m.k] = estimate(m.k, straight); SRC[m.k] = 'est'; });
+        paint();
+        var h0 = home;
+        await Promise.all(MODES.filter(function(m){ return m.prof; }).map(async function(m){
+          try{
+            var j = await fetchJson('https://routing.openstreetmap.de/' + m.prof + '/route/v1/driving/' + h0.lon + ',' + h0.lat + ';' + dest.lon + ',' + dest.lat + '?overview=full&geometries=geojson', 9000);
+            var r = j && j.routes && j.routes[0];
+            if(!r || !(r.duration > 0)) throw new Error('no route');
+            if(!emb || emb.tok !== tok || my !== ver) return;
+            T[m.k] = Math.max(1, Math.round(r.duration / 60)); SRC[m.k] = 'route'; GE[m.k] = r.geometry && r.geometry.coordinates;
+            if(m.k === 'car') km = Math.round(r.distance / 100) / 10;
+          }catch(e){ /* 概算のまま */ }
+        }));
+        if(!emb || emb.tok !== tok || my !== ver) return;
+        paint();
+        drawLine(km <= 12 ? (GE.bike || GE.car || GE.walk) : (GE.car || GE.bike || GE.walk));
+      }
+      function setPin(h, fromDrag){
+        home = h; S.home = h; GEO = {};
+        S.dests.forEach(function(d){ d.t = null; d.src = null; d.km = null; d.kmSrc = null; d.kmRoute = false; });
+        drawHome(!fromDrag); compute();
+      }
       el.querySelector('#mc-open-cm').onclick = function(){ var b = document.getElementById('ai-chat-back'); if(b) b.click(); if(window.goTab) window.goTab('commute'); };
-      var mp = null, line = null;
+      el.querySelector('#mc-clear-home').onclick = function(){
+        home = null; S.home = null; GEO = {}; ver++;
+        S.dests.forEach(function(d){ d.t = null; d.src = null; d.km = null; d.kmSrc = null; d.kmRoute = false; });
+        drawHome(false); paint();
+        if(mp) mp.setView([dest.lat, dest.lon], 12);
+      };
+      var homeMsgEl = el.querySelector('#mc-home-msg');
+      wireSearch(el.querySelector('.mc-home-form'), el.querySelector('.mc-home-q'), el.querySelector('.mc-home-res'), homeMsgEl, function(r){
+        el.querySelector('.mc-home-q').value = '';
+        setPin({ lat:r.lat, lon:r.lon, label:r.name });
+        msg(homeMsgEl, 'ピンを置きました。ずれているときは、地図をタップするか、ピンをドラッグして直してください。');
+      }, false);
       if(typeof L !== 'undefined'){
         try{
           mp = L.map(el.querySelector('#mc-cm-map'), { zoomControl:true, attributionControl:true }); emb.map = mp;
-          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:18, attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors' }).addTo(mp);
-          L.marker([home.lat, home.lon], { icon:pinIcon('home', '自宅') }).addTo(mp);
+          addBase(mp);
           L.marker([dest.lat, dest.lon], { icon:pinIcon('dest', '志') }).addTo(mp);
-          line = L.polyline([[home.lat, home.lon], [dest.lat, dest.lon]], { color:'#F2B84B', weight:5, opacity:.9, dashArray:'8 10' }).addTo(mp);
-          mp.fitBounds([[home.lat, home.lon], [dest.lat, dest.lon]], { padding:[40, 40], maxZoom:15 });
-          setTimeout(function(){ if(emb && emb.tok === tok && mp){ mp.invalidateSize(); mp.fitBounds([[home.lat, home.lon], [dest.lat, dest.lon]], { padding:[40, 40], maxZoom:15 }); } }, 120);
+          mp.on('click', function(e){ setPin({ lat:e.latlng.lat, lon:e.latlng.lng, label:'地図で指定した位置' }, false); });
+          if(home){ drawHome(true); } else { mp.setView([dest.lat, dest.lon], 12); }
+          setTimeout(function(){ if(emb && emb.tok === tok && mp){ mp.invalidateSize(); if(home) mp.fitBounds([[home.lat, home.lon], [dest.lat, dest.lon]], { padding:[40, 40], maxZoom:15 }); else mp.setView([dest.lat, dest.lon], 12); } }, 120);
         }catch(e){ var me = el.querySelector('#mc-cm-map'); if(me) me.hidden = true; }
       }else{ var m0 = el.querySelector('#mc-cm-map'); if(m0) m0.hidden = true; }
-      await Promise.all(MODES.filter(function(m){ return m.prof; }).map(async function(m){
-        try{
-          var j = await fetchJson('https://routing.openstreetmap.de/' + m.prof + '/route/v1/driving/' + home.lon + ',' + home.lat + ';' + dest.lon + ',' + dest.lat + '?overview=full&geometries=geojson', 9000);
-          var r = j && j.routes && j.routes[0];
-          if(!r || !(r.duration > 0)) throw new Error('no route');
-          if(!emb || emb.tok !== tok) return;
-          T[m.k] = Math.max(1, Math.round(r.duration / 60)); SRC[m.k] = 'route'; GE[m.k] = r.geometry && r.geometry.coordinates;
-          if(m.k === 'car') km = Math.round(r.distance / 100) / 10;
-        }catch(e){ /* 概算のまま */ }
-      }));
-      if(!emb || emb.tok !== tok) return;
-      paint();
-      var g = (km <= 12 ? (GE.bike || GE.car || GE.walk) : (GE.car || GE.bike || GE.walk));
-      if(mp && g && g.length){
-        try{ if(line) mp.removeLayer(line); line = L.polyline(g.map(function(q){ return [q[1], q[0]]; }), { color:'#F2B84B', weight:5, opacity:.9 }).addTo(mp); }catch(e){ /* no-op */ }
-      }
+      await compute();
     }
     return { show:show, plan:plan, plans:allPlans, reset:reset, init:init, embed:embed, embedDestroy:embedDestroy };
   })();
@@ -13142,7 +13252,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
           (x.done ? '' : '<span>' + esc(x.s) + '</span>') +
           (i === cur ? '<button type="button" class="btn primary" ' + (x.act ? 'data-hsa="' + x.act + '"' : 'data-hs="' + x.go + '"') + '>' + esc(x.btn) + ' →</button>' : '') + '</div></li>';
       });
-      h += '</ol><p class="hs-foot">順番は自由です。目標の学校を決めたあとは、理想の自分にもどって追加で考えると、道すじがはっきりします。ほかにも、「進路に役立つ情報」(香川のキャリア・奨学金・通学マップ)と予定表は、左のメニューからいつでも見られます。</p>';
+      h += '</ol><p class="hs-foot">順番は自由です。目標の学校を決めたあとは、理想の自分にもどって追加で考えると、道すじがはっきりします。ほかにも、「進路に役立つ情報」(香川のキャリア・奨学金・通学マップ)と予定表は、左のメニューの「もっと見る」からいつでも見られます。</p>';
       box.hidden = false; box.innerHTML = h;
     }
     window.homeStartRender = render;
@@ -13763,6 +13873,57 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
   window.cmShow = CM.show; window.dpShow = DP.show; window.dpApplyCommute = DP.apply; window.dpRefresh = function(){ DP.refresh(); if(FUT && FUT.refresh) FUT.refresh(); };
   window.vaylFeatureReset = function(){ try{ CM.reset(); DP.reset(); FUT.reset(); OB.reset(); BG.reset(); }catch(e){ /* no-op */ } };
   window.CM = CM;
+})();
+
+/* ---- メニューをすっきり: はじめは「ホーム・理想の自分・診断・設定」だけ。使いはじめると、残りが自動で出る。設定の「見た目」は、たたむ ---- */
+(function(){
+  var KEY = 'vayl-menu-v1';
+  var EXTRA = { career:1, support:1, commute:1, info:1, schedule:1 };
+  var open = false;
+  try{ var j = JSON.parse(localStorage.getItem(KEY) || 'null'); open = !!(j && j.open); }catch(e){ /* no-op */ }
+  var nav = null, more = null;
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify({ open:open })); }catch(e){ /* no-op */ } }
+  function apply(){
+    if(!nav) return;
+    nav.classList.toggle('more-closed', !open);
+    if(more){ more.hidden = open; more.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  }
+  function used(){
+    try{ if(window.FUTAPI && window.FUTAPI.card && window.FUTAPI.card()) return true; }catch(e){ /* no-op */ }
+    try{ var f = window.__flowInfo && window.__flowInfo(); if(f && (f.diagDone || f.diagProg || f.rm > 0)) return true; }catch(e){ /* no-op */ }
+    return false;
+  }
+  function unlock(){ if(open) return; open = true; save(); apply(); }
+  window.menuSync = function(id){
+    if(open) return;
+    if(id && EXTRA[id]) return unlock();
+    if(used()) unlock();
+  };
+  function build(){
+    nav = document.getElementById('sidenav-items'); if(!nav || document.getElementById('nav-more')) return;
+    var info = document.getElementById('tab-info'), sch = document.getElementById('tab-schedule');
+    [info, sch].forEach(function(b){ if(b) b.classList.add('nav-extra'); });
+    more = document.createElement('button');
+    more.type = 'button'; more.id = 'nav-more'; more.className = 'nav-more'; more.setAttribute('aria-expanded', 'false'); more.setAttribute('aria-controls', 'tab-info');
+    more.innerHTML = '<span class="ico"><svg class="ico-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span><span class="navlabel">もっと見る</span>';
+    more.addEventListener('click', function(){ open = true; save(); apply(); if(info) info.focus(); });
+    if(info) nav.insertBefore(more, info);
+    apply();
+    window.menuSync();
+  }
+  /* 設定: 見た目の4つのカードを、ひとつにたたむ */
+  function fold(){
+    var first = document.getElementById('theme-card');
+    if(!first || document.getElementById('set-look')) return;
+    var d = document.createElement('details');
+    d.id = 'set-look'; d.className = 'set-fold';
+    d.innerHTML = '<summary><b>見た目</b><small>昼と夜・アイコン・色・背景を変える</small></summary><div class="set-fold-body"></div>';
+    first.parentNode.insertBefore(d, first);
+    var body = d.querySelector('.set-fold-body');
+    ['theme-card', 'icon-card', 'pal-card', 'bg-card'].forEach(function(id){ var c = document.getElementById(id); if(c) body.appendChild(c); });
+  }
+  function go(){ build(); fold(); setTimeout(function(){ window.menuSync(); }, 800); setTimeout(function(){ window.menuSync(); }, 2500); }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
 })();
 
 </script>
