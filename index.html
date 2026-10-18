@@ -2792,6 +2792,72 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
 .ic-th{ display:flex; justify-content:center; align-items:center; height:76px; border-radius:8px; }
 .ic-th svg{ border-radius:15px; box-shadow:0 1px 6px rgba(0,0,0,.25); }
 
+/* ---------- 学校カード(一覧は簡単に)と、詳しい画面 ---------- */
+.matchcard.mc-compact .desc:not(.mc-sum), .matchcard.mc-compact .foot{ display:none; }
+.matchcard.mc-compact .mc-sum{ display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; margin:4px 0 0; }
+.mc-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+.mc-actions{ flex-wrap:nowrap; }
+.mc-actions .btn, .mc-actions .roadmap-btn{ flex:1 1 0; width:auto; min-width:0; margin:0; justify-content:center; white-space:nowrap; }
+@media print{
+  .matchcard.mc-compact .desc, .matchcard.mc-compact .foot{ display:block !important; }
+  .matchcard.mc-compact .mc-sum{ display:block !important; overflow:visible !important; }
+  .mc-actions{ display:none !important; }
+}
+.mc-detail[hidden], .mc-askhead[hidden]{ display:none !important; }
+.mc-detail .matchcard.mc-full{ margin:0; }
+.mc-askhead{ display:flex; align-items:center; gap:8px; margin:22px 0 10px; font-size:1rem; color:var(--ink); }
+.mc-commute{ margin-top:14px; border:1px solid var(--line); border-radius:14px; background:var(--paper-raise); }
+.mc-commute > summary{ cursor:pointer; padding:14px 16px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:8px; list-style:none; min-height:44px; }
+.mc-commute > summary::-webkit-details-marker{ display:none; }
+.mc-commute > summary::after{ content:"＋"; margin-left:auto; color:var(--muted); }
+.mc-commute[open] > summary::after{ content:"−"; }
+.mc-commute-body{ padding:0 16px 16px; }
+.mc-cm-map{ height:260px; border-radius:12px; overflow:hidden; border:1px solid var(--line); margin:12px 0; }
+.mc-cm-map[hidden]{ display:none; }
+.mc-cm-modes{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+.mc-cm-modes .cm-mode{ cursor:default; text-align:center; }
+.cm-src{ display:block; font-size:.68rem; color:var(--muted); margin-top:2px; }
+
+/* ---------- 切りかえのつまみ(進路に役立つ情報 / 診断) ---------- */
+.seg-strip{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; margin:0 0 16px; }
+.seg-title{ font-size:.78rem; font-weight:800; letter-spacing:.06em; color:var(--muted); }
+.seg-btns{ display:flex; flex-wrap:wrap; gap:4px; padding:4px; border-radius:999px; background:var(--sea-soft); border:1px solid var(--line); max-width:100%; }
+.seg-btns button{ border:0; background:transparent; color:var(--ink-soft); font:inherit; font-weight:700; font-size:.88rem; padding:8px 15px; border-radius:999px; min-height:40px; cursor:pointer; }
+.seg-btns button.on{ background:var(--sea); color:var(--on-sea); }
+.seg-btns button[hidden]{ display:none !important; }
+
+/* ---------- ホーム=いまの一歩 / ロードマップ=全体の道すじ ---------- */
+.hd-now .hd-goal{ margin:0; font-size:.86rem; color:var(--ink-soft); line-height:1.5; }
+.hd-now .hd-phase{ margin:10px 0 0; font-size:.78rem; color:var(--muted); }
+.hd-now .hd-phase b{ color:var(--ink); font-weight:700; }
+.hd-step{ list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:8px; }
+.hd-step li{ display:flex; gap:12px; align-items:center; padding:10px 12px; border-radius:14px; background:var(--sea-soft); font-size:.92rem; line-height:1.5; color:var(--ink); transition:opacity .35s, transform .35s; min-width:0; }
+.hd-step li > span{ min-width:0; overflow-wrap:anywhere; }
+.hd-step li.first{ padding:14px 14px; font-size:1.04rem; font-weight:700; border:2px solid var(--terracotta); background:var(--paper-raise); }
+.hd-step li em{ display:block; font-style:normal; font-size:.7rem; font-weight:700; color:var(--sea); letter-spacing:.04em; margin-bottom:2px; }
+.hd-chk{ flex:none; width:44px; height:44px; border-radius:50%; border:2px solid var(--sea); background:var(--paper-raise); color:transparent; display:grid; place-items:center; cursor:pointer; padding:0; transition:background .2s, color .2s, transform .2s; }
+.hd-chk svg{ width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+@media (hover:hover){ .hd-chk:hover{ background:var(--sea-soft); color:var(--sea); } }
+.hd-step li.is-done{ opacity:.55; transform:translateX(6px); }
+.hd-step li.is-done .hd-chk{ background:var(--sea); color:var(--on-sea,#fff); border-color:var(--sea); }
+.hd-step li.is-done > span{ text-decoration:line-through; }
+.hd-now .hd-more{ margin:8px 2px 0; font-size:.76rem; color:var(--muted); }
+.hd-now .hd-actions{ justify-content:space-between; }
+.hd-now .hd-prog{ font-size:.76rem; color:var(--muted); font-variant-numeric:tabular-nums; }
+@media (prefers-reduced-motion:reduce){ .hd-step li, .hd-chk{ transition:none; } }
+
+.hr-card.has-ov{ flex-wrap:wrap; }
+.rm-ov{ flex:1 1 100%; list-style:none; margin:6px 0 0; padding:12px 0 0; border-top:1px dashed var(--line); display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; min-width:0; }
+.rm-ov-p{ display:flex; flex-direction:column; gap:4px; min-width:0; font-size:.82rem; line-height:1.4; color:var(--ink-soft); }
+.rm-ov-p b{ color:var(--ink); font-weight:700; overflow-wrap:anywhere; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.rm-ov-p small{ font-size:.72rem; color:var(--muted); font-variant-numeric:tabular-nums; }
+.rm-ov-p small em{ font-style:normal; font-weight:800; color:var(--ink); background:var(--terracotta); border-radius:999px; padding:1px 8px; }
+.rm-ov-bar{ display:block; height:8px; border-radius:99px; background:var(--line); overflow:hidden; }
+.rm-ov-bar i{ display:block; height:100%; background:var(--sea); border-radius:99px; }
+.rm-ov-p.now .rm-ov-bar{ box-shadow:0 0 0 2px var(--terracotta); }
+.rm-ov-p.todo{ opacity:.75; }
+@media print{ .hd-chk{ display:none; } }
+
 </style>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -2839,14 +2905,11 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     </button>
     <div class="sidenav-items" id="sidenav-items" role="tablist" aria-label="メインメニュー" aria-orientation="vertical">
       <button role="tab" id="tab-home" data-tab="home" aria-selected="true" aria-controls="panel-home" tabindex="0"><span class="ico"><svg class="ico-svg"><use href="#i-house"/></svg></span><span class="navlabel">ホーム</span></button>
+      <button role="tab" id="tab-future" data-tab="future" aria-selected="false" aria-controls="panel-future" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-polaris"/></svg></span><span class="navlabel">理想の自分</span></button>
       <button role="tab" id="tab-roadmaps" data-tab="roadmaps" aria-selected="false" aria-controls="panel-roadmaps" tabindex="-1" hidden><span class="ico"><svg class="ico-svg"><use href="#i-route"/></svg></span><span class="navlabel">ロードマップ</span></button>
       <button role="tab" id="tab-shindan" data-tab="shindan" aria-selected="false" aria-controls="panel-shindan" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-list-checks"/></svg></span><span class="navlabel">診断</span></button>
-      <button role="tab" id="tab-results" data-tab="results" aria-selected="false" aria-controls="panel-results" tabindex="-1" hidden><span class="ico"><svg class="ico-svg"><use href="#i-clipboard"/></svg></span><span class="navlabel">診断結果</span></button>
-      <button role="tab" id="tab-career" data-tab="career" aria-selected="false" aria-controls="panel-career" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-palmtree"/></svg></span><span class="navlabel">香川で叶うキャリア</span></button>
-      <button role="tab" id="tab-support" data-tab="support" aria-selected="false" aria-controls="panel-support" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-graduation-cap"/></svg></span><span class="navlabel">奨学金・支援制度</span></button>
+      <button role="tab" id="tab-info" data-tab="info" aria-selected="false" aria-controls="panel-career" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-palmtree"/></svg></span><span class="navlabel">進路に役立つ情報</span></button>
       <button role="tab" id="tab-schedule" data-tab="schedule" aria-selected="false" aria-controls="panel-schedule" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-calendar"/></svg></span><span class="navlabel">予定表</span></button>
-      <button role="tab" id="tab-future" data-tab="future" aria-selected="false" aria-controls="panel-future" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-polaris"/></svg></span><span class="navlabel">理想の自分</span></button>
-      <button role="tab" id="tab-commute" data-tab="commute" aria-selected="false" aria-controls="panel-commute" tabindex="-1"><span class="ico"><svg class="ico-svg"><use href="#i-map-pin"/></svg></span><span class="navlabel">通学マップ</span></button>
       <button role="tab" id="tab-settings" data-tab="settings" aria-selected="false" aria-controls="panel-settings" tabindex="-1" class="nav-settings"><span class="ico"><svg class="ico-svg"><use href="#i-sliders"/></svg></span><span class="navlabel">設定</span></button>
     </div>
   </nav>
@@ -2919,10 +2982,11 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
 
   <!-- ===================== 診断(3つの診断から選ぶ) ===================== -->
   <section class="panel" id="panel-shindan" role="tabpanel" aria-labelledby="tab-shindan" tabindex="0">
+    <div class="seg-strip noprint" role="group" aria-label="診断"><span class="seg-title">診断</span><div class="seg-btns"><button type="button" data-goseg="shindan" aria-pressed="false">診断する</button><button type="button" data-goseg="results" data-sub-results hidden aria-pressed="false">診断結果</button></div></div>
     <div class="section-head">
       <span class="eyebrow">Diagnosis</span>
       <h2>診断</h2>
-      <p>いまの自分に合う診断を選んでください。診断の結果が出たら、「学校を目標にする」か「もう一度診断する」を選べます。目標の学校を決めた診断は、「診断結果」タブにしまわれます。</p>
+      <p>いまの自分に合う診断を選んでください。診断の結果が出たら、各学校の「目標にする」か「もう一度診断する」を選べます。目標の学校を決めた診断は、「診断」の中の「診断結果」にしまわれます。</p>
     </div>
     <div class="shindan-grid" id="shindan-grid"></div>
     <p class="set-note">複数の診断をしたときは、新しい診断で作るロードマップを、いまのロードマップに統合するか、別に作るかを選べます。</p>
@@ -2977,7 +3041,8 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
   </section>
 
   <!-- ===================== キャリア ===================== -->
-  <section class="panel" id="panel-career" role="tabpanel" aria-labelledby="tab-career" tabindex="0">
+  <section class="panel" id="panel-career" role="tabpanel" aria-label="香川で叶うキャリア" tabindex="0">
+    <div class="seg-strip noprint" role="group" aria-label="進路に役立つ情報"><span class="seg-title">進路に役立つ情報</span><div class="seg-btns"><button type="button" data-goseg="career" aria-pressed="false">香川で叶うキャリア</button><button type="button" data-goseg="support" aria-pressed="false">奨学金・支援制度</button><button type="button" data-goseg="commute" aria-pressed="false">通学マップ</button></div></div>
     <div class="section-head">
       <span class="eyebrow">Career in Kagawa</span>
       <h2>香川で叶うキャリア</h2>
@@ -2988,7 +3053,8 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
   </section>
 
   <!-- ===================== 支援制度 ===================== -->
-  <section class="panel" id="panel-support" role="tabpanel" aria-labelledby="tab-support" tabindex="0">
+  <section class="panel" id="panel-support" role="tabpanel" aria-label="奨学金・支援制度" tabindex="0">
+    <div class="seg-strip noprint" role="group" aria-label="進路に役立つ情報"><span class="seg-title">進路に役立つ情報</span><div class="seg-btns"><button type="button" data-goseg="career" aria-pressed="false">香川で叶うキャリア</button><button type="button" data-goseg="support" aria-pressed="false">奨学金・支援制度</button><button type="button" data-goseg="commute" aria-pressed="false">通学マップ</button></div></div>
     <div class="section-head">
       <span class="eyebrow">Scholarships &amp; Support</span>
       <h2>奨学金・支援制度</h2>
@@ -3014,7 +3080,8 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
   </section>
 
   <!-- ===================== 通学マップ ===================== -->
-  <section class="panel" id="panel-commute" role="tabpanel" aria-labelledby="tab-commute" tabindex="0">
+  <section class="panel" id="panel-commute" role="tabpanel" aria-label="通学マップ" tabindex="0">
+    <div class="seg-strip noprint" role="group" aria-label="進路に役立つ情報"><span class="seg-title">進路に役立つ情報</span><div class="seg-btns"><button type="button" data-goseg="career" aria-pressed="false">香川で叶うキャリア</button><button type="button" data-goseg="support" aria-pressed="false">奨学金・支援制度</button><button type="button" data-goseg="commute" aria-pressed="false">通学マップ</button></div></div>
     <div class="section-head section-head-compact">
       <span class="eyebrow">Commute</span>
       <h2>通学マップ</h2>
@@ -3154,7 +3221,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     <div class="section-head">
       <span class="eyebrow">Roadmap</span>
       <h2>ロードマップ</h2>
-      <p>これまでに作ったロードマップです(新しい順に5件まで保存されます)。選ぶと、前回のつづきから開きます。</p>
+      <p>ゴールまでの「全体の道すじ」です。時期ごとの進み具合と、いまの位置が見わたせます(新しい順に5件まで保存されます)。今日やる一歩は、ホームに出ます。</p>
     </div>
     <div id="roadmaps-list"></div>
     <div class="card fu-trk" id="fu-trk" hidden></div>
@@ -3271,7 +3338,8 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
   </section>
 
   <!-- ===================== 診断結果(ロードマップを作った診断をまとめる) ===================== -->
-  <section class="panel" id="panel-results" role="tabpanel" aria-labelledby="tab-results" tabindex="0">
+  <section class="panel" id="panel-results" role="tabpanel" aria-label="診断結果" tabindex="0">
+    <div class="seg-strip noprint" role="group" aria-label="診断"><span class="seg-title">診断</span><div class="seg-btns"><button type="button" data-goseg="shindan" aria-pressed="false">診断する</button><button type="button" data-goseg="results" data-sub-results hidden aria-pressed="false">診断結果</button></div></div>
     <div class="section-head">
       <span class="eyebrow">Results</span>
       <h2>診断結果</h2>
@@ -3456,9 +3524,12 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     <div class="ai-screen-bar">
       <button type="button" class="ai-back" id="ai-chat-back"><svg class="ico-svg" aria-hidden="true"><use href="#i-arrow-left"/></svg> 戻る</button>
       <div class="ai-screen-title"><span class="uni" id="ai-chat-title-uni"></span><h3 id="ai-chat-title-faculty"></h3></div>
+      <button type="button" class="btn primary ai-roadmap-cta" id="ai-chat-adopt-btn" hidden>目標にする</button>
       <button type="button" class="btn primary ai-roadmap-cta" id="ai-chat-roadmap-btn"><svg class="ico-svg" aria-hidden="true"><use href="#i-sparkles"/></svg> この大学に行くためのロードマップを作る</button>
     </div>
     <div class="ai-screen-body">
+      <div class="mc-detail" id="ai-chat-detail" hidden></div>
+      <h4 class="mc-askhead" id="ai-chat-askhead" hidden><svg class="ico-svg" aria-hidden="true"><use href="#i-sparkles"/></svg> この学校についてAIに質問する</h4>
       <div class="chatwrap">
         <div class="chatlog" id="ai-chat-log" aria-live="polite"></div>
         <form class="chatform" id="ai-chat-form"><textarea rows="2" placeholder="この大学について聞いてみましょう(例: どんな雰囲気の学部ですか?)"></textarea><button class="btn primary" type="submit">送信</button></form>
@@ -3657,7 +3728,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
 
   var REASON_MSG = {
     grades:'成績に自信が持てなくても、県外に出れば選択肢が広がるとは限りません。学部との「興味・関心の相性」は、偏差値だけでは測れない大事な指標です。まずは下の診断結果と、香川県立保健医療大学・高松大学などの実践重視の学びも見てみてください。',
-    notavailable:'「香川ではやりたいことができない」と感じている場合は、次の「香川で叶うキャリア」タブも合わせて見てみてください。うどん県のイメージ以上に、ものづくり・IT・デザインなど多様な仕事が県内にあります。',
+    notavailable:'「香川ではやりたいことができない」と感じている場合は、「進路に役立つ情報」の「香川で叶うキャリア」も合わせて見てみてください。うどん県のイメージ以上に、ものづくり・IT・デザインなど多様な仕事が県内にあります。',
     adventure:'一度県外に出てみたい気持ちも大切です。ただ、香川にいながらインターンや留学制度、地域プロジェクトを通じて「非日常」に触れる道もあります。診断結果を選択肢の一つとして眺めてみてください。',
     peer:'「周りがそうしているから」で決める前に、自分の興味・得意なことと照らし合わせてみましょう。診断結果が、進路を自分の言葉で考えるきっかけになれば幸いです。'
   };
@@ -3770,7 +3841,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     if(st.v < 2){ if(st.ambient === 30) st.ambient = 60; st.v = 2; }
     /* BGMが大きすぎたので、触っていない「60」は一度だけ35に下げる(音の上限も下げた) */
     if(st.v < 3){ if(st.ambient === 60) st.ambient = 35; st.v = 3; if(localStorage.getItem(KEY)) save(); }
-    if(!/^(auto|wish|t[1-8])$/.test(st.track)) st.track = 'auto';
+    if(!/^(auto|wish|t[2467])$/.test(st.track)) st.track = 'auto';
     function curve(v){ v = Math.max(0, Math.min(100, v)) / 100; return v * v; }
 
     var ctx = null, mGain, aGain, sGain, amb = null;
@@ -3791,19 +3862,16 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     /* ---- BGM: 時刻ごとの曲(作曲: ZERO)。設定で曲をえらべる。チュートリアル中は「願い事」。ファイルが読めない曲は「願い事」→波の音の順でもどる ---- */
     var BGM = {
       wish:{ id:'wish', n:'ネガイゴト', r:'', f:'negaigoto.mp3', g:1.00 },
-      t1:{ id:'t1', n:'未明', r:'3〜5時', f:'bgm1.mp3', g:1.50 },
-      t2:{ id:'t2', n:'明け方', r:'5〜7時', f:'bgm2.mp3', g:1.26 },
+      t2:{ id:'t2', n:'明け方', r:'3〜7時', f:'bgm2.mp3', g:1.26 },
       t3:{ id:'t3', n:'朝', r:'7〜11時', f:'bgm3.mp3', g:1.15 },
-      t4:{ id:'t4', n:'正午', r:'11〜15時', f:'bgm4.mp3', g:0.40 },
-      t5:{ id:'t5', n:'夕暮れ', r:'15〜18時', f:'bgm5.mp3', g:1.46 },
-      t6:{ id:'t6', n:'夜の初め', r:'18〜21時', f:'bgm6.mp3', g:1.06 },
-      t7:{ id:'t7', n:'夜遅く', r:'21〜24時', f:'bgm7.mp3', g:0.45 },
-      t8:{ id:'t8', n:'深夜', r:'0〜3時', f:'bgm8.mp3', g:0.89 }
+      t4:{ id:'t4', n:'正午', r:'11〜17時', f:'bgm4.mp3', g:0.40 },
+      t6:{ id:'t6', n:'夜の初め', r:'17〜21時', f:'bgm6.mp3', g:1.06 },
+      t7:{ id:'t7', n:'夜遅く', r:'21〜3時', f:'bgm7.mp3', g:0.45 }
     };
-    var SLOTS = [ [0, 't8'], [3, 't1'], [5, 't2'], [7, 't3'], [11, 't4'], [15, 't5'], [18, 't6'], [21, 't7'] ];
+    var SLOTS = [ [0, 't7'], [3, 't2'], [7, 't3'], [11, 't4'], [17, 't6'], [21, 't7'] ];
     var musG = null, musicOk = true, trk = {}, tutSet = {}, tutTimer = null;
     function slotId(){
-      var d = new Date(), h = d.getHours() + d.getMinutes() / 60, id = 't8';
+      var d = new Date(), h = d.getHours() + d.getMinutes() / 60, id = 't7';
       SLOTS.forEach(function(x){ if(h >= x[0]) id = x[1]; });
       return id;
     }
@@ -3999,7 +4067,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     function syncTrackUI(){
       var box = document.getElementById('set-track-list'); if(!box) return;
       var items = [ { id:'auto', n:'時刻で自動', sub:'いまの時刻に合う曲(おすすめ)' } ];
-      SLOTS.slice(1).concat([SLOTS[0]]).forEach(function(x){ var m = BGM[x[1]]; items.push({ id:m.id, n:m.n, sub:m.r }); });
+      ['t2','t3','t4','t6','t7'].forEach(function(k){ var m = BGM[k]; items.push({ id:m.id, n:m.n, sub:m.r }); });
       items.push({ id:'wish', n:BGM.wish.n, sub:'チュートリアルの曲' });
       box.innerHTML = items.map(function(b){
         var on = st.track === b.id;
@@ -4545,11 +4613,15 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     if(ev.key === 'Escape' && sidenavEl.classList.contains('expanded')){ collapseSidenav(); }
   });
 
-  var SHINDAN_SUB = { suisen:1, diag:1, senmon:1 };   /* 3つの診断は、メニューでは「診断」の下にまとめる */
-  document.addEventListener('click', function(ev){ if(ev.target.closest && ev.target.closest('[data-goshindan]')) window.goTab('shindan'); });
+  var SHINDAN_SUB = { suisen:1, diag:1, senmon:1, results:1 };   /* 3つの診断と診断結果は、メニューでは「診断」の下にまとめる */
+  var INFO_SUB = { career:1, support:1, commute:1 };   /* キャリア・奨学金・通学マップは、メニューでは「進路に役立つ情報」の下にまとめる */
+  document.addEventListener('click', function(ev){ if(ev.target.closest && ev.target.closest('[data-goshindan]')) window.goTab('shindan'); var sg = ev.target.closest && ev.target.closest('[data-goseg]'); if(sg) window.goTab(sg.getAttribute('data-goseg')); });
   window.goTab = function(id, focusTab){
     if(id === 'dayplan'){ window.__futView = 'day'; id = 'future'; }
-    var navId = SHINDAN_SUB[id] ? 'shindan' : id;
+    if(id === 'info') id = window.__infoLast || 'career';
+    if(INFO_SUB[id]) window.__infoLast = id;
+    var navId = SHINDAN_SUB[id] ? 'shindan' : (INFO_SUB[id] ? 'info' : id);
+    document.querySelectorAll('[data-goseg]').forEach(function(b){ var on = b.getAttribute('data-goseg') === id; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
     document.querySelectorAll('section.panel').forEach(function(p){ p.classList.toggle('active', p.id === 'panel-'+id); });
     tabButtons.forEach(function(b){
       var selected = b.dataset.tab === navId;
@@ -4818,7 +4890,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     lines.push('・生徒からの質問に、日本語で簡潔かつ具体的に答えること。');
     var _st = aiStates[currentAIKey];
     if(ctx && ctx.noRoadmap && !(_st && _st.roadmap && _st.roadmap.data)){
-      lines.push('・生徒が合格までの計画や対策の全体像を知りたそうにしていたら、診断の結果画面で「学校を目標にする」を選び、「診断結果」タブからロードマップを作れることを一言案内してよい。この画面にロードマップのボタンはないので、「右上のボタン」などとは言わないこと。');
+      lines.push('・生徒が合格までの計画や対策の全体像を知りたそうにしていたら、診断の結果画面で、気になる学校の「目標にする」を選び、「診断」の中の「診断結果」からロードマップを作れることを一言案内してよい。この画面にロードマップのボタンはないので、「右上のボタン」などとは言わないこと。');
     } else {
       lines.push('・生徒が合格までの計画や対策の全体像を知りたそうにしていたら、画面右上の「ロードマップ」のボタンから専用の画面に進めることを一言案内してよい。');
     }
@@ -5265,7 +5337,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
   function renderAIChatLog(){
     var st = aiStates[currentAIKey];
     aiChatLog.innerHTML = '';
-    appendAIBubble(aiChatLog, 'assistant', 'この画面では「' + st.ctx.uniName + ' ' + st.ctx.faculty + '」について、気になることをAIに自由に質問できます。' + (st.ctx.noRoadmap && !st.roadmap.data ? 'ロードマップは、診断の結果画面の「この結果でロードマップを作る」から作れます。' : '右上のボタンから、' + (st.roadmap.data ? 'ロードマップを開くこともできます。' : '合格までのロードマップを作ることもできます。')));
+    appendAIBubble(aiChatLog, 'assistant', 'この画面では「' + st.ctx.uniName + ' ' + st.ctx.faculty + '」について、気になることをAIに自由に質問できます。' + (st.ctx.noRoadmap && !st.roadmap.data ? '気に入ったら「目標にする」を押してね。そのあと理想の自分を見直してから、ロードマップを作れます。' : '右上のボタンから、' + (st.roadmap.data ? 'ロードマップを開くこともできます。' : '合格までのロードマップを作ることもできます。')));
     st.chat.display.forEach(function(d){ appendAIBubble(aiChatLog, d.role, d.text); });
   }
 
@@ -5279,12 +5351,29 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     btn.innerHTML = '<svg class="ico-svg" aria-hidden="true"><use href="#i-sparkles"/></svg> ' + (has ? n + 'のロードマップを開く' : n + 'に行くためのロードマップを作る');
   }
 
-  function openAIChatScreen(slotKey, ctx){
+  function setupDetail(ctx, cardEl){
+    var det = document.getElementById('ai-chat-detail'), ask = document.getElementById('ai-chat-askhead'), ab = document.getElementById('ai-chat-adopt-btn');
+    if(window.CM && CM.embedDestroy) CM.embedDestroy();
+    if(!cardEl){ det.hidden = true; det.innerHTML = ''; ask.hidden = true; ab.hidden = true; ab.onclick = null; return; }
+    var cl = cardEl.cloneNode(true), type = cardEl.getAttribute('data-adopt-type') || '';
+    cl.classList.remove('mc-compact'); cl.classList.add('mc-full'); cl.removeAttribute('data-adopt-type');
+    Array.prototype.forEach.call(cl.querySelectorAll('.mc-actions,.roadmapbox'), function(e){ e.parentNode.removeChild(e); });
+    det.innerHTML = ''; det.appendChild(cl);
+    det.insertAdjacentHTML('beforeend', '<details class="mc-commute" id="mc-commute"><summary><svg class="ico-svg" aria-hidden="true"><use href="#i-map-pin"/></svg> 通学(自宅から)</summary><div class="mc-commute-body" id="mc-commute-body"><p class="set-note">開くと、自宅からこの学校までのルートと時間の目安が出ます。</p></div></details>');
+    var dt = document.getElementById('mc-commute');
+    dt.addEventListener('toggle', function(){ if(dt.open && window.CM && CM.embed) CM.embed(document.getElementById('mc-commute-body'), ctx); });
+    det.hidden = false; ask.hidden = false;
+    ab.hidden = !type;
+    ab.onclick = type ? function(){ closeAIOverlay(); if(window.mcAdopt) window.mcAdopt(type, ctx.uniName, ctx.faculty); } : null;
+  }
+  function openAIChatScreen(slotKey, ctx, cardEl){
     var key = ctx.key || (ctx.uniName + '|' + ctx.faculty);   // 診断の何番目かではなく、大学・学部ごとに会話とロードマップを保存する
     currentAIKey = key;
     aiEntry = 'chat';
     var st = ensureAIState(key, ctx);
     showAIOverlay('chat');
+    setupDetail(ctx, cardEl);
+    var ov = document.getElementById('ai-overlay'); if(ov) ov.scrollTop = 0;
     document.getElementById('ai-chat-title-uni').textContent = ctx.uniName;
     document.getElementById('ai-chat-title-faculty').textContent = ctx.faculty;
     updateChatCta();
@@ -5967,12 +6056,20 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     var next = rmNextItem(data);
     var d = new Date(cur.updatedAt);
     var circ = 2 * Math.PI * 22;
-    var h = '<div class="hr-card">';
+    var h = '<div class="hr-card has-ov">';
     h += '<div class="hr-ring"><svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="22" fill="none" stroke="var(--sea-soft)" stroke-width="6"/><circle cx="27" cy="27" r="22" fill="none" stroke="var(--terracotta)" stroke-width="6" stroke-linecap="round" stroke-dasharray="' + (circ * pct / 100).toFixed(1) + ' ' + circ.toFixed(1) + '"/></svg><b>' + pct + '%</b></div>';
     h += '<div class="hr-main"><span class="hr-label">' + prefix + (d.getMonth() + 1) + '月' + d.getDate() + '日に更新</span>';
     h += '<b class="hr-title">' + rmEsc(cur.ctx.uniName) + ' ' + rmEsc(cur.ctx.faculty) + (cur.ctx.extra && cur.ctx.extra.length ? ' ほか' + cur.ctx.extra.length + '件' : '') + '</b>';
-    h += '<span class="hr-next">' + (next ? '次にやること: ' + rmEsc(next.text) : 'すべて完了しました。おつかれさま!') + '</span></div>';
-    h += '<button type="button" class="btn primary hr-go" data-id="' + rmEsc(cur.id) + '">つづきから</button></div>';
+    h += '<span class="hr-next">' + (data.goal ? 'ゴール: ' + rmEsc(data.goal) : (next ? '' : 'すべて完了しました。おつかれさま!')) + '</span></div>';
+    h += '<button type="button" class="btn primary hr-go" data-id="' + rmEsc(cur.id) + '">全体をひらく</button>';
+    var nowSeen = false;
+    h += '<ol class="rm-ov" aria-label="ゴールまでの全体の道すじ">' + data.phases.map(function(p){
+      var pd = 0; p.items.forEach(function(i){ if(i.done) pd++; });
+      var tot = p.items.length, st = (tot && pd === tot) ? 'done' : (!nowSeen ? 'now' : 'todo');
+      if(st === 'now') nowSeen = true;
+      var w = tot ? Math.round(pd / tot * 100) : 0;
+      return '<li class="rm-ov-p ' + st + '"><span class="rm-ov-bar"><i style="width:' + w + '%"></i></span><b>' + rmEsc(p.title) + '</b><small>' + pd + ' / ' + tot + (st === 'now' ? ' ・ <em>いまここ</em>' : (st === 'done' ? ' ・ 完了' : '')) + '</small></li>';
+    }).join('') + '</ol></div>';
     return h;
   }
   function rmSavedList(){
@@ -6076,7 +6173,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
 
   function mountAskAIButton(btn, key, ctx){
     if(!btn) return;
-    btn.addEventListener('click', function(){ openAIChatScreen(key, ctx); });
+    btn.addEventListener('click', function(){ openAIChatScreen(key, ctx, btn.closest ? btn.closest('.matchcard.mc-compact') : null); });
   }
 
   /* ---------------- quiz engine ---------------- */
@@ -6217,16 +6314,16 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     top5.forEach(function(item, idx){
       var pct = Math.max(8, Math.round((item.score / maxScore) * 100));
       var rid = 'roadmap-diag-' + idx;
-      html += '<div class="matchcard"><div class="top"><div><div class="uni">'+item.f.uni+'</div><h4>'+item.f.name+'</h4></div><div class="pct">'+pct+'%</div></div>';
+      html += '<div class="matchcard mc-compact"' + (o.readonly ? '' : ' data-adopt-type="diag"') + '><div class="top"><div><div class="uni">'+item.f.uni+'</div><h4>'+item.f.name+'</h4></div><div class="pct">'+pct+'%</div></div>';
       html += '<div class="barbg"><i style="width:'+pct+'%"></i></div>';
-      html += '<p class="desc">'+item.f.desc+'</p>';
+      html += '<p class="desc mc-sum">'+item.f.desc+'</p>';
       html += '<div class="foot"><span class="cap">'+item.f.cap+'</span><a class="gosite" href="'+item.f.url+'" target="_blank" rel="noopener">公式サイトを見る →</a></div>';
-      html += '<div class="roadmapbox"><button class="btn ghost roadmap-btn" type="button" data-rid="'+rid+'"><svg class="ico-svg" aria-hidden="true"><use href="#i-sparkles"/></svg> この大学についてAIに質問してみる</button></div>';
+      html += '<div class="mc-actions noprint"><button class="btn ghost roadmap-btn" type="button" data-rid="'+rid+'"><svg class="ico-svg" aria-hidden="true"><use href="#i-info"/></svg> 詳しく見る</button>' + (o.readonly ? '' : '<button class="btn primary" type="button" data-mc-adopt="'+rid+'">目標にする</button>') + '</div>';
       html += '</div>';
     });
     html += '</div>';
     html += '<p class="disclaimer">この診断は関心・興味の傾向をもとにした参考情報であり、入試の合格可能性や難易度を示すものではありません。学部名・定員・入試制度は変更されることがあるため、必ず各大学の公式サイトで最新情報をご確認ください。</p>';
-    if(!o.readonly) html += '<div class="quiznav noprint" style="margin-top:18px; flex-wrap:wrap; gap:10px;"><button class="btn primary" data-adopt="diag">学校を目標にする</button><button class="btn ghost" onclick="restartQuiz()">もう一度診断する</button><button class="btn ghost" onclick="jumpToSchedule()"><svg class="ico-svg" aria-hidden="true"><use href="#i-calendar"/></svg> 予定表を開く</button><button class="btn ghost" onclick="window.print()"><svg class="ico-svg" aria-hidden="true"><use href="#i-printer"/></svg> この結果を印刷する</button><button class="btn ghost" onclick="goTab(\'career\')">香川のキャリアを見る →</button></div>';
+    if(!o.readonly) html += '<div class="quiznav noprint" style="margin-top:18px; flex-wrap:wrap; gap:10px;"><button class="btn ghost" onclick="restartQuiz()">もう一度診断する</button><button class="btn ghost" onclick="jumpToSchedule()"><svg class="ico-svg" aria-hidden="true"><use href="#i-calendar"/></svg> 予定表を開く</button><button class="btn ghost" onclick="window.print()"><svg class="ico-svg" aria-hidden="true"><use href="#i-printer"/></svg> この結果を印刷する</button><button class="btn ghost" onclick="goTab(\'career\')">香川のキャリアを見る →</button></div>';
     html += '</div>';
     qa.innerHTML = html;
 
@@ -6234,6 +6331,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       var rid = 'roadmap-diag-' + idx;
       var btn = qa.querySelector('.roadmap-btn[data-rid="'+rid+'"]');
       mountAskAIButton(btn, rid, diagCtx(item.f));
+      var ab = qa.querySelector('[data-mc-adopt="'+rid+'"]'); if(ab) ab.addEventListener('click', function(){ if(window.mcAdopt) window.mcAdopt('diag', item.f.uni, item.f.name); });
     });
   }
 
@@ -8570,7 +8668,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     });
   }
 
-  function suisenSlotCardHtml(slot){
+  function suisenSlotCardHtml(slot, ro){
     var item = slot.item;
     var url = suisenSchoolUrl(item.university_id);
     var badgeCls = slot.kind === 'core' ? '' : (slot.kind === 'style' ? 'olive' : 'terra');
@@ -8581,18 +8679,18 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     if(slot.item._score_strategy > 0) reasons.push('あなたの得意な入試方法(面接・小論文など)や学科条件と相性が良さそうです');
     if(reasons.length === 0) reasons.push('ハード条件(評定・学科)を満たす候補として選ばれています');
 
-    var html = '<div class="matchcard">';
+    var html = '<div class="matchcard mc-compact"' + (ro ? '' : ' data-adopt-type="suisen"') + '>';
     html += '<div class="top"><div><span class="slotbadge '+badgeCls+'">'+slot.badge+'</span><div class="uni">'+item.name+'</div><h4>'+item.faculty+'</h4></div></div>';
-    html += '<p class="desc" style="margin-top:4px;"><b>入試区分:</b> '+item.admission_type+'</p>';
+    html += '<p class="desc mc-sum" style="margin-top:4px;"><b>入試区分:</b> '+item.admission_type+'</p>';
     if(item.label_note){ html += '<p class="desc" style="color:var(--accent-ink);">※ '+item.label_note+'</p>'; }
-    html += '<p class="desc">'+reasons.join('。')+'。</p>';
+    html += '<p class="desc mc-sum">'+reasons.join('。')+'。</p>';
     var confNotes = [];
     if(item.data_confidence && item.data_confidence.gpa_disclosed === false) confNotes.push('評定基準は公式非公表のため推定値を含みます');
     if(item.data_confidence && item.data_confidence.weights_disclosed === false) confNotes.push('配点比率は公式非公表のため推定値です');
     if(confNotes.length){ html += '<p class="desc" style="font-size:.78rem;color:var(--muted);">⚠ '+confNotes.join('・')+'。</p>'; }
     html += '<div class="foot"><span class="cap">'+(item.notes ? item.notes : '')+'</span>' + (url ? '<a class="gosite" href="'+url+'" target="_blank" rel="noopener">公式サイトを見る →</a>' : '') + '</div>';
     var rid = 'roadmap-suisen-' + slot.kind;
-    html += '<div class="roadmapbox"><button class="btn ghost roadmap-btn" type="button" data-rid="'+rid+'"><svg class="ico-svg" aria-hidden="true"><use href="#i-sparkles"/></svg> この大学についてAIに質問してみる</button></div>';
+    html += '<div class="mc-actions noprint"><button class="btn ghost roadmap-btn" type="button" data-rid="'+rid+'"><svg class="ico-svg" aria-hidden="true"><use href="#i-info"/></svg> 詳しく見る</button>' + (ro ? '' : '<button class="btn primary" type="button" data-mc-adopt="'+rid+'">目標にする</button>') + '</div>';
     html += '</div>';
     return html;
   }
@@ -8644,11 +8742,11 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     }
 
     html += '<div class="matchlist">';
-    slots.forEach(function(s){ html += suisenSlotCardHtml(s); });
+    slots.forEach(function(s){ html += suisenSlotCardHtml(s, !!o.readonly); });
     html += '</div>';
 
     html += '<p class="disclaimer">この診断はRIASEC理論・学習スタイル・キャリア発達理論にもとづくルールベースの参考情報であり、AIは使用していません。学部名・入試区分・配点等は変更されることがあるため、出願前に必ず各大学の公式サイトで最新情報をご確認ください。</p>';
-    if(!o.readonly) html += '<div class="quiznav noprint" style="margin-top:18px; flex-wrap:wrap; gap:10px;"><button class="btn primary" data-adopt="suisen">学校を目標にする</button><button class="btn ghost" onclick="restartSuisenQuiz()">もう一度診断する</button><button class="btn ghost" onclick="jumpToSchedule()"><svg class="ico-svg" aria-hidden="true"><use href="#i-calendar"/></svg> 予定表を開く</button><button class="btn ghost" onclick="goTab(\'career\')">香川のキャリアを見る →</button></div>';
+    if(!o.readonly) html += '<div class="quiznav noprint" style="margin-top:18px; flex-wrap:wrap; gap:10px;"><button class="btn ghost" onclick="restartSuisenQuiz()">もう一度診断する</button><button class="btn ghost" onclick="jumpToSchedule()"><svg class="ico-svg" aria-hidden="true"><use href="#i-calendar"/></svg> 予定表を開く</button><button class="btn ghost" onclick="goTab(\'career\')">香川のキャリアを見る →</button></div>';
     html += '</div>';
     qa.innerHTML = html;
 
@@ -8661,6 +8759,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
         noRoadmap: true,
         facts: suisenRoadmapFacts(s.item)
       });
+      var ab = qa.querySelector('[data-mc-adopt="'+rid+'"]'); if(ab) ab.addEventListener('click', function(){ if(window.mcAdopt) window.mcAdopt('suisen', s.item.name, s.item.faculty); });
     });
   }
 
@@ -9143,7 +9242,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
   /* ==================================================================
      診断の選択 / 診断結果タブ / 「この結果でロードマップを作る」
      ・診断の結果が出たら、「この結果でロードマップを作る」か「もう一度診断する」を選ぶ。
-     ・作ると決めた診断は「診断結果」タブにしまわれ(押すとその結果が開く)、診断画面は最初の状態に戻る。
+     ・作ると決めた診断は「診断」の中の「診断結果」にしまわれ(押すとその結果が開く)、診断画面は最初の状態に戻る。
      ・すでにロードマップがあるときは、新しい志望先を「統合」するか「別で作る」かを選ぶ。
        統合は、AIが既存のロードマップに新しい志望先を取り込み、1本に整理する。
      ================================================================== */
@@ -9199,6 +9298,15 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       }
       return out;
     }
+    /* いまの時期(まだ終わっていない、いちばん手前の時期)の、やること。最大 n 件 */
+    function curStep(data, n){
+      if(!data) return null;
+      for(var i = 0; i < data.phases.length; i++){
+        var left = data.phases[i].items.filter(function(x){ return !x.done; });
+        if(left.length) return { phase:data.phases[i].title, items:left.slice(0, n), more:Math.max(0, left.length - n) };
+      }
+      return null;
+    }
     function upcomingEvents(n){
       var arr = [];
       try{ arr = JSON.parse(localStorage.getItem('kagawa-compass-my-schedule-v1') || '[]') || []; }catch(e){ arr = []; }
@@ -9231,23 +9339,24 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       box.hidden = !has;
       if(!has){ box.innerHTML = ''; return; }
       var h = '';
-      /* つづきから */
-      h += '<section class="hd-card" aria-label="つづきから"><h2><span class="eyebrow-dot"></span>つづきから</h2>';
+      /* いまの一歩 */
+      h += '<section class="hd-card hd-now" aria-label="いまの一歩"><h2><span class="eyebrow-dot"></span>いまの一歩</h2>';
       if(rms.length){
-        var cur = rms[0], c = rmCounts(cur.roadmap.data), pct = c.total ? Math.round(c.done / c.total * 100) : 0, circ = 2 * Math.PI * 22;
-        var nx = nextItems(cur.roadmap.data, 3), d = new Date(cur.updatedAt);
-        h += '<div class="hd-top"><div class="hr-ring"><svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="22" fill="none" stroke="var(--sea-soft)" stroke-width="6"/><circle cx="27" cy="27" r="22" fill="none" stroke="var(--terracotta)" stroke-width="6" stroke-linecap="round" stroke-dasharray="' + (circ * pct / 100).toFixed(1) + ' ' + circ.toFixed(1) + '"/></svg><b>' + pct + '%</b></div>' +
-          '<div class="hr-main"><span class="hr-label">' + (d.getMonth() + 1) + '月' + d.getDate() + '日に更新 ・ ' + c.done + ' / ' + c.total + ' 完了</span>' +
-          '<b class="hr-title">' + rmEsc(cur.ctx.uniName) + ' ' + rmEsc(cur.ctx.faculty) + (cur.ctx.extra && cur.ctx.extra.length ? ' ほか' + cur.ctx.extra.length + '件' : '') + '</b></div></div>';
-        if(nx.length){
-          h += '<ul class="hd-next" aria-label="次にやること">' + nx.map(function(i){ return '<li><i aria-hidden="true"></i><span>' + rmEsc(i.text) + '<small>' + rmEsc(i.phase) + '</small></span></li>'; }).join('') + '</ul>';
+        var cur = rms[0], c = rmCounts(cur.roadmap.data), cs = curStep(cur.roadmap.data, 3);
+        var eid = function(i){ return 'rm:' + encodeURIComponent(cur.id) + ':' + encodeURIComponent(i.id); };
+        h += '<p class="hd-goal">' + rmEsc(cur.ctx.uniName) + ' ' + rmEsc(cur.ctx.faculty) + (cur.ctx.extra && cur.ctx.extra.length ? ' ほか' + cur.ctx.extra.length + '件' : '') + ' をめざして</p>';
+        if(cs){
+          h += '<p class="hd-phase">いまの時期: <b>' + rmEsc(cs.phase) + '</b></p><ul class="hd-step" aria-label="いまの時期にやること">' +
+            cs.items.map(function(i, n){
+              return '<li' + (n === 0 ? ' class="first"' : '') + '><button type="button" class="hd-chk" data-chk="' + rmEsc(eid(i)) + '" aria-label="できた: ' + rmEsc(i.text) + '"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button><span>' + (n === 0 ? '<em>まずはこれ</em>' : '') + rmEsc(i.text) + '</span></li>';
+            }).join('') + '</ul>';
+          if(cs.more) h += '<p class="hd-more">この時期は、ほかにあと' + cs.more + '件あります</p>';
         }else{
           h += '<p class="hd-empty" style="margin-top:12px">すべて完了しました。おつかれさま!</p>';
         }
-        h += '<div class="hd-actions"><button type="button" class="btn primary" data-rm="' + rmEsc(cur.id) + '">ロードマップをひらく</button>' +
-          (rms.length > 1 ? '<button type="button" class="hd-link" data-go="roadmaps">ほかのロードマップ(' + (rms.length - 1) + '件)</button>' : '') + '</div>';
+        h += '<div class="hd-actions"><button type="button" class="hd-link" data-go="roadmaps">ロードマップ全体を見る →</button><span class="hd-prog">全体 ' + c.done + ' / ' + c.total + ' 完了</span></div>';
       }else{
-        h += '<p class="hd-empty">まだロードマップがありません。診断をして、結果から「学校を目標にする」を選び、「診断結果」タブからロードマップを作ると、やることの道すじができます。</p>' +
+        h += '<p class="hd-empty">まだロードマップがありません。診断をして、結果から学校の「目標にする」を選び、「診断」の中の「診断結果」からロードマップを作ると、やることの道すじができます。</p>' +
           '<div class="hd-actions"><button type="button" class="btn primary" data-go="shindan">診断をえらぶ</button></div>';
       }
       h += '</section>';
@@ -9276,6 +9385,16 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     window.homeDashRender = homeDashRender;
     window.__flowInfo = function(){ var st2 = {}; ORDER.forEach(function(t){ try{ st2[t] = DIAGS[t] ? DIAGS[t].status() : { state:'new' }; }catch(e){ st2[t] = { state:'new' }; } }); return { diagDone: ORDER.some(function(t){ return st2[t].state === 'result'; }) || list().length > 0, diagProg: ORDER.some(function(t){ return st2[t].state === 'progress'; }), rm: rmSavedList().length }; };
     document.getElementById('home-dash').addEventListener('click', function(ev){
+      var ck = ev.target.closest && ev.target.closest('[data-chk]');
+      if(ck){
+        var li = ck.closest('li'); if(li) li.classList.add('is-done');
+        ck.disabled = true;
+        setTimeout(function(){
+          try{ if(window.RMSYNC) window.RMSYNC.setDone(ck.getAttribute('data-chk'), true); }catch(e){ /* no-op */ }
+          homeDashRender();
+        }, 380);
+        return;
+      }
       var r = ev.target.closest && ev.target.closest('[data-rm]');
       if(r){ openSavedRoadmap(r.getAttribute('data-rm')); return; }
       var g = ev.target.closest && ev.target.closest('[data-go]');
@@ -9338,10 +9457,10 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     function resRender(){
       var box = document.getElementById('results-list');
       if(!box) return;
-      var tab = document.getElementById('tab-results'), items = list();
-      if(tab) tab.hidden = !items.length;
+      var items = list();
+      document.querySelectorAll('[data-sub-results]').forEach(function(b){ b.hidden = !items.length; });
       if(!items.length){
-        box.innerHTML = '<p class="set-note">まだありません。診断の結果で「学校を目標にする」を選ぶと、ここにしまわれます。</p>';
+        box.innerHTML = '<p class="set-note">まだありません。診断の結果で、学校の「目標にする」を選ぶと、ここにしまわれます。</p>';
         if(document.getElementById('panel-results').classList.contains('active')) window.goTab('shindan');
         return;
       }
@@ -9474,7 +9593,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       var h = '<div class="adopt-box" role="dialog" aria-modal="true" aria-labelledby="adopt-title"><h3 id="adopt-title">' + (A.mode === 'rm' ? 'ロードマップを作る' : '目標にする学校を選ぶ') + '</h3>';
       h += (A.mode === 'rm')
         ? '<p class="set-note" style="margin-top:6px">「' + rmEsc(nameOf(cand.ctx)) + '」のロードマップを作ります。</p>'
-        : '<p class="set-note" style="margin-top:6px">「' + D.label + '」の結果です。ひとつ選ぶと、この診断は「診断結果」タブにしまわれます。選んだ学校も入れて、理想の自分を見直します。</p>';
+        : '<p class="set-note" style="margin-top:6px">「' + D.label + '」の結果です。ひとつ選ぶと、この診断は「診断」の中の「診断結果」にしまわれます。選んだ学校も入れて、理想の自分を見直します。</p>';
       if(A.mode !== 'rm'){ h += '<fieldset><legend>どの学校を目標にしますか?</legend>';
       A.cands.forEach(function(c, i){
         h += '<label class="adopt-opt"><input type="radio" name="adopt-cand" value="' + i + '"' + (i === A.sel ? ' checked' : '') + '><span><b>' + rmEsc(c.label) + (savedOf(keyOf(c.ctx)) ? '<span class="adopt-have">ロードマップあり</span>' : '') + '</b><small>' + rmEsc(c.sub || '') + '</small></span></label>';
@@ -9501,12 +9620,14 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       modal.innerHTML = h;
       var f = modal.querySelector('input[name="adopt-cand"]:checked'); if(f) f.focus({preventScroll:true});
     }
-    function openAdopt(type){
+    function openAdopt(type, pick){
       var D = DIAGS[type];
       if(!D || !D.hasResult()) return;
       var c = D.candidates();
       if(!c.length) return;
-      A = { type:type, cands:c, snap:D.snapshot(), sel:0, how:'new', mergeKey:null, aiOk:true };
+      var si = 0;
+      if(pick) c.forEach(function(x, i){ if(x.ctx && x.ctx.uniName === pick.uniName && x.ctx.faculty === pick.faculty) si = i; });
+      A = { type:type, cands:c, snap:D.snapshot(), sel:si, how:'new', mergeKey:null, aiOk:true };
       renderAdopt();
       modal.hidden = false;
       getAISampleFn().then(function(fn){ if(!fn && A){ A.aiOk = false; renderAdopt(); } });
@@ -9559,6 +9680,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       var b = ev.target.closest && ev.target.closest('[data-adopt]');
       if(b){ ev.preventDefault(); openAdopt(b.getAttribute('data-adopt')); }
     });
+    window.mcAdopt = function(type, uniName, faculty){ openAdopt(type, { uniName:uniName, faculty:faculty }); };
     resRender();
     shindanRender();
     homeDashRender();
@@ -10981,7 +11103,82 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       if(map){ setTimeout(function(){ map.invalidateSize(); redrawMarkers(true); }, 60); }
     }
     function reset(){ S = { dests:[], chat:{ turns:[], display:[], quick:[] } }; GEO = {}; if(inited){ if(map) redrawMarkers(false); renderAll(); if(chat) chat.render(); } }
-    return { show:show, plan:plan, plans:allPlans, reset:reset, init:init };
+    /* ----- 学校の「詳しい画面」の中に出す、自宅からの通学(畳んである) ----- */
+    var emb = null;
+    function embedDestroy(){ if(emb && emb.map){ try{ emb.map.remove(); }catch(e){ /* no-op */ } } emb = null; }
+    function campusFor(uni, fac){
+      uni = String(uni || ''); fac = String(fac || '');
+      if(/香川大学/.test(uni)){
+        if(/創造工|工学/.test(fac)) return CAMPUS[1];
+        if(/医学|看護|臨床心理/.test(fac)) return CAMPUS[2];
+        if(/農/.test(fac)) return CAMPUS[3];
+        return CAMPUS[0];
+      }
+      var pairs = [['四国学院', 4], ['高松短期大学', 5], ['高松大学', 5], ['香川短期大学', 6], ['保健医療', 7], ['徳島文理', 8], ['せとうち観光', 9], ['職業能力開発', 10]];
+      for(var i = 0; i < pairs.length; i++) if(uni.indexOf(pairs[i][0]) >= 0) return CAMPUS[pairs[i][1]];
+      var sm = (window.VAYL_DATA && window.VAYL_DATA.senmon) || [];
+      for(var k = 0; k < sm.length; k++) if(sm[k].name === uni) return [sm[k].name, String(sm[k].address || '').replace(/\(〒[^)]*\)/, '').trim(), sm[k].name];
+      return [uni, '', uni];
+    }
+    async function embed(el, ctx){
+      embedDestroy();
+      if(!el) return;
+      if(!S.home){
+        el.innerHTML = '<p class="set-note">自宅の場所がまだ決まっていません。「進路に役立つ情報」の「通学マップ」で自宅を決めると、ここに、この学校までのルートと時間の目安が出ます。自宅の場所は、この端末の中だけに置かれ、AIには送られません。</p><button type="button" class="btn ghost" id="mc-go-cm">通学マップで自宅を決める</button>';
+        el.querySelector('#mc-go-cm').onclick = function(){ var b = document.getElementById('ai-chat-back'); if(b) b.click(); if(window.goTab) window.goTab('commute'); };
+        return;
+      }
+      var c = campusFor(ctx && ctx.uniName, ctx && ctx.faculty), tok = {};
+      emb = { tok:tok, map:null };
+      el.innerHTML = '<p class="set-note">「' + esc(c[0]) + '」の場所を探しています…</p>';
+      var list;
+      try{ list = await geocodeSchool(c[1], c[2]); }
+      catch(e){ if(emb && emb.tok === tok) el.innerHTML = '<p class="cm-msg err">検索できませんでした。ネットワークをご確認ください。</p>'; return; }
+      if(!emb || emb.tok !== tok) return;
+      if(!list.length){ el.innerHTML = '<p class="cm-msg err">学校の場所が見つかりませんでした。「通学マップ」から探してみてください。</p>'; return; }
+      var dest = { lat:list[0].lat, lon:list[0].lon }, home = S.home;
+      var straight = haversine(home, dest), km = Math.round(straight * 1.3 * 10) / 10, T = {}, SRC = {}, GE = {};
+      MODES.filter(function(m){ return m.prof; }).forEach(function(m){ T[m.k] = estimate(m.k, straight); SRC[m.k] = 'est'; });
+      var gUrl = 'https://www.google.com/maps/dir/?api=1&origin=' + home.lat.toFixed(6) + ',' + home.lon.toFixed(6) + '&destination=' + dest.lat.toFixed(6) + ',' + dest.lon.toFixed(6) + '&travelmode=transit';
+      function paint(){
+        var h = '<p class="cm-sub">自宅から「' + esc(c[0]) + '」まで、' + (SRC.car === 'route' ? '道のりで約' : '約') + km + 'km' + (SRC.car === 'route' ? '' : '(直線距離×1.3の概算)') + '</p><div class="cm-modes mc-cm-modes">';
+        MODES.filter(function(m){ return m.prof; }).forEach(function(m){ h += '<div class="cm-mode"><span class="nm">' + m.label + '</span><span class="tm">' + T[m.k] + '<small>分</small></span><span class="cm-src">' + (SRC[m.k] === 'route' ? '道路で計算' : '概算') + '</span></div>'; });
+        h += '</div>';
+        var box = el.querySelector('.mc-cm-top'); if(box) box.innerHTML = h;
+      }
+      el.innerHTML = '<div class="mc-cm-top"></div><div class="mc-cm-map" id="mc-cm-map"></div><p class="cm-note">時間は目安です。信号・坂・天気・混雑は含みません。電車・バスは、本数や時刻でかわるので、<a href="' + gUrl + '" target="_blank" rel="noopener">Googleマップで調べてください</a>。自宅の場所は、この端末の中だけに置かれています。</p><p class="cm-note"><button type="button" class="linklike" id="mc-open-cm">通学マップで、くわしく見る</button></p>';
+      paint();
+      el.querySelector('#mc-open-cm').onclick = function(){ var b = document.getElementById('ai-chat-back'); if(b) b.click(); if(window.goTab) window.goTab('commute'); };
+      var mp = null, line = null;
+      if(typeof L !== 'undefined'){
+        try{
+          mp = L.map(el.querySelector('#mc-cm-map'), { zoomControl:true, attributionControl:true }); emb.map = mp;
+          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:18, attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors' }).addTo(mp);
+          L.marker([home.lat, home.lon], { icon:pinIcon('home', '自宅') }).addTo(mp);
+          L.marker([dest.lat, dest.lon], { icon:pinIcon('dest', '志') }).addTo(mp);
+          line = L.polyline([[home.lat, home.lon], [dest.lat, dest.lon]], { color:'#F2B84B', weight:5, opacity:.9, dashArray:'8 10' }).addTo(mp);
+          mp.fitBounds([[home.lat, home.lon], [dest.lat, dest.lon]], { padding:[40, 40], maxZoom:15 });
+          setTimeout(function(){ if(emb && emb.tok === tok && mp){ mp.invalidateSize(); mp.fitBounds([[home.lat, home.lon], [dest.lat, dest.lon]], { padding:[40, 40], maxZoom:15 }); } }, 120);
+        }catch(e){ var me = el.querySelector('#mc-cm-map'); if(me) me.hidden = true; }
+      }else{ var m0 = el.querySelector('#mc-cm-map'); if(m0) m0.hidden = true; }
+      await Promise.all(MODES.filter(function(m){ return m.prof; }).map(async function(m){
+        try{
+          var j = await fetchJson('https://routing.openstreetmap.de/' + m.prof + '/route/v1/driving/' + home.lon + ',' + home.lat + ';' + dest.lon + ',' + dest.lat + '?overview=full&geometries=geojson', 9000);
+          var r = j && j.routes && j.routes[0];
+          if(!r || !(r.duration > 0)) throw new Error('no route');
+          if(!emb || emb.tok !== tok) return;
+          T[m.k] = Math.max(1, Math.round(r.duration / 60)); SRC[m.k] = 'route'; GE[m.k] = r.geometry && r.geometry.coordinates;
+          if(m.k === 'car') km = Math.round(r.distance / 100) / 10;
+        }catch(e){ /* 概算のまま */ }
+      }));
+      if(!emb || emb.tok !== tok) return;
+      paint();
+      var g = (km <= 12 ? (GE.bike || GE.car || GE.walk) : (GE.car || GE.bike || GE.walk));
+      if(mp && g && g.length){
+        try{ if(line) mp.removeLayer(line); line = L.polyline(g.map(function(q){ return [q[1], q[0]]; }), { color:'#F2B84B', weight:5, opacity:.9 }).addTo(mp); }catch(e){ /* no-op */ }
+      }
+    }
+    return { show:show, plan:plan, plans:allPlans, reset:reset, init:init, embed:embed, embedDestroy:embedDestroy };
   })();
 
   /* =================================================================
@@ -12932,7 +13129,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       var pathDone = PH.any, revDone = !!(api.reviewed && api.reviewed());
       var steps = [
         { n:1, t:'理想の自分を描く', s:'えらぶだけ・1分ほど。行きたい先が少し見えてきます', done:hasCardNow, go:'future', btn:'描いてみる' },
-        { n:2, t:'診断を受けて、目標の学校を決める', s:'好きな診断をえらべます(推薦診断は21問・5分ほど)。結果が出たら「学校を目標にする」で、ひとつ決めます', done:pathDone, go:'shindan', btn:last.diagProg ? 'つづきから' : (last.diagDone ? '診断の結果へ' : '診断をはじめる') },
+        { n:2, t:'診断を受けて、目標の学校を決める', s:'好きな診断をえらべます(推薦診断は21問・5分ほど)。結果が出たら、学校の「目標にする」で、ひとつ決めます', done:pathDone, go:'shindan', btn:last.diagProg ? 'つづきから' : (last.diagDone ? '診断の結果へ' : '診断をはじめる') },
         { n:3, t:'理想の自分を見直す', s:'目標の学校が決まったら、その学校も入れて、理想の自分を追加で考えます。何度でもやり直せます', done:revDone, avail:pathDone && hasCardNow, act:'review', btn:'AIと考える' },
         { n:4, t:'ロードマップを作る', s:'目標の学校へ向けて、AIといっしょに「やることの道すじ」を作ります', done:PH.rms.length > 0, avail:pathDone, go:(PH.res.length ? 'results' : 'shindan'), btn:'ロードマップを作る' }
       ];
@@ -12945,7 +13142,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
           (x.done ? '' : '<span>' + esc(x.s) + '</span>') +
           (i === cur ? '<button type="button" class="btn primary" ' + (x.act ? 'data-hsa="' + x.act + '"' : 'data-hs="' + x.go + '"') + '>' + esc(x.btn) + ' →</button>' : '') + '</div></li>';
       });
-      h += '</ol><p class="hs-foot">順番は自由です。目標の学校を決めたあとは、理想の自分にもどって追加で考えると、道すじがはっきりします。ほかにも、香川のキャリア・奨学金・予定表・通学マップは、左のメニューからいつでも見られます。</p>';
+      h += '</ol><p class="hs-foot">順番は自由です。目標の学校を決めたあとは、理想の自分にもどって追加で考えると、道すじがはっきりします。ほかにも、「進路に役立つ情報」(香川のキャリア・奨学金・通学マップ)と予定表は、左のメニューからいつでも見られます。</p>';
       box.hidden = false; box.innerHTML = h;
     }
     window.homeStartRender = render;
@@ -13016,7 +13213,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       var hint, btn = '', act = '';
       if(!f.hasCard){ hint = 'まず「理想の自分」を描くと、進路が選びやすくなります。診断のあとにも、何度でも直せます。'; btn = '理想を描く'; act = 'go:future'; }
       else if(!f.path){
-        if(f.diagDone){ hint = '診断の結果が出ています。「学校を目標にする」を選ぶと、目標が決まります。'; btn = '診断の結果へ'; act = 'go:shindan'; }
+        if(f.diagDone){ hint = '診断の結果が出ています。学校の「目標にする」を選ぶと、目標が決まります。'; btn = '診断の結果へ'; act = 'go:shindan'; }
         else{ hint = f.diagProg ? '診断のつづきがあります。' : '理想が見えてきました。次は、診断で進路の候補を探しましょう。'; btn = f.diagProg ? 'つづきから' : '診断へ'; act = 'go:shindan'; }
       }
       else if(f.reviewing){ hint = '見直し中です。AIの変更案から、入れたいものを選びましょう。'; }
@@ -13328,7 +13525,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       else if((b = t.closest('[data-cg]'))){ st.g = b.getAttribute('data-cg'); chips(); renderList(); }
       else if((b = t.closest('[data-ce]'))){ var i = +b.getAttribute('data-ce'); st.e[i] = !st.e[i]; chips(); renderList(); }
     });
-    var tab = document.getElementById('tab-career');
+    var tab = document.getElementById('tab-info');
     if(tab) tab.addEventListener('click', function(){ if(st.open && panel.classList.contains('active')) close(); });
     window.corpOpen = function(g){ if(window.goTab) window.goTab('career'); open(g || ''); };
   })();
