@@ -2891,6 +2891,13 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
 .mc-commute #mc-clear-home{ margin-right:14px; }
 .mc-commute .mc-cm-map{ min-height:300px; }
 
+/* ---------- 目標にする確認(学校が決まっているとき) ---------- */
+.adopt-one{ margin:10px 0 0; padding:12px 14px; border-radius:12px; background:var(--sea-soft); font-size:1.02rem; line-height:1.5; color:var(--ink); overflow-wrap:anywhere; }
+/* ---------- 地図が上のバナーにかぶらないように、地図の重なり順を地図の中だけに閉じこめる ---------- */
+.mc-cm-map, #cm-map, .cm-mapbox{ position:relative; z-index:0; isolation:isolate; }
+.ai-screen-bar{ z-index:30; }
+.mc-cm-map, #cm-map{ transform:translateZ(0); }
+
 </style>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -9653,11 +9660,13 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       var others = rmSavedList().filter(function(i){ return i.id !== key; });
       if(A.how === 'merge' && (A.mode !== 'rm' || !A.aiOk || !others.length || has)) A.how = 'new';
       if(!A.mergeKey || !others.some(function(i){ return i.id === A.mergeKey; })) A.mergeKey = others.length ? others[0].id : null;
-      var h = '<div class="adopt-box" role="dialog" aria-modal="true" aria-labelledby="adopt-title"><h3 id="adopt-title">' + (A.mode === 'rm' ? 'ロードマップを作る' : '目標にする学校を選ぶ') + '</h3>';
+      var h = '<div class="adopt-box" role="dialog" aria-modal="true" aria-labelledby="adopt-title"><h3 id="adopt-title">' + (A.mode === 'rm' ? 'ロードマップを作る' : (A.single ? 'この学校を目標にしますか?' : '目標にする学校を選ぶ')) + '</h3>';
       h += (A.mode === 'rm')
         ? '<p class="set-note" style="margin-top:6px">「' + rmEsc(nameOf(cand.ctx)) + '」のロードマップを作ります。</p>'
-        : '<p class="set-note" style="margin-top:6px">「' + D.label + '」の結果です。ひとつ選ぶと、この診断は「診断」の中の「診断結果」にしまわれます。選んだ学校も入れて、理想の自分を見直します。</p>';
-      if(A.mode !== 'rm'){ h += '<fieldset><legend>どの学校を目標にしますか?</legend>';
+        : (A.single
+          ? '<p class="adopt-one"><b>' + rmEsc(nameOf(cand.ctx)) + '</b></p><p class="set-note" style="margin-top:6px">この学校を目標にして、理想の自分を見直します。いまの「' + D.label + '」の結果は、「診断」の中の「診断結果」にしまわれます。</p>'
+          : '<p class="set-note" style="margin-top:6px">「' + D.label + '」の結果です。ひとつ選ぶと、この診断は「診断」の中の「診断結果」にしまわれます。選んだ学校も入れて、理想の自分を見直します。</p>');
+      if(A.mode !== 'rm' && !A.single){ h += '<fieldset><legend>どの学校を目標にしますか?</legend>';
       A.cands.forEach(function(c, i){
         h += '<label class="adopt-opt"><input type="radio" name="adopt-cand" value="' + i + '"' + (i === A.sel ? ' checked' : '') + '><span><b>' + rmEsc(c.label) + (savedOf(keyOf(c.ctx)) ? '<span class="adopt-have">ロードマップあり</span>' : '') + '</b><small>' + rmEsc(c.sub || '') + '</small></span></label>';
       });
@@ -9688,9 +9697,10 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       if(!D || !D.hasResult()) return;
       var c = D.candidates();
       if(!c.length) return;
-      var si = 0;
-      if(pick) c.forEach(function(x, i){ if(x.ctx && x.ctx.uniName === pick.uniName && x.ctx.faculty === pick.faculty) si = i; });
-      A = { type:type, cands:c, snap:D.snapshot(), sel:si, how:'new', mergeKey:null, aiOk:true };
+      var si = 0, found = false;
+      if(pick) c.forEach(function(x, i){ if(x.ctx && x.ctx.uniName === pick.uniName && x.ctx.faculty === pick.faculty){ si = i; found = true; } });
+      /* 学校のカードから「目標にする」を押したときは、どの学校かは決まっているので、選ばせずに確認だけする */
+      A = { type:type, cands:c, snap:D.snapshot(), sel:si, how:'new', mergeKey:null, aiOk:true, single:found };
       renderAdopt();
       modal.hidden = false;
       getAISampleFn().then(function(fn){ if(!fn && A){ A.aiOk = false; renderAdopt(); } });
