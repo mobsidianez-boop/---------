@@ -23,7 +23,7 @@
 var SUPABASE_URL = 'https://rnbfsgncwvzriecvmrwr.supabase.co';
 var SUPABASE_ANON_KEY = 'sb_publishable_0KEtC4pQPpcHtZuCmjIM9w_NleW7vAF';
 /* アカウントを使う設定で、まだログインしていないときは、アプリより先にログイン画面だけを出す(アプリがちらっと見えないように) */
-(function(){ try{ if(SUPABASE_URL && SUPABASE_ANON_KEY && !localStorage.getItem('tyosen-account-v1')) document.documentElement.classList.add('gated'); }catch(e){} })();
+/* ログインしなくても使える(はじめは「端末だけ」で使う)。ログインの画面は、設定の「アカウント」から開く。 */
 </script>
 <title>VAYL</title>
 <style>
@@ -2898,6 +2898,17 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
 .ai-screen-bar{ z-index:30; }
 .mc-cm-map, #cm-map{ transform:translateZ(0); }
 
+/* ---- 端末だけで使う(仮ログイン)/ ログイン画面を設定から開く ---- */
+.gate .gate-close{ display:block; margin:0 0 8px; font-size:.86rem; }
+.gate .gate-carry{ margin:12px 0 0; padding:10px 12px; border:1px solid var(--line); border-radius:14px; background:var(--paper-sunk, rgba(120,160,200,.08)); }
+.gate .gate-carry legend{ padding:0 6px; font-size:.84rem; font-weight:700; }
+.gate .gate-carry label{ display:flex; gap:8px; align-items:flex-start; margin:6px 0; font-size:.92rem; line-height:1.5; cursor:pointer; }
+.gate .gate-carry input{ margin-top:.35em; }
+.gate .gate-carry small{ display:block; font-size:.78rem; color:var(--ink-soft, #5a6f85); font-weight:400; }
+.gate .acct-choice .linklike{ margin-top:10px; font-size:.86rem; }
+
+#acct-guest .set-note{ padding:0; background:none; border:0; border-radius:0; -webkit-backdrop-filter:none; backdrop-filter:none; }
+
 </style>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
@@ -3309,6 +3320,11 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     </div>
     <div class="card set-card" id="acct-card" hidden>
       <h3>アカウント</h3>
+      <div id="acct-guest">
+        <p class="acct-who"><b>この端末だけで使っています</b>(仮ログイン)</p>
+        <p class="set-note" style="margin:6px 0 0">診断の結果や、理想の自分、ロードマップは、この端末のブラウザの中だけに保存されます。メールアドレスで登録(ログイン)すると、別の端末でも続きから使えます。いまのデータを、引き継ぐこともできます。</p>
+        <div class="set-actions"><button type="button" class="btn primary" id="acct-open-login">メールアドレスでログイン・新規登録</button></div>
+      </div>
       <div id="acct-in" hidden>
         <p class="acct-who"><b id="acct-who"></b> でログイン中</p>
         <p class="set-note" id="acct-status" style="margin:6px 0 0"></p>
@@ -3410,6 +3426,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
 
   <div class="gate" id="login-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title" hidden>
     <div class="gate-box">
+      <button type="button" class="linklike gate-close" id="gate-close">← あとで(この端末だけで使う)</button>
       <p class="gate-mark" aria-hidden="true">VAYL</p>
       <div id="acct-out">
         <h2 id="gate-title">ログイン</h2>
@@ -3418,6 +3435,11 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
           <button type="button" role="tab" data-gmode="signup" aria-selected="false">新規登録</button>
         </div>
         <p class="set-note gate-lead" id="gate-lead"></p>
+        <fieldset class="gate-carry" id="gate-carry" hidden>
+          <legend>この端末のいまのデータは?</legend>
+          <label><input type="radio" name="gate-carry" value="carry" checked> <span>アカウントに引き継ぐ<small>診断の結果や理想の自分などを、アカウントに預けます。(アカウントにもデータがあるときは、どちらを使うか、あとで選べます)</small></span></label>
+          <label><input type="radio" name="gate-carry" value="fresh"> <span>引き継がない<small>アカウントのデータだけを使います。この端末のいまのデータは消えます。</small></span></label>
+        </fieldset>
 
         <form id="acct-form-pw" class="acct-form" novalidate>
           <div class="acct-field"><label class="acct-label" for="pw-email">メールアドレス</label>
@@ -3467,6 +3489,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
         <p class="set-note" style="margin:0">この端末にも、アカウントにも、データがあります。どちらか1つを選んでください。</p>
         <button type="button" class="btn primary" id="acct-use-cloud">アカウントのデータを使う<small>(この端末のデータは消えます)</small></button>
         <button type="button" class="btn ghost" id="acct-use-local">この端末のデータを使う<small>(アカウントのデータは上書きされます)</small></button>
+        <button type="button" class="linklike" id="acct-choice-cancel">やめて、この端末だけで使う(ログインしない)</button>
       </div>
       <p class="set-note set-wipe-msg" id="gate-msg" role="status" hidden></p>
       <p class="set-note gate-foot">メールアドレスは、ログインと、データの保存のためだけに使います。<button type="button" class="linklike" data-priv-open>データの扱いについて</button></p>
@@ -4191,7 +4214,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
      ・ログインしなくても、これまで通り使える(その場合、データはこの端末のブラウザだけに保存される)。
      ・ログインすると、診断・ロードマップ・予定表などのデータ(localStorageの kagawa-… のキー)を、Supabase に預ける。
        どの端末からでも、同じメールアドレスでログインすれば、続きから使える。
-     ・パスワードは使わない(メールに届くコードで入る)。Supabaseの設定は supabase/README.md を見る。
+     ・ログインは、メールアドレス+パスワード、または、メールに届くコードで行う。はじめは「端末だけ(仮ログイン)」で使え、設定からログイン・新規登録できる。Supabaseの設定は supabase/README.md を見る。
      ・SUPABASE_URL と SUPABASE_ANON_KEY が空のままなら、この機能は画面に出ない。
        ※ anon key(公開用のキー)は、ページに書いてよいもの。データは「行ごとのアクセス制限(RLS)」で、本人だけが読める。
        ※ service_role key(秘密のキー)は、絶対にここへ書かない。 */
@@ -4305,7 +4328,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
           var choice = opts.choice || null;
           if(same){ rkeys.forEach(function(k){ meta.remoteAt[k] = remote[k].updated_at; }); meta.initialized = true; }
           else if(!locals.length) choice = 'cloud';
-          else if(!rkeys.length) choice = 'local';
+          else if(!rkeys.length && choice !== 'cloud') choice = 'local';
           if(!meta.initialized){
             if(!choice){ needChoice = true; render(); syncing = false; return { ok:true, needChoice:true }; }
             needChoice = false;
@@ -4381,13 +4404,15 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     var elOut = $('acct-out'), elIn = $('acct-in'), fEmail = $('acct-form-email'), fCode = $('acct-form-code');
     var inEmail = $('acct-email'), inCode = $('acct-code'), elSent = $('acct-sent'), elMsg = $('acct-msg'), elStatus = $('acct-status');
     var elWho = $('acct-who'), elChoice = $('acct-choice'), banner = $('acct-banner'), gate = $('login-gate'), gMsg = $('gate-msg'), gWait = $('gate-wait'), gateBusy = false;
+    var elGuest = $('acct-guest'), elCarry = $('gate-carry'), elClose = $('gate-close'), userOpen = false;
     var sentTo = '', cooldownTimer = null, cooldownLeft = 0;
     function say(t, bad){ [elMsg, gMsg].forEach(function(m){ if(!m) return; m.textContent = t || ''; m.hidden = !t; m.classList.toggle('bad', !!bad); }); }
     function two(n){ return n < 10 ? '0' + n : '' + n; }
     function setStatus(t){ if(elStatus) elStatus.textContent = t; }
     function render(){
       var on = !!sess;
-      elOut.hidden = on; elIn.hidden = !on; card.hidden = !on;
+      if(on && !needChoice && !gateBusy) userOpen = false;
+      elOut.hidden = on; elIn.hidden = !on; card.hidden = false; if(elGuest) elGuest.hidden = on;
       if(on){
         elWho.textContent = (sess.user && sess.user.email) || '';
         var dirtyN = Object.keys(meta.dirty).length;
@@ -4401,7 +4426,8 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
         setStatus(t);
       }
       elChoice.hidden = !(on && needChoice);
-      var showGate = !on || needChoice || gateBusy;      /* ログインするまで(と、データを選ぶあいだ)は、ログイン画面だけを出す */
+      var showGate = (!on && userOpen) || needChoice || gateBusy;      /* 設定から開いたとき(と、データを選ぶあいだ)だけ、ログイン画面を出す */
+      if(elClose) elClose.hidden = !(!on && !gateBusy);
       gate.hidden = !showGate; gWait.hidden = !(on && gateBusy && !needChoice);
       document.documentElement.classList.toggle('gated', showGate);
       banner.hidden = !(sess && pending.length && !needChoice);
@@ -4423,6 +4449,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       elBack.hidden = (m === 'login' || m === 'signup');
       Array.prototype.forEach.call(elTabs.querySelectorAll('[data-gmode]'), function(b){ b.setAttribute('aria-selected', b.getAttribute('data-gmode') === m ? 'true' : 'false'); });
       elTitle.textContent = TXT[m][0]; elLead.textContent = TXT[m][1];
+      if(elCarry) elCarry.hidden = !(localKeys().length > 0 && m !== 'recover');
       purpose = m === 'recover' ? 'recovery' : (m === 'signup' ? 'signup' : 'otp');
       var b1 = $('acct-send'); b1.disabled = false; b1.textContent = 'コードを送る';
       var b2 = $('su-send'); b2.disabled = false; b2.textContent = 'コードを送る';
@@ -4474,7 +4501,8 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       }
       say('');
       gateBusy = true; render();      /* アカウントのデータを読みこむまで、ログイン画面のまま「読みこんでいます」を出す */
-      var r = await sync({ apply:true });
+      var pick = document.querySelector('input[name="gate-carry"]:checked');
+      var r = await sync({ apply:true, choice: (pick && pick.value === 'fresh' && !prev) ? 'cloud' : null });
       if(!(r && r.changed)){ gateBusy = false; render(); setMode('login'); }
     }
     function prevUser(){ return (sess && sess.user && sess.user.id) || meta.uid; }
@@ -4561,6 +4589,13 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       try{ await authed('PUT', '/auth/v1/user', { password:pw }); $('acct-pw-new').value = ''; say('パスワードを決めました。次からは、メールアドレスとパスワードで、ログインできます。'); }
       catch(e){ say((e && e.code === 'reauthentication_needed') ? 'いちど、ログアウトして、ログインしなおしてから、もう一度ためしてください。' : errText(e, 'pw'), true); }
       finally{ b.disabled = false; }
+    });
+    $('acct-open-login').addEventListener('click', function(){ userOpen = true; setMode('login'); render(); try{ $('pw-email').focus({preventScroll:true}); }catch(e){ /* no-op */ } });
+    elClose.addEventListener('click', function(){ userOpen = false; say(''); render(); });
+    document.addEventListener('keydown', function(ev){ if(ev.key === 'Escape' && userOpen && !sess && !gateBusy){ userOpen = false; render(); } });
+    $('acct-choice-cancel').addEventListener('click', function(){      /* データを選ぶ前にやめる: ログインを取り消して、この端末だけの状態にもどる(端末のデータは、そのまま) */
+      sess = null; saveSess(); meta = { remoteAt:{}, dirty:{}, initialized:false }; lsDel(META_KEY);
+      needChoice = false; pending = []; gateBusy = false; userOpen = false; say(''); setMode('login'); render();
     });
     $('acct-sync').addEventListener('click', function(){ say(''); sync({ apply:true }); });
     $('acct-use-cloud').addEventListener('click', function(){ sync({ apply:true, choice:'cloud' }); });
