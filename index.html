@@ -10246,11 +10246,16 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
           var monthPart = parts[0]+'-'+parts[1];
           if(selectMonthKey === monthPart){
             /* ➕を押した直後 → この週に書き込む */
+            var wy = parseInt(parts[0],10), wm = parseInt(parts[1],10), widx = parseInt(parts[2],10);
+            var wSlot = weekSlotsForMonth(wy,wm)[widx];
+            var wTodayStr = ymd(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+            var wFirstSelectable = datesInRange(wSlot.start, wSlot.end).filter(function(d2){ return d2 >= wTodayStr; })[0];
             composeWeekKey = k;
             selectMonthKey = null;
             composeDraftText = '';
             composeColor = 'sea';
-            composeDayDate = null; /* render() 側で「今日以降で最初に選べる日」を自動選択する */
+            /* 週の最初の日(月曜)がもう過ぎていることがあるため、今日以降で最初に選べる日をここで確定しておく */
+            composeDayDate = wFirstSelectable || wSlot.start;
             render();
             setTimeout(function(){
               var el = document.getElementById('compose-input');
@@ -10555,6 +10560,16 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       return d;
     }
     function dstr(d){ return ymd(d.getFullYear(), d.getMonth(), d.getDate()); }
+
+    /* 予定表を開いた時点で、今日が含まれる月と週をあらかじめ開いておく */
+    (function openCurrentWeekByDefault(){
+      var todayStr0 = ymd(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+      var slot0 = slotForDate(todayStr0);
+      var weekSlots0 = weekSlotsForMonth(slot0.ownerY, slot0.ownerM);
+      var wIdx0 = weekSlotIndexFor(todayStr0, weekSlots0);
+      openMonthKey = monthKey(slot0.ownerY, slot0.ownerM);
+      openWeekKey = openMonthKey+'-'+wIdx0;
+    })();
 
     render();
   })();
