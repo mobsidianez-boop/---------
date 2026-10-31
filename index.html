@@ -585,10 +585,14 @@ var SUPABASE_ANON_KEY = 'sb_publishable_0KEtC4pQPpcHtZuCmjIM9w_NleW7vAF';
   .week-node.empty{ border-style:dashed; border-color:var(--line); color:var(--muted); background:var(--paper); }
 
   /* 週を選んでいる最中(➕を押した直後)は、週の丸をふわっと光らせて選べることを示す */
-  .weeks-row.selecting .week-node{
+  .weeks-row.selecting .week-node:not(.past){
     border-color:var(--terracotta); animation:pulseweek 1.4s ease-in-out infinite;
   }
   @keyframes pulseweek{ 0%,100%{ box-shadow:var(--shadow); } 50%{ box-shadow:0 0 0 5px var(--terracotta-soft); } }
+  /* すでに終わった週には追加できないので、選んでいる最中は薄く表示してクリックできないことを示す */
+  .weeks-row.selecting .week-node.past{
+    cursor:not-allowed; opacity:.4; background:var(--paper); border-color:var(--line); color:var(--muted);
+  }
 
   /* 週の列の横に置く、追加用の➕ボタン(アイコンのみ) */
   .week-add-toggle{
@@ -10106,6 +10110,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       loadRmEvents();
       var months = buildMonthList();
       var tY = todayDate.getFullYear(), tM = todayDate.getMonth();
+      var todayStr = ymd(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
       var html = '';
 
       if(allEvents().length===0 && !openMonthKey){
@@ -10161,7 +10166,10 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
             var wkey = key+'-'+slot.idx;
             var wEvs = groups[slot.idx] || [];
             var wOpen = openWeekKey === wkey;
-            html += '<button type="button" class="week-node'+(wEvs.length?'':' empty')+(wOpen?' open':'')+'" data-week="'+wkey+'">'+
+            /* 追加する週を選んでいる最中は、週全体がもう終わっている(日曜日が今日より前)週は選べないようにする */
+            var blockForAdd = selecting && (slot.end < todayStr);
+            html += '<button type="button" class="week-node'+(wEvs.length?'':' empty')+(wOpen?' open':'')+(blockForAdd?' past':'')+'"'+
+                      (blockForAdd ? ' disabled aria-disabled="true" title="過ぎた週には追加できません"' : ' data-week="'+wkey+'"')+'>'+
                       (wEvs.length ? '<span class="cnt">'+wEvs.length+'</span>' : '')+
                       '<span>'+(slot.idx+1)+'</span><span class="wk">週目</span>'+
                     '</button>';
