@@ -10091,7 +10091,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
        openWeekKey    : 予定を表示中の週(例 "2026-9-1")
        selectMonthKey : ➕を押して「週を選んでください」になっている月
        composeWeekKey : やることを書き込み中の週 */
-    var openMonthKey = null, openWeekKey = null, selectMonthKey = null, composeWeekKey = null, goalEditKey = null, composeDayDate = null, composeDraftText = '', composeColor = 'sea';
+    var openMonthKey = null, openWeekKey = null, selectMonthKey = null, composeWeekKey = null, goalEditKey = null, composeDayDates = [], composeDraftText = '', composeColor = 'sea';
     var editEventId = null, editDayDate = null, editColor = null, editDraftText = '';
     var WEEKDAY_LABEL = ['日','月','火','水','木','金','土'];
     function datesInRange(startStr, endStr){
@@ -10183,11 +10183,10 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
             var cSlot = slots[cIdx];
             var cTodayStr = ymd(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
             var cSlotDates = datesInRange(cSlot.start, cSlot.end);
-            var cFirstSelectable = cSlotDates.filter(function(d2){ return d2 >= cTodayStr; })[0];
-            var cDayDate = composeDayDate || cFirstSelectable || cSlot.start;
+            var cDayDates = composeDayDates || [];
             var cDayChips = cSlotDates.map(function(dstr2){
               var dd = new Date(dstr2+'T00:00:00');
-              var isSel = (cDayDate === dstr2);
+              var isSel = (cDayDates.indexOf(dstr2) !== -1);
               var isPast = dstr2 < cTodayStr;
               return '<button type="button" class="daychip'+(isSel?' active':'')+(isPast?' past':'')+'"'+
                        (isPast ? ' disabled aria-disabled="true" title="過ぎた日には追加できません"' : ' data-day="'+dstr2+'"')+'>'+
@@ -10262,8 +10261,9 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
             selectMonthKey = null;
             composeDraftText = '';
             composeColor = 'sea';
-            /* 週の最初の日(月曜)がもう過ぎていることがあるため、今日以降で最初に選べる日をここで確定しておく */
-            composeDayDate = wFirstSelectable || wSlot.start;
+            /* 週の最初の日(月曜)がもう過ぎていることがあるため、今日以降で最初に選べる日をここで確定しておく。
+               曜日の選択は任意なので、ここではまず1日だけ選んだ状態にしておき、あとで追加/解除できるようにする。 */
+            composeDayDates = [wFirstSelectable || wSlot.start];
             render();
             setTimeout(function(){
               var el = document.getElementById('compose-input');
@@ -10280,7 +10280,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
       trailEl.querySelectorAll('[data-composecancel]').forEach(function(btn){
         btn.addEventListener('click', function(){
           composeWeekKey = null;
-          composeDayDate = null;
+          composeDayDates = [];
           composeDraftText = '';
           composeColor = 'sea';
           render();
@@ -10291,7 +10291,9 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
         btn.addEventListener('click', function(){
           var el0 = document.getElementById('compose-input');
           if(el0) composeDraftText = el0.value;
-          composeDayDate = btn.dataset.day;
+          var dstr3 = btn.dataset.day;
+          var idx3 = composeDayDates.indexOf(dstr3);
+          if(idx3 === -1){ composeDayDates.push(dstr3); } else { composeDayDates.splice(idx3, 1); }
           render();
           setTimeout(function(){
             var el = document.getElementById('compose-input');
@@ -10477,22 +10479,29 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     function saveComposedEvent(wkey){
       if(!wkey) return;
       refreshToday();
-      var parts = wkey.split('-');
-      var y = parseInt(parts[0],10), m = parseInt(parts[1],10), idx = parseInt(parts[2],10);
-      var slot = weekSlotsForMonth(y,m)[idx];
-      var day = composeDayDate || slot.start;
+      var parts0 = wkey.split('-');
+      var y0 = parseInt(parts0[0],10), m0 = parseInt(parts0[1],10), idx0 = parseInt(parts0[2],10);
+      var slot0 = weekSlotsForMonth(y0,m0)[idx0];
       var todayStr = ymd(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
-      if(day < todayStr){ showComposeMsg('過ぎた日には予定を追加できません。今日以降の日を選んでください。'); return; }
+      /* 曜日を1つも選ばなかった場合は、その週の中で一番早く選べる日(今日を含む週なら今日)を日付にする。
+         これにより、その週の予定として登録されつつ、その週の中では一番上(今日の予定のすぐ下)に表示される。 */
+      var slotDates0 = datesInRange(slot0.start, slot0.end);
+      var weekFirstSelectable = slotDates0.filter(function(d2){ return d2 >= todayStr; })[0] || slot0.start;
+      var days = (composeDayDates && composeDayDates.length) ? composeDayDates.slice() : [weekFirstSelectable];
+      days = days.filter(function(d){ return d >= todayStr; });
+      if(!days.length) days = [weekFirstSelectable];
       var input = document.getElementById('compose-input');
       var text = input ? input.value.trim() : '';
       if(!text){ showComposeMsg('やることを入力してください'); return; }
-      MY_EVENTS.push({
-        id: uid(), title: text, date: day, end: day,
-        when: whenLabel(day, day), memo: '', color: composeColor || 'sea'
+      days.forEach(function(day){
+        MY_EVENTS.push({
+          id: uid(), title: text, date: day, end: day,
+          when: whenLabel(day, day), memo: '', color: composeColor || 'sea'
+        });
       });
       saveEvents(MY_EVENTS);
       composeWeekKey = null;
-      composeDayDate = null;
+      composeDayDates = [];
       composeDraftText = '';
       composeColor = 'sea';
       openWeekKey = wkey;
@@ -10557,7 +10566,7 @@ html[data-scene="chichibu"]:not([data-vtheme="dark"]) .vy-sky svg{ opacity:.35; 
     window.scheduleResetAll = function(){
       MY_EVENTS = []; MY_GOALS = {};
       try{ localStorage.removeItem(STORAGE_KEY); localStorage.removeItem(GOALS_KEY); }catch(e){ /* no-op */ }
-      openMonthKey = null; openWeekKey = null; selectMonthKey = null; composeWeekKey = null; goalEditKey = null; composeDayDate = null; composeDraftText = '';
+      openMonthKey = null; openWeekKey = null; selectMonthKey = null; composeWeekKey = null; goalEditKey = null; composeDayDates = []; composeDraftText = '';
       render();
     };
 
